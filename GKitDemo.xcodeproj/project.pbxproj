@@ -53,6 +53,9 @@
 		F8862C6C16CA6A36006EB467 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		F8862C6E16CA6A36006EB467 /* GKitDemoTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GKitDemoTests.h; sourceTree = "<group>"; };
 		F8862C6F16CA6A36006EB467 /* GKitDemoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GKitDemoTests.m; sourceTree = "<group>"; };
+		F8862C8416CA6C89006EB467 /* GCore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCore.h; sourceTree = "<group>"; };
+		F8862C8516CA6C89006EB467 /* GDebuggingTools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GDebuggingTools.h; sourceTree = "<group>"; };
+		F8862C8616CA6C89006EB467 /* GSDKAvailability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GSDKAvailability.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,6 +85,7 @@
 		F8862C3816CA6A35006EB467 = {
 			isa = PBXGroup;
 			children = (
+				F8862C7916CA6C59006EB467 /* GKit */,
 				F8862C4A16CA6A35006EB467 /* GKitDemo */,
 				F8862C6816CA6A36006EB467 /* GKitDemoTests */,
 				F8862C4316CA6A35006EB467 /* Frameworks */,
@@ -150,6 +154,24 @@
 				F8862C6B16CA6A36006EB467 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		F8862C7916CA6C59006EB467 /* GKit */ = {
+			isa = PBXGroup;
+			children = (
+				F8862C7A16CA6C59006EB467 /* Core */,
+			);
+			path = GKit;
+			sourceTree = "<group>";
+		};
+		F8862C7A16CA6C59006EB467 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				F8862C8416CA6C89006EB467 /* GCore.h */,
+				F8862C8516CA6C89006EB467 /* GDebuggingTools.h */,
+				F8862C8616CA6C89006EB467 /* GSDKAvailability.h */,
+			);
+			path = Core;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -439,6 +461,7 @@
 				F8862C7516CA6A36006EB467 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		F8862C7616CA6A36006EB467 /* Build configuration list for PBXNativeTarget "GKitDemoTests" */ = {
 			isa = XCConfigurationList;
@@ -447,6 +470,7 @@
 				F8862C7816CA6A36006EB467 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
