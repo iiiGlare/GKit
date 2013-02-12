@@ -20,14 +20,13 @@
 /**
  * Create UIColor object 
  */
-UIColor* GMakeWhiteColor(CGFloat white);
-UIColor* GMakeWhiteAlphaColor(CGFloat white, CGFloat alpha);
-UIColor* GMakeRGBColor(CGFloat red, CGFloat green, CGFloat blue);
-UIColor* GMakeRGBAColor(CGFloat red, CGFloat green, CGFloat blue, CGFloat alpha);
+UIColor * GMakeWhiteColor(CGFloat white);
+UIColor * GMakeWhiteAlphaColor(CGFloat white, CGFloat alpha);
+UIColor * GMakeRGBColor(CGFloat red, CGFloat green, CGFloat blue);
+UIColor * GMakeRGBAColor(CGFloat red, CGFloat green, CGFloat blue, CGFloat alpha);
 
 @interface UIColor (GKit)
 
-//////Copy from TKCategory//////
 /** Creates and returns a color object using the specific hex value.
  @param hex The hex value that will decide the color.
  @return The `UIColor` object.
@@ -45,6 +44,5 @@ UIColor* GMakeRGBAColor(CGFloat red, CGFloat green, CGFloat blue, CGFloat alpha)
  @return The `UIColor` object.
  */
 + (UIColor *) randomColor;
-//////Copy from TKCategory END//////
 
 @end

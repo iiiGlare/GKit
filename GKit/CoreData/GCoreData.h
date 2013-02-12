@@ -15,14 +15,27 @@
 // limitations under the License.
 //
 
+#import <CoreData/CoreData.h>
+#import "GCore.h"
+
+@interface GCoreData : NSObject
 
 /**
- *     #if __IPHONE_OS_VERSION_MAX_ALLOWED >= G_iOS_5_0
- *       // This code will only compile on versions >= iOS 5.0
- *     #endif
  */
++ (BOOL) setupWithName:(NSString *)name;
++ (BOOL) setupWithModelName:(NSString *)modelName storeName:(NSString *)storeName;
 
-#define G_iOS_5_0     50000
-#define G_iOS_5_1     50100
-#define G_iOS_6_0     60000
-#define G_iOS_6_1     60100
+@property (nonatomic, copy) NSString * modelName;
+@property (nonatomic, copy) NSString * storeName;
+
+/**
+ */
++ (id) sharedInstance;
+
+/**
+ */
+@property (readonly, strong, nonatomic) NSManagedObjectContext * managedObjectContext;
+@property (readonly, strong, nonatomic) NSManagedObjectModel * managedObjectModel;
+@property (readonly, strong, nonatomic) NSPersistentStoreCoordinator * persistentStoreCoordinator;
+
+@end

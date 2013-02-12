@@ -19,13 +19,11 @@
 #import "GDebuggingTools.h"
 #import "GSDKAvailability.h"
 
-
 //Categories
 #import "NSArray+GKit.h"
 
+#import "UIApplication+GKit.h"
 #import "UIColor+GKit.h"
 #import "UIDevice+GKit.h"
 
 //Utilities
-#import "GFoundationUtilities.h"
-#import "GDrawingUtilities.h"
