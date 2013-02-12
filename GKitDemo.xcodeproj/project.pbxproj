@@ -1,0 +1,520 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		F8862C4516CA6A35006EB467 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8862C4416CA6A35006EB467 /* UIKit.framework */; };
+		F8862C4716CA6A35006EB467 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8862C4616CA6A35006EB467 /* Foundation.framework */; };
+		F8862C4916CA6A35006EB467 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8862C4816CA6A35006EB467 /* CoreGraphics.framework */; };
+		F8862C4F16CA6A35006EB467 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = F8862C4D16CA6A35006EB467 /* InfoPlist.strings */; };
+		F8862C5116CA6A35006EB467 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F8862C5016CA6A35006EB467 /* main.m */; };
+		F8862C5516CA6A36006EB467 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F8862C5416CA6A36006EB467 /* AppDelegate.m */; };
+		F8862C5716CA6A36006EB467 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = F8862C5616CA6A36006EB467 /* Default.png */; };
+		F8862C5916CA6A36006EB467 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F8862C5816CA6A36006EB467 /* Default@2x.png */; };
+		F8862C5B16CA6A36006EB467 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F8862C5A16CA6A36006EB467 /* Default-568h@2x.png */; };
+		F8862C6316CA6A36006EB467 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8862C6216CA6A36006EB467 /* SenTestingKit.framework */; };
+		F8862C6416CA6A36006EB467 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8862C4416CA6A35006EB467 /* UIKit.framework */; };
+		F8862C6516CA6A36006EB467 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8862C4616CA6A35006EB467 /* Foundation.framework */; };
+		F8862C6D16CA6A36006EB467 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = F8862C6B16CA6A36006EB467 /* InfoPlist.strings */; };
+		F8862C7016CA6A36006EB467 /* GKitDemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F8862C6F16CA6A36006EB467 /* GKitDemoTests.m */; };
+		F8862CA616CA6E42006EB467 /* NSArray+GKit.m in Sources */ = {isa = PBXBuildFile; fileRef = F8862CA016CA6E42006EB467 /* NSArray+GKit.m */; };
+		F8862CA716CA6E42006EB467 /* UIColor+GKit.m in Sources */ = {isa = PBXBuildFile; fileRef = F8862CA316CA6E42006EB467 /* UIColor+GKit.m */; };
+		F8862CA816CA6E42006EB467 /* UIDevice+GKit.m in Sources */ = {isa = PBXBuildFile; fileRef = F8862CA516CA6E42006EB467 /* UIDevice+GKit.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		F8862C6616CA6A36006EB467 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F8862C3916CA6A35006EB467 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F8862C4016CA6A35006EB467;
+			remoteInfo = GKitDemo;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		F8862C4116CA6A35006EB467 /* GKitDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GKitDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		F8862C4416CA6A35006EB467 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		F8862C4616CA6A35006EB467 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		F8862C4816CA6A35006EB467 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		F8862C4C16CA6A35006EB467 /* GKitDemo-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GKitDemo-Info.plist"; sourceTree = "<group>"; };
+		F8862C4E16CA6A35006EB467 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		F8862C5016CA6A35006EB467 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		F8862C5216CA6A35006EB467 /* GKitDemo-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "GKitDemo-Prefix.pch"; sourceTree = "<group>"; };
+		F8862C5316CA6A35006EB467 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		F8862C5416CA6A36006EB467 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		F8862C5616CA6A36006EB467 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		F8862C5816CA6A36006EB467 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		F8862C5A16CA6A36006EB467 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		F8862C6116CA6A36006EB467 /* GKitDemoTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GKitDemoTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+		F8862C6216CA6A36006EB467 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
+		F8862C6A16CA6A36006EB467 /* GKitDemoTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GKitDemoTests-Info.plist"; sourceTree = "<group>"; };
+		F8862C6C16CA6A36006EB467 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		F8862C6E16CA6A36006EB467 /* GKitDemoTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GKitDemoTests.h; sourceTree = "<group>"; };
+		F8862C6F16CA6A36006EB467 /* GKitDemoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GKitDemoTests.m; sourceTree = "<group>"; };
+		F8862C8416CA6C89006EB467 /* GCore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCore.h; sourceTree = "<group>"; };
+		F8862C8516CA6C89006EB467 /* GDebuggingTools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GDebuggingTools.h; sourceTree = "<group>"; };
+		F8862C8616CA6C89006EB467 /* GSDKAvailability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GSDKAvailability.h; sourceTree = "<group>"; };
+		F8862C9F16CA6E41006EB467 /* NSArray+GKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+GKit.h"; sourceTree = "<group>"; };
+		F8862CA016CA6E42006EB467 /* NSArray+GKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+GKit.m"; sourceTree = "<group>"; };
+		F8862CA216CA6E42006EB467 /* UIColor+GKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+GKit.h"; sourceTree = "<group>"; };
+		F8862CA316CA6E42006EB467 /* UIColor+GKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+GKit.m"; sourceTree = "<group>"; };
+		F8862CA416CA6E42006EB467 /* UIDevice+GKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIDevice+GKit.h"; sourceTree = "<group>"; };
+		F8862CA516CA6E42006EB467 /* UIDevice+GKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIDevice+GKit.m"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		F8862C3E16CA6A35006EB467 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F8862C4516CA6A35006EB467 /* UIKit.framework in Frameworks */,
+				F8862C4716CA6A35006EB467 /* Foundation.framework in Frameworks */,
+				F8862C4916CA6A35006EB467 /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F8862C5D16CA6A36006EB467 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F8862C6316CA6A36006EB467 /* SenTestingKit.framework in Frameworks */,
+				F8862C6416CA6A36006EB467 /* UIKit.framework in Frameworks */,
+				F8862C6516CA6A36006EB467 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		F8862C3816CA6A35006EB467 = {
+			isa = PBXGroup;
+			children = (
+				F8862C7916CA6C59006EB467 /* GKit */,
+				F8862C4A16CA6A35006EB467 /* GKitDemo */,
+				F8862C6816CA6A36006EB467 /* GKitDemoTests */,
+				F8862C4316CA6A35006EB467 /* Frameworks */,
+				F8862C4216CA6A35006EB467 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		F8862C4216CA6A35006EB467 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				F8862C4116CA6A35006EB467 /* GKitDemo.app */,
+				F8862C6116CA6A36006EB467 /* GKitDemoTests.octest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		F8862C4316CA6A35006EB467 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				F8862C4416CA6A35006EB467 /* UIKit.framework */,
+				F8862C4616CA6A35006EB467 /* Foundation.framework */,
+				F8862C4816CA6A35006EB467 /* CoreGraphics.framework */,
+				F8862C6216CA6A36006EB467 /* SenTestingKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		F8862C4A16CA6A35006EB467 /* GKitDemo */ = {
+			isa = PBXGroup;
+			children = (
+				F8862C5316CA6A35006EB467 /* AppDelegate.h */,
+				F8862C5416CA6A36006EB467 /* AppDelegate.m */,
+				F8862C4B16CA6A35006EB467 /* Supporting Files */,
+			);
+			path = GKitDemo;
+			sourceTree = "<group>";
+		};
+		F8862C4B16CA6A35006EB467 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				F8862C4C16CA6A35006EB467 /* GKitDemo-Info.plist */,
+				F8862C4D16CA6A35006EB467 /* InfoPlist.strings */,
+				F8862C5016CA6A35006EB467 /* main.m */,
+				F8862C5216CA6A35006EB467 /* GKitDemo-Prefix.pch */,
+				F8862C5616CA6A36006EB467 /* Default.png */,
+				F8862C5816CA6A36006EB467 /* Default@2x.png */,
+				F8862C5A16CA6A36006EB467 /* Default-568h@2x.png */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		F8862C6816CA6A36006EB467 /* GKitDemoTests */ = {
+			isa = PBXGroup;
+			children = (
+				F8862C6E16CA6A36006EB467 /* GKitDemoTests.h */,
+				F8862C6F16CA6A36006EB467 /* GKitDemoTests.m */,
+				F8862C6916CA6A36006EB467 /* Supporting Files */,
+			);
+			path = GKitDemoTests;
+			sourceTree = "<group>";
+		};
+		F8862C6916CA6A36006EB467 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				F8862C6A16CA6A36006EB467 /* GKitDemoTests-Info.plist */,
+				F8862C6B16CA6A36006EB467 /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		F8862C7916CA6C59006EB467 /* GKit */ = {
+			isa = PBXGroup;
+			children = (
+				F8862C7A16CA6C59006EB467 /* Core */,
+			);
+			path = GKit;
+			sourceTree = "<group>";
+		};
+		F8862C7A16CA6C59006EB467 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				F8862C9D16CA6E41006EB467 /* Categories */,
+				F8862C8416CA6C89006EB467 /* GCore.h */,
+				F8862C8516CA6C89006EB467 /* GDebuggingTools.h */,
+				F8862C8616CA6C89006EB467 /* GSDKAvailability.h */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		F8862C9D16CA6E41006EB467 /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				F8862C9E16CA6E41006EB467 /* Foundation */,
+				F8862CA116CA6E42006EB467 /* UIKit */,
+			);
+			path = Categories;
+			sourceTree = "<group>";
+		};
+		F8862C9E16CA6E41006EB467 /* Foundation */ = {
+			isa = PBXGroup;
+			children = (
+				F8862C9F16CA6E41006EB467 /* NSArray+GKit.h */,
+				F8862CA016CA6E42006EB467 /* NSArray+GKit.m */,
+			);
+			path = Foundation;
+			sourceTree = "<group>";
+		};
+		F8862CA116CA6E42006EB467 /* UIKit */ = {
+			isa = PBXGroup;
+			children = (
+				F8862CA216CA6E42006EB467 /* UIColor+GKit.h */,
+				F8862CA316CA6E42006EB467 /* UIColor+GKit.m */,
+				F8862CA416CA6E42006EB467 /* UIDevice+GKit.h */,
+				F8862CA516CA6E42006EB467 /* UIDevice+GKit.m */,
+			);
+			path = UIKit;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		F8862C4016CA6A35006EB467 /* GKitDemo */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F8862C7316CA6A36006EB467 /* Build configuration list for PBXNativeTarget "GKitDemo" */;
+			buildPhases = (
+				F8862C3D16CA6A35006EB467 /* Sources */,
+				F8862C3E16CA6A35006EB467 /* Frameworks */,
+				F8862C3F16CA6A35006EB467 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = GKitDemo;
+			productName = GKitDemo;
+			productReference = F8862C4116CA6A35006EB467 /* GKitDemo.app */;
+			productType = "com.apple.product-type.application";
+		};
+		F8862C6016CA6A36006EB467 /* GKitDemoTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F8862C7616CA6A36006EB467 /* Build configuration list for PBXNativeTarget "GKitDemoTests" */;
+			buildPhases = (
+				F8862C5C16CA6A36006EB467 /* Sources */,
+				F8862C5D16CA6A36006EB467 /* Frameworks */,
+				F8862C5E16CA6A36006EB467 /* Resources */,
+				F8862C5F16CA6A36006EB467 /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				F8862C6716CA6A36006EB467 /* PBXTargetDependency */,
+			);
+			name = GKitDemoTests;
+			productName = GKitDemoTests;
+			productReference = F8862C6116CA6A36006EB467 /* GKitDemoTests.octest */;
+			productType = "com.apple.product-type.bundle";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		F8862C3916CA6A35006EB467 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0460;
+				ORGANIZATIONNAME = Hoewo;
+			};
+			buildConfigurationList = F8862C3C16CA6A35006EB467 /* Build configuration list for PBXProject "GKitDemo" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = F8862C3816CA6A35006EB467;
+			productRefGroup = F8862C4216CA6A35006EB467 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				F8862C4016CA6A35006EB467 /* GKitDemo */,
+				F8862C6016CA6A36006EB467 /* GKitDemoTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		F8862C3F16CA6A35006EB467 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F8862C4F16CA6A35006EB467 /* InfoPlist.strings in Resources */,
+				F8862C5716CA6A36006EB467 /* Default.png in Resources */,
+				F8862C5916CA6A36006EB467 /* Default@2x.png in Resources */,
+				F8862C5B16CA6A36006EB467 /* Default-568h@2x.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F8862C5E16CA6A36006EB467 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F8862C6D16CA6A36006EB467 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		F8862C5F16CA6A36006EB467 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		F8862C3D16CA6A35006EB467 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F8862C5116CA6A35006EB467 /* main.m in Sources */,
+				F8862C5516CA6A36006EB467 /* AppDelegate.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F8862C5C16CA6A36006EB467 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F8862C7016CA6A36006EB467 /* GKitDemoTests.m in Sources */,
+				F8862CA616CA6E42006EB467 /* NSArray+GKit.m in Sources */,
+				F8862CA716CA6E42006EB467 /* UIColor+GKit.m in Sources */,
+				F8862CA816CA6E42006EB467 /* UIDevice+GKit.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		F8862C6716CA6A36006EB467 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F8862C4016CA6A35006EB467 /* GKitDemo */;
+			targetProxy = F8862C6616CA6A36006EB467 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		F8862C4D16CA6A35006EB467 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F8862C4E16CA6A35006EB467 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		F8862C6B16CA6A36006EB467 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F8862C6C16CA6A36006EB467 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		F8862C7116CA6A36006EB467 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		F8862C7216CA6A36006EB467 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		F8862C7416CA6A36006EB467 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "GKitDemo/GKitDemo-Prefix.pch";
+				INFOPLIST_FILE = "GKitDemo/GKitDemo-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		F8862C7516CA6A36006EB467 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "GKitDemo/GKitDemo-Prefix.pch";
+				INFOPLIST_FILE = "GKitDemo/GKitDemo-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		F8862C7716CA6A36006EB467 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/GKitDemo.app/GKitDemo";
+				FRAMEWORK_SEARCH_PATHS = (
+					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
+					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "GKitDemo/GKitDemo-Prefix.pch";
+				INFOPLIST_FILE = "GKitDemoTests/GKitDemoTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Debug;
+		};
+		F8862C7816CA6A36006EB467 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/GKitDemo.app/GKitDemo";
+				FRAMEWORK_SEARCH_PATHS = (
+					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
+					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "GKitDemo/GKitDemo-Prefix.pch";
+				INFOPLIST_FILE = "GKitDemoTests/GKitDemoTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		F8862C3C16CA6A35006EB467 /* Build configuration list for PBXProject "GKitDemo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F8862C7116CA6A36006EB467 /* Debug */,
+				F8862C7216CA6A36006EB467 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F8862C7316CA6A36006EB467 /* Build configuration list for PBXNativeTarget "GKitDemo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F8862C7416CA6A36006EB467 /* Debug */,
+				F8862C7516CA6A36006EB467 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F8862C7616CA6A36006EB467 /* Build configuration list for PBXNativeTarget "GKitDemoTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F8862C7716CA6A36006EB467 /* Debug */,
+				F8862C7816CA6A36006EB467 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = F8862C3916CA6A35006EB467 /* Project object */;
+}
