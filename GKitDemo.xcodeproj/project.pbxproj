@@ -21,9 +21,13 @@
 		F8862C6516CA6A36006EB467 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8862C4616CA6A35006EB467 /* Foundation.framework */; };
 		F8862C6D16CA6A36006EB467 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = F8862C6B16CA6A36006EB467 /* InfoPlist.strings */; };
 		F8862C7016CA6A36006EB467 /* GKitDemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F8862C6F16CA6A36006EB467 /* GKitDemoTests.m */; };
-		F8862CA616CA6E42006EB467 /* NSArray+GKit.m in Sources */ = {isa = PBXBuildFile; fileRef = F8862CA016CA6E42006EB467 /* NSArray+GKit.m */; };
-		F8862CA716CA6E42006EB467 /* UIColor+GKit.m in Sources */ = {isa = PBXBuildFile; fileRef = F8862CA316CA6E42006EB467 /* UIColor+GKit.m */; };
-		F8862CA816CA6E42006EB467 /* UIDevice+GKit.m in Sources */ = {isa = PBXBuildFile; fileRef = F8862CA516CA6E42006EB467 /* UIDevice+GKit.m */; };
+		F8862CB416CA735D006EB467 /* NSArray+GKit.m in Sources */ = {isa = PBXBuildFile; fileRef = F8862CAE16CA735D006EB467 /* NSArray+GKit.m */; };
+		F8862CB516CA735D006EB467 /* UIColor+GKit.m in Sources */ = {isa = PBXBuildFile; fileRef = F8862CB116CA735D006EB467 /* UIColor+GKit.m */; };
+		F8862CB616CA735D006EB467 /* UIDevice+GKit.m in Sources */ = {isa = PBXBuildFile; fileRef = F8862CB316CA735D006EB467 /* UIDevice+GKit.m */; };
+		F8862CB816CA73E2006EB467 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = F8862CB716CA73E2006EB467 /* README.md */; };
+		F8862CBA16CA747A006EB467 /* GCoreData.m in Sources */ = {isa = PBXBuildFile; fileRef = F8862CB916CA747A006EB467 /* GCoreData.m */; };
+		F8862CBD16CA74AF006EB467 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8862CBC16CA74AF006EB467 /* CoreData.framework */; };
+		F8D0803F16CA928C0091C48D /* UIApplication+GKit.m in Sources */ = {isa = PBXBuildFile; fileRef = F8D0803E16CA928B0091C48D /* UIApplication+GKit.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,12 +63,18 @@
 		F8862C8416CA6C89006EB467 /* GCore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCore.h; sourceTree = "<group>"; };
 		F8862C8516CA6C89006EB467 /* GDebuggingTools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GDebuggingTools.h; sourceTree = "<group>"; };
 		F8862C8616CA6C89006EB467 /* GSDKAvailability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GSDKAvailability.h; sourceTree = "<group>"; };
-		F8862C9F16CA6E41006EB467 /* NSArray+GKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+GKit.h"; sourceTree = "<group>"; };
-		F8862CA016CA6E42006EB467 /* NSArray+GKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+GKit.m"; sourceTree = "<group>"; };
-		F8862CA216CA6E42006EB467 /* UIColor+GKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+GKit.h"; sourceTree = "<group>"; };
-		F8862CA316CA6E42006EB467 /* UIColor+GKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+GKit.m"; sourceTree = "<group>"; };
-		F8862CA416CA6E42006EB467 /* UIDevice+GKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIDevice+GKit.h"; sourceTree = "<group>"; };
-		F8862CA516CA6E42006EB467 /* UIDevice+GKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIDevice+GKit.m"; sourceTree = "<group>"; };
+		F8862CAD16CA735D006EB467 /* NSArray+GKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+GKit.h"; sourceTree = "<group>"; };
+		F8862CAE16CA735D006EB467 /* NSArray+GKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+GKit.m"; sourceTree = "<group>"; };
+		F8862CB016CA735D006EB467 /* UIColor+GKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+GKit.h"; sourceTree = "<group>"; };
+		F8862CB116CA735D006EB467 /* UIColor+GKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+GKit.m"; sourceTree = "<group>"; };
+		F8862CB216CA735D006EB467 /* UIDevice+GKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIDevice+GKit.h"; sourceTree = "<group>"; };
+		F8862CB316CA735D006EB467 /* UIDevice+GKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIDevice+GKit.m"; sourceTree = "<group>"; };
+		F8862CB716CA73E2006EB467 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
+		F8862CB916CA747A006EB467 /* GCoreData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCoreData.m; sourceTree = "<group>"; };
+		F8862CBB16CA7487006EB467 /* GCoreData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCoreData.h; sourceTree = "<group>"; };
+		F8862CBC16CA74AF006EB467 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		F8D0803D16CA928B0091C48D /* UIApplication+GKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIApplication+GKit.h"; sourceTree = "<group>"; };
+		F8D0803E16CA928B0091C48D /* UIApplication+GKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIApplication+GKit.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,6 +82,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F8862CBD16CA74AF006EB467 /* CoreData.framework in Frameworks */,
 				F8862C4516CA6A35006EB467 /* UIKit.framework in Frameworks */,
 				F8862C4716CA6A35006EB467 /* Foundation.framework in Frameworks */,
 				F8862C4916CA6A35006EB467 /* CoreGraphics.framework in Frameworks */,
@@ -94,6 +105,7 @@
 		F8862C3816CA6A35006EB467 = {
 			isa = PBXGroup;
 			children = (
+				F8862CB716CA73E2006EB467 /* README.md */,
 				F8862C7916CA6C59006EB467 /* GKit */,
 				F8862C4A16CA6A35006EB467 /* GKitDemo */,
 				F8862C6816CA6A36006EB467 /* GKitDemoTests */,
@@ -114,6 +126,7 @@
 		F8862C4316CA6A35006EB467 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				F8862CBC16CA74AF006EB467 /* CoreData.framework */,
 				F8862C4416CA6A35006EB467 /* UIKit.framework */,
 				F8862C4616CA6A35006EB467 /* Foundation.framework */,
 				F8862C4816CA6A35006EB467 /* CoreGraphics.framework */,
@@ -168,6 +181,7 @@
 		F8862C7916CA6C59006EB467 /* GKit */ = {
 			isa = PBXGroup;
 			children = (
+				F8862CA916CA7256006EB467 /* CoreData */,
 				F8862C7A16CA6C59006EB467 /* Core */,
 			);
 			path = GKit;
@@ -176,39 +190,50 @@
 		F8862C7A16CA6C59006EB467 /* Core */ = {
 			isa = PBXGroup;
 			children = (
-				F8862C9D16CA6E41006EB467 /* Categories */,
 				F8862C8416CA6C89006EB467 /* GCore.h */,
 				F8862C8516CA6C89006EB467 /* GDebuggingTools.h */,
 				F8862C8616CA6C89006EB467 /* GSDKAvailability.h */,
+				F8862CAB16CA735D006EB467 /* Categories */,
 			);
 			path = Core;
 			sourceTree = "<group>";
 		};
-		F8862C9D16CA6E41006EB467 /* Categories */ = {
+		F8862CA916CA7256006EB467 /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
-				F8862C9E16CA6E41006EB467 /* Foundation */,
-				F8862CA116CA6E42006EB467 /* UIKit */,
+				F8862CBB16CA7487006EB467 /* GCoreData.h */,
+				F8862CB916CA747A006EB467 /* GCoreData.m */,
+			);
+			path = CoreData;
+			sourceTree = "<group>";
+		};
+		F8862CAB16CA735D006EB467 /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				F8862CAC16CA735D006EB467 /* Foundation */,
+				F8862CAF16CA735D006EB467 /* UIKit */,
 			);
 			path = Categories;
 			sourceTree = "<group>";
 		};
-		F8862C9E16CA6E41006EB467 /* Foundation */ = {
+		F8862CAC16CA735D006EB467 /* Foundation */ = {
 			isa = PBXGroup;
 			children = (
-				F8862C9F16CA6E41006EB467 /* NSArray+GKit.h */,
-				F8862CA016CA6E42006EB467 /* NSArray+GKit.m */,
+				F8862CAD16CA735D006EB467 /* NSArray+GKit.h */,
+				F8862CAE16CA735D006EB467 /* NSArray+GKit.m */,
 			);
 			path = Foundation;
 			sourceTree = "<group>";
 		};
-		F8862CA116CA6E42006EB467 /* UIKit */ = {
+		F8862CAF16CA735D006EB467 /* UIKit */ = {
 			isa = PBXGroup;
 			children = (
-				F8862CA216CA6E42006EB467 /* UIColor+GKit.h */,
-				F8862CA316CA6E42006EB467 /* UIColor+GKit.m */,
-				F8862CA416CA6E42006EB467 /* UIDevice+GKit.h */,
-				F8862CA516CA6E42006EB467 /* UIDevice+GKit.m */,
+				F8862CB016CA735D006EB467 /* UIColor+GKit.h */,
+				F8862CB116CA735D006EB467 /* UIColor+GKit.m */,
+				F8862CB216CA735D006EB467 /* UIDevice+GKit.h */,
+				F8862CB316CA735D006EB467 /* UIDevice+GKit.m */,
+				F8D0803D16CA928B0091C48D /* UIApplication+GKit.h */,
+				F8D0803E16CA928B0091C48D /* UIApplication+GKit.m */,
 			);
 			path = UIKit;
 			sourceTree = "<group>";
@@ -288,6 +313,7 @@
 				F8862C5716CA6A36006EB467 /* Default.png in Resources */,
 				F8862C5916CA6A36006EB467 /* Default@2x.png in Resources */,
 				F8862C5B16CA6A36006EB467 /* Default-568h@2x.png in Resources */,
+				F8862CB816CA73E2006EB467 /* README.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -324,6 +350,11 @@
 			files = (
 				F8862C5116CA6A35006EB467 /* main.m in Sources */,
 				F8862C5516CA6A36006EB467 /* AppDelegate.m in Sources */,
+				F8862CB416CA735D006EB467 /* NSArray+GKit.m in Sources */,
+				F8862CB516CA735D006EB467 /* UIColor+GKit.m in Sources */,
+				F8862CB616CA735D006EB467 /* UIDevice+GKit.m in Sources */,
+				F8862CBA16CA747A006EB467 /* GCoreData.m in Sources */,
+				F8D0803F16CA928C0091C48D /* UIApplication+GKit.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -332,9 +363,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				F8862C7016CA6A36006EB467 /* GKitDemoTests.m in Sources */,
-				F8862CA616CA6E42006EB467 /* NSArray+GKit.m in Sources */,
-				F8862CA716CA6E42006EB467 /* UIColor+GKit.m in Sources */,
-				F8862CA816CA6E42006EB467 /* UIDevice+GKit.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

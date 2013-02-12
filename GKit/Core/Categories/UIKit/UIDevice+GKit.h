@@ -23,20 +23,20 @@
  * Check if the device is running on ipad or not
  * @return YES if device is ipad
  */
-+ (BOOL)isPad;
++ (BOOL) isPad;
 
 /**
  */
-+ (BOOL)isRetinaDisplay;
++ (BOOL) isRetinaDisplay;
 
 /**
  * Check if the iOS version higher than a given version
  */
-+ (BOOL)isOSVersionHigherThanVersion:(NSString *)minVersion includeEqual:(BOOL)isInclude;
++ (BOOL) isOSVersionHigherThanVersion:(NSString *)minVersion includeEqual:(BOOL)isInclude;
 
 /**
  * Check if the iOS version lower than a given version
  */
-+ (BOOL)isOSVersionLowerThanVersion:(NSString *)maxVersion includeEqual:(BOOL)isInclude;
++ (BOOL) isOSVersionLowerThanVersion:(NSString *)maxVersion includeEqual:(BOOL)isInclude;
 
 @end
