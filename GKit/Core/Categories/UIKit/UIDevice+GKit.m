@@ -20,19 +20,19 @@
 @implementation UIDevice (GKit)
 
 //////////////////////////////////////////////////////////////////////////////////
-+ (BOOL)isPad
++ (BOOL) isPad
 {
     return UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad;
 }
 
 //////////////////////////////////////////////////////////////////////////////////
-+ (BOOL)isRetinaDisplay{
++ (BOOL) isRetinaDisplay{
     return ([UIScreen instancesRespondToSelector:@selector(scale)] &&
             [[UIScreen mainScreen] scale] == 2.0);
 }
 
 //////////////////////////////////////////////////////////////////////////////////
-+ (BOOL)isOSVersionHigherThanVersion:(NSString *)minVersion includeEqual:(BOOL)isInclude
++ (BOOL) isOSVersionHigherThanVersion:(NSString *)minVersion includeEqual:(BOOL)isInclude
 {
 	NSString *sysVersion = [[UIDevice currentDevice] systemVersion];
 	NSComparisonResult comparisonResult = [sysVersion compare:minVersion];
@@ -44,7 +44,7 @@
 }
 
 //////////////////////////////////////////////////////////////////////////////////
-+ (BOOL)isOSVersionLowerThanVersion:(NSString *)maxVersion includeEqual:(BOOL)isInclude
++ (BOOL) isOSVersionLowerThanVersion:(NSString *)maxVersion includeEqual:(BOOL)isInclude
 {
 	NSString *sysVersion = [[UIDevice currentDevice] systemVersion];
 	NSComparisonResult comparisonResult = [sysVersion compare:maxVersion];

@@ -18,22 +18,22 @@
 #import "UIColor+GKit.h"
 
 //////////////////////////////////////////////////////////////////////////////////
-UIColor* GMakeWhiteColor(CGFloat white)
+UIColor * GMakeWhiteColor(CGFloat white)
 {
     return GMakeWhiteAlphaColor(white, 1.0);
 }
 
-UIColor* GMakeWhiteAlphaColor(CGFloat white, CGFloat alpha)
+UIColor * GMakeWhiteAlphaColor(CGFloat white, CGFloat alpha)
 {
     return [UIColor colorWithWhite:(white)/255.0f alpha:(alpha)];
 }
 
-UIColor* GMakeRGBColor(CGFloat red, CGFloat green, CGFloat blue)
+UIColor * GMakeRGBColor(CGFloat red, CGFloat green, CGFloat blue)
 {
     return GMakeRGBAColor(red, green, blue, 1.0);
 }
 
-UIColor* GMakeRGBAColor(CGFloat red, CGFloat green, CGFloat blue, CGFloat alpha)
+UIColor * GMakeRGBAColor(CGFloat red, CGFloat green, CGFloat blue, CGFloat alpha)
 {
     return [UIColor colorWithRed:(red)/255.0f green:(green)/255.0f blue:(blue)/255.0f alpha:(alpha)];
 }
@@ -41,28 +41,27 @@ UIColor* GMakeRGBAColor(CGFloat red, CGFloat green, CGFloat blue, CGFloat alpha)
 @implementation UIColor (GKit)
 
 //////////////////////////////////////////////////////////////////////////////////
-+ (id) colorWithHex:(unsigned int)hex{
++ (id) colorWithHex:(unsigned int)hex
+{
 	return [UIColor colorWithHex:hex alpha:1];
 }
 
 //////////////////////////////////////////////////////////////////////////////////
-+ (id) colorWithHex:(unsigned int)hex alpha:(CGFloat)alpha{
-	
-	return [UIColor colorWithRed:((float)((hex & 0xFF0000) >> 16)) / 255.0
-                           green:((float)((hex & 0xFF00) >> 8)) / 255.0
-                            blue:((float)(hex & 0xFF)) / 255.0
-                           alpha:alpha];
-	
++ (id) colorWithHex:(unsigned int)hex alpha:(CGFloat)alpha
+{
+    return GMakeRGBAColor((float)((hex & 0xFF0000) >> 16),
+                          (float)((hex & 0xFF00) >> 8),
+                          (float)((hex & 0xFF)),
+                          alpha);
 }
 
 //////////////////////////////////////////////////////////////////////////////////
-+ (UIColor*) randomColor{
-	
++ (UIColor *) randomColor
+{	
 	int r = arc4random() % 255;
 	int g = arc4random() % 255;
 	int b = arc4random() % 255;
-	return [UIColor colorWithRed:r/255.0 green:g/255.0 blue:b/255.0 alpha:1];
-	
+    return GMakeRGBColor(r, g, b);
 }
 
 @end
