@@ -15,17 +15,21 @@
 // limitations under the License.
 //
 
-//Basic
-#import "GDebuggingTools.h"
-#import "GSDKAvailability.h"
+#import <Foundation/Foundation.h>
 
-//Categories
-#import "NSArray+GKit.h"
-#import "NSUserDefaults+GKit.h"
+@interface NSUserDefaults (GKit)
 
-#import "UIApplication+GKit.h"
-#import "UIColor+GKit.h"
-#import "UIDevice+GKit.h"
-#import "UIView+GKit.h"
+/**
+ * Return value for a key,
+ * if the value object is nil, return the given default value
+ */
++ (BOOL)boolForKey:(NSString *)key withDefault:(BOOL)defaultValue;
++ (void)setBool:(BOOL)value forKey:(NSString *)key;
 
-//Utilities
++ (NSInteger)integerForKey:(NSString *)key withDefault:(NSInteger)defaultValue;
++ (void)setInteger:(NSInteger)value forKey:(NSString *)key;
+
++ (id)objectForKey:(NSString *)key withDefault:(id)defaultValue;
++ (void)setObject:(id)value forKey:(NSString *)key;
+
+@end
