@@ -11,16 +11,22 @@
 /// @name Rectangle Manipulation
 ///-----------------------------
 
-extern CGRect CGRectSetX(CGRect rect, CGFloat x);
-extern CGRect CGRectSetY(CGRect rect, CGFloat y);
-extern CGRect CGRectSetWidth(CGRect rect, CGFloat width);
-extern CGRect CGRectSetHeight(CGRect rect, CGFloat height);
-extern CGRect CGRectSetOrigin(CGRect rect, CGPoint origin);
-extern CGRect CGRectSetSize(CGRect rect, CGSize size);
-extern CGRect CGRectSetZeroOrigin(CGRect rect);
-extern CGRect CGRectSetZeroSize(CGRect rect);
-extern CGSize CGSizeAspectScaleToSize(CGSize size, CGSize toSize);
-extern CGRect CGRectAddPoint(CGRect rect, CGPoint point);
+extern CGRect GRectSetX(CGRect rect, CGFloat x);
+extern CGRect GRectSetY(CGRect rect, CGFloat y);
+extern CGRect GRectSetWidth(CGRect rect, CGFloat width);
+extern CGRect GRectSetHeight(CGRect rect, CGFloat height);
+extern CGRect GRectSetOrigin(CGRect rect, CGPoint origin);
+extern CGRect GRectSetSize(CGRect rect, CGSize size);
+extern CGRect GRectSetZeroOrigin(CGRect rect);
+extern CGRect GRectSetZeroSize(CGRect rect);
+extern CGSize GSizeAspectScaleToSize(CGSize size, CGSize toSize);
+extern CGRect GRectAddPoint(CGRect rect, CGPoint point);
+
+/**
+ */
+#define GViewAutoresizingFlexibleMargins UIViewAutoresizingFlexibleTopMargin|UIViewAutoresizingFlexibleLeftMargin|UIViewAutoresizingFlexibleBottomMargin|UIViewAutoresizingFlexibleRightMargin
+#define GViewAutoresizingFlexibleSize UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight
+#define GViewAutoresizingFlexibleAll GViewAutoresizingFlexibleMargins|GViewAutoresizingFlexibleSize
 
 @interface UIView (GKit)
 

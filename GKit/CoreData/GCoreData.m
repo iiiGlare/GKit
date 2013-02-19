@@ -47,6 +47,100 @@
     return _sharedInstance;
 }
 
+#pragma mark - 
+//save
++ (void)save
+{
+    [self saveInManagedObjectContext:[[GCoreData sharedInstance] managedObjectContext]];
+}
++ (void)saveInManagedObjectContext:(NSManagedObjectContext *)context
+{
+    NSError *error;
+    if (![context save:&error]) {
+        // Update to handle the error appropriately.
+        GLOG(@"Unresolved error %@, %@", error, [error userInfo]);
+        exit(-1);  // Fail
+    }
+}
+
+//del
++ (void)deleteObject:(id)objectToDelete
+{
+	NSManagedObjectContext *context = [[GCoreData sharedInstance] managedObjectContext];
+	
+	if ([objectToDelete isKindOfClass:[NSManagedObject class]]){	//删除单个
+		[context deleteObject:objectToDelete];
+	}else if ([objectToDelete isKindOfClass:[NSArray class]]){	//删除多个
+		[(NSArray *)objectToDelete enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop){
+			[context deleteObject:obj];
+		}];
+	}else if ([objectToDelete isKindOfClass:[NSSet class]]){	//删除多个
+		[(NSSet *)objectToDelete enumerateObjectsUsingBlock:^(id obj, BOOL *stop){
+			[context deleteObject:obj];
+		}];
+	}else {
+		return;
+	}
+	
+	// Commit the change.
+	NSError *error = nil;
+	if (![context save:&error]) {
+		// Handle the error.
+	}
+}
+
+//new
++ (id)insertNewForEntityNamed:(NSString *)entityName
+{
+    return [GCoreData insertNewForEntityNamed:entityName
+                       inManagedObjectContext:[[GCoreData sharedInstance] managedObjectContext]];
+}
++ (id)insertNewForEntityNamed:(NSString *)entityName inManagedObjectContext:(NSManagedObjectContext *)context
+{
+    return [NSEntityDescription insertNewObjectForEntityForName:entityName
+                                         inManagedObjectContext:context];
+}
+
+//fetch
+//fetch first object for entity
++ (id)fetchFirstForEntityName:(NSString *)entityName
+          withSortDescriptors:(NSArray *)dess
+{
+
+    NSArray *fetchResults = [GCoreData fetchAllForEntityName:entityName
+                                         withSortDescriptors:dess
+                                              withFetchLimit:1];
+    return [fetchResults firstObject];
+
+}
++ (NSArray *)fetchAllForEntityName:(NSString *)entityName
+               withSortDescriptors:(NSArray *)dess
+{
+    return [GCoreData fetchAllForEntityName:entityName
+                        withSortDescriptors:dess
+                             withFetchLimit:0];
+}
++ (NSArray *)fetchAllForEntityName:(NSString *)entityName
+               withSortDescriptors:(NSArray *)dess
+                    withFetchLimit:(NSUInteger)limit
+{
+    NSManagedObjectContext *context = [[GCoreData sharedInstance] managedObjectContext];
+    //create fetch request
+    NSFetchRequest *request = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:entityName inManagedObjectContext:context];
+    [request setEntity:entity];
+    [request setFetchLimit:limit];
+    [request setSortDescriptors:dess];
+    NSError *error = nil;
+    NSMutableArray *mutableFetchResults = [[context executeFetchRequest:request error:&error] mutableCopy];
+    if (mutableFetchResults == nil)
+    {
+        // Handle the error.
+    }
+    return mutableFetchResults;
+}
+
+
 #pragma mark - Core Data stack
 
 // Returns the managed object context for the application.

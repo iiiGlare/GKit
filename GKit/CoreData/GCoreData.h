@@ -19,18 +19,42 @@
 #import "GCore.h"
 
 @interface GCoreData : NSObject
-
-/**
- */
-+ (BOOL) setupWithName:(NSString *)name;
-+ (BOOL) setupWithModelName:(NSString *)modelName storeName:(NSString *)storeName;
-
-@property (nonatomic, copy) NSString * modelName;
-@property (nonatomic, copy) NSString * storeName;
-
 /**
  */
 + (id) sharedInstance;
+
+
+//save
++ (void) save;
++ (void) saveInManagedObjectContext:(NSManagedObjectContext *)context;
+
+//del
++ (void) deleteObject:(id)objectToDelete;
+
+//new
++ (id) insertNewForEntityNamed:(NSString *)entityName;
++ (id) insertNewForEntityNamed:(NSString *)entityName
+  inManagedObjectContext:(NSManagedObjectContext *)context;
+
+//fetch
+//fetch first object for entity
++ (id) fetchFirstForEntityName:(NSString *)entityName
+           withSortDescriptors:(NSArray *)dess;
++ (NSArray *) fetchAllForEntityName:(NSString *)entityName
+                withSortDescriptors:(NSArray *)dess;
++ (NSArray *) fetchAllForEntityName:(NSString *)entityName
+                withSortDescriptors:(NSArray *)dess
+                     withFetchLimit:(NSUInteger)limit;
+
+/**
+ setup
+ */
++ (BOOL) setupWithName:(NSString *)name;
++ (BOOL) setupWithModelName:(NSString *)modelName
+                  storeName:(NSString *)storeName;
+
+@property (nonatomic, copy) NSString * modelName;
+@property (nonatomic, copy) NSString * storeName;
 
 /**
  */

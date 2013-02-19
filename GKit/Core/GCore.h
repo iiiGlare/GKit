@@ -21,11 +21,13 @@
 
 //Categories
 #import "NSArray+GKit.h"
+#import "NSDate+GKit.h"
 #import "NSUserDefaults+GKit.h"
 
 #import "UIApplication+GKit.h"
 #import "UIColor+GKit.h"
 #import "UIDevice+GKit.h"
 #import "UIView+GKit.h"
+#import "UILabel+GKit.h"
 
 //Utilities
