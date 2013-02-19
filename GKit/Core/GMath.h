@@ -15,24 +15,24 @@
 // limitations under the License.
 //
 
-//Basic
-#import "GDebuggingTools.h"
-#import "GSDKAvailability.h"
+//向上取整(包含)
+double gceil(double x);
+//向上取整(不包含)
+double gceilne(double x);
 
-//Categories
-#import "NSArray+GKit.h"
-#import "NSData+GKit.h"
-#import "NSDate+GKit.h"
-#import "NSString+GKit.h"
-#import "NSUserDefaults+GKit.h"
+//向下取整(包含)
+double gfloor(double x);
+//向下取整(不包含)
+double gfloorne(double x);
 
-#import "UIApplication+GKit.h"
-#import "UIColor+GKit.h"
-#import "UIDevice+GKit.h"
-#import "UIView+GKit.h"
-#import "UILabel+GKit.h"
+//四舍五入
+double ground(double x);
 
-//Utilities
-
-//Math
-#import "GMath.h"
+//角度转化为弧度
+CGFloat RadiansFromDegrees(CGFloat degrees);
+//弧度转化为角度
+CGFloat DegreesFromRadians(CGFloat radians);
+//获取数的正负号
+NSInteger SignOfIntegerNumber(NSInteger x);
+//计算移动的距离
+CGFloat DistanceMoved(CGFloat dx, CGFloat dy);
