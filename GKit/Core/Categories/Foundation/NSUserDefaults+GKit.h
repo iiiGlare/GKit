@@ -29,6 +29,12 @@
 + (NSInteger)integerForKey:(NSString *)key withDefault:(NSInteger)defaultValue;
 + (void)setInteger:(NSInteger)value forKey:(NSString *)key;
 
++ (float)floatForKey:(NSString *)key withDefault:(float)defaultValue;
++ (void)setFloat:(float)value forKey:(NSString *)key;
+
++ (double)doubleForKey:(NSString *)key withDefault:(double)defaultValue;
++ (void)setDouble:(double)value forKey:(NSString *)key;
+
 + (id)objectForKey:(NSString *)key withDefault:(id)defaultValue;
 + (void)setObject:(id)value forKey:(NSString *)key;
 

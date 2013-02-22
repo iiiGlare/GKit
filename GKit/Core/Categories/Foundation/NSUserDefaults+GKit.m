@@ -44,6 +44,33 @@
                        forKey:key];
 }
 
+//float
++ (float)floatForKey:(NSString *)key withDefault:(float)defaultValue
+{
+    NSNumber *value = [NSUserDefaults objectForKey:key
+                                       withDefault:[NSNumber numberWithFloat:defaultValue]];
+    return [value floatValue];
+}
++ (void)setFloat:(float)value forKey:(NSString *)key
+{
+    [NSUserDefaults setObject:[NSNumber numberWithFloat:value]
+                       forKey:key];
+}
+
+//double
++ (double)doubleForKey:(NSString *)key withDefault:(double)defaultValue
+{
+    NSNumber *value = [NSUserDefaults objectForKey:key
+                                       withDefault:[NSNumber numberWithDouble:defaultValue]];
+    return [value doubleValue];
+    
+}
++ (void)setDouble:(double)value forKey:(NSString *)key
+{
+    [NSUserDefaults setObject:[NSNumber numberWithDouble:value]
+                       forKey:key];
+}
+
 //Object
 + (id)objectForKey:(NSString *)key withDefault:(id)defaultValue
 {
