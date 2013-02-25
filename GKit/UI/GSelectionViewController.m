@@ -53,9 +53,13 @@
     }
     
     // Configure the cell...
-    id item = [self.itemsForSelection objectAtIndex:indexPath];
-    if ([item isKindOfClass:[NSString class]]) {
-        [cell.textLabel setText:item];
+    if (indexPath.row>=0 && indexPath.row<[self.itemsForSelection count]) {
+        id item = [self.itemsForSelection objectAtIndex:indexPath.row];
+        if ([item isKindOfClass:[NSString class]]) {
+            [cell.textLabel setText:item];
+        }else{
+            [cell.textLabel setText:@"test"];
+        }
     }else{
         [cell.textLabel setText:@"test"];
     }

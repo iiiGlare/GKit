@@ -29,8 +29,8 @@
 #import "UIApplication+GKit.h"
 #import "UIColor+GKit.h"
 #import "UIDevice+GKit.h"
-#import "UIView+GKit.h"
 #import "UILabel+GKit.h"
+#import "UIView+GKit.h"
 
 //Utilities
 

@@ -23,6 +23,8 @@
 
 @implementation GTableViewController
 
+#pragma mark - Init & Memory Management
+
 - (id)initWithStyle:(UITableViewStyle)style
 {
 	self = [super init];
@@ -31,6 +33,14 @@
 	}
 	return self;
 }
+
+- (void)didReceiveMemoryWarning
+{
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+#pragma mark - View Life Cycle
 
 - (void)loadView
 {

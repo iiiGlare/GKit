@@ -16,8 +16,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "GViewController.h"
 
-@interface GTableViewController : UIViewController
+@interface GTableViewController : GViewController
 <UITableViewDataSource, UITableViewDelegate>
 {
 @private
@@ -29,6 +30,7 @@
 @property (nonatomic, strong) UITableView *tableView;
 - (id)initWithStyle:(UITableViewStyle)style;
 
+//
 
 @end
 
