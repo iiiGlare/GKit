@@ -60,6 +60,8 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+    
+    [self registerForKeyboardNotifications];
 }
 
 - (void)viewDidUnload
@@ -67,6 +69,9 @@
     [super viewDidUnload];
     // Release any retained subviews of the main view.
 	self.tableView = nil;
+    self.cellInputField = nil;
+    self.cellInputFieldIndexPath = nil;
+    [self unregisterForKeyboardNotifications];
 }
 
 #pragma mark UITableViewDataSource
@@ -105,5 +110,100 @@
 {
     
 }
+
+#pragma mark - Title Text Field
+
+- (UITextField *)cellInputField
+{
+	if (_cellInputField) {
+		return _cellInputField;
+	}
+	
+	_cellInputField = [[[self cellInputFieldClass] alloc] initWithFrame:CGRectZero];
+	_cellInputField.backgroundColor = [UIColor whiteColor];
+	_cellInputField.delegate = self;
+	[self cellInputFieldDidLoad:_cellInputField];
+    
+	return _cellInputField;
+}
+
+- (void)addCellInputFieldAtIndexPath:(NSIndexPath *)indexPath
+{
+    self.cellInputFieldIndexPath = indexPath;
+    
+    [self cellInputFieldWillAddAtIndexPath:indexPath];
+	UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
+	[cell.contentView addSubview:self.cellInputField];
+	[self.cellInputField becomeFirstResponder];
+    [self cellInputFieldDidAddAtIndexPath:indexPath];
+}
+
+- (void)removeCellInputField
+{
+    [self cellInputFieldWillRemoveFromIndexPath:self.cellInputFieldIndexPath];
+	[self.cellInputField resignFirstResponder];
+	[self.cellInputField removeFromSuperview];
+    [self cellInputFieldDidRemoveFromIndexPath:self.cellInputFieldIndexPath];
+    
+    self.cellInputFieldIndexPath = nil;
+}
+
+#pragma mark - Override by Subclass
+- (Class)cellInputFieldClass{
+    return [UITextField class];
+}
+- (void)cellInputFieldDidLoad:(UITextField *)textField{
+}
+
+- (void)cellInputFieldWillAddAtIndexPath:(NSIndexPath *)indexPath{
+}
+- (void)cellInputFieldDidAddAtIndexPath:(NSIndexPath *)indexPath{
+}
+
+- (void)cellInputFieldWillRemoveFromIndexPath:(NSIndexPath *)indexPath{
+}
+- (void)cellInputFieldDidRemoveFromIndexPath:(NSIndexPath *)indexPath{
+}
+
+#pragma mark - KeyboardNotification
+// Call this method somewhere in your view controller setup code.
+- (void)registerForKeyboardNotifications
+{
+    [[NSNotificationCenter defaultCenter] addObserver:self
+											 selector:@selector(keyboardWasShown:)
+												 name:UIKeyboardDidShowNotification
+											   object:nil];
+	
+	[[NSNotificationCenter defaultCenter] addObserver:self
+											 selector:@selector(keyboardWillBeHidden:)
+												 name:UIKeyboardWillHideNotification
+											   object:nil];
+	
+}
+
+- (void)unregisterForKeyboardNotifications
+{
+	[[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+// Called when the UIKeyboardDidShowNotification is sent.
+- (void)keyboardWasShown:(NSNotification*)aNotification
+{
+    NSDictionary* info = [aNotification userInfo];
+    CGSize kbSize = [[info objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue].size;
+	CGFloat kbHeight = kbSize.height;
+	
+	self.tableView.contentInset = UIEdgeInsetsMake(0, 0, kbHeight, 0);
+	self.tableView.scrollIndicatorInsets = UIEdgeInsetsMake(0, 0, kbHeight, 0);
+	[self.tableView scrollRectToVisible:[self.tableView convertRect:self.cellInputField.frame fromView:self.cellInputField.superview] animated:YES];
+}
+
+// Called when the UIKeyboardWillHideNotification is sent
+- (void)keyboardWillBeHidden:(NSNotification*)aNotification
+{
+	self.tableView.contentInset = UIEdgeInsetsZero;
+	self.tableView.scrollIndicatorInsets = UIEdgeInsetsZero;
+}
+
 
 @end

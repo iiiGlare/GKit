@@ -19,7 +19,7 @@
 #import "GViewController.h"
 
 @interface GTableViewController : GViewController
-<UITableViewDataSource, UITableViewDelegate>
+<UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate>
 {
 @private
 	UITableViewStyle _tableViewStyle;
@@ -30,7 +30,26 @@
 @property (nonatomic, strong) UITableView *tableView;
 - (id)initWithStyle:(UITableViewStyle)style;
 
-//
+
+////
+//cell input field
+////
+@property (nonatomic, strong) UITextField *cellInputField;
+@property (nonatomic, strong) NSIndexPath *cellInputFieldIndexPath;
+- (void)addCellInputFieldAtIndexPath:(NSIndexPath *)indexPath;
+- (void)removeCellInputField;
+
+- (void)registerForKeyboardNotifications;
+- (void)unregisterForKeyboardNotifications;
+- (void)keyboardWasShown:(NSNotification*)aNotification;
+- (void)keyboardWillBeHidden:(NSNotification*)aNotification;
+
+- (Class)cellInputFieldClass;
+- (void)cellInputFieldDidLoad:(UITextField *)textField;
+- (void)cellInputFieldWillAddAtIndexPath:(NSIndexPath *)indexPath;
+- (void)cellInputFieldDidAddAtIndexPath:(NSIndexPath *)indexPath;
+- (void)cellInputFieldWillRemoveFromIndexPath:(NSIndexPath *)indexPath;
+- (void)cellInputFieldDidRemoveFromIndexPath:(NSIndexPath *)indexPath;
 
 @end
 
