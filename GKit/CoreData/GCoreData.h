@@ -19,32 +19,6 @@
 #import "GCore.h"
 
 @interface GCoreData : NSObject
-/**
- */
-+ (id) sharedInstance;
-
-
-//save
-+ (void) save;
-+ (void) saveInManagedObjectContext:(NSManagedObjectContext *)context;
-
-//del
-+ (void) deleteObject:(id)objectToDelete;
-
-//new
-+ (id) insertNewForEntityNamed:(NSString *)entityName;
-+ (id) insertNewForEntityNamed:(NSString *)entityName
-  inManagedObjectContext:(NSManagedObjectContext *)context;
-
-//fetch
-//fetch first object for entity
-+ (id) fetchFirstForEntityName:(NSString *)entityName
-           withSortDescriptors:(NSArray *)dess;
-+ (NSArray *) fetchAllForEntityName:(NSString *)entityName
-                withSortDescriptors:(NSArray *)dess;
-+ (NSArray *) fetchAllForEntityName:(NSString *)entityName
-                withSortDescriptors:(NSArray *)dess
-                     withFetchLimit:(NSUInteger)limit;
 
 /**
  setup
@@ -53,13 +27,109 @@
 + (BOOL) setupWithModelName:(NSString *)modelName
                   storeName:(NSString *)storeName;
 
+
+/**
+ */
++ (id) sharedInstance;
+
 @property (nonatomic, copy) NSString * modelName;
 @property (nonatomic, copy) NSString * storeName;
 
 /**
  */
-@property (readonly, strong, nonatomic) NSManagedObjectContext * managedObjectContext;
+@property (readonly, strong, nonatomic) NSManagedObjectContext * mainContext;
 @property (readonly, strong, nonatomic) NSManagedObjectModel * managedObjectModel;
 @property (readonly, strong, nonatomic) NSPersistentStoreCoordinator * persistentStoreCoordinator;
+
+
+//create new context
++ (NSManagedObjectContext *)newContext;
+
+//save
++ (void) save;
++ (void) saveInContext:(NSManagedObjectContext *)context;
+
+//del
++ (void) deleteObject:(id)objectToDelete;
+
+//new
++ (id) insertNewForEntityNamed:(NSString *)entityName;
++ (id) insertNewForEntityNamed:(NSString *)entityName
+                     inContext:(NSManagedObjectContext *)context;
+
+//fetch
+//fetch first
++ (id) fetchFirstForEntityName:(NSString *)entityName;
++ (id) fetchFirstForEntityName:(NSString *)entityName
+                     inContext:(NSManagedObjectContext *)context;
+//fetch first : predicate
++ (id) fetchFirstForEntityName:(NSString *)entityName
+                 withPredicate:(NSPredicate *)predicate;
++ (id) fetchFirstForEntityName:(NSString *)entityName
+                 withPredicate:(NSPredicate *)predicate
+                     inContext:(NSManagedObjectContext *)context;
+
+
+//fetch all
++ (NSArray *) fetchAllForEntityName:(NSString *)entityName;
++ (NSArray *) fetchAllForEntityName:(NSString *)entityName
+                          inContext:(NSManagedObjectContext *)context;
+//fetch all : predicate
++ (NSArray *) fetchAllForEntityName:(NSString *)entityName
+                      withPredicate:(NSPredicate *)predicate;
++ (NSArray *) fetchAllForEntityName:(NSString *)entityName
+                      withPredicate:(NSPredicate *)predicate
+                          inContext:(NSManagedObjectContext *)context;
+
+//fetch all : predicate 、sort
++ (NSArray *) fetchAllForEntityName:(NSString *)entityName
+                      withPredicate:(NSPredicate *)predicate
+                          sortByKey:(NSString *)key
+                          ascending:(NSNumber *)ascending;
++ (NSArray *) fetchAllForEntityName:(NSString *)entityName
+                      withPredicate:(NSPredicate *)predicate
+                          sortByKey:(NSString *)key
+                          ascending:(NSNumber *)ascending
+                          inContext:(NSManagedObjectContext *)context;
+
++ (NSArray *) fetchAllForEntityName:(NSString *)entityName
+                      withPredicate:(NSPredicate *)predicate
+                         sortByKeys:(NSArray *)keys
+                         ascendings:(NSArray *)ascendings;
++ (NSArray *) fetchAllForEntityName:(NSString *)entityName
+                      withPredicate:(NSPredicate *)predicate
+                         sortByKeys:(NSArray *)keys
+                         ascendings:(NSArray *)ascendings
+                          inContext:(NSManagedObjectContext *)context;
+
+//fetch all : predicate 、sort、limit
++ (NSArray *) fetchAllForEntityName:(NSString *)entityName
+                      withPredicate:(NSPredicate *)predicate
+                         sortByKeys:(NSArray *)keys
+                         ascendings:(NSArray *)ascendings
+                          limitedTo:(NSUInteger)limitNumber;
++ (NSArray *) fetchAllForEntityName:(NSString *)entityName
+                      withPredicate:(NSPredicate *)predicate
+                         sortByKeys:(NSArray *)keys
+                         ascendings:(NSArray *)ascendings
+                          limitedTo:(NSUInteger)limitNumber
+                          inContext:(NSManagedObjectContext *)context;
+
+//fetch all : fetch results controller
++ (NSFetchedResultsController *) fetchedResultsForEntityName:(NSString *)entityName
+                                                withDelegate:(id<NSFetchedResultsControllerDelegate>)delegate
+                                                   predicate:(NSPredicate *)predicate
+                                                  sortByKeys:(NSArray *)keys
+                                                  ascendings:(NSArray *)ascendings
+                                                   groupedBy:(NSString *)groupKeyPath
+                                                   cacheName:(NSString *)cacheName;
++ (NSFetchedResultsController *) fetchedResultsForEntityName:(NSString *)entityName
+                                                withDelegate:(id<NSFetchedResultsControllerDelegate>)delegate
+                                                   predicate:(NSPredicate *)predicate
+                                                  sortByKeys:(NSArray *)keys
+                                                  ascendings:(NSArray *)ascendings
+                                                   groupedBy:(NSString *)groupKeyPath
+                                                   cacheName:(NSString *)cacheName
+                                                   inContext:(NSManagedObjectContext *)context;
 
 @end

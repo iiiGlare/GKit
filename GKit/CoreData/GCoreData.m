@@ -19,7 +19,7 @@
 
 @implementation GCoreData
 
-@synthesize managedObjectContext = _managedObjectContext;
+@synthesize mainContext = _mainContext;
 @synthesize managedObjectModel = _managedObjectModel;
 @synthesize persistentStoreCoordinator = _persistentStoreCoordinator;
 
@@ -47,13 +47,34 @@
     return _sharedInstance;
 }
 
+#pragma mark - Context
+//create new context
++ (NSManagedObjectContext *)newContext
+{
+    NSPersistentStoreCoordinator *coordinator = [[GCoreData sharedInstance] persistentStoreCoordinator];
+    GASSERT(coordinator!=nil);
+    NSManagedObjectContext *context = [[NSManagedObjectContext alloc] init];
+    [context setPersistentStoreCoordinator:coordinator];
+    return context;
+}
+
++ (NSManagedObjectContext *)mainContext
+{
+    return [[GCoreData sharedInstance] mainContext];
+}
+
+NSManagedObjectContext * MainContext(void)
+{
+    return [GCoreData mainContext];
+}
+
 #pragma mark - 
 //save
 + (void)save
 {
-    [self saveInManagedObjectContext:[[GCoreData sharedInstance] managedObjectContext]];
+    [self saveInContext:MainContext()];
 }
-+ (void)saveInManagedObjectContext:(NSManagedObjectContext *)context
++ (void) saveInContext:(NSManagedObjectContext *)context
 {
     NSError *error;
     if (![context save:&error]) {
@@ -66,7 +87,7 @@
 //del
 + (void)deleteObject:(id)objectToDelete
 {
-	NSManagedObjectContext *context = [[GCoreData sharedInstance] managedObjectContext];
+	NSManagedObjectContext *context = MainContext();
 	
 	if ([objectToDelete isKindOfClass:[NSManagedObject class]]){	//删除单个
 		[context deleteObject:objectToDelete];
@@ -93,44 +114,185 @@
 + (id)insertNewForEntityNamed:(NSString *)entityName
 {
     return [GCoreData insertNewForEntityNamed:entityName
-                       inManagedObjectContext:[[GCoreData sharedInstance] managedObjectContext]];
+                       inContext:MainContext()];
 }
-+ (id)insertNewForEntityNamed:(NSString *)entityName inManagedObjectContext:(NSManagedObjectContext *)context
++ (id)insertNewForEntityNamed:(NSString *)entityName
+                    inContext:(NSManagedObjectContext *)context
 {
     return [NSEntityDescription insertNewObjectForEntityForName:entityName
                                          inManagedObjectContext:context];
 }
 
 //fetch
-//fetch first object for entity
-+ (id)fetchFirstForEntityName:(NSString *)entityName
-          withSortDescriptors:(NSArray *)dess
+//fetch first object
++ (id) fetchFirstForEntityName:(NSString *)entityName
 {
+    return [GCoreData fetchFirstForEntityName:entityName
+                                    inContext:MainContext()];
+}
++ (id) fetchFirstForEntityName:(NSString *)entityName
+                     inContext:(NSManagedObjectContext *)context;
+{
+    return [GCoreData fetchFirstForEntityName:entityName
+                                withPredicate:nil
+                                    inContext:context];
+}
 
-    NSArray *fetchResults = [GCoreData fetchAllForEntityName:entityName
-                                         withSortDescriptors:dess
-                                              withFetchLimit:1];
-    return [fetchResults firstObject];
+
++ (id) fetchFirstForEntityName:(NSString *)entityName
+                 withPredicate:(NSPredicate *)predicate
+{
+    return [GCoreData fetchFirstForEntityName:entityName
+                                withPredicate:predicate
+                                    inContext:MainContext()];
 
 }
-+ (NSArray *)fetchAllForEntityName:(NSString *)entityName
-               withSortDescriptors:(NSArray *)dess
++ (id) fetchFirstForEntityName:(NSString *)entityName
+                 withPredicate:(NSPredicate *)predicate
+                     inContext:(NSManagedObjectContext *)context
+{
+    NSArray *objects = [GCoreData fetchAllForEntityName:entityName
+                                          withPredicate:predicate
+                                             sortByKeys:nil
+                                             ascendings:nil
+                                              limitedTo:1];
+    return [objects firstObject];
+}
+
+//fetch all
++ (NSArray *) fetchAllForEntityName:(NSString *)entityName
 {
     return [GCoreData fetchAllForEntityName:entityName
-                        withSortDescriptors:dess
-                             withFetchLimit:0];
+                                  inContext:MainContext()];
 }
-+ (NSArray *)fetchAllForEntityName:(NSString *)entityName
-               withSortDescriptors:(NSArray *)dess
-                    withFetchLimit:(NSUInteger)limit
++ (NSArray *) fetchAllForEntityName:(NSString *)entityName
+                          inContext:(NSManagedObjectContext *)context
 {
-    NSManagedObjectContext *context = [[GCoreData sharedInstance] managedObjectContext];
+    return [GCoreData fetchAllForEntityName:entityName
+                              withPredicate:nil
+                                  inContext:context];
+}
+
+//fetch all : predicate
++ (NSArray *) fetchAllForEntityName:(NSString *)entityName
+                      withPredicate:(NSPredicate *)predicate
+{
+    return [GCoreData fetchAllForEntityName:entityName
+                              withPredicate:predicate
+                                  sortByKey:nil
+                                  ascending:nil];
+}
++ (NSArray *) fetchAllForEntityName:(NSString *)entityName
+                      withPredicate:(NSPredicate *)predicate
+                          inContext:(NSManagedObjectContext *)context
+{
+    return [GCoreData fetchAllForEntityName:entityName
+                              withPredicate:predicate
+                                  sortByKey:nil
+                                  ascending:nil
+                                  inContext:MainContext()];
+}
+
+//fetch all : predicate 、sort
++ (NSArray *) fetchAllForEntityName:(NSString *)entityName
+                      withPredicate:(NSPredicate *)predicate
+                          sortByKey:(NSString *)key
+                          ascending:(NSNumber *)ascending
+{
+    return [GCoreData fetchAllForEntityName:entityName
+                              withPredicate:predicate
+                                  sortByKey:key
+                                  ascending:ascending
+                                  inContext:MainContext()];
+}
++ (NSArray *) fetchAllForEntityName:(NSString *)entityName
+                      withPredicate:(NSPredicate *)predicate
+                          sortByKey:(NSString *)key
+                          ascending:(NSNumber *)ascending
+                          inContext:(NSManagedObjectContext *)context
+{
+    NSArray *keys = nil;
+    NSArray *ascendings = nil;
+    if (key && ascending) {
+        keys = @[key];
+        ascendings = @[ascending];
+    }
+    return [GCoreData fetchAllForEntityName:entityName
+                              withPredicate:predicate
+                                 sortByKeys:keys
+                                 ascendings:ascendings
+                                  inContext:context];
+}
+
+
++ (NSArray *) fetchAllForEntityName:(NSString *)entityName
+                      withPredicate:(NSPredicate *)predicate
+                         sortByKeys:(NSArray *)keys
+                         ascendings:(NSArray *)ascendings
+{
+    return [GCoreData fetchAllForEntityName:entityName
+                              withPredicate:predicate
+                                 sortByKeys:keys
+                                 ascendings:ascendings
+                                  inContext:MainContext()];
+}
++ (NSArray *) fetchAllForEntityName:(NSString *)entityName
+                      withPredicate:(NSPredicate *)predicate
+                         sortByKeys:(NSArray *)keys
+                         ascendings:(NSArray *)ascendings
+                          inContext:(NSManagedObjectContext *)context
+{
+    return [GCoreData fetchAllForEntityName:entityName
+                              withPredicate:predicate
+                                 sortByKeys:keys
+                                 ascendings:ascendings
+                                  limitedTo:0
+                                  inContext:context];
+}
+
+//fetch all : predicate 、sort、limit
++ (NSArray *) fetchAllForEntityName:(NSString *)entityName
+                      withPredicate:(NSPredicate *)predicate
+                         sortByKeys:(NSArray *)keys
+                         ascendings:(NSArray *)ascendings
+                          limitedTo:(NSUInteger)limitNumber
+{
+    return [GCoreData fetchAllForEntityName:entityName
+                              withPredicate:predicate
+                                 sortByKeys:keys
+                                 ascendings:ascendings
+                                  limitedTo:limitNumber
+                                  inContext:MainContext()];
+}
++ (NSArray *) fetchAllForEntityName:(NSString *)entityName
+                      withPredicate:(NSPredicate *)predicate
+                         sortByKeys:(NSArray *)keys
+                         ascendings:(NSArray *)ascendings
+                          limitedTo:(NSUInteger)limitNumber
+                          inContext:(NSManagedObjectContext *)context
+{
     //create fetch request
     NSFetchRequest *request = [[NSFetchRequest alloc] init];
-    NSEntityDescription *entity = [NSEntityDescription entityForName:entityName inManagedObjectContext:context];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:entityName
+                                              inManagedObjectContext:context];
     [request setEntity:entity];
-    [request setFetchLimit:limit];
+    [request setPredicate:predicate];
+    NSMutableArray *dess = nil;
+    if (keys) {
+        dess = [[NSMutableArray alloc] init];
+        GASSERT([keys count]==[ascendings count]);
+        NSInteger number = [keys count];
+        for (NSInteger i=0; i<number; i++) {
+            NSString *key = [keys objectAtIndex:i];
+            BOOL ascending = [[ascendings objectAtIndex:i] boolValue];
+            NSSortDescriptor *sortDes = [[NSSortDescriptor alloc] initWithKey:key
+                                                                    ascending:ascending];
+            [dess addObject:sortDes];
+        }
+    }
     [request setSortDescriptors:dess];
+    [request setFetchLimit:limitNumber];
+    //fetch
     NSError *error = nil;
     NSMutableArray *mutableFetchResults = [[context executeFetchRequest:request error:&error] mutableCopy];
     if (mutableFetchResults == nil)
@@ -140,23 +302,87 @@
     return mutableFetchResults;
 }
 
+//fetch all : fetch results controller
++ (NSFetchedResultsController *) fetchedResultsForEntityName:(NSString *)entityName
+                                                withDelegate:(id<NSFetchedResultsControllerDelegate>)delegate
+                                                   predicate:(NSPredicate *)predicate
+                                                  sortByKeys:(NSArray *)keys
+                                                  ascendings:(NSArray *)ascendings
+                                                   groupedBy:(NSString *)groupKeyPath
+                                                   cacheName:(NSString *)cacheName
+{
+    return [GCoreData fetchedResultsForEntityName:entityName
+                                     withDelegate:delegate
+                                        predicate:predicate
+                                       sortByKeys:keys
+                                       ascendings:ascendings
+                                        groupedBy:groupKeyPath
+                                        cacheName:cacheName
+                                        inContext:[[GCoreData sharedInstance] mainContext]];
+}
++ (NSFetchedResultsController *) fetchedResultsForEntityName:(NSString *)entityName
+                                                withDelegate:(id<NSFetchedResultsControllerDelegate>)delegate
+                                                   predicate:(NSPredicate *)predicate
+                                                  sortByKeys:(NSArray *)keys
+                                                  ascendings:(NSArray *)ascendings
+                                                   groupedBy:(NSString *)groupKeyPath
+                                                   cacheName:(NSString *)cacheName
+                                                   inContext:(NSManagedObjectContext *)context
+{
+   
+    // Create and configure a fetch request with the given entity.
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:entityName
+                                              inManagedObjectContext:context];
+    [fetchRequest setEntity:entity];
+    
+	// set the Predicate
+	[fetchRequest setPredicate:predicate];
+	
+    // Create the sort descriptors array.
+    NSMutableArray *dess = nil;
+    if (keys) {
+        dess = [[NSMutableArray alloc] init];
+        GASSERT([keys count]==[ascendings count]);
+        NSInteger number = [keys count];
+        for (NSInteger i=0; i<number; i++) {
+            NSString *key = [keys objectAtIndex:i];
+            BOOL ascending = [[ascendings objectAtIndex:i] boolValue];
+            NSSortDescriptor *sortDes = [[NSSortDescriptor alloc] initWithKey:key
+                                                                    ascending:ascending];
+            [dess addObject:sortDes];
+        }
+    }
+    [fetchRequest setSortDescriptors:dess];
+    
+    // Create and initialize the fetch results controller.
+    NSFetchedResultsController *aFetchedResultsController =
+    [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest
+                                        managedObjectContext:context
+                                          sectionNameKeyPath:groupKeyPath
+                                                   cacheName:cacheName];
+    aFetchedResultsController.delegate = delegate;
+    
+    return aFetchedResultsController;
+}
+
 
 #pragma mark - Core Data stack
 
 // Returns the managed object context for the application.
 // If the context doesn't already exist, it is created and bound to the persistent store coordinator for the application.
-- (NSManagedObjectContext *)managedObjectContext
+- (NSManagedObjectContext *)mainContext
 {
-    if (_managedObjectContext != nil) {
-        return _managedObjectContext;
+    if (_mainContext != nil) {
+        return _mainContext;
     }
     
     NSPersistentStoreCoordinator *coordinator = [self persistentStoreCoordinator];
     if (coordinator != nil) {
-        _managedObjectContext = [[NSManagedObjectContext alloc] init];
-        [_managedObjectContext setPersistentStoreCoordinator:coordinator];
+        _mainContext = [[NSManagedObjectContext alloc] init];
+        [_mainContext setPersistentStoreCoordinator:coordinator];
     }
-    return _managedObjectContext;
+    return _mainContext;
 }
 
 // Returns the managed object model for the application.

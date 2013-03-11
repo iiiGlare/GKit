@@ -31,6 +31,10 @@ NSURL* GLibraryDirectoryURL(void);
  */
 NSURL* GApplicationSupportDirectoryURL(void);
 
+/**
+ */
+UIViewController * GApplicationRootViewController(void);
+
 @interface UIApplication (GKit)
 
 @end

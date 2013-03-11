@@ -38,6 +38,12 @@ NSURL* GApplicationSupportDirectoryURL(void)
     return [[[NSFileManager defaultManager] URLsForDirectory:NSApplicationSupportDirectory inDomains:NSUserDomainMask] lastObject];
 }
 
+//////////////////////////////////////////////////////////////////////////////////
+UIViewController * GApplicationRootViewController(void)
+{
+    return [[[UIApplication sharedApplication] keyWindow] rootViewController];
+}
+
 @implementation UIApplication (GKit)
 
 @end
