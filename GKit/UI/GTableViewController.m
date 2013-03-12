@@ -134,6 +134,7 @@
     [self cellInputFieldWillAddAtIndexPath:indexPath];
 	UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
 	[cell.contentView addSubview:self.cellInputField];
+    [self showCellInputField];
 	[self.cellInputField becomeFirstResponder];
     [self cellInputFieldDidAddAtIndexPath:indexPath];
 }
@@ -147,6 +148,16 @@
     
     self.cellInputFieldIndexPath = nil;
 }
+
+- (void)showCellInputField
+{
+    self.cellInputField.hidden = NO;
+}
+- (void)hideCellInputField
+{
+    self.cellInputField.hidden = YES;
+}
+
 
 #pragma mark - Override by Subclass
 - (Class)cellInputFieldClass{

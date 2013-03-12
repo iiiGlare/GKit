@@ -39,6 +39,9 @@
 - (void)addCellInputFieldAtIndexPath:(NSIndexPath *)indexPath;
 - (void)removeCellInputField;
 
+- (void)showCellInputField;
+- (void)hideCellInputField;
+
 - (void)registerForKeyboardNotifications;
 - (void)unregisterForKeyboardNotifications;
 - (void)keyboardWasShown:(NSNotification*)aNotification;
