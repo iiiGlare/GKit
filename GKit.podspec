@@ -1,5 +1,5 @@
 Pod::Spec.new do |s|
-  s.name		= 'MBProgressHUD'
+  s.name		= 'GKit'
   s.version		= '0.1'
   s.summary		= 'An iOS framework.'
   s.description 	= <<-DESC
