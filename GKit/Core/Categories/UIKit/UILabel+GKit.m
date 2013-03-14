@@ -7,6 +7,7 @@
 //
 
 #import "UILabel+GKit.h"
+#import "UIDevice+GKit.h"
 
 @implementation UILabel (GKit)
 
