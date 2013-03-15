@@ -23,6 +23,7 @@
 		F8862C7016CA6A36006EB467 /* GKitDemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F8862C6F16CA6A36006EB467 /* GKitDemoTests.m */; };
 		F8862CB816CA73E2006EB467 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = F8862CB716CA73E2006EB467 /* README.md */; };
 		F8862CBD16CA74AF006EB467 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8862CBC16CA74AF006EB467 /* CoreData.framework */; };
+		FD16EF2F16F303CC00457701 /* NSNumber+GKit.m in Sources */ = {isa = PBXBuildFile; fileRef = FD16EF2E16F303CC00457701 /* NSNumber+GKit.m */; };
 		FDF1EF6816F1BCFC00FCDC64 /* GKit.podspec in Resources */ = {isa = PBXBuildFile; fileRef = FDF1EF3816F1BCFC00FCDC64 /* GKit.podspec */; };
 		FDF1EF6916F1BCFC00FCDC64 /* GAudio.m in Sources */ = {isa = PBXBuildFile; fileRef = FDF1EF3C16F1BCFC00FCDC64 /* GAudio.m */; };
 		FDF1EF6A16F1BCFC00FCDC64 /* NSArray+GKit.m in Sources */ = {isa = PBXBuildFile; fileRef = FDF1EF4116F1BCFC00FCDC64 /* NSArray+GKit.m */; };
@@ -78,6 +79,8 @@
 		F8862C6F16CA6A36006EB467 /* GKitDemoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GKitDemoTests.m; sourceTree = "<group>"; };
 		F8862CB716CA73E2006EB467 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
 		F8862CBC16CA74AF006EB467 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		FD16EF2D16F303CC00457701 /* NSNumber+GKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSNumber+GKit.h"; sourceTree = "<group>"; };
+		FD16EF2E16F303CC00457701 /* NSNumber+GKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSNumber+GKit.m"; sourceTree = "<group>"; };
 		FDF1EF3816F1BCFC00FCDC64 /* GKit.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = GKit.podspec; sourceTree = "<group>"; };
 		FDF1EF3B16F1BCFC00FCDC64 /* GAudio.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAudio.h; sourceTree = "<group>"; };
 		FDF1EF3C16F1BCFC00FCDC64 /* GAudio.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GAudio.m; sourceTree = "<group>"; };
@@ -284,6 +287,8 @@
 				FDF1EF4916F1BCFC00FCDC64 /* NSString+GKit.m */,
 				FDF1EF4A16F1BCFC00FCDC64 /* NSUserDefaults+GKit.h */,
 				FDF1EF4B16F1BCFC00FCDC64 /* NSUserDefaults+GKit.m */,
+				FD16EF2D16F303CC00457701 /* NSNumber+GKit.h */,
+				FD16EF2E16F303CC00457701 /* NSNumber+GKit.m */,
 			);
 			path = Foundation;
 			sourceTree = "<group>";
@@ -461,6 +466,7 @@
 				FDF1EF7816F1BCFC00FCDC64 /* GSelectionViewController.m in Sources */,
 				FDF1EF7916F1BCFC00FCDC64 /* GTableViewController.m in Sources */,
 				FDF1EF7A16F1BCFC00FCDC64 /* GViewController.m in Sources */,
+				FD16EF2F16F303CC00457701 /* NSNumber+GKit.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

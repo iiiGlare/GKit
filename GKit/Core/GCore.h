@@ -23,6 +23,7 @@
 #import "NSArray+GKit.h"
 #import "NSData+GKit.h"
 #import "NSDate+GKit.h"
+#import "NSNumber+GKit.h"
 #import "NSObject+GKit.h"
 #import "NSString+GKit.h"
 #import "NSUserDefaults+GKit.h"
