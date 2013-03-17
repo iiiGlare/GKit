@@ -35,6 +35,7 @@
 #import "UIView+GKit.h"
 
 //Utilities
+#import "GCommonMetrics.h"
 
 //Math
 #import "GMath.h"

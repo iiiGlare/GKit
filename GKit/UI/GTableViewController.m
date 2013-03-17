@@ -16,6 +16,7 @@
 //
 
 #import "GTableViewController.h"
+#import "GCommonMetrics.h"
 
 @interface GTableViewController ()
 

@@ -25,6 +25,8 @@
 		F8862CBD16CA74AF006EB467 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8862CBC16CA74AF006EB467 /* CoreData.framework */; };
 		FD16EF2F16F303CC00457701 /* NSNumber+GKit.m in Sources */ = {isa = PBXBuildFile; fileRef = FD16EF2E16F303CC00457701 /* NSNumber+GKit.m */; };
 		FDE7B80916F5FA62009DDB31 /* MyTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FDE7B80816F5FA62009DDB31 /* MyTableViewController.m */; };
+		FDE7B80C16F605DF009DDB31 /* GCommonMetrics.m in Sources */ = {isa = PBXBuildFile; fileRef = FDE7B80B16F605DF009DDB31 /* GCommonMetrics.m */; };
+		FDE7B80E16F607F9009DDB31 /* test.xib in Resources */ = {isa = PBXBuildFile; fileRef = FDE7B80D16F607F9009DDB31 /* test.xib */; };
 		FDF1EF6816F1BCFC00FCDC64 /* GKit.podspec in Resources */ = {isa = PBXBuildFile; fileRef = FDF1EF3816F1BCFC00FCDC64 /* GKit.podspec */; };
 		FDF1EF6916F1BCFC00FCDC64 /* GAudio.m in Sources */ = {isa = PBXBuildFile; fileRef = FDF1EF3C16F1BCFC00FCDC64 /* GAudio.m */; };
 		FDF1EF6A16F1BCFC00FCDC64 /* NSArray+GKit.m in Sources */ = {isa = PBXBuildFile; fileRef = FDF1EF4116F1BCFC00FCDC64 /* NSArray+GKit.m */; };
@@ -84,6 +86,9 @@
 		FD16EF2E16F303CC00457701 /* NSNumber+GKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSNumber+GKit.m"; sourceTree = "<group>"; };
 		FDE7B80716F5FA62009DDB31 /* MyTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MyTableViewController.h; path = Classes/MyTableViewController.h; sourceTree = "<group>"; };
 		FDE7B80816F5FA62009DDB31 /* MyTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MyTableViewController.m; path = Classes/MyTableViewController.m; sourceTree = "<group>"; };
+		FDE7B80A16F605DF009DDB31 /* GCommonMetrics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCommonMetrics.h; sourceTree = "<group>"; };
+		FDE7B80B16F605DF009DDB31 /* GCommonMetrics.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCommonMetrics.m; sourceTree = "<group>"; };
+		FDE7B80D16F607F9009DDB31 /* test.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = test.xib; path = Classes/test.xib; sourceTree = "<group>"; };
 		FDF1EF3816F1BCFC00FCDC64 /* GKit.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = GKit.podspec; sourceTree = "<group>"; };
 		FDF1EF3B16F1BCFC00FCDC64 /* GAudio.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAudio.h; sourceTree = "<group>"; };
 		FDF1EF3C16F1BCFC00FCDC64 /* GAudio.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GAudio.m; sourceTree = "<group>"; };
@@ -195,6 +200,7 @@
 				F8862C5416CA6A36006EB467 /* AppDelegate.m */,
 				FDE7B80716F5FA62009DDB31 /* MyTableViewController.h */,
 				FDE7B80816F5FA62009DDB31 /* MyTableViewController.m */,
+				FDE7B80D16F607F9009DDB31 /* test.xib */,
 				F8862C4B16CA6A35006EB467 /* Supporting Files */,
 			);
 			path = GKitDemo;
@@ -264,6 +270,8 @@
 				FDF1EF5916F1BCFC00FCDC64 /* GMath.h */,
 				FDF1EF5A16F1BCFC00FCDC64 /* GMath.m */,
 				FDF1EF5B16F1BCFC00FCDC64 /* GSDKAvailability.h */,
+				FDE7B80A16F605DF009DDB31 /* GCommonMetrics.h */,
+				FDE7B80B16F605DF009DDB31 /* GCommonMetrics.m */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -417,6 +425,7 @@
 				F8862C5B16CA6A36006EB467 /* Default-568h@2x.png in Resources */,
 				F8862CB816CA73E2006EB467 /* README.md in Resources */,
 				FDF1EF6816F1BCFC00FCDC64 /* GKit.podspec in Resources */,
+				FDE7B80E16F607F9009DDB31 /* test.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -473,6 +482,7 @@
 				FDF1EF7A16F1BCFC00FCDC64 /* GViewController.m in Sources */,
 				FD16EF2F16F303CC00457701 /* NSNumber+GKit.m in Sources */,
 				FDE7B80916F5FA62009DDB31 /* MyTableViewController.m in Sources */,
+				FDE7B80C16F605DF009DDB31 /* GCommonMetrics.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

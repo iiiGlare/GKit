@@ -22,11 +22,6 @@ extern CGRect GRectSetZeroSize(CGRect rect);
 extern CGSize GSizeAspectScaleToSize(CGSize size, CGSize toSize);
 extern CGRect GRectAddPoint(CGRect rect, CGPoint point);
 
-/**
- */
-#define GViewAutoresizingFlexibleMargins UIViewAutoresizingFlexibleTopMargin|UIViewAutoresizingFlexibleLeftMargin|UIViewAutoresizingFlexibleBottomMargin|UIViewAutoresizingFlexibleRightMargin
-#define GViewAutoresizingFlexibleSize UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight
-#define GViewAutoresizingFlexibleAll GViewAutoresizingFlexibleMargins|GViewAutoresizingFlexibleSize
 
 @interface UIView (GKit)
 
