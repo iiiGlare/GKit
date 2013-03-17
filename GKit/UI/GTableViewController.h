@@ -54,5 +54,15 @@
 - (void)cellInputFieldWillRemoveFromIndexPath:(NSIndexPath *)indexPath;
 - (void)cellInputFieldDidRemoveFromIndexPath:(NSIndexPath *)indexPath;
 
+/**
+ *Additional Cell
+ */
+@property (nonatomic, strong) NSIndexPath *additionalCellIndexPath;
+- (void)insertAdditionalCellAtIndexPath:(NSIndexPath *)indexPath;
+- (void)removeAdditionalCell;
+
+- (BOOL)hasAdditionalCell;
+- (BOOL)isAdditionalCellAtIndexPath:(NSIndexPath *)indexPath;
+
 @end
 

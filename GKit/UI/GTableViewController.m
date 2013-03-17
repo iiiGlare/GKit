@@ -159,7 +159,7 @@
 }
 
 
-#pragma mark - Override by Subclass
+//Override by Subclass
 - (Class)cellInputFieldClass{
     return [UITextField class];
 }
@@ -217,4 +217,40 @@
 }
 
 
+#pragma mark - Additional Cell
+- (void)insertAdditionalCellAtIndexPath:(NSIndexPath *)indexPath
+{
+	self.additionalCellIndexPath = indexPath;
+		
+	[self.tableView beginUpdates];
+	[self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationMiddle];
+	[self.tableView endUpdates];
+}
+- (void)removeAdditionalCell
+{
+	NSIndexPath *indexPath = self.additionalCellIndexPath;
+	self.additionalCellIndexPath = nil;
+	
+	[self.tableView beginUpdates];
+	[self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationMiddle];
+	[self.tableView endUpdates];
+}
+
+//
+- (BOOL)hasAdditionalCell
+{
+	if (self.additionalCellIndexPath) {
+		return YES;
+	}else {
+		return NO;
+	}
+}
+- (BOOL)isAdditionalCellAtIndexPath:(NSIndexPath *)indexPath
+{
+	if ([indexPath isEqual:self.additionalCellIndexPath]) {
+		return YES;
+	}else{
+		return NO;
+	}
+}
 @end
