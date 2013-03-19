@@ -7,6 +7,8 @@
 //
 
 #import "GEfficientTableViewController.h"
+#import "GCore.h"
+#import "GCoreData.h"
 
 @implementation GEfficientTableViewController
 #pragma mark - Init && Memory

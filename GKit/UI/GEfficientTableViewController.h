@@ -7,7 +7,7 @@
 //
 
 #import "GTableViewController.h"
-#import "GCoreData.h"
+#import <CoreData/CoreData.h>
 
 @interface GEfficientTableViewController : GTableViewController
 <NSFetchedResultsControllerDelegate>
