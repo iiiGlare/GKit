@@ -16,21 +16,6 @@
 {
 	self.fetchedResultsContext = [GCoreData newContextWithConcurrencyType:NSPrivateQueueConcurrencyType];
 }
-#pragma mark - View Life Cycle
-- (void)viewDidLoad
-{
-	[super viewDidLoad];
-	
-	self.fetchedResultsController = [GCoreData fetchedResultsForEntityName: @"Task"
-															  withDelegate: self
-																 predicate: nil
-																sortByKeys: @[@"title"]
-																ascendings: @[[NSNumber numberWithBool:YES]]
-																 groupedBy: @"type"
-																 cacheName: nil
-																 inContext: self.fetchedResultsContext];
-	[self reloadData];
-}
 
 #pragma mark - Action
 - (void)reloadData
