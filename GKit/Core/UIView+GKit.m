@@ -79,6 +79,7 @@ CGRect GRectAddPoint(CGRect rect, CGPoint point) {
 
 @implementation UIView (GKit)
 
+//////////////
 - (void) setX:(CGFloat)x{
     self.frame = GRectSetX(self.frame, x);
 }
@@ -108,6 +109,17 @@ CGRect GRectAddPoint(CGRect rect, CGPoint point) {
 }
 - (void) frameAddPoint:(CGPoint)point{
     self.frame = GRectAddPoint(self.frame, point);
+}
+
+
+/////////////
+- (void)show
+{
+	self.hidden = NO;
+}
+- (void)hide
+{
+	self.hidden = YES;
 }
 
 @end

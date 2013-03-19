@@ -30,15 +30,41 @@
 @property (nonatomic, strong) UITableView *tableView;
 - (id)initWithStyle:(UITableViewStyle)style;
 
+- (void)reloadData;
 
-////
-//cell input field
-////
+/**
+ * 子类不要直接重写DataSource方法---tableView:cellForRowAtIndexPath: ，替代的：
+ *
+ * 子类重写以下方法，创建cell
+ *		cellForTableView:atIndexPath:
+ *
+ * 子类重写以下方法，配置cell
+ *		configureCell:atIndexPath:
+ */
+- (UITableViewCell *)cellForTableView:(UITableView *)tableView atIndexPath:(NSIndexPath *)indexPath;
+- (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath;
+
+
+
+#pragma mark - cell input field
+
 @property (nonatomic, strong) UITextField *cellInputField;
 @property (nonatomic, strong) NSIndexPath *cellInputFieldIndexPath;
+/**
+ * 子类调用以下方法，加载输入框到cell上
+ *		addCellInputFieldAtIndexPath:
+ * 子类调用以下方法，移除输入框
+ *		removeCellInputField
+ */
 - (void)addCellInputFieldAtIndexPath:(NSIndexPath *)indexPath;
 - (void)removeCellInputField;
 
+/**
+ * 子类调用以下方法，显示输入框
+ *		showCellInputField
+ * 子类调用以下方法，隐藏输入框
+ *		hideCellInputField
+ */
 - (void)showCellInputField;
 - (void)hideCellInputField;
 
@@ -47,6 +73,9 @@
 - (void)keyboardWasShown:(NSNotification*)aNotification;
 - (void)keyboardWillBeHidden:(NSNotification*)aNotification;
 
+/**
+ * 子类可以重写以下方法，配置输入框
+ */
 - (Class)cellInputFieldClass;
 - (void)cellInputFieldDidLoad:(UITextField *)textField;
 - (void)cellInputFieldWillAddAtIndexPath:(NSIndexPath *)indexPath;
@@ -54,13 +83,24 @@
 - (void)cellInputFieldWillRemoveFromIndexPath:(NSIndexPath *)indexPath;
 - (void)cellInputFieldDidRemoveFromIndexPath:(NSIndexPath *)indexPath;
 
-/**
- *Additional Cell
- */
+#pragma mark - additional cell
+
 @property (nonatomic, strong) NSIndexPath *additionalCellIndexPath;
+/**
+ * 子类调用以下方法插入附加cell
+ *		insertAdditionalCellAtIndexPath:
+ * 子类调用以下方法移除附加cell
+ *		removeAdditionalCell
+ */
 - (void)insertAdditionalCellAtIndexPath:(NSIndexPath *)indexPath;
 - (void)removeAdditionalCell;
 
+/**
+ * 子类调用以下方法判断当前是否存在附加cell
+ *		hasAdditionalCell
+ * 子类调用以下方法判断某cell是否为附加cell
+ *		isAdditionalCellAtIndexPath:
+ */
 - (BOOL)hasAdditionalCell;
 - (BOOL)isAdditionalCellAtIndexPath:(NSIndexPath *)indexPath;
 

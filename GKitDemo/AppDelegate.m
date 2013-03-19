@@ -7,20 +7,43 @@
 //
 
 #import "AppDelegate.h"
+
 #import "GCoreData.h"
 #import "GTabBarController.h"
+
 #import "MyTableViewController.h"
+#import "MyEfficientTableViewController.h"
+
+#import "Task.h"
 
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    [GCoreData setupWithName:@"AppName"];
+    [GCoreData setupWithName:@"GKitDemo"];
     
+	NSManagedObjectContext *newContext = [GCoreData newContext];
+	for (int i=0;i<10;i++) {
+		for (int j=0; j<10; j++) {
+			Task *task = [GCoreData findFirstForEntityName: @"Task"
+											 withPredicate: [NSPredicate predicateWithFormat:@"type=%@ AND title=%@",
+															 [NSString stringWithFormat:@"%d",i],
+															 [NSString stringWithFormat:@"%d-%d",i,j]]
+												 inContext: newContext];
+			if (task==nil) {
+				task = [GCoreData insertNewForEntityNamed: @"Task"
+												inContext: newContext];
+				task.type = [NSString stringWithFormat:@"%d",i];
+				task.title = [NSString stringWithFormat:@"%d-%d",i,j];
+				[GCoreData saveInContext:newContext];
+			}
+		}
+	}
+	
     self.window = [[UIWindow alloc] initWithFrame:GScreenBounds()];
     // Override point for customization after application launch.
     self.window.backgroundColor = [UIColor whiteColor];
-	self.window.rootViewController = [GTabBarController newWithControllerNames:@[@"MyTable",@"MyTable"]];
+	self.window.rootViewController = [GTabBarController newWithControllerNames:@[@"MyTable",@"MyEfficientTable"]];
     [self.window makeKeyAndVisible];
     return YES;
 }

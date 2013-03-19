@@ -19,6 +19,8 @@
 
 @interface GViewController : UIViewController
 
+- (void)initialize;
+
 @property (nonatomic, copy) void (^blockCallBack)(id);
 
 @end

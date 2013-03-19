@@ -27,9 +27,21 @@
 	}
 	NSMutableArray *controllers = [[NSMutableArray alloc] initWithCapacity:[names count]];
 	for (NSInteger i=0; i<[names count]; i++) {
-		Class ViewController = NSClassFromString([NSString stringWithFormat:@"%@ViewController",[names objectAtIndex:i]]);
+
+		NSString *name = [names objectAtIndex:i];
+		GASSERT([name length]>0);
+		
+		Class ViewController = NSClassFromString([NSString stringWithFormat:@"%@ViewController",name]);
 		GASSERT(ViewController!=NULL);
-		[controllers addObject:[[UINavigationController alloc] initWithRootViewController:[ViewController new]]];
+		UIViewController *viewController = [ViewController new];
+		
+		NSString *title = [NSString stringWithFormat:@"%@Title",name];
+		NSString *image = [NSString stringWithFormat:@"%@Image.png",name];
+		
+		[viewController setTitle:NSLocalizedString(title,@"")];
+		[viewController.tabBarItem setImage:[UIImage imageNamed:image]];
+
+		[controllers addObject:[[UINavigationController alloc] initWithRootViewController:viewController]];
 	}
 	
 	GTabBarController *tabBarController = [[GTabBarController alloc] init];

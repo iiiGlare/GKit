@@ -51,9 +51,13 @@
 //create new context
 + (NSManagedObjectContext *)newContext
 {
-    NSPersistentStoreCoordinator *coordinator = [[GCoreData sharedInstance] persistentStoreCoordinator];
+	return [GCoreData newContextWithConcurrencyType:GConcurrencyTypeConfinement];
+}
++ (NSManagedObjectContext *) newContextWithConcurrencyType:(GConcurrencyType)type;
+{
+	NSPersistentStoreCoordinator *coordinator = [[GCoreData sharedInstance] persistentStoreCoordinator];
     GASSERT(coordinator!=nil);
-    NSManagedObjectContext *context = [[NSManagedObjectContext alloc] init];
+    NSManagedObjectContext *context = [[NSManagedObjectContext alloc] initWithConcurrencyType:type];
     [context setPersistentStoreCoordinator:coordinator];
     return context;
 }
@@ -85,18 +89,22 @@ NSManagedObjectContext * MainContext(void)
 }
 
 //del
-+ (void)deleteObject:(id)objectToDelete
++ (void)deleteObject:(id)object
 {
-	NSManagedObjectContext *context = MainContext();
-	
-	if ([objectToDelete isKindOfClass:[NSManagedObject class]]){	//删除单个
-		[context deleteObject:objectToDelete];
-	}else if ([objectToDelete isKindOfClass:[NSArray class]]){	//删除多个
-		[(NSArray *)objectToDelete enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop){
+	[self deleteObject: object
+			 inContext: MainContext()];
+}
++ (void) deleteObject:(id)object
+			inContext:(NSManagedObjectContext *)context
+{
+	if ([object isKindOfClass:[NSManagedObject class]]){	//删除单个
+		[context deleteObject:object];
+	}else if ([object isKindOfClass:[NSArray class]]){	//删除多个
+		[(NSArray *)object enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop){
 			[context deleteObject:obj];
 		}];
-	}else if ([objectToDelete isKindOfClass:[NSSet class]]){	//删除多个
-		[(NSSet *)objectToDelete enumerateObjectsUsingBlock:^(id obj, BOOL *stop){
+	}else if ([object isKindOfClass:[NSSet class]]){	//删除多个
+		[(NSSet *)object enumerateObjectsUsingBlock:^(id obj, BOOL *stop){
 			[context deleteObject:obj];
 		}];
 	}else {
@@ -113,103 +121,103 @@ NSManagedObjectContext * MainContext(void)
 //new
 + (id)insertNewForEntityNamed:(NSString *)entityName
 {
-    return [GCoreData insertNewForEntityNamed:entityName
-                       inContext:MainContext()];
+    return [GCoreData insertNewForEntityNamed: entityName
+									inContext: MainContext()];
 }
 + (id)insertNewForEntityNamed:(NSString *)entityName
                     inContext:(NSManagedObjectContext *)context
 {
-    return [NSEntityDescription insertNewObjectForEntityForName:entityName
-                                         inManagedObjectContext:context];
+    return [NSEntityDescription insertNewObjectForEntityForName: entityName
+                                         inManagedObjectContext: context];
 }
 
 //fetch
 //fetch first object
-+ (id) fetchFirstForEntityName:(NSString *)entityName
++ (id) findFirstForEntityName:(NSString *)entityName
 {
-    return [GCoreData fetchFirstForEntityName:entityName
-                                    inContext:MainContext()];
+    return [GCoreData findFirstForEntityName: entityName
+								   inContext: MainContext()];
 }
-+ (id) fetchFirstForEntityName:(NSString *)entityName
-                     inContext:(NSManagedObjectContext *)context;
++ (id) findFirstForEntityName:(NSString *)entityName
+					inContext:(NSManagedObjectContext *)context;
 {
-    return [GCoreData fetchFirstForEntityName:entityName
-                                withPredicate:nil
-                                    inContext:context];
+    return [GCoreData findFirstForEntityName: entityName
+							   withPredicate: nil
+								   inContext: context];
 }
 
 
-+ (id) fetchFirstForEntityName:(NSString *)entityName
-                 withPredicate:(NSPredicate *)predicate
++ (id) findFirstForEntityName:(NSString *)entityName
+				withPredicate:(NSPredicate *)predicate
 {
-    return [GCoreData fetchFirstForEntityName:entityName
-                                withPredicate:predicate
-                                    inContext:MainContext()];
+    return [GCoreData findFirstForEntityName: entityName
+							   withPredicate: predicate
+								   inContext: MainContext()];
 
 }
-+ (id) fetchFirstForEntityName:(NSString *)entityName
-                 withPredicate:(NSPredicate *)predicate
-                     inContext:(NSManagedObjectContext *)context
++ (id) findFirstForEntityName:(NSString *)entityName
+				withPredicate:(NSPredicate *)predicate
+					inContext:(NSManagedObjectContext *)context
 {
-    NSArray *objects = [GCoreData fetchAllForEntityName:entityName
-                                          withPredicate:predicate
-                                             sortByKeys:nil
-                                             ascendings:nil
-                                              limitedTo:1];
+    NSArray *objects = [GCoreData findAllForEntityName: entityName
+										 withPredicate: predicate
+											sortByKeys: nil
+											ascendings: nil
+											 limitedTo: 1
+											 inContext:context];
     return [objects firstObject];
 }
 
 //fetch all
-+ (NSArray *) fetchAllForEntityName:(NSString *)entityName
++ (NSArray *) findAllForEntityName:(NSString *)entityName
 {
-    return [GCoreData fetchAllForEntityName:entityName
-                                  inContext:MainContext()];
+    return [GCoreData findAllForEntityName: entityName
+								 inContext: MainContext()];
 }
-+ (NSArray *) fetchAllForEntityName:(NSString *)entityName
-                          inContext:(NSManagedObjectContext *)context
++ (NSArray *) findAllForEntityName:(NSString *)entityName
+						 inContext:(NSManagedObjectContext *)context
 {
-    return [GCoreData fetchAllForEntityName:entityName
-                              withPredicate:nil
-                                  inContext:context];
+    return [GCoreData findAllForEntityName: entityName
+							 withPredicate: nil
+								 inContext: context];
 }
 
 //fetch all : predicate
-+ (NSArray *) fetchAllForEntityName:(NSString *)entityName
-                      withPredicate:(NSPredicate *)predicate
++ (NSArray *) findAllForEntityName:(NSString *)entityName
+					 withPredicate:(NSPredicate *)predicate
 {
-    return [GCoreData fetchAllForEntityName:entityName
-                              withPredicate:predicate
-                                  sortByKey:nil
-                                  ascending:nil];
+    return [GCoreData findAllForEntityName: entityName
+							 withPredicate: predicate
+								 inContext: MainContext()];
 }
-+ (NSArray *) fetchAllForEntityName:(NSString *)entityName
-                      withPredicate:(NSPredicate *)predicate
-                          inContext:(NSManagedObjectContext *)context
++ (NSArray *) findAllForEntityName:(NSString *)entityName
+					 withPredicate:(NSPredicate *)predicate
+						 inContext:(NSManagedObjectContext *)context
 {
-    return [GCoreData fetchAllForEntityName:entityName
-                              withPredicate:predicate
-                                  sortByKey:nil
-                                  ascending:nil
-                                  inContext:MainContext()];
+    return [GCoreData findAllForEntityName: entityName
+							 withPredicate: predicate
+								 sortByKey: nil
+								 ascending: nil
+								 inContext: context];
 }
 
 //fetch all : predicate 、sort
-+ (NSArray *) fetchAllForEntityName:(NSString *)entityName
-                      withPredicate:(NSPredicate *)predicate
-                          sortByKey:(NSString *)key
-                          ascending:(NSNumber *)ascending
++ (NSArray *) findAllForEntityName:(NSString *)entityName
+					 withPredicate:(NSPredicate *)predicate
+						 sortByKey:(NSString *)key
+						 ascending:(NSNumber *)ascending
 {
-    return [GCoreData fetchAllForEntityName:entityName
-                              withPredicate:predicate
-                                  sortByKey:key
-                                  ascending:ascending
-                                  inContext:MainContext()];
+    return [GCoreData findAllForEntityName: entityName
+							 withPredicate: predicate
+								 sortByKey: key
+								 ascending: ascending
+								 inContext: MainContext()];
 }
-+ (NSArray *) fetchAllForEntityName:(NSString *)entityName
-                      withPredicate:(NSPredicate *)predicate
-                          sortByKey:(NSString *)key
-                          ascending:(NSNumber *)ascending
-                          inContext:(NSManagedObjectContext *)context
++ (NSArray *) findAllForEntityName:(NSString *)entityName
+					 withPredicate:(NSPredicate *)predicate
+						 sortByKey:(NSString *)key
+						 ascending:(NSNumber *)ascending
+						 inContext:(NSManagedObjectContext *)context
 {
     NSArray *keys = nil;
     NSArray *ascendings = nil;
@@ -217,59 +225,59 @@ NSManagedObjectContext * MainContext(void)
         keys = @[key];
         ascendings = @[ascending];
     }
-    return [GCoreData fetchAllForEntityName:entityName
-                              withPredicate:predicate
-                                 sortByKeys:keys
-                                 ascendings:ascendings
-                                  inContext:context];
+    return [GCoreData findAllForEntityName: entityName
+							 withPredicate: predicate
+								sortByKeys: keys
+								ascendings: ascendings
+								 inContext: context];
 }
 
 
-+ (NSArray *) fetchAllForEntityName:(NSString *)entityName
-                      withPredicate:(NSPredicate *)predicate
-                         sortByKeys:(NSArray *)keys
-                         ascendings:(NSArray *)ascendings
++ (NSArray *) findAllForEntityName:(NSString *)entityName
+					 withPredicate:(NSPredicate *)predicate
+						sortByKeys:(NSArray *)keys
+						ascendings:(NSArray *)ascendings
 {
-    return [GCoreData fetchAllForEntityName:entityName
-                              withPredicate:predicate
-                                 sortByKeys:keys
-                                 ascendings:ascendings
-                                  inContext:MainContext()];
+    return [GCoreData findAllForEntityName: entityName
+							 withPredicate: predicate
+								sortByKeys: keys
+								ascendings: ascendings
+								 inContext: MainContext()];
 }
-+ (NSArray *) fetchAllForEntityName:(NSString *)entityName
-                      withPredicate:(NSPredicate *)predicate
-                         sortByKeys:(NSArray *)keys
-                         ascendings:(NSArray *)ascendings
-                          inContext:(NSManagedObjectContext *)context
++ (NSArray *) findAllForEntityName:(NSString *)entityName
+					 withPredicate:(NSPredicate *)predicate
+						sortByKeys:(NSArray *)keys
+						ascendings:(NSArray *)ascendings
+						 inContext:(NSManagedObjectContext *)context
 {
-    return [GCoreData fetchAllForEntityName:entityName
-                              withPredicate:predicate
-                                 sortByKeys:keys
-                                 ascendings:ascendings
-                                  limitedTo:0
-                                  inContext:context];
+    return [GCoreData findAllForEntityName: entityName
+							 withPredicate: predicate
+								sortByKeys: keys
+								ascendings: ascendings
+								 limitedTo: 0
+								 inContext: context];
 }
 
 //fetch all : predicate 、sort、limit
-+ (NSArray *) fetchAllForEntityName:(NSString *)entityName
-                      withPredicate:(NSPredicate *)predicate
-                         sortByKeys:(NSArray *)keys
-                         ascendings:(NSArray *)ascendings
-                          limitedTo:(NSUInteger)limitNumber
++ (NSArray *) findAllForEntityName:(NSString *)entityName
+					 withPredicate:(NSPredicate *)predicate
+						sortByKeys:(NSArray *)keys
+						ascendings:(NSArray *)ascendings
+						 limitedTo:(NSUInteger)limitNumber
 {
-    return [GCoreData fetchAllForEntityName:entityName
-                              withPredicate:predicate
-                                 sortByKeys:keys
-                                 ascendings:ascendings
-                                  limitedTo:limitNumber
-                                  inContext:MainContext()];
+    return [GCoreData findAllForEntityName: entityName
+							 withPredicate: predicate
+								sortByKeys: keys
+								ascendings: ascendings
+								 limitedTo: limitNumber
+								 inContext: MainContext()];
 }
-+ (NSArray *) fetchAllForEntityName:(NSString *)entityName
-                      withPredicate:(NSPredicate *)predicate
-                         sortByKeys:(NSArray *)keys
-                         ascendings:(NSArray *)ascendings
-                          limitedTo:(NSUInteger)limitNumber
-                          inContext:(NSManagedObjectContext *)context
++ (NSArray *) findAllForEntityName:(NSString *)entityName
+					 withPredicate:(NSPredicate *)predicate
+						sortByKeys:(NSArray *)keys
+						ascendings:(NSArray *)ascendings
+						 limitedTo:(NSUInteger)limitNumber
+						 inContext:(NSManagedObjectContext *)context
 {
     //create fetch request
     NSFetchRequest *request = [[NSFetchRequest alloc] init];
@@ -311,14 +319,14 @@ NSManagedObjectContext * MainContext(void)
                                                    groupedBy:(NSString *)groupKeyPath
                                                    cacheName:(NSString *)cacheName
 {
-    return [GCoreData fetchedResultsForEntityName:entityName
-                                     withDelegate:delegate
-                                        predicate:predicate
-                                       sortByKeys:keys
-                                       ascendings:ascendings
-                                        groupedBy:groupKeyPath
-                                        cacheName:cacheName
-                                        inContext:[[GCoreData sharedInstance] mainContext]];
+    return [GCoreData fetchedResultsForEntityName: entityName
+                                     withDelegate: delegate
+                                        predicate: predicate
+                                       sortByKeys: keys
+                                       ascendings: ascendings
+                                        groupedBy: groupKeyPath
+                                        cacheName: cacheName
+                                        inContext: MainContext()];
 }
 + (NSFetchedResultsController *) fetchedResultsForEntityName:(NSString *)entityName
                                                 withDelegate:(id<NSFetchedResultsControllerDelegate>)delegate
@@ -332,8 +340,8 @@ NSManagedObjectContext * MainContext(void)
    
     // Create and configure a fetch request with the given entity.
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-    NSEntityDescription *entity = [NSEntityDescription entityForName:entityName
-                                              inManagedObjectContext:context];
+    NSEntityDescription *entity = [NSEntityDescription entityForName: entityName
+                                              inManagedObjectContext: context];
     [fetchRequest setEntity:entity];
     
 	// set the Predicate

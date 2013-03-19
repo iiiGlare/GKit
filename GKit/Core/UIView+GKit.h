@@ -45,4 +45,7 @@ extern CGRect GRectAddPoint(CGRect rect, CGPoint point);
 - (void)sizeAspectScaleToSize:(CGSize)toSize;
 - (void)frameAddPoint:(CGPoint)point;
 
+- (void)show;
+- (void)hide;
+
 @end

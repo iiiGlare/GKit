@@ -18,4 +18,17 @@
 
 @implementation GViewController
 
+#pragma mark - Init
+- (id)init
+{
+	self = [super init];
+	if (self)
+	{
+		[self initialize];
+	}
+	return self;
+}
+
+- (void)initialize{}
+
 @end

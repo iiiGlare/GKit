@@ -1,0 +1,10 @@
+/* 
+  Localizable.strings
+  GKitDemo
+
+  Created by Hua Cao on 13-3-19.
+  Copyright (c) 2013年 Hoewo. All rights reserved.
+*/
+
+"MyTableTitle" = "普通";
+"MyEfficientTableTitle" = "效率";

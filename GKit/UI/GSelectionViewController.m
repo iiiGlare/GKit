@@ -43,16 +43,9 @@
     return [self.itemsForSelection count];
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+- (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"Cell";
-    
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-    }
-    
-    // Configure the cell...
+	// Configure the cell...
     if (indexPath.row>=0 && indexPath.row<[self.itemsForSelection count]) {
         id item = [self.itemsForSelection objectAtIndex:indexPath.row];
         if ([item isKindOfClass:[NSString class]]) {
@@ -63,8 +56,7 @@
     }else{
         [cell.textLabel setText:@"test"];
     }
-    
-    return cell;
+
 }
 
 #pragma mark UITableViewDelegate

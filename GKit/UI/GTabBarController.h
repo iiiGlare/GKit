@@ -19,6 +19,15 @@
 
 @interface GTabBarController : UITabBarController
 
+/**
+ * names 为视图控制器的名字
+ * title、image 根据 name, 自动得出
+ * 例如：TabBarController容器内的ViewController为：CustomViewController MyViewController
+ * 则：
+ *		names = @[@"Custom", @"My"];
+ * 对应的title为：Custom-title My-title，需要在本地化文件中做对应的翻译
+ * 对应的image为：Custom-image.png My-image.png
+ */
 + (id)newWithControllerNames:(NSArray *)names;
 
 @end

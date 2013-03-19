@@ -18,6 +18,8 @@
 #import "GTableViewController.h"
 #import "GCommonMetrics.h"
 
+#import "UIView+GKit.h"
+
 @interface GTableViewController ()
 
 @end
@@ -75,7 +77,13 @@
     [self unregisterForKeyboardNotifications];
 }
 
-#pragma mark UITableViewDataSource
+#pragma mark - Action
+- (void)reloadData
+{
+	[self.tableView reloadData];
+}
+
+#pragma mark - UITableViewDataSource
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
@@ -92,17 +100,28 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"Cell";
+	UITableViewCell *cell = [self cellForTableView:tableView atIndexPath:indexPath];
+	[self configureCell:cell atIndexPath:indexPath];
+	return cell;
+}
+
+//create cell
+- (UITableViewCell *)cellForTableView:(UITableView *)tableView atIndexPath:(NSIndexPath *)indexPath
+{
+	NSString *CellIdentifier = @"Cell";
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
-    
-    // Configure the cell...
-    [cell.textLabel setText:@"test"];
-    
+
     return cell;
+}
+
+//configure cell
+- (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath
+{
+	[cell.textLabel setText:[NSString stringWithFormat:@"Section-%d Row-%d",indexPath.section,indexPath.row]];
 }
 
 #pragma mark UITableViewDelegate
@@ -152,11 +171,11 @@
 
 - (void)showCellInputField
 {
-    self.cellInputField.hidden = NO;
+    [self.cellInputField show];
 }
 - (void)hideCellInputField
 {
-    self.cellInputField.hidden = YES;
+    [self.cellInputField hide];
 }
 
 
