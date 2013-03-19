@@ -23,6 +23,7 @@
 		F8862C7016CA6A36006EB467 /* GKitDemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F8862C6F16CA6A36006EB467 /* GKitDemoTests.m */; };
 		F8862CB816CA73E2006EB467 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = F8862CB716CA73E2006EB467 /* README.md */; };
 		F8862CBD16CA74AF006EB467 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8862CBC16CA74AF006EB467 /* CoreData.framework */; };
+		FD39199516F86E0D002165DC /* NSFetchedResultsController+GKit.m in Sources */ = {isa = PBXBuildFile; fileRef = FD39199416F86E0D002165DC /* NSFetchedResultsController+GKit.m */; };
 		FD47A80216F8183200CEA15A /* GKitDemo.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = FD47A80016F8183200CEA15A /* GKitDemo.xcdatamodeld */; };
 		FD47A80516F8196200CEA15A /* GEfficientTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FD47A80416F8196200CEA15A /* GEfficientTableViewController.m */; };
 		FD47A80816F835D500CEA15A /* MyEfficientTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FD47A80716F835D500CEA15A /* MyEfficientTableViewController.m */; };
@@ -88,6 +89,8 @@
 		F8862C6F16CA6A36006EB467 /* GKitDemoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GKitDemoTests.m; sourceTree = "<group>"; };
 		F8862CB716CA73E2006EB467 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
 		F8862CBC16CA74AF006EB467 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		FD39199316F86E0D002165DC /* NSFetchedResultsController+GKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSFetchedResultsController+GKit.h"; sourceTree = "<group>"; };
+		FD39199416F86E0D002165DC /* NSFetchedResultsController+GKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSFetchedResultsController+GKit.m"; sourceTree = "<group>"; };
 		FD47A80116F8183200CEA15A /* GKitDemo.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = GKitDemo.xcdatamodel; sourceTree = "<group>"; };
 		FD47A80316F8196200CEA15A /* GEfficientTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GEfficientTableViewController.h; sourceTree = "<group>"; };
 		FD47A80416F8196200CEA15A /* GEfficientTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GEfficientTableViewController.m; sourceTree = "<group>"; };
@@ -327,6 +330,8 @@
 				F8862CBC16CA74AF006EB467 /* CoreData.framework */,
 				FDF1EF5D16F1BCFC00FCDC64 /* GCoreData.h */,
 				FDF1EF5E16F1BCFC00FCDC64 /* GCoreData.m */,
+				FD39199316F86E0D002165DC /* NSFetchedResultsController+GKit.h */,
+				FD39199416F86E0D002165DC /* NSFetchedResultsController+GKit.m */,
 			);
 			path = CoreData;
 			sourceTree = "<group>";
@@ -491,6 +496,7 @@
 				FD47A80516F8196200CEA15A /* GEfficientTableViewController.m in Sources */,
 				FD47A80816F835D500CEA15A /* MyEfficientTableViewController.m in Sources */,
 				FD47A80D16F848F100CEA15A /* Task.m in Sources */,
+				FD39199516F86E0D002165DC /* NSFetchedResultsController+GKit.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
