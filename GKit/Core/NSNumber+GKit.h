@@ -15,10 +15,20 @@
 // limitations under the License.
 //
 
-#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
 
-@interface GViewController : UIViewController
+NSNumber * GNumberWithInt(int value);
 
-@property (nonatomic, copy) void (^blockCallBack)(id);
+NSNumber * GNumberWithInteger(NSInteger value);
+
+NSNumber * GNumberWithUnsignedInteger(NSUInteger value);
+
+NSNumber * GNumberWithFloat(float value);
+
+NSNumber * GNumberWithDouble(double value);
+
+NSNumber * GNumberWithBOOL(BOOL value);
+
+@interface NSNumber (GKit)
 
 @end

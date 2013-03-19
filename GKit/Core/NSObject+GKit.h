@@ -15,10 +15,8 @@
 // limitations under the License.
 //
 
-#import <UIKit/UIKit.h>
+BOOL GObjectIsNil(NSObject *object);
 
-@interface GViewController : UIViewController
-
-@property (nonatomic, copy) void (^blockCallBack)(id);
+@interface NSObject (GKit)
 
 @end

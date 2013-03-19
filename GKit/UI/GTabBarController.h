@@ -17,8 +17,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface GViewController : UIViewController
+@interface GTabBarController : UITabBarController
 
-@property (nonatomic, copy) void (^blockCallBack)(id);
++ (id)newWithControllerNames:(NSArray *)names;
 
 @end

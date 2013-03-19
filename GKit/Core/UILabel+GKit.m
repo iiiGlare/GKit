@@ -15,10 +15,20 @@
 // limitations under the License.
 //
 
-#import <UIKit/UIKit.h>
+#import "UILabel+GKit.h"
+#import "UIDevice+GKit.h"
 
-@interface GViewController : UIViewController
+@implementation UILabel (GKit)
 
-@property (nonatomic, copy) void (^blockCallBack)(id);
-
+#pragma mark - override super methods
+- (void) setTextAlignmentG:(GTextAlignment)textAlignment
+{
+    if ([UIDevice isOSVersionHigherThanVersion:@"6.0" includeEqual:YES]) {
+        [self setTextAlignment:textAlignment];
+    }else{
+        if (textAlignment<=GTextAlignmentRight) {
+            [self setTextAlignment:textAlignment];
+        }
+    }
+}
 @end

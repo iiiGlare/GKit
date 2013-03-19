@@ -1,9 +1,7 @@
 GKit
 ====
-
-try to write a kit
+my own kit
 ====
 
-Core
-
-CoreData
+Next:
+Power GAssert to show more error message

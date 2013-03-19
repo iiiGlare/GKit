@@ -16,9 +16,15 @@
 //
 
 #import <UIKit/UIKit.h>
+enum {
+    GTextAlignmentLeft      = 0,
+    GTextAlignmentCenter    = 1,
+    GTextAlignmentRight     = 2,
+    GTextAlignmentJustified = 3,
+    GTextAlignmentNatural   = 4,
+};
+typedef NSInteger GTextAlignment;
 
-@interface GViewController : UIViewController
-
-@property (nonatomic, copy) void (^blockCallBack)(id);
-
+@interface UILabel (GKit)
+- (void) setTextAlignmentG:(GTextAlignment)textAlignment;
 @end

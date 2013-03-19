@@ -8,7 +8,7 @@
 
 #import "AppDelegate.h"
 #import "GCoreData.h"
-
+#import "GTabBarController.h"
 #import "MyTableViewController.h"
 
 @implementation AppDelegate
@@ -20,7 +20,7 @@
     self.window = [[UIWindow alloc] initWithFrame:GScreenBounds()];
     // Override point for customization after application launch.
     self.window.backgroundColor = [UIColor whiteColor];
-	self.window.rootViewController = [[MyTableViewController alloc] init];
+	self.window.rootViewController = [GTabBarController newWithControllerNames:@[@"MyTable",@"MyTable"]];
     [self.window makeKeyAndVisible];
     return YES;
 }

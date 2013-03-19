@@ -15,10 +15,17 @@
 // limitations under the License.
 //
 
-#import <UIKit/UIKit.h>
+#import "NSObject+GKit.h"
 
-@interface GViewController : UIViewController
+BOOL GObjectIsNil(NSObject *object)
+{
+	if (object==nil || [object isEqual:[NSNull null]]) {
+		return YES;
+	}else {
+		return NO;
+	}
+}
 
-@property (nonatomic, copy) void (^blockCallBack)(id);
+@implementation NSObject (GKit)
 
 @end
