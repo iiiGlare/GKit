@@ -16,7 +16,6 @@
 //
 
 #import <CoreData/CoreData.h>
-#import "GCore.h"
 
 @interface GCoreData : NSObject
 

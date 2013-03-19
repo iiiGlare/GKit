@@ -16,6 +16,7 @@
 //
 
 #import "GCoreData.h"
+#import "GCore.h"
 
 @implementation GCoreData
 
