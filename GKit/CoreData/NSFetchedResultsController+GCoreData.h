@@ -17,7 +17,7 @@
 
 #import <CoreData/CoreData.h>
 
-@interface NSFetchedResultsController (GKit)
+@interface NSFetchedResultsController (GCoreData)
 
 - (BOOL)isIndexPathValid:(NSIndexPath *)indexPath;
 

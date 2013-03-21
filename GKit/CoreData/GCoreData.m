@@ -75,47 +75,18 @@ NSManagedObjectContext * MainContext(void)
 
 #pragma mark - 
 //save
-+ (void)save
++ (void) saveObject: (id)object
 {
-    [self saveInContext:MainContext()];
-}
-+ (void) saveInContext:(NSManagedObjectContext *)context
-{
-    NSError *error;
-    if (![context save:&error]) {
-        // Update to handle the error appropriately.
-        GLOG(@"Unresolved error %@, %@", error, [error userInfo]);
-        exit(-1);  // Fail
-    }
+	if ([object respondsToSelector:@selector(saveToStore)]) {
+		[object saveToStore];
+	}
 }
 
 //del
 + (void)deleteObject:(id)object
 {
-	[self deleteObject: object
-			 inContext: MainContext()];
-}
-+ (void) deleteObject:(id)object
-			inContext:(NSManagedObjectContext *)context
-{
-	if ([object isKindOfClass:[NSManagedObject class]]){	//删除单个
-		[context deleteObject:object];
-	}else if ([object isKindOfClass:[NSArray class]]){	//删除多个
-		[(NSArray *)object enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop){
-			[context deleteObject:obj];
-		}];
-	}else if ([object isKindOfClass:[NSSet class]]){	//删除多个
-		[(NSSet *)object enumerateObjectsUsingBlock:^(id obj, BOOL *stop){
-			[context deleteObject:obj];
-		}];
-	}else {
-		return;
-	}
-	
-	// Commit the change.
-	NSError *error = nil;
-	if (![context save:&error]) {
-		// Handle the error.
+	if ([object respondsToSelector:@selector(deleteFromStore)]) {
+		[object deleteFromStore];
 	}
 }
 

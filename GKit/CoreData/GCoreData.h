@@ -16,6 +16,11 @@
 //
 
 #import <CoreData/CoreData.h>
+#import "NSArray+GCoreData.h"
+#import "NSSet+GCoreData.h"
+#import "NSManagedObject+GCoreData.h"
+#import "NSManagedObjectContext+GCoreData.h"
+#import "NSFetchedResultsController+GCoreData.h"
 
 @interface GCoreData : NSObject
 
@@ -53,13 +58,10 @@ typedef NSUInteger GConcurrencyType;
 + (NSManagedObjectContext *) newContextWithConcurrencyType:(GConcurrencyType)type;
 
 //save
-+ (void) save;
-+ (void) saveInContext: (NSManagedObjectContext *)context;
++ (void) saveObject: (id)object;
 
 //del
 + (void) deleteObject: (id)object;
-+ (void) deleteObject: (id)object
-			inContext: (NSManagedObjectContext *)context;
 
 //new
 + (id) insertNewForEntityNamed: (NSString *)entityName;

@@ -15,29 +15,26 @@
 // limitations under the License.
 //
 
-#import "NSFetchedResultsController+GKit.h"
+#import "NSManagedObject+GCoreData.h"
 
-@implementation NSFetchedResultsController (GKit)
+#import "NSManagedObjectContext+GCoreData.h"
 
-- (BOOL)isIndexPathValid:(NSIndexPath *)indexPath
+@implementation NSManagedObject (GCoreData)
+
+- (void)saveToStore
 {
-	//检查indexPath本身的合法性
-	if (indexPath.section<0 || indexPath.row< 0) {
-		return NO;
+	NSManagedObjectContext *context = [self managedObjectContext];
+	if (context) {
+		[context save];
 	}
-	
-	//检查indexPath是否在结果范围之内
-	NSArray *sections = [self sections];
-	if (indexPath.section >= [sections count]) {
-		return NO;
-	}else{
-		id<NSFetchedResultsSectionInfo> sectionInfo = [sections objectAtIndex:indexPath.section];
-		NSInteger numberOfObjects = [sectionInfo numberOfObjects];
-		if (indexPath.row >= numberOfObjects) {
-			return NO;
-		}else{
-			return YES;
-		}
+}
+
+- (void)deleteFromStore
+{
+	NSManagedObjectContext *context = [self managedObjectContext];
+	if (context) {
+		[context deleteObject:self];
+		[context save];
 	}
 }
 

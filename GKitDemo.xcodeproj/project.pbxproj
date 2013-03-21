@@ -23,7 +23,9 @@
 		F8862C7016CA6A36006EB467 /* GKitDemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F8862C6F16CA6A36006EB467 /* GKitDemoTests.m */; };
 		F8862CB816CA73E2006EB467 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = F8862CB716CA73E2006EB467 /* README.md */; };
 		F8862CBD16CA74AF006EB467 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8862CBC16CA74AF006EB467 /* CoreData.framework */; };
-		FD39199516F86E0D002165DC /* NSFetchedResultsController+GKit.m in Sources */ = {isa = PBXBuildFile; fileRef = FD39199416F86E0D002165DC /* NSFetchedResultsController+GKit.m */; };
+		FD39199516F86E0D002165DC /* NSFetchedResultsController+GCoreData.m in Sources */ = {isa = PBXBuildFile; fileRef = FD39199416F86E0D002165DC /* NSFetchedResultsController+GCoreData.m */; };
+		FD39199816F95EBB002165DC /* NSManagedObject+GCoreData.m in Sources */ = {isa = PBXBuildFile; fileRef = FD39199716F95EBB002165DC /* NSManagedObject+GCoreData.m */; };
+		FD39199B16F96030002165DC /* NSManagedObjectContext+GCoreData.m in Sources */ = {isa = PBXBuildFile; fileRef = FD39199A16F96030002165DC /* NSManagedObjectContext+GCoreData.m */; };
 		FD47A80216F8183200CEA15A /* GKitDemo.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = FD47A80016F8183200CEA15A /* GKitDemo.xcdatamodeld */; };
 		FD47A80516F8196200CEA15A /* GEfficientTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FD47A80416F8196200CEA15A /* GEfficientTableViewController.m */; };
 		FD47A80816F835D500CEA15A /* MyEfficientTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FD47A80716F835D500CEA15A /* MyEfficientTableViewController.m */; };
@@ -47,6 +49,8 @@
 		FD4D41D416F7EF080021A56A /* UILabel+GKit.m in Sources */ = {isa = PBXBuildFile; fileRef = FD4D41C516F7EF080021A56A /* UILabel+GKit.m */; };
 		FD4D41D516F7EF080021A56A /* UIView+GKit.m in Sources */ = {isa = PBXBuildFile; fileRef = FD4D41C716F7EF080021A56A /* UIView+GKit.m */; };
 		FD4D41D816F7EF6A0021A56A /* GTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = FD4D41D716F7EF6A0021A56A /* GTabBarController.m */; };
+		FD70D22616FAE73F001A73F1 /* NSArray+GCoreData.m in Sources */ = {isa = PBXBuildFile; fileRef = FD70D22516FAE73F001A73F1 /* NSArray+GCoreData.m */; };
+		FD70D22916FAE74C001A73F1 /* NSSet+GCoreData.m in Sources */ = {isa = PBXBuildFile; fileRef = FD70D22816FAE74C001A73F1 /* NSSet+GCoreData.m */; };
 		FDE7B80916F5FA62009DDB31 /* MyTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FDE7B80816F5FA62009DDB31 /* MyTableViewController.m */; };
 		FDE7B80E16F607F9009DDB31 /* test.xib in Resources */ = {isa = PBXBuildFile; fileRef = FDE7B80D16F607F9009DDB31 /* test.xib */; };
 		FDF1EF6816F1BCFC00FCDC64 /* GKit.podspec in Resources */ = {isa = PBXBuildFile; fileRef = FDF1EF3816F1BCFC00FCDC64 /* GKit.podspec */; };
@@ -89,8 +93,12 @@
 		F8862C6F16CA6A36006EB467 /* GKitDemoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GKitDemoTests.m; sourceTree = "<group>"; };
 		F8862CB716CA73E2006EB467 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
 		F8862CBC16CA74AF006EB467 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
-		FD39199316F86E0D002165DC /* NSFetchedResultsController+GKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSFetchedResultsController+GKit.h"; sourceTree = "<group>"; };
-		FD39199416F86E0D002165DC /* NSFetchedResultsController+GKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSFetchedResultsController+GKit.m"; sourceTree = "<group>"; };
+		FD39199316F86E0D002165DC /* NSFetchedResultsController+GCoreData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSFetchedResultsController+GCoreData.h"; sourceTree = "<group>"; };
+		FD39199416F86E0D002165DC /* NSFetchedResultsController+GCoreData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSFetchedResultsController+GCoreData.m"; sourceTree = "<group>"; };
+		FD39199616F95EBB002165DC /* NSManagedObject+GCoreData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSManagedObject+GCoreData.h"; sourceTree = "<group>"; };
+		FD39199716F95EBB002165DC /* NSManagedObject+GCoreData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSManagedObject+GCoreData.m"; sourceTree = "<group>"; };
+		FD39199916F96030002165DC /* NSManagedObjectContext+GCoreData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSManagedObjectContext+GCoreData.h"; sourceTree = "<group>"; };
+		FD39199A16F96030002165DC /* NSManagedObjectContext+GCoreData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSManagedObjectContext+GCoreData.m"; sourceTree = "<group>"; };
 		FD47A80116F8183200CEA15A /* GKitDemo.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = GKitDemo.xcdatamodel; sourceTree = "<group>"; };
 		FD47A80316F8196200CEA15A /* GEfficientTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GEfficientTableViewController.h; sourceTree = "<group>"; };
 		FD47A80416F8196200CEA15A /* GEfficientTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GEfficientTableViewController.m; sourceTree = "<group>"; };
@@ -138,6 +146,10 @@
 		FD4D41C716F7EF080021A56A /* UIView+GKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+GKit.m"; sourceTree = "<group>"; };
 		FD4D41D616F7EF6A0021A56A /* GTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTabBarController.h; sourceTree = "<group>"; };
 		FD4D41D716F7EF6A0021A56A /* GTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GTabBarController.m; sourceTree = "<group>"; };
+		FD70D22416FAE73F001A73F1 /* NSArray+GCoreData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+GCoreData.h"; sourceTree = "<group>"; };
+		FD70D22516FAE73F001A73F1 /* NSArray+GCoreData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+GCoreData.m"; sourceTree = "<group>"; };
+		FD70D22716FAE74C001A73F1 /* NSSet+GCoreData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSSet+GCoreData.h"; sourceTree = "<group>"; };
+		FD70D22816FAE74C001A73F1 /* NSSet+GCoreData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSSet+GCoreData.m"; sourceTree = "<group>"; };
 		FDE7B80716F5FA62009DDB31 /* MyTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MyTableViewController.h; path = Classes/MyTableViewController.h; sourceTree = "<group>"; };
 		FDE7B80816F5FA62009DDB31 /* MyTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MyTableViewController.m; path = Classes/MyTableViewController.m; sourceTree = "<group>"; };
 		FDE7B80D16F607F9009DDB31 /* test.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = test.xib; path = Classes/test.xib; sourceTree = "<group>"; };
@@ -330,8 +342,16 @@
 				F8862CBC16CA74AF006EB467 /* CoreData.framework */,
 				FDF1EF5D16F1BCFC00FCDC64 /* GCoreData.h */,
 				FDF1EF5E16F1BCFC00FCDC64 /* GCoreData.m */,
-				FD39199316F86E0D002165DC /* NSFetchedResultsController+GKit.h */,
-				FD39199416F86E0D002165DC /* NSFetchedResultsController+GKit.m */,
+				FD39199316F86E0D002165DC /* NSFetchedResultsController+GCoreData.h */,
+				FD39199416F86E0D002165DC /* NSFetchedResultsController+GCoreData.m */,
+				FD39199916F96030002165DC /* NSManagedObjectContext+GCoreData.h */,
+				FD39199A16F96030002165DC /* NSManagedObjectContext+GCoreData.m */,
+				FD39199616F95EBB002165DC /* NSManagedObject+GCoreData.h */,
+				FD39199716F95EBB002165DC /* NSManagedObject+GCoreData.m */,
+				FD70D22416FAE73F001A73F1 /* NSArray+GCoreData.h */,
+				FD70D22516FAE73F001A73F1 /* NSArray+GCoreData.m */,
+				FD70D22716FAE74C001A73F1 /* NSSet+GCoreData.h */,
+				FD70D22816FAE74C001A73F1 /* NSSet+GCoreData.m */,
 			);
 			path = CoreData;
 			sourceTree = "<group>";
@@ -496,7 +516,11 @@
 				FD47A80516F8196200CEA15A /* GEfficientTableViewController.m in Sources */,
 				FD47A80816F835D500CEA15A /* MyEfficientTableViewController.m in Sources */,
 				FD47A80D16F848F100CEA15A /* Task.m in Sources */,
-				FD39199516F86E0D002165DC /* NSFetchedResultsController+GKit.m in Sources */,
+				FD39199516F86E0D002165DC /* NSFetchedResultsController+GCoreData.m in Sources */,
+				FD39199816F95EBB002165DC /* NSManagedObject+GCoreData.m in Sources */,
+				FD39199B16F96030002165DC /* NSManagedObjectContext+GCoreData.m in Sources */,
+				FD70D22616FAE73F001A73F1 /* NSArray+GCoreData.m in Sources */,
+				FD70D22916FAE74C001A73F1 /* NSSet+GCoreData.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

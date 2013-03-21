@@ -35,7 +35,7 @@
 												inContext: newContext];
 				task.type = [NSString stringWithFormat:@"%d",i];
 				task.title = [NSString stringWithFormat:@"%d-%d",i,j];
-				[GCoreData saveInContext:newContext];
+				[GCoreData saveObject:task];
 			}
 		}
 	}
