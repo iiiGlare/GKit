@@ -81,6 +81,14 @@ NSManagedObjectContext * MainContext(void)
 		[object saveToStore];
 	}
 }
++ (void) saveInMainContext
+{
+	[self saveInContext:MainContext()];
+}
++ (void) saveInContext: (NSManagedObjectContext *)context
+{
+	[context save];
+}
 
 //del
 + (void)deleteObject:(id)object

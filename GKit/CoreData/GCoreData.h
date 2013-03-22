@@ -59,6 +59,8 @@ typedef NSUInteger GConcurrencyType;
 
 //save
 + (void) saveObject: (id)object;
++ (void) saveInMainContext;
++ (void) saveInContext: (NSManagedObjectContext *)context;
 
 //del
 + (void) deleteObject: (id)object;
