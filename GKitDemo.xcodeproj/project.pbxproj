@@ -23,6 +23,7 @@
 		F8862C7016CA6A36006EB467 /* GKitDemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F8862C6F16CA6A36006EB467 /* GKitDemoTests.m */; };
 		F8862CB816CA73E2006EB467 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = F8862CB716CA73E2006EB467 /* README.md */; };
 		F8862CBD16CA74AF006EB467 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8862CBC16CA74AF006EB467 /* CoreData.framework */; };
+		FD3389461703331D00DF7428 /* GCamera.m in Sources */ = {isa = PBXBuildFile; fileRef = FD3389451703331D00DF7428 /* GCamera.m */; };
 		FD39199516F86E0D002165DC /* NSFetchedResultsController+GCoreData.m in Sources */ = {isa = PBXBuildFile; fileRef = FD39199416F86E0D002165DC /* NSFetchedResultsController+GCoreData.m */; };
 		FD39199816F95EBB002165DC /* NSManagedObject+GCoreData.m in Sources */ = {isa = PBXBuildFile; fileRef = FD39199716F95EBB002165DC /* NSManagedObject+GCoreData.m */; };
 		FD39199B16F96030002165DC /* NSManagedObjectContext+GCoreData.m in Sources */ = {isa = PBXBuildFile; fileRef = FD39199A16F96030002165DC /* NSManagedObjectContext+GCoreData.m */; };
@@ -93,6 +94,8 @@
 		F8862C6F16CA6A36006EB467 /* GKitDemoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GKitDemoTests.m; sourceTree = "<group>"; };
 		F8862CB716CA73E2006EB467 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
 		F8862CBC16CA74AF006EB467 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		FD3389441703331D00DF7428 /* GCamera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCamera.h; sourceTree = "<group>"; };
+		FD3389451703331D00DF7428 /* GCamera.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCamera.m; sourceTree = "<group>"; };
 		FD39199316F86E0D002165DC /* NSFetchedResultsController+GCoreData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSFetchedResultsController+GCoreData.h"; sourceTree = "<group>"; };
 		FD39199416F86E0D002165DC /* NSFetchedResultsController+GCoreData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSFetchedResultsController+GCoreData.m"; sourceTree = "<group>"; };
 		FD39199616F95EBB002165DC /* NSManagedObject+GCoreData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSManagedObject+GCoreData.h"; sourceTree = "<group>"; };
@@ -276,10 +279,20 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		FD338943170332A900DF7428 /* Camera */ = {
+			isa = PBXGroup;
+			children = (
+				FD3389441703331D00DF7428 /* GCamera.h */,
+				FD3389451703331D00DF7428 /* GCamera.m */,
+			);
+			path = Camera;
+			sourceTree = "<group>";
+		};
 		FDF1EF3916F1BCFC00FCDC64 /* GKit */ = {
 			isa = PBXGroup;
 			children = (
 				FDF1EF3A16F1BCFC00FCDC64 /* Audio */,
+				FD338943170332A900DF7428 /* Camera */,
 				FDF1EF3D16F1BCFC00FCDC64 /* Core */,
 				FDF1EF5C16F1BCFC00FCDC64 /* CoreData */,
 				FDF1EF5F16F1BCFC00FCDC64 /* UI */,
@@ -521,6 +534,7 @@
 				FD39199B16F96030002165DC /* NSManagedObjectContext+GCoreData.m in Sources */,
 				FD70D22616FAE73F001A73F1 /* NSArray+GCoreData.m in Sources */,
 				FD70D22916FAE74C001A73F1 /* NSSet+GCoreData.m in Sources */,
+				FD3389461703331D00DF7428 /* GCamera.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
