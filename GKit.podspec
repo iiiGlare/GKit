@@ -16,6 +16,16 @@ Pod::Spec.new do |s|
   
   s.source		= { :git => "https://github.com/GlareCH/GKit.git"}
   
+  s.subspec 'Audio' do |audio|
+    audio.source_files = 'GKit/Audio/**/*.{h,m}'
+    audio.frameworks = 'AVFoundation', 'AudioToolbox'
+  end
+  
+  s.subspec 'Camera' do |camera|
+    camera.source_files = 'GKit/Camera/**/*.{h,m}'
+	camera.frameworks = 'AVFoundation'
+  end
+
   s.subspec 'Core' do |core|
     core.source_files = 'GKit/Core/**/*.{h,m}'
   end
@@ -24,14 +34,14 @@ Pod::Spec.new do |s|
     coredata.source_files = 'GKit/CoreData/**/*.{h,m}'
     coredata.frameworks = 'CoreData'
   end
+  
+  s.subspec 'ImageManager' do |imageManager|
+    imageManager.source_files = 'GKit/ImageManager/**/*.{h,m}'
+    imageManager.frameworks = 'AssetsLibrary'
+  end
 
   s.subspec 'UI' do |ui|
     ui.source_files = 'GKit/UI/**/*.{h,m}'
   end
-  
-  s.subspec 'Audio' do |audio|
-    audio.source_files = 'GKit/Audio/**/*.{h,m}'
-    audio.frameworks = 'AVFoundation', 'AudioToolbox'
-  end
-  
+
 end

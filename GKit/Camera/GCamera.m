@@ -16,6 +16,7 @@
 //
 
 #import "GCamera.h"
+#import "GCore.h"
 
 static void *AVCamFocusModeObserverContext = &AVCamFocusModeObserverContext;
 
@@ -301,7 +302,7 @@ AVCaptureConnection *_VideoConnectionFromOutput(AVCaptureOutput *output, NSStrin
 - (void) autoFocusAtPoint:(CGPoint)point
 {
 	NSError *error;
-	GLOG(@"x:%f,y:%f",point.x,point.y);
+	GPRINT(@"x: %f,y: %f",point.x,point.y);
 	if ([_captureDevice lockForConfiguration:&error]) {
 		
 		if ([_captureDevice isFocusPointOfInterestSupported] &&
@@ -359,7 +360,7 @@ AVCaptureConnection *_VideoConnectionFromOutput(AVCaptureOutput *output, NSStrin
 			self.focusView.hidden = NO;
 			self.focusView.center = CGPointMake(_captureDevice.focusPointOfInterest.x * _previewView.bounds.size.width,
 												_captureDevice.focusPointOfInterest.y * _previewView.bounds.size.height);
-			GLOG(@"x:%f,y:%f",_focusView.center.x, _focusView.center.y);
+			GPRINT(@"x: %f,y: %f",_focusView.center.x, _focusView.center.y);
 		}else {
 			self.focusView.hidden = YES;
 		}

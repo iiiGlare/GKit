@@ -423,7 +423,7 @@ NSManagedObjectContext * MainContext(void)
          Lightweight migration will only work for a limited set of schema changes; consult "Core Data Model Versioning and Data Migration Programming Guide" for details.
          
          */
-        GLOG(@"Unresolved error %@, %@", error, [error userInfo]);
+        GPRINTError(error);
         abort();
     }
     

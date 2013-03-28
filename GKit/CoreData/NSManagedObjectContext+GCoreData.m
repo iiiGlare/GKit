@@ -24,7 +24,7 @@
 	NSError *error;
 	if (![self save:&error]) {
 		// Update to handle the error appropriately.
-		GLOG(@"Unresolved error %@, %@", error, [error userInfo]);
+		GPRINTError(error);
 		exit(-1);  // Fail
 	}
 }

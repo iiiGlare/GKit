@@ -22,7 +22,7 @@
 {
 	NSError *error;
 	if (![[self fetchedResultsController] performFetch:&error]) {
-		GLOG(@"Unresolved error %@, %@",error, [error userInfo]);
+		GPRINTError(error);
 		exit(-1);
 	}
 	[self.tableView reloadData];

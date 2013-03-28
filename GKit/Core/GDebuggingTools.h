@@ -19,16 +19,21 @@
  * Only writes to the log when DEBUG is defined.
  */
 #ifdef DEBUG
-#define GLOG(xx, ...)  NSLog(@"%s(%d): " xx, __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__)
+#define GPRINT(xx, ...)  NSLog(@"%s(%d): " xx, __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__)
 #else
-#define GLOG(xx, ...)  ((void)0)
+#define GPRINT(xx, ...)  ((void)0)
 #endif // #ifdef DEBUG
+
+/**
+ * Log Error
+ */
+#define GPRINTError(error) GPRINT(@"error : %@, %@",error, [error userInfo])
 
 /**
  * Assertions that only fire when DEBUG is defined.
  */
 #ifdef DEBUG
-#define GASSERT(xx) { if (!(xx)) { GLOG(@"GASSERT failed: %s", #xx); } } ((void)0)
+#define GASSERT(xx) { if (!(xx)) { GPRINT(@"GASSERT failed: %s", #xx); } } ((void)0)
 #else
 #define GASSERT(xx) ((void)0)
 #endif // #ifdef DEBUG

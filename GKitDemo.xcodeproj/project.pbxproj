@@ -23,6 +23,10 @@
 		F8862C7016CA6A36006EB467 /* GKitDemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F8862C6F16CA6A36006EB467 /* GKitDemoTests.m */; };
 		F8862CB816CA73E2006EB467 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = F8862CB716CA73E2006EB467 /* README.md */; };
 		F8862CBD16CA74AF006EB467 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8862CBC16CA74AF006EB467 /* CoreData.framework */; };
+		FD0BC5D31703EF33000CC973 /* NSFileManager+GKit.m in Sources */ = {isa = PBXBuildFile; fileRef = FD0BC5D21703EF33000CC973 /* NSFileManager+GKit.m */; };
+		FD0BC5D917042142000CC973 /* GAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = FD0BC5D817042142000CC973 /* GAlertView.m */; };
+		FD0BC5DB17043C61000CC973 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD0BC5DA17043C60000CC973 /* AssetsLibrary.framework */; };
+		FD0BC5DF17044475000CC973 /* GImageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FD0BC5DE17044475000CC973 /* GImageManager.m */; };
 		FD3389461703331D00DF7428 /* GCamera.m in Sources */ = {isa = PBXBuildFile; fileRef = FD3389451703331D00DF7428 /* GCamera.m */; };
 		FD39199516F86E0D002165DC /* NSFetchedResultsController+GCoreData.m in Sources */ = {isa = PBXBuildFile; fileRef = FD39199416F86E0D002165DC /* NSFetchedResultsController+GCoreData.m */; };
 		FD39199816F95EBB002165DC /* NSManagedObject+GCoreData.m in Sources */ = {isa = PBXBuildFile; fileRef = FD39199716F95EBB002165DC /* NSManagedObject+GCoreData.m */; };
@@ -94,6 +98,13 @@
 		F8862C6F16CA6A36006EB467 /* GKitDemoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GKitDemoTests.m; sourceTree = "<group>"; };
 		F8862CB716CA73E2006EB467 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
 		F8862CBC16CA74AF006EB467 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		FD0BC5D11703EF32000CC973 /* NSFileManager+GKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSFileManager+GKit.h"; sourceTree = "<group>"; };
+		FD0BC5D21703EF33000CC973 /* NSFileManager+GKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSFileManager+GKit.m"; sourceTree = "<group>"; };
+		FD0BC5D717042142000CC973 /* GAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAlertView.h; sourceTree = "<group>"; };
+		FD0BC5D817042142000CC973 /* GAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GAlertView.m; sourceTree = "<group>"; };
+		FD0BC5DA17043C60000CC973 /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
+		FD0BC5DD17044475000CC973 /* GImageManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GImageManager.h; sourceTree = "<group>"; };
+		FD0BC5DE17044475000CC973 /* GImageManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GImageManager.m; sourceTree = "<group>"; };
 		FD3389441703331D00DF7428 /* GCamera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCamera.h; sourceTree = "<group>"; };
 		FD3389451703331D00DF7428 /* GCamera.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCamera.m; sourceTree = "<group>"; };
 		FD39199316F86E0D002165DC /* NSFetchedResultsController+GCoreData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSFetchedResultsController+GCoreData.h"; sourceTree = "<group>"; };
@@ -172,6 +183,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FD0BC5DB17043C61000CC973 /* AssetsLibrary.framework in Frameworks */,
 				FDF1EF7E16F1BD6900FCDC64 /* AudioToolbox.framework in Frameworks */,
 				FDF1EF7C16F1BD6400FCDC64 /* AVFoundation.framework in Frameworks */,
 				F8862CBD16CA74AF006EB467 /* CoreData.framework in Frameworks */,
@@ -279,6 +291,49 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		FD0BC5D4170420CE000CC973 /* TableView */ = {
+			isa = PBXGroup;
+			children = (
+				FD4D41A016F7EEB30021A56A /* GBlockTableViewController.h */,
+				FD4D41A116F7EEB30021A56A /* GBlockTableViewController.m */,
+				FD4D41A216F7EEB30021A56A /* GSelectionViewController.h */,
+				FD4D41A316F7EEB30021A56A /* GSelectionViewController.m */,
+				FD4D41A416F7EEB30021A56A /* GTableViewController.h */,
+				FD4D41A516F7EEB30021A56A /* GTableViewController.m */,
+				FD47A80316F8196200CEA15A /* GEfficientTableViewController.h */,
+				FD47A80416F8196200CEA15A /* GEfficientTableViewController.m */,
+			);
+			name = TableView;
+			sourceTree = "<group>";
+		};
+		FD0BC5D5170420DF000CC973 /* TabBar */ = {
+			isa = PBXGroup;
+			children = (
+				FD4D41D616F7EF6A0021A56A /* GTabBarController.h */,
+				FD4D41D716F7EF6A0021A56A /* GTabBarController.m */,
+			);
+			name = TabBar;
+			sourceTree = "<group>";
+		};
+		FD0BC5D617042108000CC973 /* AlertView */ = {
+			isa = PBXGroup;
+			children = (
+				FD0BC5D717042142000CC973 /* GAlertView.h */,
+				FD0BC5D817042142000CC973 /* GAlertView.m */,
+			);
+			name = AlertView;
+			sourceTree = "<group>";
+		};
+		FD0BC5DC1704446F000CC973 /* ImageManager */ = {
+			isa = PBXGroup;
+			children = (
+				FD0BC5DA17043C60000CC973 /* AssetsLibrary.framework */,
+				FD0BC5DD17044475000CC973 /* GImageManager.h */,
+				FD0BC5DE17044475000CC973 /* GImageManager.m */,
+			);
+			path = ImageManager;
+			sourceTree = "<group>";
+		};
 		FD338943170332A900DF7428 /* Camera */ = {
 			isa = PBXGroup;
 			children = (
@@ -291,6 +346,7 @@
 		FDF1EF3916F1BCFC00FCDC64 /* GKit */ = {
 			isa = PBXGroup;
 			children = (
+				FD0BC5DC1704446F000CC973 /* ImageManager */,
 				FDF1EF3A16F1BCFC00FCDC64 /* Audio */,
 				FD338943170332A900DF7428 /* Camera */,
 				FDF1EF3D16F1BCFC00FCDC64 /* Core */,
@@ -327,6 +383,8 @@
 				FD4D41B516F7EF080021A56A /* NSData+GKit.m */,
 				FD4D41B616F7EF080021A56A /* NSDate+GKit.h */,
 				FD4D41B716F7EF080021A56A /* NSDate+GKit.m */,
+				FD0BC5D11703EF32000CC973 /* NSFileManager+GKit.h */,
+				FD0BC5D21703EF33000CC973 /* NSFileManager+GKit.m */,
 				FD4D41AB16F7EF080021A56A /* NSNumber+GKit.h */,
 				FD4D41AC16F7EF080021A56A /* NSNumber+GKit.m */,
 				FD4D41B816F7EF080021A56A /* NSObject+GKit.h */,
@@ -372,18 +430,11 @@
 		FDF1EF5F16F1BCFC00FCDC64 /* UI */ = {
 			isa = PBXGroup;
 			children = (
-				FD4D41A016F7EEB30021A56A /* GBlockTableViewController.h */,
-				FD4D41A116F7EEB30021A56A /* GBlockTableViewController.m */,
-				FD4D41A216F7EEB30021A56A /* GSelectionViewController.h */,
-				FD4D41A316F7EEB30021A56A /* GSelectionViewController.m */,
-				FD4D41A416F7EEB30021A56A /* GTableViewController.h */,
-				FD4D41A516F7EEB30021A56A /* GTableViewController.m */,
-				FD47A80316F8196200CEA15A /* GEfficientTableViewController.h */,
-				FD47A80416F8196200CEA15A /* GEfficientTableViewController.m */,
 				FDF1EF6616F1BCFC00FCDC64 /* GViewController.h */,
 				FDF1EF6716F1BCFC00FCDC64 /* GViewController.m */,
-				FD4D41D616F7EF6A0021A56A /* GTabBarController.h */,
-				FD4D41D716F7EF6A0021A56A /* GTabBarController.m */,
+				FD0BC5D617042108000CC973 /* AlertView */,
+				FD0BC5D5170420DF000CC973 /* TabBar */,
+				FD0BC5D4170420CE000CC973 /* TableView */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -535,6 +586,9 @@
 				FD70D22616FAE73F001A73F1 /* NSArray+GCoreData.m in Sources */,
 				FD70D22916FAE74C001A73F1 /* NSSet+GCoreData.m in Sources */,
 				FD3389461703331D00DF7428 /* GCamera.m in Sources */,
+				FD0BC5D31703EF33000CC973 /* NSFileManager+GKit.m in Sources */,
+				FD0BC5D917042142000CC973 /* GAlertView.m in Sources */,
+				FD0BC5DF17044475000CC973 /* GImageManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

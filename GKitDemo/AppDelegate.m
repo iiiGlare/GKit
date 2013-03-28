@@ -16,6 +16,8 @@
 
 #import "Task.h"
 
+#import "GCore.h"
+
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
