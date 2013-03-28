@@ -27,6 +27,8 @@
 		FD0BC5D917042142000CC973 /* GAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = FD0BC5D817042142000CC973 /* GAlertView.m */; };
 		FD0BC5DB17043C61000CC973 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD0BC5DA17043C60000CC973 /* AssetsLibrary.framework */; };
 		FD0BC5DF17044475000CC973 /* GImageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FD0BC5DE17044475000CC973 /* GImageManager.m */; };
+		FD0BC5E3170448AF000CC973 /* GLocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FD0BC5E2170448AF000CC973 /* GLocationManager.m */; };
+		FD0BC5E517044A54000CC973 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD0BC5E417044A54000CC973 /* CoreLocation.framework */; };
 		FD3389461703331D00DF7428 /* GCamera.m in Sources */ = {isa = PBXBuildFile; fileRef = FD3389451703331D00DF7428 /* GCamera.m */; };
 		FD39199516F86E0D002165DC /* NSFetchedResultsController+GCoreData.m in Sources */ = {isa = PBXBuildFile; fileRef = FD39199416F86E0D002165DC /* NSFetchedResultsController+GCoreData.m */; };
 		FD39199816F95EBB002165DC /* NSManagedObject+GCoreData.m in Sources */ = {isa = PBXBuildFile; fileRef = FD39199716F95EBB002165DC /* NSManagedObject+GCoreData.m */; };
@@ -105,6 +107,9 @@
 		FD0BC5DA17043C60000CC973 /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
 		FD0BC5DD17044475000CC973 /* GImageManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GImageManager.h; sourceTree = "<group>"; };
 		FD0BC5DE17044475000CC973 /* GImageManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GImageManager.m; sourceTree = "<group>"; };
+		FD0BC5E1170448AF000CC973 /* GLocationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLocationManager.h; sourceTree = "<group>"; };
+		FD0BC5E2170448AF000CC973 /* GLocationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLocationManager.m; sourceTree = "<group>"; };
+		FD0BC5E417044A54000CC973 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		FD3389441703331D00DF7428 /* GCamera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCamera.h; sourceTree = "<group>"; };
 		FD3389451703331D00DF7428 /* GCamera.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCamera.m; sourceTree = "<group>"; };
 		FD39199316F86E0D002165DC /* NSFetchedResultsController+GCoreData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSFetchedResultsController+GCoreData.h"; sourceTree = "<group>"; };
@@ -183,6 +188,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FD0BC5E517044A54000CC973 /* CoreLocation.framework in Frameworks */,
 				FD0BC5DB17043C61000CC973 /* AssetsLibrary.framework in Frameworks */,
 				FDF1EF7E16F1BD6900FCDC64 /* AudioToolbox.framework in Frameworks */,
 				FDF1EF7C16F1BD6400FCDC64 /* AVFoundation.framework in Frameworks */,
@@ -334,6 +340,16 @@
 			path = ImageManager;
 			sourceTree = "<group>";
 		};
+		FD0BC5E017044889000CC973 /* Location */ = {
+			isa = PBXGroup;
+			children = (
+				FD0BC5E417044A54000CC973 /* CoreLocation.framework */,
+				FD0BC5E1170448AF000CC973 /* GLocationManager.h */,
+				FD0BC5E2170448AF000CC973 /* GLocationManager.m */,
+			);
+			path = Location;
+			sourceTree = "<group>";
+		};
 		FD338943170332A900DF7428 /* Camera */ = {
 			isa = PBXGroup;
 			children = (
@@ -346,6 +362,7 @@
 		FDF1EF3916F1BCFC00FCDC64 /* GKit */ = {
 			isa = PBXGroup;
 			children = (
+				FD0BC5E017044889000CC973 /* Location */,
 				FD0BC5DC1704446F000CC973 /* ImageManager */,
 				FDF1EF3A16F1BCFC00FCDC64 /* Audio */,
 				FD338943170332A900DF7428 /* Camera */,
@@ -589,6 +606,7 @@
 				FD0BC5D31703EF33000CC973 /* NSFileManager+GKit.m in Sources */,
 				FD0BC5D917042142000CC973 /* GAlertView.m in Sources */,
 				FD0BC5DF17044475000CC973 /* GImageManager.m in Sources */,
+				FD0BC5E3170448AF000CC973 /* GLocationManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

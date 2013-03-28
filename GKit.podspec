@@ -40,6 +40,11 @@ Pod::Spec.new do |s|
     imageManager.frameworks = 'AssetsLibrary'
   end
 
+  s.subspec 'Location' do |location|
+    location.source_files = 'GKit/Location/**/*.{h,m}'
+    location.frameworks = 'CoreLocation'
+  end
+
   s.subspec 'UI' do |ui|
     ui.source_files = 'GKit/UI/**/*.{h,m}'
   end
