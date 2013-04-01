@@ -30,22 +30,23 @@ extern CGRect GRectSetZeroOrigin(CGRect rect);
 extern CGRect GRectSetZeroSize(CGRect rect);
 extern CGSize GSizeAspectScaleToSize(CGSize size, CGSize toSize);
 extern CGRect GRectAddPoint(CGRect rect, CGPoint point);
-
+extern CGRect GRectAddSize(CGRect rect, CGSize size);
 
 @interface UIView (GKit)
 
-- (void)setX:(CGFloat)x;
-- (void)setY:(CGFloat)y;
-- (void)setWidth:(CGFloat)width;
-- (void)setHeight:(CGFloat)height;
-- (void)setOrigin:(CGPoint)origin;
-- (void)setSize:(CGSize)size;
-- (void)setZeroOrigin;
-- (void)setZeroSize;
-- (void)sizeAspectScaleToSize:(CGSize)toSize;
-- (void)frameAddPoint:(CGPoint)point;
+- (void) setX:(CGFloat)x;
+- (void) setY:(CGFloat)y;
+- (void) setWidth:(CGFloat)width;
+- (void) setHeight:(CGFloat)height;
+- (void) setOrigin:(CGPoint)origin;
+- (void) setSize:(CGSize)size;
+- (void) setZeroOrigin;
+- (void) setZeroSize;
+- (void) sizeAspectScaleToSize:(CGSize)toSize;
+- (void) frameAddPoint:(CGPoint)point;
+- (void) frameAddSize:(CGSize)size;
 
-- (void)show;
-- (void)hide;
+- (void) show;
+- (void) hide;
 
 @end

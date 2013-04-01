@@ -76,6 +76,12 @@ CGRect GRectAddPoint(CGRect rect, CGPoint point) {
 	return CGRectMake(rect.origin.x + point.x, rect.origin.y + point.y, rect.size.width, rect.size.height);
 }
 
+CGRect GRectAddSize(CGRect rect, CGSize size)
+{
+    return GRectSetSize(rect, CGSizeMake(rect.size.width + size.width,
+                                         rect.size.height + size.height));
+}
+
 
 @implementation UIView (GKit)
 
@@ -110,14 +116,16 @@ CGRect GRectAddPoint(CGRect rect, CGPoint point) {
 - (void) frameAddPoint:(CGPoint)point{
     self.frame = GRectAddPoint(self.frame, point);
 }
-
+- (void) frameAddSize:(CGSize)size{
+    self.frame = GRectAddSize(self.frame, size);
+}
 
 /////////////
-- (void)show
+- (void) show
 {
 	self.hidden = NO;
 }
-- (void)hide
+- (void) hide
 {
 	self.hidden = YES;
 }
