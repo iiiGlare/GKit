@@ -15,6 +15,7 @@
 // limitations under the License.
 //
 #import "GViewController.h"
+#import "GCore.h"
 
 @implementation GViewController
 
@@ -30,5 +31,32 @@
 }
 
 - (void)initialize{}
+
+#pragma mark - View Life Cycle
+
+- (void)loadView
+{
+    GView *view = [[GView alloc] initWithFrame:GScreenBounds()];
+    view.backgroundColor = [UIColor whiteColor];
+    view.viewController = self;
+    self.view = view;
+    
+    _topView = view.topView;
+    _contentView = view.contentView;
+    _bottomView = view.bottomView;
+}
+
+- (void)setTopViewHeight:(CGFloat)topViewHeight
+{
+    [(GView *)[self view] setTopViewHeight:topViewHeight];
+}
+- (void)setContentViewHeight:(CGFloat)contentViewHeight
+{
+    [(GView *)[self view] setContentViewHeight:contentViewHeight];
+}
+- (void)setBottomViewHeight:(CGFloat)bottomViewHeigh
+{
+    [(GView *)[self view] setBottomViewHeight:bottomViewHeigh];
+}
 
 @end

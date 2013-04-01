@@ -16,11 +16,20 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "GView.h"
 
 @interface GViewController : UIViewController
 
 - (void)initialize;
 
 @property (nonatomic, copy) void (^blockCallBack)(id);
+
+// View
+@property (nonatomic, weak, readonly) UIView *topView;
+@property (nonatomic, weak, readonly) UIView *contentView;
+@property (nonatomic, weak, readonly) UIView *bottomView;
+- (void)setTopViewHeight:(CGFloat)topViewHeight;
+- (void)setContentViewHeight:(CGFloat)contentViewHeight;
+- (void)setBottomViewHeight:(CGFloat)bottomViewHeight;
 
 @end

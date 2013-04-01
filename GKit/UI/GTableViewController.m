@@ -47,16 +47,14 @@
 
 - (void)loadView
 {
-	UIView *view = [[UIView alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    [super loadView];
 	
-	UITableView *tv = [[UITableView alloc] initWithFrame:view.bounds style:_tableViewStyle];
-	tv.autoresizingMask = GViewAutoresizingFlexibleSize;
-	tv.dataSource = self;
-	tv.delegate = self;
-	[view addSubview:tv];
-	self.tableView = tv;
-	
-	self.view = view;
+	_tableView = [[UITableView alloc] initWithFrame: self.contentView.bounds
+                                              style: _tableViewStyle];
+	_tableView.autoresizingMask = GViewAutoresizingFlexibleSize;
+	_tableView.dataSource = self;
+	_tableView.delegate = self;
+	[self.contentView addSubview:_tableView];
 }
 
 - (void)viewDidLoad
