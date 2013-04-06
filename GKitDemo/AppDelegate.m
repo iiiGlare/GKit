@@ -45,9 +45,18 @@
     self.window = [[UIWindow alloc] initWithFrame:GScreenBounds()];
     // Override point for customization after application launch.
     self.window.backgroundColor = [UIColor whiteColor];
-	self.window.rootViewController = [GTabBarController newWithControllerNames:@[@"MyTable",@"MyEfficientTable"]];
+
+    GTabBarController *tabbarController = [GTabBarController newWithControllerNames:@[@"MyTable",@"MyEfficientTable"]];
+    [tabbarController addActionButtonWithTarget:self
+                                         action:@selector(centerTabBarItemSelected)];
+	self.window.rootViewController = tabbarController;
     [self.window makeKeyAndVisible];
     return YES;
+}
+
+- (void)centerTabBarItemSelected
+{
+    GPRINT(@"CenterTabBarItemSelected");
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application

@@ -27,5 +27,11 @@
 	[self reloadData];
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    UIViewController *nextViewController = [[UIViewController alloc] init];
+    [nextViewController setHidesBottomBarWhenPushed:YES];
+    [self.navigationController pushViewController:nextViewController animated:YES];
+}
 
 @end

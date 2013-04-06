@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F8052C77171006D00067C412 /* UIImage@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F8052C75171006D00067C412 /* UIImage@2x.png */; };
+		F8052C78171006D00067C412 /* UIImage.png in Resources */ = {isa = PBXBuildFile; fileRef = F8052C76171006D00067C412 /* UIImage.png */; };
+		F817D795170C6D2300E88A54 /* CenterTabBarItemImage.png in Resources */ = {isa = PBXBuildFile; fileRef = F817D793170C6D2300E88A54 /* CenterTabBarItemImage.png */; };
+		F817D796170C6D2300E88A54 /* CenterTabBarItemImage@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F817D794170C6D2300E88A54 /* CenterTabBarItemImage@2x.png */; };
+		F817D799170C6F2400E88A54 /* NSMutableArray+GKit.m in Sources */ = {isa = PBXBuildFile; fileRef = F817D798170C6F2400E88A54 /* NSMutableArray+GKit.m */; };
 		F86B8D4217084E59007BFF2C /* GView.m in Sources */ = {isa = PBXBuildFile; fileRef = F86B8D4117084E59007BFF2C /* GView.m */; };
 		F8862C4516CA6A35006EB467 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8862C4416CA6A35006EB467 /* UIKit.framework */; };
 		F8862C4716CA6A35006EB467 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8862C4616CA6A35006EB467 /* Foundation.framework */; };
@@ -80,6 +85,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		F8052C75171006D00067C412 /* UIImage@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "UIImage@2x.png"; sourceTree = "<group>"; };
+		F8052C76171006D00067C412 /* UIImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = UIImage.png; sourceTree = "<group>"; };
+		F817D793170C6D2300E88A54 /* CenterTabBarItemImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CenterTabBarItemImage.png; sourceTree = "<group>"; };
+		F817D794170C6D2300E88A54 /* CenterTabBarItemImage@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "CenterTabBarItemImage@2x.png"; sourceTree = "<group>"; };
+		F817D797170C6F2400E88A54 /* NSMutableArray+GKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableArray+GKit.h"; sourceTree = "<group>"; };
+		F817D798170C6F2400E88A54 /* NSMutableArray+GKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableArray+GKit.m"; sourceTree = "<group>"; };
 		F86B8D4017084E59007BFF2C /* GView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GView.h; sourceTree = "<group>"; };
 		F86B8D4117084E59007BFF2C /* GView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GView.m; sourceTree = "<group>"; };
 		F8862C4116CA6A35006EB467 /* GKitDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GKitDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -269,6 +280,10 @@
 		F8862C4B16CA6A35006EB467 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				F8052C75171006D00067C412 /* UIImage@2x.png */,
+				F8052C76171006D00067C412 /* UIImage.png */,
+				F817D793170C6D2300E88A54 /* CenterTabBarItemImage.png */,
+				F817D794170C6D2300E88A54 /* CenterTabBarItemImage@2x.png */,
 				F8862C4C16CA6A35006EB467 /* GKitDemo-Info.plist */,
 				F8862C4D16CA6A35006EB467 /* InfoPlist.strings */,
 				F8862C5016CA6A35006EB467 /* main.m */,
@@ -399,6 +414,8 @@
 				FD4D41B116F7EF080021A56A /* GSDKAvailability.h */,
 				FD4D41B216F7EF080021A56A /* NSArray+GKit.h */,
 				FD4D41B316F7EF080021A56A /* NSArray+GKit.m */,
+				F817D797170C6F2400E88A54 /* NSMutableArray+GKit.h */,
+				F817D798170C6F2400E88A54 /* NSMutableArray+GKit.m */,
 				FD4D41B416F7EF080021A56A /* NSData+GKit.h */,
 				FD4D41B516F7EF080021A56A /* NSData+GKit.m */,
 				FD4D41B616F7EF080021A56A /* NSDate+GKit.h */,
@@ -540,6 +557,10 @@
 				FDF1EF6816F1BCFC00FCDC64 /* GKit.podspec in Resources */,
 				FDE7B80E16F607F9009DDB31 /* test.xib in Resources */,
 				FD47A80A16F83D4200CEA15A /* Localizable.strings in Resources */,
+				F817D795170C6D2300E88A54 /* CenterTabBarItemImage.png in Resources */,
+				F817D796170C6D2300E88A54 /* CenterTabBarItemImage@2x.png in Resources */,
+				F8052C77171006D00067C412 /* UIImage@2x.png in Resources */,
+				F8052C78171006D00067C412 /* UIImage.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -613,6 +634,7 @@
 				FD0BC5DF17044475000CC973 /* GImageManager.m in Sources */,
 				FD0BC5E3170448AF000CC973 /* GLocationManager.m in Sources */,
 				F86B8D4217084E59007BFF2C /* GView.m in Sources */,
+				F817D799170C6F2400E88A54 /* NSMutableArray+GKit.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

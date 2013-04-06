@@ -25,9 +25,20 @@
  * 例如：TabBarController容器内的ViewController为：CustomViewController MyViewController
  * 则：
  *		names = @[@"Custom", @"My"];
- * 对应的title为：Custom-title My-title，需要在本地化文件中做对应的翻译
- * 对应的image为：Custom-image.png My-image.png
+ * 对应的title为：CustomTitle MyTitle，需要在本地化文件中做对应的翻译
+ * 对应的image为：CustomImage.png MyImage.png
  */
-+ (id)newWithControllerNames:(NSArray *)names;
++ (id) newWithControllerNames: (NSArray *)names;
+
+/**
+ * Create a custom UIButton and add it to the center of our tab bar
+ *
+ * Item image :             CenterTabBarItemImage.png
+ * Item highlight image :   CenterTabBarItemImage-Highlight.png
+ */
+
+@property (nonatomic, strong, readonly) UIButton *actionButton;
+- (void) addActionButtonWithTarget: (id)target
+                            action: (SEL)action;
 
 @end

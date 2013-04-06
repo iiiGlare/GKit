@@ -16,7 +16,7 @@
 //
 
 #import "GTabBarController.h"
-#import "GDebuggingTools.h"
+#import "GCore.h"
 
 @implementation GTabBarController
 
@@ -47,6 +47,56 @@
 	GTabBarController *tabBarController = [[GTabBarController alloc] init];
 	[tabBarController setViewControllers:controllers animated:NO];
 	return tabBarController;
+}
+
+// Create a custom UIButton and add it to the center of our tab bar
+- (void) addActionButtonWithTarget: (id)target
+                            action: (SEL)action
+{
+    //
+    NSMutableArray *viewControllers = [NSMutableArray arrayWithArray:self.viewControllers];
+    [viewControllers insertObjectAtCenter:[[UIViewController alloc] init]];
+    [self setViewControllers:viewControllers animated:NO];
+    
+    //
+    UIButton* button = [UIButton buttonWithType:UIButtonTypeCustom];
+    [button setAutoresizingMask:GViewAutoresizingFlexibleMargins];
+    UIImage *buttonImage = [UIImage imageNamed:@"CenterTabBarItemImage.png"];
+    UIImage *highlightImage = [UIImage imageNamed:@"CenterTabBarItemImage-Highlight.png"];
+    [button setFrame:CGRectMake(0.0, 0.0, buttonImage.size.width, buttonImage.size.height)];
+    [button setBackgroundImage:buttonImage forState:UIControlStateNormal];
+    [button setBackgroundImage:highlightImage forState:UIControlStateHighlighted];
+    [button addTarget:target action:action forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:button];
+    _actionButton = button;
+
+    [self _layoutActionButton];
+    
+    [self addObserver:self
+           forKeyPath:@"tabBar.frame"
+              options:NSKeyValueObservingOptionNew
+              context:NULL];
+}
+
+- (void)_layoutActionButton
+{
+    CGFloat heightDifference = _actionButton.frame.size.height - self.tabBar.frame.size.height;
+    if (heightDifference < 0)
+        _actionButton.center = self.tabBar.center;
+    else
+    {
+        CGPoint center = self.tabBar.center;
+        center.y = center.y - heightDifference/2.0;
+        _actionButton.center = center;
+    }
+}
+
+#pragma mark - KeyValueObserve
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
+{
+    if ([keyPath isEqualToString:@"tabBar.frame"]) {
+        [self _layoutActionButton];
+    }
 }
 
 @end
