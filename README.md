@@ -1,4 +1,5 @@
 GKit
+Support iOS 5 and later
 ====
 my own kit
 ====
