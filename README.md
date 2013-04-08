@@ -1,9 +1,7 @@
-GKit
+###GKit
 Support iOS 5 and later
-====
 my own kit
-====
 
-Next:
+###Next
 Localize
 Power GAssert to show more error message

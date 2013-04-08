@@ -29,10 +29,10 @@ double gfloorne(double x);
 double ground(double x);
 
 //角度转化为弧度
-CGFloat RadiansFromDegrees(CGFloat degrees);
+CGFloat GRadiansFromDegrees(CGFloat degrees);
 //弧度转化为角度
-CGFloat DegreesFromRadians(CGFloat radians);
+CGFloat GDegreesFromRadians(CGFloat radians);
 //获取数的正负号
-NSInteger SignOfIntegerNumber(NSInteger x);
+NSInteger GSignOfIntegerNumber(NSInteger x);
 //计算移动的距离
-CGFloat DistanceMoved(CGFloat dx, CGFloat dy);
+CGFloat GDistanceMoved(CGFloat dx, CGFloat dy);

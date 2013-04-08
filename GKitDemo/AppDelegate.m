@@ -42,7 +42,7 @@
 		}
 	}
 	
-    self.window = [[UIWindow alloc] initWithFrame:GScreenBounds()];
+    self.window = [[UIWindow alloc] initWithFrame:GScreenBounds];
     // Override point for customization after application launch.
     self.window.backgroundColor = [UIColor whiteColor];
 

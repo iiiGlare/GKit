@@ -10,7 +10,7 @@
 #import "UIApplication+GKit.h"
 #import "UIDevice+GKit.h"
 #import "NSString+GKit.h"
-#import "GDebuggingTools.h"
+#import "GMacros.h"
 
 @implementation NSFileManager (GKit)
 

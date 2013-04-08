@@ -17,7 +17,7 @@
 
 #import "GImageManager.h"
 #import "NSFileManager+GKit.h"
-#import "GDebuggingTools.h"
+#import "GMacros.h"
 
 #import <AssetsLibrary/ALAssetsLibrary.h>
 

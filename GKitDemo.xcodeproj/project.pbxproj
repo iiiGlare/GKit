@@ -47,7 +47,6 @@
 		FD4D41A616F7EEB30021A56A /* GBlockTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FD4D41A116F7EEB30021A56A /* GBlockTableViewController.m */; };
 		FD4D41A716F7EEB30021A56A /* GSelectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FD4D41A316F7EEB30021A56A /* GSelectionViewController.m */; };
 		FD4D41A816F7EEB30021A56A /* GTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FD4D41A516F7EEB30021A56A /* GTableViewController.m */; };
-		FD4D41C816F7EF080021A56A /* GCommonMetrics.m in Sources */ = {isa = PBXBuildFile; fileRef = FD4D41AA16F7EF080021A56A /* GCommonMetrics.m */; };
 		FD4D41C916F7EF080021A56A /* NSNumber+GKit.m in Sources */ = {isa = PBXBuildFile; fileRef = FD4D41AC16F7EF080021A56A /* NSNumber+GKit.m */; };
 		FD4D41CA16F7EF080021A56A /* GMath.m in Sources */ = {isa = PBXBuildFile; fileRef = FD4D41B016F7EF080021A56A /* GMath.m */; };
 		FD4D41CB16F7EF080021A56A /* NSArray+GKit.m in Sources */ = {isa = PBXBuildFile; fileRef = FD4D41B316F7EF080021A56A /* NSArray+GKit.m */; };
@@ -146,15 +145,11 @@
 		FD4D41A316F7EEB30021A56A /* GSelectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GSelectionViewController.m; sourceTree = "<group>"; };
 		FD4D41A416F7EEB30021A56A /* GTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTableViewController.h; sourceTree = "<group>"; };
 		FD4D41A516F7EEB30021A56A /* GTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GTableViewController.m; sourceTree = "<group>"; };
-		FD4D41A916F7EF080021A56A /* GCommonMetrics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCommonMetrics.h; sourceTree = "<group>"; };
-		FD4D41AA16F7EF080021A56A /* GCommonMetrics.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCommonMetrics.m; sourceTree = "<group>"; };
 		FD4D41AB16F7EF080021A56A /* NSNumber+GKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSNumber+GKit.h"; sourceTree = "<group>"; };
 		FD4D41AC16F7EF080021A56A /* NSNumber+GKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSNumber+GKit.m"; sourceTree = "<group>"; };
 		FD4D41AD16F7EF080021A56A /* GCore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCore.h; sourceTree = "<group>"; };
-		FD4D41AE16F7EF080021A56A /* GDebuggingTools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GDebuggingTools.h; sourceTree = "<group>"; };
 		FD4D41AF16F7EF080021A56A /* GMath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GMath.h; sourceTree = "<group>"; };
 		FD4D41B016F7EF080021A56A /* GMath.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GMath.m; sourceTree = "<group>"; };
-		FD4D41B116F7EF080021A56A /* GSDKAvailability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GSDKAvailability.h; sourceTree = "<group>"; };
 		FD4D41B216F7EF080021A56A /* NSArray+GKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+GKit.h"; sourceTree = "<group>"; };
 		FD4D41B316F7EF080021A56A /* NSArray+GKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+GKit.m"; sourceTree = "<group>"; };
 		FD4D41B416F7EF080021A56A /* NSData+GKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+GKit.h"; sourceTree = "<group>"; };
@@ -186,6 +181,7 @@
 		FDE7B80716F5FA62009DDB31 /* MyTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MyTableViewController.h; path = Classes/MyTableViewController.h; sourceTree = "<group>"; };
 		FDE7B80816F5FA62009DDB31 /* MyTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MyTableViewController.m; path = Classes/MyTableViewController.m; sourceTree = "<group>"; };
 		FDE7B80D16F607F9009DDB31 /* test.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = test.xib; path = Classes/test.xib; sourceTree = "<group>"; };
+		FDECD7DB1712E4BE008B8257 /* GMacros.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GMacros.h; sourceTree = "<group>"; };
 		FDF1EF3816F1BCFC00FCDC64 /* GKit.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = GKit.podspec; sourceTree = "<group>"; };
 		FDF1EF3B16F1BCFC00FCDC64 /* GAudio.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAudio.h; sourceTree = "<group>"; };
 		FDF1EF3C16F1BCFC00FCDC64 /* GAudio.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GAudio.m; sourceTree = "<group>"; };
@@ -405,13 +401,10 @@
 		FDF1EF3D16F1BCFC00FCDC64 /* Core */ = {
 			isa = PBXGroup;
 			children = (
-				FD4D41A916F7EF080021A56A /* GCommonMetrics.h */,
-				FD4D41AA16F7EF080021A56A /* GCommonMetrics.m */,
 				FD4D41AD16F7EF080021A56A /* GCore.h */,
-				FD4D41AE16F7EF080021A56A /* GDebuggingTools.h */,
+				FDECD7DB1712E4BE008B8257 /* GMacros.h */,
 				FD4D41AF16F7EF080021A56A /* GMath.h */,
 				FD4D41B016F7EF080021A56A /* GMath.m */,
-				FD4D41B116F7EF080021A56A /* GSDKAvailability.h */,
 				FD4D41B216F7EF080021A56A /* NSArray+GKit.h */,
 				FD4D41B316F7EF080021A56A /* NSArray+GKit.m */,
 				F817D797170C6F2400E88A54 /* NSMutableArray+GKit.h */,
@@ -604,7 +597,6 @@
 				FD4D41A616F7EEB30021A56A /* GBlockTableViewController.m in Sources */,
 				FD4D41A716F7EEB30021A56A /* GSelectionViewController.m in Sources */,
 				FD4D41A816F7EEB30021A56A /* GTableViewController.m in Sources */,
-				FD4D41C816F7EF080021A56A /* GCommonMetrics.m in Sources */,
 				FD4D41C916F7EF080021A56A /* NSNumber+GKit.m in Sources */,
 				FD4D41CA16F7EF080021A56A /* GMath.m in Sources */,
 				FD4D41CB16F7EF080021A56A /* NSArray+GKit.m in Sources */,

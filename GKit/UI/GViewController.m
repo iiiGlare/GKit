@@ -36,7 +36,7 @@
 
 - (void)loadView
 {
-    GView *view = [[GView alloc] initWithFrame:GScreenBounds()];
+    GView *view = [[GView alloc] initWithFrame:GScreenBounds];
     view.backgroundColor = [UIColor whiteColor];
     view.viewController = self;
     self.view = view;

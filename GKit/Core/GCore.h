@@ -16,8 +16,10 @@
 //
 
 //Basic
-#import "GDebuggingTools.h"
-#import "GSDKAvailability.h"
+#import "GMacros.h"
+
+//Math
+#import "GMath.h"
 
 //Categories
 #import "NSArray+GKit.h"
@@ -35,9 +37,3 @@
 #import "UIDevice+GKit.h"
 #import "UILabel+GKit.h"
 #import "UIView+GKit.h"
-
-//Utilities
-#import "GCommonMetrics.h"
-
-//Math
-#import "GMath.h"

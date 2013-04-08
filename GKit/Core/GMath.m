@@ -46,17 +46,17 @@ double ground(double x)
 }
 
 //角度转化为弧度
-CGFloat RadiansFromDegrees(CGFloat degrees)
+CGFloat GRadiansFromDegrees(CGFloat degrees)
 {
     return degrees * M_PI / 180;
 }
 //弧度转化为角度
-CGFloat DegreesFromRadians(CGFloat radians)
+CGFloat GDegreesFromRadians(CGFloat radians)
 {
     return radians * 180 / M_PI;
 }
 //获取数的正负号
-NSInteger SignOfIntegerNumber(NSInteger x)
+NSInteger GSignOfIntegerNumber(NSInteger x)
 {
     if (x==0) {
         return 0;
@@ -67,7 +67,7 @@ NSInteger SignOfIntegerNumber(NSInteger x)
     }
 }
 //计算移动的距离
-CGFloat DistanceMoved(CGFloat dx, CGFloat dy)
+CGFloat GDistanceMoved(CGFloat dx, CGFloat dy)
 {
 	//返回直角三角形斜边的长度
 	return hypotf(dx, dy);

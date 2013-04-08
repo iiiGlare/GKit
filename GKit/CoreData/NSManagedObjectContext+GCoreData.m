@@ -15,7 +15,7 @@
 // limitations under the License.
 //
 #import "NSManagedObjectContext+GCoreData.h"
-#import "GDebuggingTools.h"
+#import "GMacros.h"
 
 @implementation NSManagedObjectContext (GCoreData)
 
