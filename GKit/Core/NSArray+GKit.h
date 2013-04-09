@@ -27,4 +27,13 @@
  */
 - (id)firstObject;
 
+/**
+ Replace objectAtIndex
+ 
+ 目的1：可以使用负数，来访问数组末尾的元素，例如：-1表示最后一个，-2表示倒数第二个
+ 目的2：进行位置合法性检查，避免崩溃
+
+ */
+- (id)objectAtPosition:(NSInteger)position;
+
 @end

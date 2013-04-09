@@ -27,7 +27,23 @@
 
 //////////////////////////////////////////////////////////////////////////////////
 - (id)firstObject {
-    return (self.count > 0) ? [self objectAtIndex:0] : nil;
+	return [self objectAtPosition:0];
+}
+
+//////////////////////////////////////////////////////////////////////////////////
+- (id)objectAtPosition:(NSInteger)position {
+	NSInteger index;
+	if (position<0) {
+		index = self.count + position;
+	}else {
+		index = position;
+	}
+	
+	if (index>0 && index<[self count]) {
+		return [self objectAtIndex:index];
+	}else{
+		return nil;
+	}
 }
 
 @end
