@@ -39,7 +39,7 @@
 		index = position;
 	}
 	
-	if (index>0 && index<[self count]) {
+	if (index>=0 && index<[self count]) {
 		return [self objectAtIndex:index];
 	}else{
 		return nil;
