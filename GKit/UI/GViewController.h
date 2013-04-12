@@ -16,7 +16,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "GView.h"
 
 @interface GViewController : UIViewController
 
@@ -25,9 +24,9 @@
 @property (nonatomic, copy) void (^blockCallBack)(id);
 
 // View
-@property (nonatomic, weak, readonly) UIView *topView;
-@property (nonatomic, weak, readonly) UIView *contentView;
-@property (nonatomic, weak, readonly) UIView *bottomView;
+@property (nonatomic, strong) IBOutlet UIView *topView;
+@property (nonatomic, strong) IBOutlet UIView *contentView;
+@property (nonatomic, strong) IBOutlet UIView *bottomView;
 - (void)setTopViewHeight:(CGFloat)topViewHeight;
 - (void)setContentViewHeight:(CGFloat)contentViewHeight;
 - (void)setBottomViewHeight:(CGFloat)bottomViewHeight;

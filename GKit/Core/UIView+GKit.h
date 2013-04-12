@@ -46,6 +46,14 @@ extern CGRect GRectAddSize(CGRect rect, CGSize size);
 - (void) frameAddPoint:(CGPoint)point;
 - (void) frameAddSize:(CGSize)size;
 
+
+- (CGFloat) x;
+- (CGFloat) y;
+- (CGPoint) origin;
+- (CGFloat) width;
+- (CGFloat) height;
+- (CGSize)  size;
+
 - (void) show;
 - (void) hide;
 

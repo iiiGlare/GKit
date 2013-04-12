@@ -29,34 +29,91 @@
 	}
 	return self;
 }
+- (id)initWithCoder:(NSCoder *)aDecoder
+{
+	self = [super initWithCoder:aDecoder];
+	if (self)
+	{
+		[self initialize];
+	}
+	return self;
+}
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+{
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    if (self) {
+        [self initialize];
+    }
+    return self;
+}
 
 - (void)initialize{}
 
 #pragma mark - View Life Cycle
 
-- (void)loadView
+- (void)viewDidLoad
 {
-    GView *view = [[GView alloc] initWithFrame:GScreenBounds];
-    view.backgroundColor = [UIColor whiteColor];
-    view.viewController = self;
-    self.view = view;
+    [super viewDidLoad];
     
-    _topView = view.topView;
-    _contentView = view.contentView;
-    _bottomView = view.bottomView;
+    CGFloat topViewHeight = 0;
+    CGFloat bottomViewHeight = 0;
+    
+    //top view
+    if (_topView==nil) {
+        _topView = [[UIView alloc] initWithFrame:CGRectZero];
+    }else{
+        topViewHeight = [_topView height];
+    }
+    _topView.backgroundColor = [UIColor clearColor];
+    _topView.frame = CGRectMake(0, 0, [self.view width], 0);
+    [_topView setAutoresizingMask:UIViewAutoresizingFlexibleWidth];
+    [self.view addSubview:_topView];
+    
+    //conten view
+    if (_contentView==nil) {
+        _contentView = [[UIView alloc] initWithFrame:CGRectZero];
+    }
+    _contentView.backgroundColor = [UIColor clearColor];
+    _contentView.frame = self.view.bounds;
+    [_contentView setAutoresizingMask:GViewAutoresizingFlexibleSize];
+    [self.view addSubview:_contentView];
+
+    //bottom view
+    if (_bottomView==nil) {
+        _bottomView = [[UIView alloc] initWithFrame:CGRectZero];
+    }else {
+        bottomViewHeight = [_bottomView height];
+    }
+    _bottomView.backgroundColor = [UIColor clearColor];
+    _bottomView.frame = CGRectMake(0, [self.view height], [self.view width], 0);
+    [_bottomView setAutoresizingMask:UIViewAutoresizingFlexibleTopMargin|UIViewAutoresizingFlexibleWidth];
+    [self.view addSubview:_bottomView];
+    
+    
+    [self setTopViewHeight:topViewHeight];
+    [self setBottomViewHeight:bottomViewHeight];
 }
 
 - (void)setTopViewHeight:(CGFloat)topViewHeight
 {
-    [(GView *)[self view] setTopViewHeight:topViewHeight];
+    CGFloat maxHeight = CGRectGetHeight(self.view.bounds) - CGRectGetHeight(_bottomView.frame);
+    [_topView setHeight:MIN(MAX(0, topViewHeight), maxHeight)];
+    [_contentView setOrigin:CGPointMake(0, CGRectGetMaxY(_topView.frame))];
+    [_contentView setHeight:maxHeight-CGRectGetHeight(_topView.frame)];
 }
 - (void)setContentViewHeight:(CGFloat)contentViewHeight
 {
-    [(GView *)[self view] setContentViewHeight:contentViewHeight];
+    CGFloat maxHeight = CGRectGetHeight(self.view.bounds) - CGRectGetHeight(_bottomView.frame);
+    [_contentView setHeight:MIN(MAX(0, contentViewHeight), maxHeight)];
+    [_bottomView setOrigin:CGPointMake(0, CGRectGetMaxY(_contentView.frame))];
+    [_bottomView setHeight:maxHeight-CGRectGetHeight(_contentView.frame)];
 }
-- (void)setBottomViewHeight:(CGFloat)bottomViewHeigh
+- (void)setBottomViewHeight:(CGFloat)bottomViewHeight
 {
-    [(GView *)[self view] setBottomViewHeight:bottomViewHeigh];
+    CGFloat maxHeight = CGRectGetHeight(self.view.bounds) - CGRectGetHeight(_topView.frame);
+    [_bottomView setHeight:MIN(MAX(0, bottomViewHeight), maxHeight)];
+    [_bottomView setOrigin:CGPointMake(0, CGRectGetHeight(self.view.bounds) - CGRectGetHeight(_bottomView.frame))];
+    [_contentView setHeight:maxHeight - CGRectGetHeight(_bottomView.frame)];
 }
 
 @end

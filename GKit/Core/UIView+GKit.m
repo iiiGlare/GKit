@@ -121,6 +121,31 @@ CGRect GRectAddSize(CGRect rect, CGSize size)
 }
 
 /////////////
+- (CGFloat) x
+{
+    return self.frame.origin.x;
+}
+- (CGFloat) y
+{
+    return self.frame.origin.y;
+}
+- (CGPoint) origin
+{
+    return self.frame.origin;
+}
+- (CGFloat) width
+{
+    return self.frame.size.width;
+}
+- (CGFloat) height
+{
+    return self.frame.size.height;
+}
+- (CGSize)  size
+{
+    return self.frame.size;
+}
+/////////////
 - (void) show
 {
 	self.hidden = NO;
