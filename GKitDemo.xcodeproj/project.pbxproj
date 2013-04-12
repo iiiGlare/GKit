@@ -12,6 +12,7 @@
 		F817D795170C6D2300E88A54 /* CenterTabBarItemImage.png in Resources */ = {isa = PBXBuildFile; fileRef = F817D793170C6D2300E88A54 /* CenterTabBarItemImage.png */; };
 		F817D796170C6D2300E88A54 /* CenterTabBarItemImage@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F817D794170C6D2300E88A54 /* CenterTabBarItemImage@2x.png */; };
 		F817D799170C6F2400E88A54 /* NSMutableArray+GKit.m in Sources */ = {isa = PBXBuildFile; fileRef = F817D798170C6F2400E88A54 /* NSMutableArray+GKit.m */; };
+		F879761B1717F1430036E7B3 /* MyTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F879761A1717F1430036E7B3 /* MyTableViewController.xib */; };
 		F8862C4516CA6A35006EB467 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8862C4416CA6A35006EB467 /* UIKit.framework */; };
 		F8862C4716CA6A35006EB467 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8862C4616CA6A35006EB467 /* Foundation.framework */; };
 		F8862C4916CA6A35006EB467 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8862C4816CA6A35006EB467 /* CoreGraphics.framework */; };
@@ -89,6 +90,7 @@
 		F817D794170C6D2300E88A54 /* CenterTabBarItemImage@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "CenterTabBarItemImage@2x.png"; sourceTree = "<group>"; };
 		F817D797170C6F2400E88A54 /* NSMutableArray+GKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableArray+GKit.h"; sourceTree = "<group>"; };
 		F817D798170C6F2400E88A54 /* NSMutableArray+GKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableArray+GKit.m"; sourceTree = "<group>"; };
+		F879761A1717F1430036E7B3 /* MyTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyTableViewController.xib; sourceTree = "<group>"; };
 		F8862C4116CA6A35006EB467 /* GKitDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GKitDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F8862C4416CA6A35006EB467 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		F8862C4616CA6A35006EB467 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -259,6 +261,7 @@
 				F8862C5416CA6A36006EB467 /* AppDelegate.m */,
 				FDE7B80716F5FA62009DDB31 /* MyTableViewController.h */,
 				FDE7B80816F5FA62009DDB31 /* MyTableViewController.m */,
+				F879761A1717F1430036E7B3 /* MyTableViewController.xib */,
 				FD47A80616F835D500CEA15A /* MyEfficientTableViewController.h */,
 				FD47A80716F835D500CEA15A /* MyEfficientTableViewController.m */,
 				FD47A80016F8183200CEA15A /* GKitDemo.xcdatamodeld */,
@@ -549,6 +552,7 @@
 				F817D796170C6D2300E88A54 /* CenterTabBarItemImage@2x.png in Resources */,
 				F8052C77171006D00067C412 /* UIImage@2x.png in Resources */,
 				F8052C78171006D00067C412 /* UIImage.png in Resources */,
+				F879761B1717F1430036E7B3 /* MyTableViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

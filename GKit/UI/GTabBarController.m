@@ -31,9 +31,10 @@
 		NSString *name = [names objectAtIndex:i];
 		GASSERT([name length]>0);
 		
-		Class ViewController = NSClassFromString([NSString stringWithFormat:@"%@ViewController",name]);
+        NSString *ClassString = [NSString stringWithFormat:@"%@ViewController",name];
+		Class ViewController = NSClassFromString(ClassString);
 		GASSERT(ViewController!=NULL);
-		UIViewController *viewController = [ViewController new];
+		UIViewController *viewController = [[ViewController alloc] initWithNibName:nil bundle:nil];
 		
 		NSString *title = [NSString stringWithFormat:@"%@Title",name];
 		NSString *image = [NSString stringWithFormat:@"%@Image.png",name];

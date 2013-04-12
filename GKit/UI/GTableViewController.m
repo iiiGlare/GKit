@@ -29,7 +29,7 @@
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
-	self = [super init];
+	self = [super initWithNibName:nil bundle:nil];
 	if (self) {
 		_tableViewStyle = style;
 	}
@@ -44,22 +44,19 @@
 
 #pragma mark - View Life Cycle
 
-- (void)loadView
-{
-    [super loadView];
-	
-	_tableView = [[UITableView alloc] initWithFrame: self.contentView.bounds
-                                              style: _tableViewStyle];
-	_tableView.autoresizingMask = GViewAutoresizingFlexibleSize;
-	_tableView.dataSource = self;
-	_tableView.delegate = self;
-	[self.contentView addSubview:_tableView];
-}
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+    if (self.tableView==nil)
+    {
+        _tableView = [[UITableView alloc] initWithFrame: self.contentView.bounds
+                                                  style: _tableViewStyle];
+        _tableView.autoresizingMask = GViewAutoresizingFlexibleSize;
+        _tableView.dataSource = self;
+        _tableView.delegate = self;
+        [self.contentView addSubview:_tableView];
+    }
     
     [self registerForKeyboardNotifications];
 }

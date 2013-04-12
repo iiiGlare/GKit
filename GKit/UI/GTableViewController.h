@@ -27,7 +27,7 @@
 }
 
 //table view
-@property (nonatomic, strong) UITableView *tableView;
+@property (nonatomic, strong) IBOutlet UITableView *tableView;
 - (id)initWithStyle:(UITableViewStyle)style;
 
 - (void)reloadData;

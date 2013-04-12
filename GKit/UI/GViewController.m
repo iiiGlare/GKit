@@ -20,24 +20,6 @@
 @implementation GViewController
 
 #pragma mark - Init
-- (id)init
-{
-	self = [super init];
-	if (self)
-	{
-		[self initialize];
-	}
-	return self;
-}
-- (id)initWithCoder:(NSCoder *)aDecoder
-{
-	self = [super initWithCoder:aDecoder];
-	if (self)
-	{
-		[self initialize];
-	}
-	return self;
-}
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -47,19 +29,31 @@
     return self;
 }
 
-- (void)initialize{}
+- (void)initialize {
+    GPRINT(@"initialize");
+};
 
 #pragma mark - View Life Cycle
+
+- (void)loadView
+{
+    [super loadView];
+    
+    [self.view setAutoresizingMask:GViewAutoresizingFlexibleSize];
+}
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     
+    /*
+     Setup Top/Content/Bottom View
+     */
     CGFloat topViewHeight = 0;
     CGFloat bottomViewHeight = 0;
     
     //top view
-    if (_topView==nil) {
+    if (self.topView==nil) {
         _topView = [[UIView alloc] initWithFrame:CGRectZero];
     }else{
         topViewHeight = [_topView height];
@@ -70,7 +64,7 @@
     [self.view addSubview:_topView];
     
     //conten view
-    if (_contentView==nil) {
+    if (self.contentView==nil) {
         _contentView = [[UIView alloc] initWithFrame:CGRectZero];
     }
     _contentView.backgroundColor = [UIColor clearColor];
@@ -79,7 +73,7 @@
     [self.view addSubview:_contentView];
 
     //bottom view
-    if (_bottomView==nil) {
+    if (self.bottomView==nil) {
         _bottomView = [[UIView alloc] initWithFrame:CGRectZero];
     }else {
         bottomViewHeight = [_bottomView height];
