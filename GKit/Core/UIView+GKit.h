@@ -59,6 +59,9 @@ extern CGRect GRectAddSize(CGRect rect, CGSize size);
 - (void) show;
 - (void) hide;
 
+//add a subview to fill self and autoresize it
+- (void)addSubviewToFill:(UIView *)aView;
+
 //find view's controller or superview's controller
 - (UIViewController *)viewController;
 

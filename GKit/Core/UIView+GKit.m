@@ -16,6 +16,7 @@
 //
 
 #import "UIView+GKit.h"
+#import "GMacros.h"
 
 CGRect GRectSetX(CGRect rect, CGFloat x) {
 	return CGRectMake(x, rect.origin.y, rect.size.width, rect.size.height);
@@ -158,6 +159,14 @@ CGRect GRectAddSize(CGRect rect, CGSize size)
 - (void) hide
 {
 	self.hidden = YES;
+}
+
+/////////////
+- (void)addSubviewToFill:(UIView *)aView
+{
+    aView.frame = self.bounds;
+    aView.autoresizingMask = GViewAutoresizingFlexibleSize;
+    [self addSubview:aView];
 }
 
 /////////////
