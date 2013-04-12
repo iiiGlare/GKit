@@ -19,8 +19,13 @@
 #import "UIDevice+GKit.h"
 
 @implementation UILabel (GKit)
+@dynamic textAlignmentG;
 
-#pragma mark - override super methods
+#pragma mark - Getter/Setter
+- (GTextAlignment) textAlignmentG
+{
+    return [self textAlignment];
+}
 - (void) setTextAlignmentG:(GTextAlignment)textAlignment
 {
     if ([UIDevice isOSVersionHigherThanVersion:@"6.0" includeEqual:YES]) {

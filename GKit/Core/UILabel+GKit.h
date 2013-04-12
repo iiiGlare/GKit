@@ -26,5 +26,7 @@ enum {
 typedef NSInteger GTextAlignment;
 
 @interface UILabel (GKit)
-- (void) setTextAlignmentG:(GTextAlignment)textAlignment;
+
+@property (nonatomic, assign) GTextAlignment textAlignmentG;
+
 @end
