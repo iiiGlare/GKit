@@ -145,6 +145,11 @@ CGRect GRectAddSize(CGRect rect, CGSize size)
 {
     return self.frame.size;
 }
+- (CGPoint) innerCenter
+{
+    return CGPointMake(CGRectGetMidX(self.bounds), CGRectGetMidY(self.bounds));
+}
+
 /////////////
 - (void) show
 {

@@ -53,6 +53,8 @@ extern CGRect GRectAddSize(CGRect rect, CGSize size);
 - (CGFloat) width;
 - (CGFloat) height;
 - (CGSize)  size;
+//get the view's inner center
+- (CGPoint) innerCenter;
 
 - (void) show;
 - (void) hide;
