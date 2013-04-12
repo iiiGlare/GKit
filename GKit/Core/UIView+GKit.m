@@ -155,4 +155,16 @@ CGRect GRectAddSize(CGRect rect, CGSize size)
 	self.hidden = YES;
 }
 
+/////////////
+- (UIViewController *)viewController
+{
+    id nextResponder = [self nextResponder];
+    if ([nextResponder isKindOfClass:[UIViewController class]]) {
+        return nextResponder;
+    }else if ([nextResponder isKindOfClass:[UIView class]]){
+        return [[self superview] viewController];
+    }else {
+        return nil;
+    }
+}
 @end

@@ -57,4 +57,7 @@ extern CGRect GRectAddSize(CGRect rect, CGSize size);
 - (void) show;
 - (void) hide;
 
+//find view's controller or superview's controller
+- (UIViewController *)viewController;
+
 @end
