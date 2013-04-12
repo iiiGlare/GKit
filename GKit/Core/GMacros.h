@@ -80,6 +80,7 @@
 #define GScreenBounds	[[UIScreen mainScreen] bounds]
 #define GScreenWidth	[[UIScreen mainScreen] bounds].size.width
 #define GScreenHeight	[[UIScreen mainScreen] bounds].size.height
+#define GScreenScale    [[UIScreen mainScreen] scale]
 
 //Status Bar
 #define GStatusBarHeight	[[UIApplication sharedApplication] statusBarFrame].size.width
