@@ -1,0 +1,509 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		F86FFF1217181062001451AA /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F86FFF1117181062001451AA /* UIKit.framework */; };
+		F86FFF1417181062001451AA /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F86FFF1317181062001451AA /* Foundation.framework */; };
+		F86FFF1617181062001451AA /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F86FFF1517181062001451AA /* CoreGraphics.framework */; };
+		F86FFF1C17181062001451AA /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = F86FFF1A17181062001451AA /* InfoPlist.strings */; };
+		F86FFF1E17181062001451AA /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F86FFF1D17181062001451AA /* main.m */; };
+		F86FFF2217181062001451AA /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F86FFF2117181062001451AA /* AppDelegate.m */; };
+		F86FFF2417181062001451AA /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = F86FFF2317181062001451AA /* Default.png */; };
+		F86FFF2617181062001451AA /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F86FFF2517181062001451AA /* Default@2x.png */; };
+		F86FFF2817181062001451AA /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F86FFF2717181062001451AA /* Default-568h@2x.png */; };
+		F86FFF7B1718107A001451AA /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = F86FFF2E1718107A001451AA /* README.md */; };
+		F86FFF7E1718107A001451AA /* GMath.m in Sources */ = {isa = PBXBuildFile; fileRef = F86FFF3A1718107A001451AA /* GMath.m */; };
+		F86FFF7F1718107A001451AA /* NSArray+GKit.m in Sources */ = {isa = PBXBuildFile; fileRef = F86FFF3C1718107A001451AA /* NSArray+GKit.m */; };
+		F86FFF801718107A001451AA /* NSData+GKit.m in Sources */ = {isa = PBXBuildFile; fileRef = F86FFF3E1718107A001451AA /* NSData+GKit.m */; };
+		F86FFF811718107A001451AA /* NSDate+GKit.m in Sources */ = {isa = PBXBuildFile; fileRef = F86FFF401718107A001451AA /* NSDate+GKit.m */; };
+		F86FFF821718107A001451AA /* NSFileManager+GKit.m in Sources */ = {isa = PBXBuildFile; fileRef = F86FFF421718107A001451AA /* NSFileManager+GKit.m */; };
+		F86FFF831718107A001451AA /* NSMutableArray+GKit.m in Sources */ = {isa = PBXBuildFile; fileRef = F86FFF441718107A001451AA /* NSMutableArray+GKit.m */; };
+		F86FFF841718107A001451AA /* NSNumber+GKit.m in Sources */ = {isa = PBXBuildFile; fileRef = F86FFF461718107A001451AA /* NSNumber+GKit.m */; };
+		F86FFF851718107A001451AA /* NSObject+GKit.m in Sources */ = {isa = PBXBuildFile; fileRef = F86FFF481718107A001451AA /* NSObject+GKit.m */; };
+		F86FFF861718107A001451AA /* NSString+GKit.m in Sources */ = {isa = PBXBuildFile; fileRef = F86FFF4A1718107A001451AA /* NSString+GKit.m */; };
+		F86FFF871718107A001451AA /* NSUserDefaults+GKit.m in Sources */ = {isa = PBXBuildFile; fileRef = F86FFF4C1718107A001451AA /* NSUserDefaults+GKit.m */; };
+		F86FFF881718107A001451AA /* UIApplication+GKit.m in Sources */ = {isa = PBXBuildFile; fileRef = F86FFF4E1718107A001451AA /* UIApplication+GKit.m */; };
+		F86FFF891718107A001451AA /* UIColor+GKit.m in Sources */ = {isa = PBXBuildFile; fileRef = F86FFF501718107A001451AA /* UIColor+GKit.m */; };
+		F86FFF8A1718107A001451AA /* UIDevice+GKit.m in Sources */ = {isa = PBXBuildFile; fileRef = F86FFF521718107A001451AA /* UIDevice+GKit.m */; };
+		F86FFF8B1718107A001451AA /* UILabel+GKit.m in Sources */ = {isa = PBXBuildFile; fileRef = F86FFF541718107A001451AA /* UILabel+GKit.m */; };
+		F86FFF8C1718107A001451AA /* UIView+GKit.m in Sources */ = {isa = PBXBuildFile; fileRef = F86FFF561718107A001451AA /* UIView+GKit.m */; };
+		F86FFF951718107A001451AA /* GAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = F86FFF6C1718107A001451AA /* GAlertView.m */; };
+		F86FFF991718107A001451AA /* GTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = F86FFF741718107A001451AA /* GTabBarController.m */; };
+		F86FFF9A1718107A001451AA /* GTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F86FFF761718107A001451AA /* GTableViewController.m */; };
+		F86FFF9B1718107A001451AA /* GViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F86FFF781718107A001451AA /* GViewController.m */; };
+		F86FFF9C1718107A001451AA /* GKit.podspec in Resources */ = {isa = PBXBuildFile; fileRef = F86FFF791718107A001451AA /* GKit.podspec */; };
+		F86FFF9D1718107A001451AA /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = F86FFF7A1718107A001451AA /* LICENSE */; };
+		F86FFFAD171817B7001451AA /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F86FFFAC171817B7001451AA /* HomeViewController.m */; };
+		F86FFFB617181884001451AA /* CatsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F86FFFB517181884001451AA /* CatsViewController.m */; };
+		F86FFFB9171818AC001451AA /* DogsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F86FFFB8171818AC001451AA /* DogsViewController.m */; };
+		F8C703EF171944B300C60152 /* GMoveScene.m in Sources */ = {isa = PBXBuildFile; fileRef = F8C703E8171944B300C60152 /* GMoveScene.m */; };
+		F8C703F0171944B300C60152 /* GMoveSnapshot.m in Sources */ = {isa = PBXBuildFile; fileRef = F8C703EA171944B300C60152 /* GMoveSnapshot.m */; };
+		F8C703F1171944B300C60152 /* UIView+GMove.m in Sources */ = {isa = PBXBuildFile; fileRef = F8C703EE171944B300C60152 /* UIView+GMove.m */; };
+		F8C703F51719486800C60152 /* NaughtyLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = F8C703F41719486800C60152 /* NaughtyLabel.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		F86FFF0E17181062001451AA /* FreeMove.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FreeMove.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		F86FFF1117181062001451AA /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		F86FFF1317181062001451AA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		F86FFF1517181062001451AA /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		F86FFF1917181062001451AA /* FreeMove-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "FreeMove-Info.plist"; sourceTree = "<group>"; };
+		F86FFF1B17181062001451AA /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		F86FFF1D17181062001451AA /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		F86FFF1F17181062001451AA /* FreeMove-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "FreeMove-Prefix.pch"; sourceTree = "<group>"; };
+		F86FFF2017181062001451AA /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		F86FFF2117181062001451AA /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		F86FFF2317181062001451AA /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		F86FFF2517181062001451AA /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		F86FFF2717181062001451AA /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		F86FFF2E1718107A001451AA /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = README.md; path = ../../README.md; sourceTree = "<group>"; };
+		F86FFF371718107A001451AA /* GCore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCore.h; sourceTree = "<group>"; };
+		F86FFF381718107A001451AA /* GMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GMacros.h; sourceTree = "<group>"; };
+		F86FFF391718107A001451AA /* GMath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GMath.h; sourceTree = "<group>"; };
+		F86FFF3A1718107A001451AA /* GMath.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GMath.m; sourceTree = "<group>"; };
+		F86FFF3B1718107A001451AA /* NSArray+GKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+GKit.h"; sourceTree = "<group>"; };
+		F86FFF3C1718107A001451AA /* NSArray+GKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+GKit.m"; sourceTree = "<group>"; };
+		F86FFF3D1718107A001451AA /* NSData+GKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+GKit.h"; sourceTree = "<group>"; };
+		F86FFF3E1718107A001451AA /* NSData+GKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+GKit.m"; sourceTree = "<group>"; };
+		F86FFF3F1718107A001451AA /* NSDate+GKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+GKit.h"; sourceTree = "<group>"; };
+		F86FFF401718107A001451AA /* NSDate+GKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+GKit.m"; sourceTree = "<group>"; };
+		F86FFF411718107A001451AA /* NSFileManager+GKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSFileManager+GKit.h"; sourceTree = "<group>"; };
+		F86FFF421718107A001451AA /* NSFileManager+GKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSFileManager+GKit.m"; sourceTree = "<group>"; };
+		F86FFF431718107A001451AA /* NSMutableArray+GKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableArray+GKit.h"; sourceTree = "<group>"; };
+		F86FFF441718107A001451AA /* NSMutableArray+GKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableArray+GKit.m"; sourceTree = "<group>"; };
+		F86FFF451718107A001451AA /* NSNumber+GKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSNumber+GKit.h"; sourceTree = "<group>"; };
+		F86FFF461718107A001451AA /* NSNumber+GKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSNumber+GKit.m"; sourceTree = "<group>"; };
+		F86FFF471718107A001451AA /* NSObject+GKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+GKit.h"; sourceTree = "<group>"; };
+		F86FFF481718107A001451AA /* NSObject+GKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+GKit.m"; sourceTree = "<group>"; };
+		F86FFF491718107A001451AA /* NSString+GKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+GKit.h"; sourceTree = "<group>"; };
+		F86FFF4A1718107A001451AA /* NSString+GKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+GKit.m"; sourceTree = "<group>"; };
+		F86FFF4B1718107A001451AA /* NSUserDefaults+GKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSUserDefaults+GKit.h"; sourceTree = "<group>"; };
+		F86FFF4C1718107A001451AA /* NSUserDefaults+GKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSUserDefaults+GKit.m"; sourceTree = "<group>"; };
+		F86FFF4D1718107A001451AA /* UIApplication+GKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIApplication+GKit.h"; sourceTree = "<group>"; };
+		F86FFF4E1718107A001451AA /* UIApplication+GKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIApplication+GKit.m"; sourceTree = "<group>"; };
+		F86FFF4F1718107A001451AA /* UIColor+GKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+GKit.h"; sourceTree = "<group>"; };
+		F86FFF501718107A001451AA /* UIColor+GKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+GKit.m"; sourceTree = "<group>"; };
+		F86FFF511718107A001451AA /* UIDevice+GKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIDevice+GKit.h"; sourceTree = "<group>"; };
+		F86FFF521718107A001451AA /* UIDevice+GKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIDevice+GKit.m"; sourceTree = "<group>"; };
+		F86FFF531718107A001451AA /* UILabel+GKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UILabel+GKit.h"; sourceTree = "<group>"; };
+		F86FFF541718107A001451AA /* UILabel+GKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UILabel+GKit.m"; sourceTree = "<group>"; };
+		F86FFF551718107A001451AA /* UIView+GKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+GKit.h"; sourceTree = "<group>"; };
+		F86FFF561718107A001451AA /* UIView+GKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+GKit.m"; sourceTree = "<group>"; };
+		F86FFF6B1718107A001451AA /* GAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAlertView.h; sourceTree = "<group>"; };
+		F86FFF6C1718107A001451AA /* GAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GAlertView.m; sourceTree = "<group>"; };
+		F86FFF731718107A001451AA /* GTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTabBarController.h; sourceTree = "<group>"; };
+		F86FFF741718107A001451AA /* GTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GTabBarController.m; sourceTree = "<group>"; };
+		F86FFF751718107A001451AA /* GTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTableViewController.h; sourceTree = "<group>"; };
+		F86FFF761718107A001451AA /* GTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GTableViewController.m; sourceTree = "<group>"; };
+		F86FFF771718107A001451AA /* GViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GViewController.h; sourceTree = "<group>"; };
+		F86FFF781718107A001451AA /* GViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GViewController.m; sourceTree = "<group>"; };
+		F86FFF791718107A001451AA /* GKit.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = GKit.podspec; path = ../../GKit.podspec; sourceTree = "<group>"; };
+		F86FFF7A1718107A001451AA /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = LICENSE; path = ../../LICENSE; sourceTree = "<group>"; };
+		F86FFFAB171817B7001451AA /* HomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
+		F86FFFAC171817B7001451AA /* HomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
+		F86FFFB417181884001451AA /* CatsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CatsViewController.h; sourceTree = "<group>"; };
+		F86FFFB517181884001451AA /* CatsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CatsViewController.m; sourceTree = "<group>"; };
+		F86FFFB7171818AC001451AA /* DogsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DogsViewController.h; sourceTree = "<group>"; };
+		F86FFFB8171818AC001451AA /* DogsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DogsViewController.m; sourceTree = "<group>"; };
+		F8C703E7171944B300C60152 /* GMoveScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GMoveScene.h; sourceTree = "<group>"; };
+		F8C703E8171944B300C60152 /* GMoveScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GMoveScene.m; sourceTree = "<group>"; };
+		F8C703E9171944B300C60152 /* GMoveSnapshot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GMoveSnapshot.h; sourceTree = "<group>"; };
+		F8C703EA171944B300C60152 /* GMoveSnapshot.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GMoveSnapshot.m; sourceTree = "<group>"; };
+		F8C703EB171944B300C60152 /* GMoveSpriteCatcherProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GMoveSpriteCatcherProtocol.h; sourceTree = "<group>"; };
+		F8C703EC171944B300C60152 /* GMoveSpriteProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GMoveSpriteProtocol.h; sourceTree = "<group>"; };
+		F8C703ED171944B300C60152 /* UIView+GMove.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+GMove.h"; sourceTree = "<group>"; };
+		F8C703EE171944B300C60152 /* UIView+GMove.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+GMove.m"; sourceTree = "<group>"; };
+		F8C703F21719456500C60152 /* GMove.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GMove.h; sourceTree = "<group>"; };
+		F8C703F31719486800C60152 /* NaughtyLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NaughtyLabel.h; sourceTree = "<group>"; };
+		F8C703F41719486800C60152 /* NaughtyLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NaughtyLabel.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		F86FFF0B17181062001451AA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F86FFF1217181062001451AA /* UIKit.framework in Frameworks */,
+				F86FFF1417181062001451AA /* Foundation.framework in Frameworks */,
+				F86FFF1617181062001451AA /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		F86FFF0517181062001451AA = {
+			isa = PBXGroup;
+			children = (
+				F86FFF2E1718107A001451AA /* README.md */,
+				F86FFF791718107A001451AA /* GKit.podspec */,
+				F86FFF7A1718107A001451AA /* LICENSE */,
+				F86FFF2F1718107A001451AA /* GKit */,
+				F86FFF1717181062001451AA /* FreeMove */,
+				F86FFF1017181062001451AA /* Frameworks */,
+				F86FFF0F17181062001451AA /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		F86FFF0F17181062001451AA /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				F86FFF0E17181062001451AA /* FreeMove.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		F86FFF1017181062001451AA /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				F86FFF1117181062001451AA /* UIKit.framework */,
+				F86FFF1317181062001451AA /* Foundation.framework */,
+				F86FFF1517181062001451AA /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		F86FFF1717181062001451AA /* FreeMove */ = {
+			isa = PBXGroup;
+			children = (
+				F86FFF9E171810C1001451AA /* GMove */,
+				F86FFF2017181062001451AA /* AppDelegate.h */,
+				F86FFF2117181062001451AA /* AppDelegate.m */,
+				F86FFFAB171817B7001451AA /* HomeViewController.h */,
+				F86FFFAC171817B7001451AA /* HomeViewController.m */,
+				F8C703F31719486800C60152 /* NaughtyLabel.h */,
+				F8C703F41719486800C60152 /* NaughtyLabel.m */,
+				F86FFFB417181884001451AA /* CatsViewController.h */,
+				F86FFFB517181884001451AA /* CatsViewController.m */,
+				F86FFFB7171818AC001451AA /* DogsViewController.h */,
+				F86FFFB8171818AC001451AA /* DogsViewController.m */,
+				F86FFF1817181062001451AA /* Supporting Files */,
+			);
+			path = FreeMove;
+			sourceTree = "<group>";
+		};
+		F86FFF1817181062001451AA /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				F86FFF1917181062001451AA /* FreeMove-Info.plist */,
+				F86FFF1A17181062001451AA /* InfoPlist.strings */,
+				F86FFF1D17181062001451AA /* main.m */,
+				F86FFF1F17181062001451AA /* FreeMove-Prefix.pch */,
+				F86FFF2317181062001451AA /* Default.png */,
+				F86FFF2517181062001451AA /* Default@2x.png */,
+				F86FFF2717181062001451AA /* Default-568h@2x.png */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		F86FFF2F1718107A001451AA /* GKit */ = {
+			isa = PBXGroup;
+			children = (
+				F86FFFA41718175F001451AA /* Move */,
+				F86FFF361718107A001451AA /* Core */,
+				F86FFF6A1718107A001451AA /* UI */,
+			);
+			name = GKit;
+			path = ../../GKit;
+			sourceTree = "<group>";
+		};
+		F86FFF361718107A001451AA /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				F86FFF371718107A001451AA /* GCore.h */,
+				F86FFF381718107A001451AA /* GMacros.h */,
+				F86FFF391718107A001451AA /* GMath.h */,
+				F86FFF3A1718107A001451AA /* GMath.m */,
+				F86FFF3B1718107A001451AA /* NSArray+GKit.h */,
+				F86FFF3C1718107A001451AA /* NSArray+GKit.m */,
+				F86FFF3D1718107A001451AA /* NSData+GKit.h */,
+				F86FFF3E1718107A001451AA /* NSData+GKit.m */,
+				F86FFF3F1718107A001451AA /* NSDate+GKit.h */,
+				F86FFF401718107A001451AA /* NSDate+GKit.m */,
+				F86FFF411718107A001451AA /* NSFileManager+GKit.h */,
+				F86FFF421718107A001451AA /* NSFileManager+GKit.m */,
+				F86FFF431718107A001451AA /* NSMutableArray+GKit.h */,
+				F86FFF441718107A001451AA /* NSMutableArray+GKit.m */,
+				F86FFF451718107A001451AA /* NSNumber+GKit.h */,
+				F86FFF461718107A001451AA /* NSNumber+GKit.m */,
+				F86FFF471718107A001451AA /* NSObject+GKit.h */,
+				F86FFF481718107A001451AA /* NSObject+GKit.m */,
+				F86FFF491718107A001451AA /* NSString+GKit.h */,
+				F86FFF4A1718107A001451AA /* NSString+GKit.m */,
+				F86FFF4B1718107A001451AA /* NSUserDefaults+GKit.h */,
+				F86FFF4C1718107A001451AA /* NSUserDefaults+GKit.m */,
+				F86FFF4D1718107A001451AA /* UIApplication+GKit.h */,
+				F86FFF4E1718107A001451AA /* UIApplication+GKit.m */,
+				F86FFF4F1718107A001451AA /* UIColor+GKit.h */,
+				F86FFF501718107A001451AA /* UIColor+GKit.m */,
+				F86FFF511718107A001451AA /* UIDevice+GKit.h */,
+				F86FFF521718107A001451AA /* UIDevice+GKit.m */,
+				F86FFF531718107A001451AA /* UILabel+GKit.h */,
+				F86FFF541718107A001451AA /* UILabel+GKit.m */,
+				F86FFF551718107A001451AA /* UIView+GKit.h */,
+				F86FFF561718107A001451AA /* UIView+GKit.m */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		F86FFF6A1718107A001451AA /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				F86FFF6B1718107A001451AA /* GAlertView.h */,
+				F86FFF6C1718107A001451AA /* GAlertView.m */,
+				F86FFF731718107A001451AA /* GTabBarController.h */,
+				F86FFF741718107A001451AA /* GTabBarController.m */,
+				F86FFF751718107A001451AA /* GTableViewController.h */,
+				F86FFF761718107A001451AA /* GTableViewController.m */,
+				F86FFF771718107A001451AA /* GViewController.h */,
+				F86FFF781718107A001451AA /* GViewController.m */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
+		F86FFF9E171810C1001451AA /* GMove */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = GMove;
+			sourceTree = "<group>";
+		};
+		F86FFFA41718175F001451AA /* Move */ = {
+			isa = PBXGroup;
+			children = (
+				F8C703F21719456500C60152 /* GMove.h */,
+				F8C703E7171944B300C60152 /* GMoveScene.h */,
+				F8C703E8171944B300C60152 /* GMoveScene.m */,
+				F8C703E9171944B300C60152 /* GMoveSnapshot.h */,
+				F8C703EA171944B300C60152 /* GMoveSnapshot.m */,
+				F8C703EB171944B300C60152 /* GMoveSpriteCatcherProtocol.h */,
+				F8C703EC171944B300C60152 /* GMoveSpriteProtocol.h */,
+				F8C703ED171944B300C60152 /* UIView+GMove.h */,
+				F8C703EE171944B300C60152 /* UIView+GMove.m */,
+			);
+			path = Move;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		F86FFF0D17181062001451AA /* FreeMove */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F86FFF2B17181062001451AA /* Build configuration list for PBXNativeTarget "FreeMove" */;
+			buildPhases = (
+				F86FFF0A17181062001451AA /* Sources */,
+				F86FFF0B17181062001451AA /* Frameworks */,
+				F86FFF0C17181062001451AA /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = FreeMove;
+			productName = FreeMove;
+			productReference = F86FFF0E17181062001451AA /* FreeMove.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		F86FFF0617181062001451AA /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0460;
+				ORGANIZATIONNAME = Hoewo;
+			};
+			buildConfigurationList = F86FFF0917181062001451AA /* Build configuration list for PBXProject "FreeMove" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = F86FFF0517181062001451AA;
+			productRefGroup = F86FFF0F17181062001451AA /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				F86FFF0D17181062001451AA /* FreeMove */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		F86FFF0C17181062001451AA /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F86FFF1C17181062001451AA /* InfoPlist.strings in Resources */,
+				F86FFF2417181062001451AA /* Default.png in Resources */,
+				F86FFF2617181062001451AA /* Default@2x.png in Resources */,
+				F86FFF2817181062001451AA /* Default-568h@2x.png in Resources */,
+				F86FFF7B1718107A001451AA /* README.md in Resources */,
+				F86FFF9C1718107A001451AA /* GKit.podspec in Resources */,
+				F86FFF9D1718107A001451AA /* LICENSE in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		F86FFF0A17181062001451AA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F86FFF1E17181062001451AA /* main.m in Sources */,
+				F86FFF2217181062001451AA /* AppDelegate.m in Sources */,
+				F86FFF7E1718107A001451AA /* GMath.m in Sources */,
+				F86FFF7F1718107A001451AA /* NSArray+GKit.m in Sources */,
+				F86FFF801718107A001451AA /* NSData+GKit.m in Sources */,
+				F86FFF811718107A001451AA /* NSDate+GKit.m in Sources */,
+				F86FFF821718107A001451AA /* NSFileManager+GKit.m in Sources */,
+				F86FFF831718107A001451AA /* NSMutableArray+GKit.m in Sources */,
+				F86FFF841718107A001451AA /* NSNumber+GKit.m in Sources */,
+				F86FFF851718107A001451AA /* NSObject+GKit.m in Sources */,
+				F86FFF861718107A001451AA /* NSString+GKit.m in Sources */,
+				F86FFF871718107A001451AA /* NSUserDefaults+GKit.m in Sources */,
+				F86FFF881718107A001451AA /* UIApplication+GKit.m in Sources */,
+				F86FFF891718107A001451AA /* UIColor+GKit.m in Sources */,
+				F86FFF8A1718107A001451AA /* UIDevice+GKit.m in Sources */,
+				F86FFF8B1718107A001451AA /* UILabel+GKit.m in Sources */,
+				F86FFF8C1718107A001451AA /* UIView+GKit.m in Sources */,
+				F86FFF951718107A001451AA /* GAlertView.m in Sources */,
+				F86FFF991718107A001451AA /* GTabBarController.m in Sources */,
+				F86FFF9A1718107A001451AA /* GTableViewController.m in Sources */,
+				F86FFF9B1718107A001451AA /* GViewController.m in Sources */,
+				F86FFFAD171817B7001451AA /* HomeViewController.m in Sources */,
+				F86FFFB617181884001451AA /* CatsViewController.m in Sources */,
+				F86FFFB9171818AC001451AA /* DogsViewController.m in Sources */,
+				F8C703EF171944B300C60152 /* GMoveScene.m in Sources */,
+				F8C703F0171944B300C60152 /* GMoveSnapshot.m in Sources */,
+				F8C703F1171944B300C60152 /* UIView+GMove.m in Sources */,
+				F8C703F51719486800C60152 /* NaughtyLabel.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		F86FFF1A17181062001451AA /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F86FFF1B17181062001451AA /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		F86FFF2917181062001451AA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		F86FFF2A17181062001451AA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		F86FFF2C17181062001451AA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "FreeMove/FreeMove-Prefix.pch";
+				INFOPLIST_FILE = "FreeMove/FreeMove-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		F86FFF2D17181062001451AA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "FreeMove/FreeMove-Prefix.pch";
+				INFOPLIST_FILE = "FreeMove/FreeMove-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		F86FFF0917181062001451AA /* Build configuration list for PBXProject "FreeMove" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F86FFF2917181062001451AA /* Debug */,
+				F86FFF2A17181062001451AA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F86FFF2B17181062001451AA /* Build configuration list for PBXNativeTarget "FreeMove" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F86FFF2C17181062001451AA /* Debug */,
+				F86FFF2D17181062001451AA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = F86FFF0617181062001451AA /* Project object */;
+}
