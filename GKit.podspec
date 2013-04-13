@@ -49,4 +49,8 @@ Pod::Spec.new do |s|
     ui.source_files = 'GKit/UI/**/*.{h,m}'
   end
 
+  s.subspec 'Move' do |move|
+    move.source_files = 'GKit/Move/**/*.{h,m}'
+  end
+  
 end

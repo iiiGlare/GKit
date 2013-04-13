@@ -77,7 +77,7 @@
  */
 
 //Screen
-#define GScreenBounds	[[UIScreen mainScreen] bounds]
+#define GScreenBounds()	[[UIScreen mainScreen] bounds]
 #define GScreenWidth	[[UIScreen mainScreen] bounds].size.width
 #define GScreenHeight	[[UIScreen mainScreen] bounds].size.height
 #define GScreenScale    [[UIScreen mainScreen] scale]
@@ -92,10 +92,10 @@
 #define GTabBarHeight			49.0f
 
 //Tool Bar
-#define GToolBarHeight(void)	44.0f
+#define GToolBarHeight          44.0f
 
 //Picker
-#define GPickerHeight(void)		216.0f
+#define GPickerHeight           216.0f
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - Localize
