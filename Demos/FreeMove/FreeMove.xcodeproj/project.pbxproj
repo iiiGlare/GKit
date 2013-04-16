@@ -171,7 +171,6 @@
 		F86FFF1717181062001451AA /* FreeMove */ = {
 			isa = PBXGroup;
 			children = (
-				F86FFF9E171810C1001451AA /* GMove */,
 				F86FFF2017181062001451AA /* AppDelegate.h */,
 				F86FFF2117181062001451AA /* AppDelegate.m */,
 				F86FFFAB171817B7001451AA /* HomeViewController.h */,
@@ -264,13 +263,6 @@
 				F86FFF781718107A001451AA /* GViewController.m */,
 			);
 			path = UI;
-			sourceTree = "<group>";
-		};
-		F86FFF9E171810C1001451AA /* GMove */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = GMove;
 			sourceTree = "<group>";
 		};
 		F86FFFA41718175F001451AA /* Move */ = {

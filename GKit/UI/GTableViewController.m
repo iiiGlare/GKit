@@ -36,12 +36,6 @@
 	return self;
 }
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
 #pragma mark - View Life Cycle
 
 - (void)viewDidLoad
@@ -57,8 +51,18 @@
         _tableView.delegate = self;
         [self.contentView addSubview:_tableView];
     }
-    
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
     [self registerForKeyboardNotifications];
+}
+
+- (void)viewDidDisappear:(BOOL)animated
+{
+    [super viewDidDisappear:animated];
+    [self unregisterForKeyboardNotifications];
 }
 
 - (void)viewDidUnload
@@ -68,7 +72,6 @@
 	self.tableView = nil;
     self.cellInputField = nil;
     self.cellInputFieldIndexPath = nil;
-    [self unregisterForKeyboardNotifications];
 }
 
 #pragma mark - Action
