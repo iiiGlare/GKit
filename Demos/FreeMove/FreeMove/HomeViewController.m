@@ -32,9 +32,10 @@
     _dogsViewController = [DogsViewController new];
     _dogsViewController.view.backgroundColor = [UIColor randomColor];
     
-    [self setTopViewHeight:200];
+    [self setTopViewHeight:100];
+    [self setBottomViewHeight:100];
     [self.topView addSubviewToFill:_catsViewController.view];
-    [self.contentView addSubviewToFill:_dogsViewController.view];
+    [self.bottomView addSubviewToFill:_dogsViewController.view];
     
 }
 

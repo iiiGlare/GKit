@@ -40,4 +40,14 @@
 
 }
 
+- (id<GMoveSpriteCatcherProtocol>)findCatcher
+{
+    UIViewController *controller = [self viewController];
+    if ([controller conformsToProtocol:GMoveSpriteCatcherProtocol()])
+    {
+        return (id<GMoveSpriteCatcherProtocol>)controller;
+    }else{
+        return nil;
+    }
+}
 @end

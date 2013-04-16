@@ -16,6 +16,7 @@
 
 @interface GMoveScene ()
 @property (nonatomic, strong) GMoveSnapshot *currentSnapshot;
+@property (nonatomic, weak) id sourceCatcher;
 
 @property (nonatomic, assign) CGPoint historyTouchPoint;
 @property (nonatomic, assign) CGPoint moveOffset;
@@ -47,15 +48,16 @@
                 
                 CGRect spriteFrameInSelf = [self convertRect:sprite.frame fromView:sprite.superview];
                 
-                UIViewController *controller = [sprite viewController];
+                id<GMoveSpriteCatcherProtocol> catcher = [sprite findCatcher];
+                self.sourceCatcher = catcher;
                 
                 //prepare snapshot to move
                 GMoveSnapshot *snapshot = nil;
-                if ([controller conformsToProtocol:GMoveSpriteCatcherProtocol()] &&
-                    [controller respondsToSelector:@selector(prepareSnapshotForSprite:)])
+                if (catcher &&
+                    [catcher respondsToSelector:@selector(prepareSnapshotForSprite:)])
                 {
-                    snapshot = [controller performSelector: @selector(prepareSnapshotForSprite:)
-                                                withObject: sprite];
+                    snapshot = [catcher performSelector: @selector(prepareSnapshotForSprite:)
+                                             withObject: sprite];
                 }
                 if (snapshot == nil) {
                     
@@ -67,7 +69,7 @@
                     
                     snapshot = [[GMoveSnapshot alloc] initWithFrame:spriteFrameInSelf];
                     [snapshot addSubviewToFill:snapshotImageView];
-                    [snapshot setAlpha:0.5];
+                    [snapshot setTransform:CGAffineTransformMakeScale(1.1, 1.1)];
                 }
                 snapshot.sprite = sprite;
                 [snapshot setCenter:CGPointMake( CGRectGetMidX(spriteFrameInSelf),
@@ -75,11 +77,11 @@
                 [self addSubview:snapshot];
                 
                 //after prepare, befor show, give the cather a chance to do something
-                if ([controller conformsToProtocol:GMoveSpriteCatcherProtocol()] &&
-                    [controller respondsToSelector:@selector(didPrepareSnapshotForSprite:)])
+                if (catcher &&
+                    [catcher respondsToSelector:@selector(didPrepareSnapshotForSprite:)])
                 {
-                    [controller performSelector: @selector(didPrepareSnapshotForSprite:)
-                                     withObject: sprite];
+                    [catcher performSelector: @selector(didPrepareSnapshotForSprite:)
+                                  withObject: sprite];
                 }
                 
                 self.currentSnapshot = snapshot;
@@ -90,7 +92,8 @@
                 
             }else{
                 
-                [self cleanSnapshot];
+                //clean first before cancel
+                [self cleanCatcherAndSnapshot];
                 [self cancelLongPress:gestureRecognizer];
                 
                 return;
@@ -106,15 +109,9 @@
             
             //notice the topest sprite catcher to catching the sprite's movement
             UIView *topestView = [self hitTest:touchPoint withEvent:nil];
-            if (topestView) {
-                UIViewController *controller = [topestView viewController];
-                if (controller &&
-                    [controller conformsToProtocol:GMoveSpriteCatcherProtocol()] &&
-                    [controller respondsToSelector:@selector(isCatchingSnapshot:)])
-                {
-                    [controller performSelector:@selector(isCatchingSnapshot:) withObject:_currentSnapshot];
-                }
-            }
+            id<GMoveSpriteCatcherProtocol> catcher = [topestView findCatcher];
+            
+            [self catcherIsCatching:catcher];
         }
             break;
         case UIGestureRecognizerStateEnded:
@@ -124,31 +121,23 @@
             _historyTouchPoint = touchPoint;
             [self moveSnapshot];
 
-            
-            //notice the topest sprite catcher to catch the sprite
+            //notice the topest sprite catcher to catch the sprite, is topest sprite catcher is nil, then notice source catcher.
             UIView *topestView = [self hitTest:touchPoint withEvent:nil];
-            if (topestView) {
-                UIViewController *controller = [topestView viewController];
-                if (controller &&
-                    [controller conformsToProtocol:GMoveSpriteCatcherProtocol()] &&
-                    [controller respondsToSelector:@selector(didCatchSnapshot:)])
-                {
-                    [controller performSelector:@selector(didCatchSnapshot:) withObject:_currentSnapshot];
-                }
-            }
+            id<GMoveSpriteCatcherProtocol> catcher = [topestView findCatcher];
+            if (catcher==nil) catcher = self.sourceCatcher;
 
-            [UIView animateWithDuration: .1
-                             animations: ^{
-                                _currentSnapshot.alpha = 0;
-                             }
-                             completion: ^(BOOL finished){
-                                 [self cleanSnapshot];
-                             }];
+            [self catcherDidCatch:catcher];
+
+        }
+            break;
+        case UIGestureRecognizerStateCancelled:
+        {
+            [self catcherDidCatch:_sourceCatcher];
         }
             break;
         default:
         {
-            [self cleanSnapshot];
+            [self cleanCatcherAndSnapshot];
         }
             break;
     }
@@ -159,16 +148,46 @@
     [_currentSnapshot frameAddPoint:_moveOffset];
 }
 
-- (void)cleanSnapshot
+- (void)cleanCatcherAndSnapshot
 {
     [self.currentSnapshot removeFromSuperview];
     self.currentSnapshot = nil;
+    self.sourceCatcher = nil;
 }
 
 - (void)cancelLongPress:(UILongPressGestureRecognizer *)gestureRecognizer
 {
     [gestureRecognizer setEnabled:NO];
     [gestureRecognizer setEnabled:YES];
+}
+
+#pragma mark - Delegate Mothods
+- (void)catcherIsCatching:(id<GMoveSpriteCatcherProtocol>)catcher
+{
+    if (catcher &&
+        [catcher respondsToSelector:@selector(isCatchingSnapshot:)])
+    {
+        [catcher performSelector:@selector(isCatchingSnapshot:) withObject:_currentSnapshot];
+    }
+}
+- (void)catcherDidCatch:(id<GMoveSpriteCatcherProtocol>)catcher
+{
+    if (catcher &&
+        [catcher respondsToSelector:@selector(didCatchSnapshot:)])
+    {
+        [catcher performSelector:@selector(didCatchSnapshot:) withObject:_currentSnapshot];
+    }
+    
+    if (_currentSnapshot)
+    {
+        [UIView animateWithDuration: .1
+                         animations: ^{
+                             _currentSnapshot.alpha = 0;
+                         }
+                         completion: ^(BOOL finished){
+                             [self cleanCatcherAndSnapshot];
+                         }];
+    }
 }
 
 @end

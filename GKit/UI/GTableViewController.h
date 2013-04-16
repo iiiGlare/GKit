@@ -70,7 +70,7 @@
 
 - (void)registerForKeyboardNotifications;
 - (void)unregisterForKeyboardNotifications;
-- (void)keyboardWasShown:(NSNotification*)aNotification;
+- (void)keyboardWillBeShown:(NSNotification*)aNotification;
 - (void)keyboardWillBeHidden:(NSNotification*)aNotification;
 
 /**

@@ -7,9 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "GMoveSpriteCatcherProtocol.h"
 
 @interface UIView (GMove)
 
 - (UIView *)findSpriteAtPoint:(CGPoint)point;
+- (id<GMoveSpriteCatcherProtocol>)findCatcher;
 
 @end

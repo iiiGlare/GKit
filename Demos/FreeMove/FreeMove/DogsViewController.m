@@ -58,7 +58,11 @@
 {
     [(NaughtyLabel *)snapshot.sprite setText:@"I am a Dog"];
     [self.view addSubview:snapshot.sprite];
-    [snapshot.sprite setCenter:[self.view convertPoint:snapshot.center fromView:snapshot.superview]];
+    CGPoint center = [self.view convertPoint:snapshot.center fromView:snapshot.superview];
+    if (!CGRectContainsPoint(self.view.bounds, center)) {
+        center = [self.view innerCenter];
+    }
+    [snapshot.sprite setCenter:center];
 }
 
 @end
