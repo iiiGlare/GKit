@@ -198,8 +198,8 @@
 - (void)registerForKeyboardNotifications
 {
     [[NSNotificationCenter defaultCenter] addObserver:self
-											 selector:@selector(keyboardWasShown:)
-												 name:UIKeyboardDidShowNotification
+											 selector:@selector(keyboardWillBeShown:)
+												 name:UIKeyboardWillShowNotification
 											   object:nil];
 	
 	[[NSNotificationCenter defaultCenter] addObserver:self
@@ -211,11 +211,16 @@
 
 - (void)unregisterForKeyboardNotifications
 {
-	[[NSNotificationCenter defaultCenter] removeObserver:self];
+	[[NSNotificationCenter defaultCenter] removeObserver:self
+                                                    name:UIKeyboardWillShowNotification
+                                                  object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                    name:UIKeyboardWillHideNotification
+                                                  object:nil];
 }
 
-// Called when the UIKeyboardDidShowNotification is sent.
-- (void)keyboardWasShown:(NSNotification*)aNotification
+// Called when the UIKeyboardWillShowNotification is sent.
+- (void)keyboardWillBeShown:(NSNotification*)aNotification
 {
     NSDictionary* info = [aNotification userInfo];
     CGSize kbSize = [[info objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue].size;
