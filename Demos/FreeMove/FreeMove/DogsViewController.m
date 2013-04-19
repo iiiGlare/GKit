@@ -44,9 +44,9 @@
     return snapshot;
 }
 
-- (void)didPrepareSnapshotForSprite:(NaughtyLabel *)sprite
+- (void)didPrepareSnapshot:(GMoveSnapshot *)snapshot
 {
-    [sprite setText:@"I will change"];
+    [(NaughtyLabel *)snapshot.sprite setText:@"I will change"];
 }
 
 - (void)isCatchingSnapshot:(GMoveSnapshot *)snapshot

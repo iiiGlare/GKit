@@ -15,7 +15,7 @@
 @optional
 //prepare
 - (GMoveSnapshot *)prepareSnapshotForSprite:(UIView *)sprite;
-- (void)didPrepareSnapshotForSprite:(UIView *)sprite;
+- (void)didPrepareSnapshot:(GMoveSnapshot *)snapshot;
 //moving snapshot
 - (void)isCatchingSnapshot:(GMoveSnapshot *)snapshot;
 //did finish

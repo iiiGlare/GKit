@@ -73,15 +73,15 @@
                 }
                 snapshot.sprite = sprite;
                 [snapshot setCenter:CGPointMake( CGRectGetMidX(spriteFrameInSelf),
-                                                 CGRectGetMidY(spriteFrameInSelf))];
+                                                CGRectGetMidY(spriteFrameInSelf))];
                 [self addSubview:snapshot];
                 
                 //after prepare, befor show, give the cather a chance to do something
                 if (catcher &&
-                    [catcher respondsToSelector:@selector(didPrepareSnapshotForSprite:)])
+                    [catcher respondsToSelector:@selector(didPrepareSnapshot:)])
                 {
-                    [catcher performSelector: @selector(didPrepareSnapshotForSprite:)
-                                  withObject: sprite];
+                    [catcher performSelector: @selector(didPrepareSnapshot:)
+                                  withObject: snapshot];
                 }
                 
                 self.currentSnapshot = snapshot;
@@ -120,14 +120,14 @@
             _moveOffset = CGPointMake(touchPoint.x - _historyTouchPoint.x, touchPoint.y - _historyTouchPoint.y);
             _historyTouchPoint = touchPoint;
             [self moveSnapshot];
-
+            
             //notice the topest sprite catcher to catch the sprite, is topest sprite catcher is nil, then notice source catcher.
             UIView *topestView = [self hitTest:touchPoint withEvent:nil];
             id<GMoveSpriteCatcherProtocol> catcher = [topestView findCatcher];
             if (catcher==nil) catcher = self.sourceCatcher;
-
+            
             [self catcherDidCatch:catcher];
-
+            
         }
             break;
         case UIGestureRecognizerStateCancelled:
