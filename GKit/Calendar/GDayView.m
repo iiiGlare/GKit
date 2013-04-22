@@ -207,12 +207,15 @@
     NSDate *beginPoint = [self.date beginPoint];
     NSDate *nextDayBeginPoint = [self.date nextDayBeginPoint];
     
+    
+    //
     if ([beginDate compare:nextDayBeginPoint]!=NSOrderedAscending ||
         [endDate compare:beginPoint]==NSOrderedAscending)
     {
         return;
     }
     
+    //
     NSTimeInterval beginTimeInterval = [beginDate timeIntervalSinceDate:beginPoint];
     if (beginTimeInterval<0) beginTimeInterval = 0;
     NSTimeInterval endTimeInterval = [endDate timeIntervalSinceDate:beginPoint];
@@ -221,8 +224,28 @@
     CGFloat beginY = _hourHeight * beginTimeInterval/GTimeIntervalFromHours(1) + _gridTopMargin + _gridLineOffset;
     CGFloat endY = _hourHeight * endTimeInterval/GTimeIntervalFromHours(1) + _gridTopMargin + _gridLineOffset;
     
-    eventView.frame = CGRectMake(_hourViewWidth, beginY,
-                                 [_scrollView contentSize].width - _hourViewWidth, endY-beginY);
+    //
+    NSMutableArray *sameTimeViews = [NSMutableArray array];
+    for (UIView *view in [_scrollView subviews]) {
+        if ([view isKindOfClass:[GEventView class]]) {
+            CGFloat viewBeginY = CGRectGetMinY(view.frame);
+            CGFloat viewEndY = CGRectGetMaxY(view.frame);
+            if (!(viewEndY<=beginY || viewBeginY>=endY)) {
+                [sameTimeViews addObject:view];
+            }
+        }
+    }
+    [sameTimeViews addObject:eventView];
+    
+    //
+    CGFloat eventViewWidth = ([_scrollView contentSize].width - _hourViewWidth)/[sameTimeViews count];
+    eventView.frame = CGRectMake(_hourViewWidth, beginY, eventViewWidth, endY-beginY);
+    for (NSInteger i=0; i<[sameTimeViews count]; i++) {
+        GEventView *view = [sameTimeViews objectAtPosition:i];
+        [view setWidth:eventViewWidth];
+        [view setX:_hourViewWidth+i*eventViewWidth];
+    }
+    
     [_scrollView addSubview:eventView];
     
 }
@@ -253,6 +276,10 @@
         if (eventView==nil)
         {
             eventView = [[GEventView alloc] init];
+            eventView.backgroundColor = [UIColor randomColor];
+            [eventView drawBorderWithColor:[UIColor blackColor]
+                                     width:2.0
+                              cornerRadius:5.0];
         }
         
         eventView.event = event;

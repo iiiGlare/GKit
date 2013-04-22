@@ -17,6 +17,7 @@
 
 #import "UIView+GKit.h"
 #import "GMacros.h"
+#import <QuartzCore/QuartzCore.h>
 
 CGRect GRectSetX(CGRect rect, CGFloat x) {
 	return CGRectMake(x, rect.origin.y, rect.size.width, rect.size.height);
@@ -193,4 +194,19 @@ CGRect GRectAddSize(CGRect rect, CGSize size)
         return nil;
     }
 }
+@end
+
+#pragma mark UIView+GDrawUtil
+@implementation UIView (GDrawUtil)
+
+- (void)drawBorderWithColor:(UIColor *)color
+                      width:(CGFloat)width
+               cornerRadius:(CGFloat)radius
+{
+    CALayer *layer = [self layer];
+    [layer setBorderColor:[color CGColor]];
+    [layer setBorderWidth:width];
+    [layer setCornerRadius:radius];
+}
+
 @end

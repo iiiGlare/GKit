@@ -7,6 +7,12 @@
 //
 
 #import "GEventView.h"
+#import "GCore.h"
+#import "GEvent.h"
+
+@interface GEventView ()
+@property (nonatomic, strong) UILabel *titleLabel;
+@end
 
 @implementation GEventView
 
@@ -17,9 +23,23 @@
         // Initialization code
         self.backgroundColor = [UIColor grayColor];
         self.shouldMove = YES;
+        
+        _titleLabel = [[UILabel alloc] initWithFrame:CGRectZero];
+        _titleLabel.backgroundColor = [UIColor clearColor];
+        _titleLabel.textColor = [UIColor whiteColor];
+        _titleLabel.textAlignmentG = GTextAlignmentCenter;
+        [self addSubviewToFill:_titleLabel];
     }
     return self;
 }
+#pragma mark - Setter / Getter
+- (void)setEvent:(GEvent *)event
+{
+    _event = event;
+    _titleLabel.text = event.title;
+}
+
+#pragma mark - GMoveSpriteProtocol
 - (BOOL)canMove
 {
     return _shouldMove;

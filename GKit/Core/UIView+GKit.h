@@ -70,3 +70,11 @@ extern CGRect GRectAddSize(CGRect rect, CGSize size);
 - (UIViewController *)viewController;
 
 @end
+
+@interface UIView (GDrawUtil)
+
+- (void)drawBorderWithColor:(UIColor *)color
+                      width:(CGFloat)width
+               cornerRadius:(CGFloat)radius;
+
+@end

@@ -59,28 +59,51 @@
 {
     NSMutableArray *events = [NSMutableArray array];
     
+    //-03:00 to 01:00
     GEvent *event = [[GEvent alloc] init];
+    event.title = @"test";
     event.beginDate = [NSDate dateWithTimeInterval: -GTimeIntervalFromHours(3)
                                          sinceDate: [dayView.date beginPoint]];
     event.endDate = [NSDate dateWithTimeInterval: GTimeIntervalFromHours(1)
                                        sinceDate: [dayView.date beginPoint]];
     [events addObject:event];
 
+    // 21:00 to 25:00
     event = [[GEvent alloc] init];
+    event.title = @"test";
     event.beginDate = [NSDate dateWithTimeInterval: -GTimeIntervalFromHours(3)
                                          sinceDate: [dayView.date nextDayBeginPoint]];
     event.endDate = [NSDate dateWithTimeInterval: GTimeIntervalFromHours(1)
                                        sinceDate: [dayView.date nextDayBeginPoint]];
     [events addObject:event];
     
-    for (int i=0; i<3; i++) {
-        GEvent *event = [[GEvent alloc] init];
-        event.beginDate = [NSDate dateWithTimeInterval: GTimeIntervalFromHours(2)*(i+1)
-                                             sinceDate: [dayView.date beginPoint]];
-        event.endDate = [NSDate dateWithTimeInterval: GTimeIntervalFromHours(1)
-                                           sinceDate: event.beginDate];
-        [events addObject:event];
-    }
+    //08:00 to 11:30
+    event = [[GEvent alloc] init];
+    event.title = @"test";
+    event.beginDate = [NSDate dateWithTimeInterval: GTimeIntervalFromHours(8)
+                                         sinceDate: [dayView.date beginPoint]];
+    event.endDate = [NSDate dateWithTimeInterval: GTimeIntervalFromHours(11.5)
+                                       sinceDate: [dayView.date beginPoint]];
+    [events addObject:event];
+    
+    //10:00 to 12:00
+    event = [[GEvent alloc] init];
+    event.title = @"test";
+    event.beginDate = [NSDate dateWithTimeInterval: GTimeIntervalFromHours(10)
+                                         sinceDate: [dayView.date beginPoint]];
+    event.endDate = [NSDate dateWithTimeInterval: GTimeIntervalFromHours(12)
+                                       sinceDate: [dayView.date beginPoint]];
+    [events addObject:event];
+    
+    
+    //13:00 to 18:00
+    event = [[GEvent alloc] init];
+    event.title = @"test";
+    event.beginDate = [NSDate dateWithTimeInterval: GTimeIntervalFromHours(13)
+                                         sinceDate: [dayView.date beginPoint]];
+    event.endDate = [NSDate dateWithTimeInterval: GTimeIntervalFromHours(18)
+                                       sinceDate: [dayView.date beginPoint]];
+    [events addObject:event];
     
     return events;
 }

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F820B28A17252104008F3A0C /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F820B28917252104008F3A0C /* QuartzCore.framework */; };
 		F8567889172131A200409C5E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8567888172131A200409C5E /* UIKit.framework */; };
 		F856788B172131A200409C5E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F856788A172131A200409C5E /* Foundation.framework */; };
 		F856788D172131A200409C5E /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F856788C172131A200409C5E /* CoreGraphics.framework */; };
@@ -50,6 +51,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		F820B28917252104008F3A0C /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		F8567885172131A200409C5E /* CalendarDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CalendarDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F8567888172131A200409C5E /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		F856788A172131A200409C5E /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -138,6 +140,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F820B28A17252104008F3A0C /* QuartzCore.framework in Frameworks */,
 				F8567889172131A200409C5E /* UIKit.framework in Frameworks */,
 				F856788B172131A200409C5E /* Foundation.framework in Frameworks */,
 				F856788D172131A200409C5E /* CoreGraphics.framework in Frameworks */,
@@ -150,6 +153,7 @@
 		F856787C172131A200409C5E = {
 			isa = PBXGroup;
 			children = (
+				F820B28917252104008F3A0C /* QuartzCore.framework */,
 				F85678A5172131D400409C5E /* GKit */,
 				F856788E172131A200409C5E /* CalendarDemo */,
 				F8567887172131A200409C5E /* Frameworks */,
