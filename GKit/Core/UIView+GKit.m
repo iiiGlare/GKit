@@ -168,6 +168,18 @@ CGRect GRectAddSize(CGRect rect, CGSize size)
     aView.autoresizingMask = GViewAutoresizingFlexibleSize;
     [self addSubview:aView];
 }
+/////////////
+- (void)removeAllSubviewOfClass:(Class)aClass
+{
+    [[self subviews] makeObjectsPerformSelector: @selector(removeFromSuperviewWhenSelfIsKindOfClass:)
+                                     withObject: NSStringFromClass(aClass)];
+}
+- (void)removeFromSuperviewWhenSelfIsKindOfClass:(NSString *)aClass
+{
+    if ([self isKindOfClass:NSClassFromString(aClass)]) {
+        [self removeFromSuperview];
+    }
+}
 
 /////////////
 - (UIViewController *)viewController

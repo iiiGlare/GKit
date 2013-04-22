@@ -36,4 +36,5 @@
 #import "UIColor+GKit.h"
 #import "UIDevice+GKit.h"
 #import "UILabel+GKit.h"
+#import "UIScrollView+GKit.h"
 #import "UIView+GKit.h"

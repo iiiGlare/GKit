@@ -41,4 +41,11 @@ NSString * GTimerStringFromTimeInterval(NSTimeInterval timeInterval);
 //min string
 - (NSString *)minuteString;
 
+
+////
+- (NSDate *)beginPoint;
+- (NSDate *)previousDayBeginPoint;
+- (NSDate *)nextDayBeginPoint;
+
+
 @end

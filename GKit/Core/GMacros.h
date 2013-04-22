@@ -101,3 +101,9 @@
 #pragma mark - Localize
 
 #define GLocalizedString(x, ...) NSLocalizedString(x, nil)
+
+//Date
+#define GCurrentCalendar() [NSCalendar currentCalendar]
+#define GDateComponets (NSEraCalendarUnit | NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit | NSWeekCalendarUnit |  NSHourCalendarUnit | NSMinuteCalendarUnit | NSSecondCalendarUnit | NSWeekdayCalendarUnit | NSWeekdayOrdinalCalendarUnit)
+#define GHoursInDay 24
+

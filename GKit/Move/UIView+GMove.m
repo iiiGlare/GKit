@@ -42,11 +42,25 @@
 
 - (id<GMoveSpriteCatcherProtocol>)findCatcher
 {
-    UIViewController *controller = [self viewController];
-    if ([controller conformsToProtocol:GMoveSpriteCatcherProtocol()])
-    {
-        return (id<GMoveSpriteCatcherProtocol>)controller;
-    }else{
+    id nextResponder = [self nextResponder];
+    if ([nextResponder isKindOfClass:[UIViewController class]]) {
+        if ([nextResponder conformsToProtocol:GMoveSpriteCatcherProtocol()]) {
+            return nextResponder;
+        }else {
+            UIView *superview = [self superview];
+            if ([superview conformsToProtocol:GMoveSpriteCatcherProtocol()]) {
+                return (id<GMoveSpriteCatcherProtocol>)superview;
+            }else{
+                return [superview findCatcher];
+            }
+        }
+    }else if ([nextResponder isKindOfClass:[UIView class]]){
+        if ([nextResponder conformsToProtocol:GMoveSpriteCatcherProtocol()]) {
+            return nextResponder;
+        }else{
+            return [nextResponder findCatcher];
+        }
+    }else {
         return nil;
     }
 }

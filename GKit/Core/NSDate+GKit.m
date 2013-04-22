@@ -17,6 +17,7 @@
 
 #import "NSDate+GKit.h"
 #import "GMath.h"
+#import "GMacros.h"
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////
 NSTimeInterval GTimeIntervalFromMinitues(NSUInteger minutes)
@@ -79,5 +80,39 @@ NSString * GTimerStringFromTimeInterval(NSTimeInterval timeInterval)
 {
 	return [self dateStringWithFormat:@"mm"];
 }
+
+///////////////
+- (NSDate *)beginPoint
+{
+    NSDateComponents *components = [GCurrentCalendar() components: GDateComponets
+                                                         fromDate: self];
+	[components setHour:0];
+	[components setMinute:0];
+	[components setSecond:0];
+	return [GCurrentCalendar() dateFromComponents:components];
+}
+
+- (NSDate *)previousDayBeginPoint
+{
+    NSDateComponents *components = [GCurrentCalendar() components: GDateComponets
+                                                         fromDate: self];
+    [components setDay:(components.day-1)];
+	[components setHour:0];
+	[components setMinute:0];
+	[components setSecond:0];
+	return [GCurrentCalendar() dateFromComponents:components];
+}
+
+- (NSDate *)nextDayBeginPoint
+{
+    NSDateComponents *components = [GCurrentCalendar() components: GDateComponets
+                                                         fromDate: self];
+    [components setDay:(components.day+1)];
+	[components setHour:0];
+	[components setMinute:0];
+	[components setSecond:0];
+	return [GCurrentCalendar() dateFromComponents:components];
+}
+
 
 @end
