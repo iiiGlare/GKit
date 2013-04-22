@@ -10,7 +10,7 @@
 #import "GMove.h"
 
 @class GEventView, GEvent;
-@protocol GDayViewDataSource;
+@protocol GDayViewDataSource, GDayViewDelegate;
 
 #pragma mark - GDayView
 
@@ -20,6 +20,7 @@
 @property (nonatomic, copy) NSDate *date;
 
 @property (nonatomic, weak) id<GDayViewDataSource> dataSource;
+@property (nonatomic, weak) id<GDayViewDelegate> delegate;
 
 - (void)reloadData;
 
@@ -33,5 +34,16 @@
 
 @optional
 - (GEventView *)dayView:(GDayView *)dayView eventViewForEvent:(GEvent *)event;
+
+@end
+
+
+#pragma mark - GDayViewDelegate
+
+@protocol GDayViewDelegate <NSObject>
+
+@optional
+- (void)dayView:(GDayView *)dayView didRemoveEvent:(GEvent *)event;
+- (void)dayView:(GDayView *)dayView didChangeEvent:(GEvent *)event;
 
 @end

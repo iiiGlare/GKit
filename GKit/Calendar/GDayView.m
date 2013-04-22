@@ -413,16 +413,26 @@
     
     if (self.movingEventView)
     {
+        BOOL dateChanged = NO;
         GEvent *event = [self.movingEventView event];
         CGRect eventRect = GRectAddPoint(self.movingEventView.frame, self.scrollView.contentOffset);
         if ([event.beginDate compare:[self.date beginPoint]]!=NSOrderedAscending) {
             //reset beginDate only if the event's begin date is in today
             event.beginDate = [self dateForOffset:CGRectGetMinY(eventRect)];
+            dateChanged = YES;
         }
         
         if ([event.endDate compare:[self.date nextDayBeginPoint]]!=NSOrderedDescending) {
             //reset endDate only if the event's end date is in today
             event.endDate = [self dateForOffset:CGRectGetMaxY(eventRect)];
+            dateChanged = YES;
+        }
+        
+        if (dateChanged) {
+            if (_delegate &&
+                [_delegate respondsToSelector:@selector(dayView:didChangeEvent:)]) {
+                [_delegate dayView:self didChangeEvent:event];
+            }
         }
     }
     
@@ -434,11 +444,18 @@
 - (void)failedCatchSnapshot:(GMoveSnapshot *)snapshot
 {
     [self.scrollView stopAutoScroll];
+    
+    GEvent *event = [(GEventView *)snapshot.sprite event];
+    if (_delegate &&
+        [_delegate respondsToSelector:@selector(dayView:didRemoveEvent:)]) {
+        [_delegate dayView:self didRemoveEvent:event];
+    }
+    
+    
     [self.movingEventView removeFromSuperview];
-    [self.events removeObject:[(GEventView *)snapshot.sprite event]];
+    [self.events removeObject:event];
 }
 
-#pragma makr - 
 
 @end
 
