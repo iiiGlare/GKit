@@ -17,7 +17,7 @@
 @interface GDayView : UIView
 <GMoveSpriteCatcherProtocol>
 
-@property (nonatomic, assign) NSDate *date;
+@property (nonatomic, copy) NSDate *date;
 
 @property (nonatomic, weak) id<GDayViewDataSource> dataSource;
 

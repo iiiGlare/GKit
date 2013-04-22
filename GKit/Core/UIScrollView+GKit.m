@@ -9,7 +9,7 @@
 #import "UIScrollView+GKit.h"
 #import "NSArray+GKit.h"
 #import "NSMutableArray+GKit.h"
-
+#import "UIView+GKit.h"
 static NSMutableArray *_autoScrollViews = nil;
 static NSMutableArray *_autoScrollTimers = nil;
 
@@ -77,7 +77,7 @@ static NSMutableArray *_autoScrollTimers = nil;
 }
 - (void)autoScrollToBottom
 {
-    [self setContentOffset:CGPointMake(self.contentOffset.x, MAX(0, self.contentOffset.y+1)) animated:NO];
+    [self setContentOffset:CGPointMake(self.contentOffset.x, MIN(self.contentSize.height-[self height], self.contentOffset.y+1)) animated:NO];
 }
 
 //Stop

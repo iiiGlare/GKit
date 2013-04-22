@@ -37,9 +37,9 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     
-    [self setTopViewHeight:100];
+    [self setTopViewHeight:60];
     [self.topView setBackgroundColor:[UIColor randomColor]];
-    [self setBottomViewHeight:100];
+    [self setBottomViewHeight:60];
     [self.bottomView setBackgroundColor:[UIColor randomColor]];
         
     GDayView *dayView = [[GDayView alloc] init];

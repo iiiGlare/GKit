@@ -17,6 +17,7 @@
 @interface GMoveScene ()
 @property (nonatomic, strong) GMoveSnapshot *currentSnapshot;
 @property (nonatomic, weak) id sourceCatcher;
+@property (nonatomic, weak) id currentCatcher;
 
 @property (nonatomic, assign) CGPoint historyTouchPoint;
 @property (nonatomic, assign) CGPoint moveOffset;
@@ -56,8 +57,7 @@
                 if (catcher &&
                     [catcher respondsToSelector:@selector(prepareSnapshotForSprite:)])
                 {
-                    snapshot = [catcher performSelector: @selector(prepareSnapshotForSprite:)
-                                             withObject: sprite];
+                    snapshot = [catcher prepareSnapshotForSprite:sprite];
                 }
                 if (snapshot == nil) {
                     
@@ -76,12 +76,20 @@
                                                 CGRectGetMidY(spriteFrameInSelf))];
                 [self addSubview:snapshot];
                 
+                if (catcher &&
+                    [catcher respondsToSelector:@selector(endFrameForSnapshot:)])
+                {
+                    [UIView animateWithDuration: 0.25
+                                     animations: ^{
+                                         snapshot.frame = [catcher endFrameForSnapshot:snapshot];
+                                     }];
+                }
+                
                 //after prepare, befor show, give the cather a chance to do something
                 if (catcher &&
                     [catcher respondsToSelector:@selector(didPrepareSnapshot:)])
                 {
-                    [catcher performSelector: @selector(didPrepareSnapshot:)
-                                  withObject: snapshot];
+                    [catcher didPrepareSnapshot:snapshot];
                 }
                 
                 self.currentSnapshot = snapshot;
@@ -111,7 +119,14 @@
             UIView *topestView = [self hitTest:touchPoint withEvent:nil];
             id<GMoveSpriteCatcherProtocol> catcher = [topestView findCatcher];
             
-            [self catcherIsCatching:catcher];
+            if (catcher!=self.currentCatcher)
+            {
+                [self catcherEndCatching:self.currentCatcher];
+                self.currentCatcher = catcher;
+                [self catcherBeginCatching:catcher];
+            }else {
+                [self catcherIsCatching:catcher];
+            }
         }
             break;
         case UIGestureRecognizerStateEnded:
@@ -125,6 +140,16 @@
             UIView *topestView = [self hitTest:touchPoint withEvent:nil];
             id<GMoveSpriteCatcherProtocol> catcher = [topestView findCatcher];
             if (catcher==nil) catcher = self.sourceCatcher;
+            //
+            if (catcher!=self.currentCatcher)
+            {
+                [self catcherEndCatching:self.currentCatcher];
+            }
+            
+            //
+            if (catcher!=_sourceCatcher) {
+                [self catcherFailedCatch:_sourceCatcher];
+            }
             
             [self catcherDidCatch:catcher];
             
@@ -132,6 +157,12 @@
             break;
         case UIGestureRecognizerStateCancelled:
         {
+            //
+            if (_sourceCatcher!=self.currentCatcher)
+            {
+                [self catcherEndCatching:self.currentCatcher];
+            }
+            
             [self catcherDidCatch:_sourceCatcher];
         }
             break;
@@ -153,6 +184,7 @@
     [self.currentSnapshot removeFromSuperview];
     self.currentSnapshot = nil;
     self.sourceCatcher = nil;
+    self.currentCatcher = nil;
 }
 
 - (void)cancelLongPress:(UILongPressGestureRecognizer *)gestureRecognizer
@@ -162,6 +194,15 @@
 }
 
 #pragma mark - Delegate Mothods
+- (void)catcherBeginCatching:(id<GMoveSpriteCatcherProtocol>)catcher
+{
+    if (catcher &&
+        [catcher respondsToSelector:@selector(beginCatchingSnapshot:)])
+    {
+        [catcher performSelector:@selector(beginCatchingSnapshot:) withObject:_currentSnapshot];
+    }
+
+}
 - (void)catcherIsCatching:(id<GMoveSpriteCatcherProtocol>)catcher
 {
     if (catcher &&
@@ -170,12 +211,21 @@
         [catcher performSelector:@selector(isCatchingSnapshot:) withObject:_currentSnapshot];
     }
 }
+- (void)catcherEndCatching:(id<GMoveSpriteCatcherProtocol>)catcher
+{
+    if (catcher &&
+        [catcher respondsToSelector:@selector(endCatchingSnapshot:)])
+    {
+        [catcher endCatchingSnapshot:_currentSnapshot];
+    }
+    
+}
 - (void)catcherDidCatch:(id<GMoveSpriteCatcherProtocol>)catcher
 {
     if (catcher &&
         [catcher respondsToSelector:@selector(didCatchSnapshot:)])
     {
-        [catcher performSelector:@selector(didCatchSnapshot:) withObject:_currentSnapshot];
+        [catcher didCatchSnapshot:_currentSnapshot];
     }
     
     if (_currentSnapshot)
@@ -188,6 +238,14 @@
                              [self cleanCatcherAndSnapshot];
                          }];
     }
+}
+- (void)catcherFailedCatch:(id<GMoveSpriteCatcherProtocol>)catcher
+{
+    if (catcher &&
+        [catcher respondsToSelector:@selector(failedCatchSnapshot:)])
+    {
+        [catcher failedCatchSnapshot:_currentSnapshot];
+    }    
 }
 
 @end

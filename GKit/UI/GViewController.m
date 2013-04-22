@@ -70,7 +70,7 @@
     _contentView.backgroundColor = [UIColor clearColor];
     _contentView.frame = self.view.bounds;
     [_contentView setAutoresizingMask:GViewAutoresizingFlexibleSize];
-    [self.view addSubview:_contentView];
+    [self.view insertSubview:_contentView belowSubview:_topView];
 
     //bottom view
     if (self.bottomView==nil) {

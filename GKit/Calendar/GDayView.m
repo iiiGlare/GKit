@@ -109,7 +109,11 @@
 @property (nonatomic, strong) GDayHourView *dayHourView;
 
 //data
+@property (nonatomic, assign) BOOL reloadDataToLayoutSubviews;
 @property (nonatomic, strong) NSMutableArray *events;
+
+//move
+@property (nonatomic, weak) GEventView *movingEventView;
 
 @end
 
@@ -136,6 +140,7 @@
 }
 - (void)initialize
 {
+    self.reloadDataToLayoutSubviews = YES;
     self.hourHeight = 60.0;
     self.hourViewWidth = 50.0;
     self.gridLineOffset = 1.0;
@@ -148,6 +153,10 @@
     [self addSubview:self.scrollView];
     [self.scrollView addSubview:self.dayGridView];
     [self.scrollView addSubview:self.dayHourView];
+    
+    //Tap Gesture
+    UITapGestureRecognizer *tapGR = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTap:)];
+    [self addGestureRecognizer:tapGR];
 }
 
 #pragma mark Setter / Getter
@@ -183,7 +192,6 @@
 #pragma mark Layout
 - (void)layoutSubviews
 {
-    
     self.scrollView.frame = self.bounds;
     [self.scrollView setContentSize:CGSizeMake([_scrollView width],
                                                _gridHeight+_gridTopMargin+_gridBottomMargin)];
@@ -196,9 +204,14 @@
     self.dayHourView.frame = CGRectMake(0, 0,
                                         _hourViewWidth, _scrollView.contentSize.height);
     
-    [self reloadData];
+    if (_reloadDataToLayoutSubviews)
+    {
+        _reloadDataToLayoutSubviews = NO;
+        [self reloadData];
+    }
 }
-- (void)showEventView:(GEventView *)eventView
+
+- (void)layoutEventView:(GEventView *)eventView
 {
     GEvent *event = eventView.event;
     NSDate *beginDate = event.beginDate;
@@ -223,7 +236,16 @@
     
     CGFloat beginY = _hourHeight * beginTimeInterval/GTimeIntervalFromHours(1) + _gridTopMargin + _gridLineOffset;
     CGFloat endY = _hourHeight * endTimeInterval/GTimeIntervalFromHours(1) + _gridTopMargin + _gridLineOffset;
+    eventView.frame = CGRectMake(_hourViewWidth, beginY,
+                                 [self defaultEventViewWidth], endY-beginY);
+    [_scrollView addSubview:eventView];
     
+    //
+    [self layoutEventViewsFromBeginY:beginY toEndY:endY animated:NO];
+}
+
+- (void)layoutEventViewsFromBeginY:(CGFloat)beginY toEndY:(CGFloat)endY animated:(BOOL)animated
+{
     //
     NSMutableArray *sameTimeViews = [NSMutableArray array];
     for (UIView *view in [_scrollView subviews]) {
@@ -235,20 +257,68 @@
             }
         }
     }
-    [sameTimeViews addObject:eventView];
     
     //
-    CGFloat eventViewWidth = ([_scrollView contentSize].width - _hourViewWidth)/[sameTimeViews count];
-    eventView.frame = CGRectMake(_hourViewWidth, beginY, eventViewWidth, endY-beginY);
+    CGFloat eventViewWidth = [self defaultEventViewWidth]/[sameTimeViews count];
+
+    if (animated)
+    {
+        [UIView beginAnimations:nil context:nil];
+        [UIView setAnimationDuration:0.25];
+    }
     for (NSInteger i=0; i<[sameTimeViews count]; i++) {
         GEventView *view = [sameTimeViews objectAtPosition:i];
-        [view setWidth:eventViewWidth];
-        [view setX:_hourViewWidth+i*eventViewWidth];
+        view.frame = CGRectMake(_hourViewWidth+i*eventViewWidth, [view y],
+                                eventViewWidth, [view height]);
+    }
+    if (animated)
+    {
+        [UIView commitAnimations];
+    }
+}
+
+- (GEventView *)eventViewForEvent:(GEvent *)event
+{
+    GEventView *eventView = nil;
+    if (_dataSource &&
+        [_dataSource respondsToSelector:@selector(dayView:eventViewForEvent:)])
+    {
+        eventView = [_dataSource dayView:self eventViewForEvent:event];
+    }
+    if (eventView==nil)
+    {
+        eventView = [[GEventView alloc] init];
     }
     
-    [_scrollView addSubview:eventView];
+    eventView.event = event;
     
+    return eventView;
 }
+
+#pragma mark Caculate
+- (NSDate *)dateForOffset:(CGFloat)offset
+{
+    NSDate *beginPoint = [self.date beginPoint];
+    NSDate *nextDayBeginPoint = [self.date nextDayBeginPoint];
+    
+    CGFloat dayBeginOffset = CGRectGetMinY(self.dayGridView.frame);
+    CGFloat dayEndOffset = CGRectGetMaxY(self.dayGridView.frame);
+    
+    if (offset<=dayBeginOffset) {
+        return beginPoint;
+    }else if (offset>=dayEndOffset) {
+        return nextDayBeginPoint;
+    }else {
+        NSTimeInterval interval = gfloor(((offset-dayBeginOffset)/self.hourHeight)*GTimeIntervalFromHours(1));
+        return [NSDate dateWithTimeInterval:interval sinceDate:beginPoint];
+    }
+}
+
+- (CGFloat)defaultEventViewWidth
+{
+    return [_scrollView contentSize].width - _hourViewWidth;
+}
+
 #pragma mark Load Data
 - (void)reloadData
 {
@@ -267,55 +337,105 @@
     //add event views
     for (GEvent *event in self.events)
     {
-        GEventView *eventView = nil;
-        if (_dataSource &&
-            [_dataSource respondsToSelector:@selector(dayView:eventViewForEvent:)])
-        {
-            eventView = [_dataSource dayView:self eventViewForEvent:event];
-        }
-        if (eventView==nil)
-        {
-            eventView = [[GEventView alloc] init];
-            eventView.backgroundColor = [UIColor randomColor];
-            [eventView drawBorderWithColor:[UIColor blackColor]
-                                     width:2.0
-                              cornerRadius:5.0];
-        }
-        
-        eventView.event = event;
-        
-        [self showEventView:eventView];
+        [self layoutEventView:[self eventViewForEvent:event]];
     }
 }
 
-#pragma mark - GMoveSpriteCatcherProtocol
-//prepare
-- (GMoveSnapshot *)prepareSnapshotForSprite:(UIView *)sprite
+#pragma mark Gesture Recognizer
+- (void)handleTap:(UITapGestureRecognizer *)tapGR
 {
-    return nil;
+    GPRINT(@"handleTap");
+}
+
+
+#pragma mark GMoveSpriteCatcherProtocol
+//prepare
+- (GMoveSnapshot *)prepareSnapshotForSprite:(GEventView *)sprite
+{
+    GMoveSnapshot *snapshot = [[GMoveSnapshot alloc] initWithFrame:sprite.frame];
+    [snapshot addSubviewToFill:sprite];
+    snapshot.alpha = 0.7;
+    return snapshot;
+}
+- (CGRect)endFrameForSnapshot:(GMoveSnapshot *)snapshot
+{
+    CGRect endFrame = GRectSetWidth(snapshot.frame, [self defaultEventViewWidth]);
+    endFrame = GRectSetOrigin(endFrame, CGPointMake(_hourViewWidth, [snapshot y]));
+    return endFrame;
 }
 - (void)didPrepareSnapshot:(GMoveSnapshot *)snapshot
 {
+    CGRect eventRect = GRectAddPoint([self convertRect:snapshot.frame fromView:snapshot.superview],
+                                     self.scrollView.contentOffset);
+    [self layoutEventViewsFromBeginY: CGRectGetMinY(eventRect)
+                              toEndY: CGRectGetMaxY(eventRect)
+                            animated:YES];
     
 }
 //moving snapshot
+- (void)beginCatchingSnapshot:(GMoveSnapshot *)snapshot
+{
+    snapshot.alpha = 0.0;
+    GEventView *movingEventView = [[GEventView alloc] initWithFrame:snapshot.frame];
+    movingEventView.center = [self.scrollView convertPoint:snapshot.center fromView:snapshot.superview];
+    movingEventView.event = [(GEventView *)snapshot.sprite event];
+    movingEventView.alpha = 0.7;
+    
+    [self addSubview:movingEventView];
+    self.movingEventView = movingEventView;
+}
 - (void)isCatchingSnapshot:(GMoveSnapshot *)snapshot
 {
-    CGRect rect = [self convertRect:snapshot.frame fromView:snapshot.superview];
-    if (CGRectGetMaxY(rect)>CGRectGetMaxY(self.scrollView.frame) &&
-        CGRectGetMaxY(rect)<CGRectGetMaxY(self.scrollView.frame)+20) {
+    self.movingEventView.center = [self convertPoint:snapshot.center fromView:snapshot.superview];
+    
+    CGRect rect = self.movingEventView.frame;
+    
+    if (CGRectGetMaxY(rect)>CGRectGetMaxY(self.scrollView.frame)) {
         [self.scrollView startAutoScrollToBottom];
-    }else if (CGRectGetMinY(rect)<CGRectGetMinY(self.scrollView.frame) &&
-              CGRectGetMinY(rect)>CGRectGetMinY(self.scrollView.frame)-20) {
+    }else if (CGRectGetMinY(rect)<CGRectGetMinY(self.scrollView.frame)) {
         [self.scrollView startAutoScrollToTop];
     }else {
         [self.scrollView stopAutoScroll];
     }
 }
+- (void)endCatchingSnapshot:(GMoveSnapshot *)snapshot
+{
+    [self.scrollView stopAutoScroll];
+    [self.movingEventView removeFromSuperview];
+    snapshot.alpha = 0.7;
+}
+
 //did finish
 - (void)didCatchSnapshot:(GMoveSnapshot *)snapshot
 {
+    
     [self.scrollView stopAutoScroll];
+    
+    if (self.movingEventView)
+    {
+        GEvent *event = [self.movingEventView event];
+        CGRect eventRect = GRectAddPoint(self.movingEventView.frame, self.scrollView.contentOffset);
+        if ([event.beginDate compare:[self.date beginPoint]]!=NSOrderedAscending) {
+            //reset beginDate only if the event's begin date is in today
+            event.beginDate = [self dateForOffset:CGRectGetMinY(eventRect)];
+        }
+        
+        if ([event.endDate compare:[self.date nextDayBeginPoint]]!=NSOrderedDescending) {
+            //reset endDate only if the event's end date is in today
+            event.endDate = [self dateForOffset:CGRectGetMaxY(eventRect)];
+        }
+    }
+    
+    
+    [self.movingEventView removeFromSuperview];
+    [self layoutEventView:(GEventView *)snapshot.sprite];
+    
+}
+- (void)failedCatchSnapshot:(GMoveSnapshot *)snapshot
+{
+    [self.scrollView stopAutoScroll];
+    [self.movingEventView removeFromSuperview];
+    [self.events removeObject:[(GEventView *)snapshot.sprite event]];
 }
 
 #pragma makr - 

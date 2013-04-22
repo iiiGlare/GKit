@@ -21,7 +21,10 @@
     self = [super initWithFrame:frame];
     if (self) {
         // Initialization code
-        self.backgroundColor = [UIColor grayColor];
+        self.backgroundColor = [UIColor orangeColor];
+        [self drawBorderWithColor:[UIColor blackColor]
+                                 width:2.0
+                          cornerRadius:5.0];
         self.shouldMove = YES;
         
         _titleLabel = [[UILabel alloc] initWithFrame:CGRectZero];
@@ -29,6 +32,7 @@
         _titleLabel.textColor = [UIColor whiteColor];
         _titleLabel.textAlignmentG = GTextAlignmentCenter;
         [self addSubviewToFill:_titleLabel];
+        
     }
     return self;
 }
@@ -44,4 +48,5 @@
 {
     return _shouldMove;
 }
+
 @end
