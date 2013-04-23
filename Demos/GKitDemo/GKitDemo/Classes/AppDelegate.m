@@ -7,49 +7,44 @@
 //
 
 #import "AppDelegate.h"
-
-#import "GCoreData.h"
-#import "GTabBarController.h"
-
-#import "MyTableViewController.h"
-#import "MyEfficientTableViewController.h"
-
-#import "Task.h"
-
 #import "GCore.h"
+#import "GNavigationViewController.h"
+#import "DemosViewController.h"
 
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    [GCoreData setupWithName:@"GKitDemo"];
-    
-	NSManagedObjectContext *newContext = [GCoreData newContext];
-	for (int i=0;i<10;i++) {
-		for (int j=0; j<10; j++) {
-			Task *task = [GCoreData findFirstForEntityName: @"Task"
-											 withPredicate: [NSPredicate predicateWithFormat:@"type=%@ AND title=%@",
-															 [NSString stringWithFormat:@"%d",i],
-															 [NSString stringWithFormat:@"%d-%d",i,j]]
-												 inContext: newContext];
-			if (task==nil) {
-				task = [GCoreData insertNewForEntityNamed: @"Task"
-												inContext: newContext];
-				task.type = [NSString stringWithFormat:@"%d",i];
-				task.title = [NSString stringWithFormat:@"%d-%d",i,j];
-				[GCoreData saveObject:task];
-			}
-		}
-	}
+//    [GCoreData setupWithName:@"GKitDemo"];
+//    
+//	NSManagedObjectContext *newContext = [GCoreData newContext];
+//	for (int i=0;i<10;i++) {
+//		for (int j=0; j<10; j++) {
+//			Task *task = [GCoreData findFirstForEntityName: @"Task"
+//											 withPredicate: [NSPredicate predicateWithFormat:@"type=%@ AND title=%@",
+//															 [NSString stringWithFormat:@"%d",i],
+//															 [NSString stringWithFormat:@"%d-%d",i,j]]
+//												 inContext: newContext];
+//			if (task==nil) {
+//				task = [GCoreData insertNewForEntityNamed: @"Task"
+//												inContext: newContext];
+//				task.type = [NSString stringWithFormat:@"%d",i];
+//				task.title = [NSString stringWithFormat:@"%d-%d",i,j];
+//				[GCoreData saveObject:task];
+//			}
+//		}
+//	}
 	
-    self.window = [[UIWindow alloc] initWithFrame:GScreenBounds];
+    self.window = [[UIWindow alloc] initWithFrame:GScreenBounds()];
     // Override point for customization after application launch.
     self.window.backgroundColor = [UIColor whiteColor];
 
-    GTabBarController *tabbarController = [GTabBarController newWithControllerNames:@[@"MyTable",@"MyEfficientTable"]];
-    [tabbarController addActionButtonWithTarget:self
-                                         action:@selector(centerTabBarItemSelected)];
-	self.window.rootViewController = tabbarController;
+//    GTabBarController *tabbarController = [GTabBarController newWithControllerNames:@[@"MyTable",@"MyEfficientTable",@"CustomUI"]];
+//    [tabbarController addActionButtonWithTarget:self
+//                                         action:@selector(centerTabBarItemSelected)];
+    
+    DemosViewController *demosVC = [[DemosViewController alloc] initWithStyle:UITableViewStyleGrouped];
+	self.window.rootViewController = [[GNavigationViewController alloc] initWithRootViewController:demosVC];
     [self.window makeKeyAndVisible];
     return YES;
 }

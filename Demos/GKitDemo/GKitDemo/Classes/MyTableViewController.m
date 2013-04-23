@@ -21,26 +21,9 @@
 
 - (void)viewDidLoad
 {
-    [super viewDidLoad];
-    
-//    [self.topView setBackgroundColor:[UIColor redColor]];
-//    [self.bottomView setBackgroundColor:[UIColor blueColor]];
+    [super viewDidLoad];    
 }
 
-//- (void)viewDidAppear:(BOOL)animated
-//{
-//    int i = arc4random() % 3;
-//    if (i==0) {
-//        [self setTopViewHeight:0];
-//        [self setBottomViewHeight:0];
-//    }else if (i==1) {
-//        [self setTopViewHeight:40];
-//        [self setBottomViewHeight:0];
-//    }else {
-//        [self setTopViewHeight:0];
-//        [self setBottomViewHeight:40];
-//    }
-//}
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {

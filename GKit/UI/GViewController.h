@@ -19,7 +19,7 @@
 
 @interface GViewController : UIViewController
 
-- (void)initialize;
+- (void)customInitialize;
 
 @property (nonatomic, copy) void (^blockCallBack)(id);
 

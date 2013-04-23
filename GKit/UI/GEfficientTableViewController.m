@@ -12,7 +12,7 @@
 
 @implementation GEfficientTableViewController
 #pragma mark - Init && Memory
-- (void)initialize
+- (void)customInitialize
 {
 	self.fetchedResultsContext = [GCoreData newContextWithConcurrencyType:NSPrivateQueueConcurrencyType];
 }

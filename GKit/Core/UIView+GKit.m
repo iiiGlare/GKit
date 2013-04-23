@@ -196,7 +196,7 @@ CGRect GRectAddSize(CGRect rect, CGSize size)
 }
 @end
 
-#pragma mark UIView+GDrawUtil
+#pragma mark - UIView+GDrawUtil
 @implementation UIView (GDrawUtil)
 
 - (void)drawBorderWithColor:(UIColor *)color
@@ -207,6 +207,34 @@ CGRect GRectAddSize(CGRect rect, CGSize size)
     [layer setBorderColor:[color CGColor]];
     [layer setBorderWidth:width];
     [layer setCornerRadius:radius];
+}
+
+- (void)drawShadowWithColor:(UIColor *)color
+                     offset:(CGSize)offset
+                    opacity:(CGFloat)opacity
+                     radius:(CGFloat)radius
+{
+    CALayer *layer = [self layer];
+    [layer setShadowColor:[color CGColor]];
+    [layer setShadowOffset:offset];
+    [layer setShadowOpacity:opacity];
+    [layer setShadowRadius:radius];
+}
+
+@end
+
+#pragma mark - UIView+GAnimationUtil
+@implementation UIView (GAnimationUtil)
+
+- (UIImageView *)snapshot
+{
+    UIGraphicsBeginImageContextWithOptions(self.frame.size, NO, GScreenScale);
+    [[self layer] renderInContext:UIGraphicsGetCurrentContext()];
+    UIImage *snapshotImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIImageView *snapshotImageView = [[UIImageView alloc] initWithImage:snapshotImage];
+    UIGraphicsEndImageContext();
+    
+    return snapshotImageView;
 }
 
 @end

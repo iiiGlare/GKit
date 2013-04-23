@@ -24,13 +24,14 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        [self initialize];
+        [self customInitialize];
     }
     return self;
 }
 
-- (void)initialize {
-    GPRINT(@"initialize");
+- (void)customInitialize
+{
+
 };
 
 #pragma mark - View Life Cycle

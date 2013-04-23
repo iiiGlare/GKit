@@ -77,4 +77,15 @@ extern CGRect GRectAddSize(CGRect rect, CGSize size);
                       width:(CGFloat)width
                cornerRadius:(CGFloat)radius;
 
+- (void)drawShadowWithColor:(UIColor *)color
+                     offset:(CGSize)offset
+                    opacity:(CGFloat)opacity
+                     radius:(CGFloat)radius;
+
+@end
+
+@interface UIView (GAnimationUtil)
+
+- (UIImageView *)snapshot;
+
 @end
