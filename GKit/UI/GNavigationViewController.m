@@ -56,6 +56,19 @@
     [super viewDidLoad];
 }
 
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
+{
+    return toInterfaceOrientation==UIInterfaceOrientationPortrait;
+}
+- (BOOL)shouldAutorotate
+{
+    return NO;
+}
+- (NSUInteger)supportedInterfaceOrientations
+{
+    return UIInterfaceOrientationMaskPortrait;
+}
+
 #pragma mark - Override Super Push/Pop Methods
 - (void)pushViewController:(UIViewController *)viewController animated:(BOOL)animated
 {

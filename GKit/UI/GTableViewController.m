@@ -16,8 +16,7 @@
 //
 
 #import "GTableViewController.h"
-#import "GMacros.h"
-#import "UIView+GKit.h"
+#import "GCore.h"
 
 @interface GTableViewController ()
 

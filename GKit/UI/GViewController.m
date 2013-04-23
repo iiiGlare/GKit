@@ -40,6 +40,7 @@
 {
     [super loadView];
     
+    [self.view setBackgroundColor:[UIColor whiteColor]];
     [self.view setAutoresizingMask:GViewAutoresizingFlexibleSize];
 }
 

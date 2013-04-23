@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		F8862C4516CA6A35006EB467 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8862C4416CA6A35006EB467 /* UIKit.framework */; };
 		F8862C4716CA6A35006EB467 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8862C4616CA6A35006EB467 /* Foundation.framework */; };
-		F8862C4916CA6A35006EB467 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8862C4816CA6A35006EB467 /* CoreGraphics.framework */; };
 		F8862C4F16CA6A35006EB467 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = F8862C4D16CA6A35006EB467 /* InfoPlist.strings */; };
 		F8862C5116CA6A35006EB467 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F8862C5016CA6A35006EB467 /* main.m */; };
 		F8862C6316CA6A36006EB467 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8862C6216CA6A36006EB467 /* SenTestingKit.framework */; };
@@ -18,38 +17,6 @@
 		F8862C6D16CA6A36006EB467 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = F8862C6B16CA6A36006EB467 /* InfoPlist.strings */; };
 		F8862C7016CA6A36006EB467 /* GKitDemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F8862C6F16CA6A36006EB467 /* GKitDemoTests.m */; };
 		F8862CBD16CA74AF006EB467 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8862CBC16CA74AF006EB467 /* CoreData.framework */; };
-		F88F7A6A171803F1003F9238 /* GAudio.m in Sources */ = {isa = PBXBuildFile; fileRef = F88F7A20171803F1003F9238 /* GAudio.m */; };
-		F88F7A6B171803F1003F9238 /* GCamera.m in Sources */ = {isa = PBXBuildFile; fileRef = F88F7A23171803F1003F9238 /* GCamera.m */; };
-		F88F7A6C171803F1003F9238 /* GMath.m in Sources */ = {isa = PBXBuildFile; fileRef = F88F7A28171803F1003F9238 /* GMath.m */; };
-		F88F7A6D171803F1003F9238 /* NSArray+GKit.m in Sources */ = {isa = PBXBuildFile; fileRef = F88F7A2A171803F1003F9238 /* NSArray+GKit.m */; };
-		F88F7A6E171803F1003F9238 /* NSData+GKit.m in Sources */ = {isa = PBXBuildFile; fileRef = F88F7A2C171803F1003F9238 /* NSData+GKit.m */; };
-		F88F7A6F171803F1003F9238 /* NSDate+GKit.m in Sources */ = {isa = PBXBuildFile; fileRef = F88F7A2E171803F1003F9238 /* NSDate+GKit.m */; };
-		F88F7A70171803F1003F9238 /* NSFileManager+GKit.m in Sources */ = {isa = PBXBuildFile; fileRef = F88F7A30171803F1003F9238 /* NSFileManager+GKit.m */; };
-		F88F7A71171803F1003F9238 /* NSMutableArray+GKit.m in Sources */ = {isa = PBXBuildFile; fileRef = F88F7A32171803F1003F9238 /* NSMutableArray+GKit.m */; };
-		F88F7A72171803F1003F9238 /* NSNumber+GKit.m in Sources */ = {isa = PBXBuildFile; fileRef = F88F7A34171803F1003F9238 /* NSNumber+GKit.m */; };
-		F88F7A73171803F1003F9238 /* NSObject+GKit.m in Sources */ = {isa = PBXBuildFile; fileRef = F88F7A36171803F1003F9238 /* NSObject+GKit.m */; };
-		F88F7A74171803F1003F9238 /* NSString+GKit.m in Sources */ = {isa = PBXBuildFile; fileRef = F88F7A38171803F1003F9238 /* NSString+GKit.m */; };
-		F88F7A75171803F1003F9238 /* NSUserDefaults+GKit.m in Sources */ = {isa = PBXBuildFile; fileRef = F88F7A3A171803F1003F9238 /* NSUserDefaults+GKit.m */; };
-		F88F7A76171803F1003F9238 /* UIApplication+GKit.m in Sources */ = {isa = PBXBuildFile; fileRef = F88F7A3C171803F1003F9238 /* UIApplication+GKit.m */; };
-		F88F7A77171803F1003F9238 /* UIColor+GKit.m in Sources */ = {isa = PBXBuildFile; fileRef = F88F7A3E171803F1003F9238 /* UIColor+GKit.m */; };
-		F88F7A78171803F1003F9238 /* UIDevice+GKit.m in Sources */ = {isa = PBXBuildFile; fileRef = F88F7A40171803F1003F9238 /* UIDevice+GKit.m */; };
-		F88F7A79171803F1003F9238 /* UILabel+GKit.m in Sources */ = {isa = PBXBuildFile; fileRef = F88F7A42171803F1003F9238 /* UILabel+GKit.m */; };
-		F88F7A7A171803F1003F9238 /* UIView+GKit.m in Sources */ = {isa = PBXBuildFile; fileRef = F88F7A44171803F1003F9238 /* UIView+GKit.m */; };
-		F88F7A7B171803F1003F9238 /* GCoreData.m in Sources */ = {isa = PBXBuildFile; fileRef = F88F7A47171803F1003F9238 /* GCoreData.m */; };
-		F88F7A7C171803F1003F9238 /* NSArray+GCoreData.m in Sources */ = {isa = PBXBuildFile; fileRef = F88F7A49171803F1003F9238 /* NSArray+GCoreData.m */; };
-		F88F7A7D171803F1003F9238 /* NSFetchedResultsController+GCoreData.m in Sources */ = {isa = PBXBuildFile; fileRef = F88F7A4B171803F1003F9238 /* NSFetchedResultsController+GCoreData.m */; };
-		F88F7A7E171803F1003F9238 /* NSManagedObject+GCoreData.m in Sources */ = {isa = PBXBuildFile; fileRef = F88F7A4D171803F1003F9238 /* NSManagedObject+GCoreData.m */; };
-		F88F7A7F171803F1003F9238 /* NSManagedObjectContext+GCoreData.m in Sources */ = {isa = PBXBuildFile; fileRef = F88F7A4F171803F1003F9238 /* NSManagedObjectContext+GCoreData.m */; };
-		F88F7A80171803F1003F9238 /* NSSet+GCoreData.m in Sources */ = {isa = PBXBuildFile; fileRef = F88F7A51171803F1003F9238 /* NSSet+GCoreData.m */; };
-		F88F7A81171803F1003F9238 /* GImageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F88F7A54171803F1003F9238 /* GImageManager.m */; };
-		F88F7A82171803F1003F9238 /* GLocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F88F7A57171803F1003F9238 /* GLocationManager.m */; };
-		F88F7A83171803F1003F9238 /* GAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = F88F7A5A171803F1003F9238 /* GAlertView.m */; };
-		F88F7A84171803F1003F9238 /* GBlockTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F88F7A5C171803F1003F9238 /* GBlockTableViewController.m */; };
-		F88F7A85171803F1003F9238 /* GEfficientTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F88F7A5E171803F1003F9238 /* GEfficientTableViewController.m */; };
-		F88F7A86171803F1003F9238 /* GSelectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F88F7A60171803F1003F9238 /* GSelectionViewController.m */; };
-		F88F7A87171803F1003F9238 /* GTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = F88F7A62171803F1003F9238 /* GTabBarController.m */; };
-		F88F7A88171803F1003F9238 /* GTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F88F7A64171803F1003F9238 /* GTableViewController.m */; };
-		F88F7A89171803F1003F9238 /* GViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F88F7A66171803F1003F9238 /* GViewController.m */; };
 		F88F7A8A171803F1003F9238 /* GKit.podspec in Resources */ = {isa = PBXBuildFile; fileRef = F88F7A67171803F1003F9238 /* GKit.podspec */; };
 		F88F7A8B171803F1003F9238 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = F88F7A68171803F1003F9238 /* LICENSE */; };
 		F88F7A8C171803F1003F9238 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = F88F7A69171803F1003F9238 /* README.md */; };
@@ -63,8 +30,51 @@
 		F8B6BFDD172671DB00214182 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F8B6BFD0172671DB00214182 /* AppDelegate.m */; };
 		F8B6BFDE172671DB00214182 /* CustomUIViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F8B6BFD2172671DB00214182 /* CustomUIViewController.m */; };
 		F8B6BFDF172671DB00214182 /* DemosViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F8B6BFD4172671DB00214182 /* DemosViewController.m */; };
-		F8B6BFE8172676B700214182 /* GNavigationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F8B6BFE7172676B600214182 /* GNavigationViewController.m */; };
-		F8B6BFEB1726850B00214182 /* GPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = F8B6BFEA1726850A00214182 /* GPoint.m */; };
+		F8B6C0521726C54000214182 /* GAudio.m in Sources */ = {isa = PBXBuildFile; fileRef = F8B6BFEF1726C54000214182 /* GAudio.m */; };
+		F8B6C0531726C54000214182 /* GDayView.m in Sources */ = {isa = PBXBuildFile; fileRef = F8B6BFF31726C54000214182 /* GDayView.m */; };
+		F8B6C0541726C54000214182 /* GEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = F8B6BFF51726C54000214182 /* GEvent.m */; };
+		F8B6C0551726C54000214182 /* GEventView.m in Sources */ = {isa = PBXBuildFile; fileRef = F8B6BFF71726C54000214182 /* GEventView.m */; };
+		F8B6C0561726C54000214182 /* GMonthView.m in Sources */ = {isa = PBXBuildFile; fileRef = F8B6BFF91726C54000214182 /* GMonthView.m */; };
+		F8B6C0571726C54000214182 /* GWeekView.m in Sources */ = {isa = PBXBuildFile; fileRef = F8B6BFFB1726C54000214182 /* GWeekView.m */; };
+		F8B6C0581726C54000214182 /* GCamera.m in Sources */ = {isa = PBXBuildFile; fileRef = F8B6BFFE1726C54000214182 /* GCamera.m */; };
+		F8B6C0591726C54000214182 /* GMath.m in Sources */ = {isa = PBXBuildFile; fileRef = F8B6C0031726C54000214182 /* GMath.m */; };
+		F8B6C05A1726C54000214182 /* NSArray+GKit.m in Sources */ = {isa = PBXBuildFile; fileRef = F8B6C0051726C54000214182 /* NSArray+GKit.m */; };
+		F8B6C05B1726C54000214182 /* NSData+GKit.m in Sources */ = {isa = PBXBuildFile; fileRef = F8B6C0071726C54000214182 /* NSData+GKit.m */; };
+		F8B6C05C1726C54000214182 /* NSDate+GKit.m in Sources */ = {isa = PBXBuildFile; fileRef = F8B6C0091726C54000214182 /* NSDate+GKit.m */; };
+		F8B6C05D1726C54000214182 /* NSFileManager+GKit.m in Sources */ = {isa = PBXBuildFile; fileRef = F8B6C00B1726C54000214182 /* NSFileManager+GKit.m */; };
+		F8B6C05E1726C54000214182 /* NSMutableArray+GKit.m in Sources */ = {isa = PBXBuildFile; fileRef = F8B6C00D1726C54000214182 /* NSMutableArray+GKit.m */; };
+		F8B6C05F1726C54000214182 /* NSNumber+GKit.m in Sources */ = {isa = PBXBuildFile; fileRef = F8B6C00F1726C54000214182 /* NSNumber+GKit.m */; };
+		F8B6C0601726C54000214182 /* NSObject+GKit.m in Sources */ = {isa = PBXBuildFile; fileRef = F8B6C0111726C54000214182 /* NSObject+GKit.m */; };
+		F8B6C0611726C54000214182 /* NSString+GKit.m in Sources */ = {isa = PBXBuildFile; fileRef = F8B6C0131726C54000214182 /* NSString+GKit.m */; };
+		F8B6C0621726C54000214182 /* NSUserDefaults+GKit.m in Sources */ = {isa = PBXBuildFile; fileRef = F8B6C0151726C54000214182 /* NSUserDefaults+GKit.m */; };
+		F8B6C0631726C54000214182 /* UIApplication+GKit.m in Sources */ = {isa = PBXBuildFile; fileRef = F8B6C0171726C54000214182 /* UIApplication+GKit.m */; };
+		F8B6C0641726C54000214182 /* UIColor+GKit.m in Sources */ = {isa = PBXBuildFile; fileRef = F8B6C0191726C54000214182 /* UIColor+GKit.m */; };
+		F8B6C0651726C54000214182 /* UIDevice+GKit.m in Sources */ = {isa = PBXBuildFile; fileRef = F8B6C01B1726C54000214182 /* UIDevice+GKit.m */; };
+		F8B6C0661726C54000214182 /* UILabel+GKit.m in Sources */ = {isa = PBXBuildFile; fileRef = F8B6C01D1726C54000214182 /* UILabel+GKit.m */; };
+		F8B6C0671726C54000214182 /* UIScrollView+GKit.m in Sources */ = {isa = PBXBuildFile; fileRef = F8B6C01F1726C54000214182 /* UIScrollView+GKit.m */; };
+		F8B6C0681726C54000214182 /* UIView+GKit.m in Sources */ = {isa = PBXBuildFile; fileRef = F8B6C0211726C54000214182 /* UIView+GKit.m */; };
+		F8B6C0691726C54000214182 /* GCoreData.m in Sources */ = {isa = PBXBuildFile; fileRef = F8B6C0241726C54000214182 /* GCoreData.m */; };
+		F8B6C06A1726C54000214182 /* NSArray+GCoreData.m in Sources */ = {isa = PBXBuildFile; fileRef = F8B6C0261726C54000214182 /* NSArray+GCoreData.m */; };
+		F8B6C06B1726C54000214182 /* NSFetchedResultsController+GCoreData.m in Sources */ = {isa = PBXBuildFile; fileRef = F8B6C0281726C54000214182 /* NSFetchedResultsController+GCoreData.m */; };
+		F8B6C06C1726C54000214182 /* NSManagedObject+GCoreData.m in Sources */ = {isa = PBXBuildFile; fileRef = F8B6C02A1726C54000214182 /* NSManagedObject+GCoreData.m */; };
+		F8B6C06D1726C54000214182 /* NSManagedObjectContext+GCoreData.m in Sources */ = {isa = PBXBuildFile; fileRef = F8B6C02C1726C54000214182 /* NSManagedObjectContext+GCoreData.m */; };
+		F8B6C06E1726C54000214182 /* NSSet+GCoreData.m in Sources */ = {isa = PBXBuildFile; fileRef = F8B6C02E1726C54000214182 /* NSSet+GCoreData.m */; };
+		F8B6C06F1726C54000214182 /* GImageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F8B6C0311726C54000214182 /* GImageManager.m */; };
+		F8B6C0701726C54000214182 /* GLocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F8B6C0341726C54000214182 /* GLocationManager.m */; };
+		F8B6C0711726C54000214182 /* GMoveScene.m in Sources */ = {isa = PBXBuildFile; fileRef = F8B6C0381726C54000214182 /* GMoveScene.m */; };
+		F8B6C0721726C54000214182 /* GMoveSnapshot.m in Sources */ = {isa = PBXBuildFile; fileRef = F8B6C03A1726C54000214182 /* GMoveSnapshot.m */; };
+		F8B6C0731726C54000214182 /* UIView+GMove.m in Sources */ = {isa = PBXBuildFile; fileRef = F8B6C03E1726C54000214182 /* UIView+GMove.m */; };
+		F8B6C0741726C54000214182 /* GAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = F8B6C0411726C54000214182 /* GAlertView.m */; };
+		F8B6C0751726C54000214182 /* GBlockTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F8B6C0431726C54000214182 /* GBlockTableViewController.m */; };
+		F8B6C0761726C54000214182 /* GEfficientTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F8B6C0451726C54000214182 /* GEfficientTableViewController.m */; };
+		F8B6C0771726C54000214182 /* GNavigationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F8B6C0471726C54000214182 /* GNavigationViewController.m */; };
+		F8B6C0781726C54000214182 /* GPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = F8B6C0491726C54000214182 /* GPoint.m */; };
+		F8B6C0791726C54000214182 /* GSelectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F8B6C04B1726C54000214182 /* GSelectionViewController.m */; };
+		F8B6C07A1726C54000214182 /* GTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = F8B6C04D1726C54000214182 /* GTabBarController.m */; };
+		F8B6C07B1726C54000214182 /* GTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F8B6C04F1726C54000214182 /* GTableViewController.m */; };
+		F8B6C07C1726C54000214182 /* GViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F8B6C0511726C54000214182 /* GViewController.m */; };
+		F8B6C07E1726C5E300214182 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8B6C07D1726C5E300214182 /* QuartzCore.framework */; };
+		F8B6C0801726C7F000214182 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8B6C07F1726C7ED00214182 /* CoreGraphics.framework */; };
 		FD0BC5DB17043C61000CC973 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD0BC5DA17043C60000CC973 /* AssetsLibrary.framework */; };
 		FD0BC5E517044A54000CC973 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD0BC5E417044A54000CC973 /* CoreLocation.framework */; };
 		FD47A80A16F83D4200CEA15A /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = FD47A80916F83D4200CEA15A /* Localizable.strings */; };
@@ -86,7 +96,6 @@
 		F8862C4116CA6A35006EB467 /* GKitDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GKitDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F8862C4416CA6A35006EB467 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		F8862C4616CA6A35006EB467 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		F8862C4816CA6A35006EB467 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		F8862C4C16CA6A35006EB467 /* GKitDemo-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GKitDemo-Info.plist"; sourceTree = "<group>"; };
 		F8862C4E16CA6A35006EB467 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		F8862C5016CA6A35006EB467 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -98,72 +107,6 @@
 		F8862C6E16CA6A36006EB467 /* GKitDemoTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GKitDemoTests.h; sourceTree = "<group>"; };
 		F8862C6F16CA6A36006EB467 /* GKitDemoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GKitDemoTests.m; sourceTree = "<group>"; };
 		F8862CBC16CA74AF006EB467 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
-		F88F7A1F171803F1003F9238 /* GAudio.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAudio.h; sourceTree = "<group>"; };
-		F88F7A20171803F1003F9238 /* GAudio.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GAudio.m; sourceTree = "<group>"; };
-		F88F7A22171803F1003F9238 /* GCamera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCamera.h; sourceTree = "<group>"; };
-		F88F7A23171803F1003F9238 /* GCamera.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCamera.m; sourceTree = "<group>"; };
-		F88F7A25171803F1003F9238 /* GCore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCore.h; sourceTree = "<group>"; };
-		F88F7A26171803F1003F9238 /* GMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GMacros.h; sourceTree = "<group>"; };
-		F88F7A27171803F1003F9238 /* GMath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GMath.h; sourceTree = "<group>"; };
-		F88F7A28171803F1003F9238 /* GMath.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GMath.m; sourceTree = "<group>"; };
-		F88F7A29171803F1003F9238 /* NSArray+GKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+GKit.h"; sourceTree = "<group>"; };
-		F88F7A2A171803F1003F9238 /* NSArray+GKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+GKit.m"; sourceTree = "<group>"; };
-		F88F7A2B171803F1003F9238 /* NSData+GKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+GKit.h"; sourceTree = "<group>"; };
-		F88F7A2C171803F1003F9238 /* NSData+GKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+GKit.m"; sourceTree = "<group>"; };
-		F88F7A2D171803F1003F9238 /* NSDate+GKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+GKit.h"; sourceTree = "<group>"; };
-		F88F7A2E171803F1003F9238 /* NSDate+GKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+GKit.m"; sourceTree = "<group>"; };
-		F88F7A2F171803F1003F9238 /* NSFileManager+GKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSFileManager+GKit.h"; sourceTree = "<group>"; };
-		F88F7A30171803F1003F9238 /* NSFileManager+GKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSFileManager+GKit.m"; sourceTree = "<group>"; };
-		F88F7A31171803F1003F9238 /* NSMutableArray+GKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableArray+GKit.h"; sourceTree = "<group>"; };
-		F88F7A32171803F1003F9238 /* NSMutableArray+GKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableArray+GKit.m"; sourceTree = "<group>"; };
-		F88F7A33171803F1003F9238 /* NSNumber+GKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSNumber+GKit.h"; sourceTree = "<group>"; };
-		F88F7A34171803F1003F9238 /* NSNumber+GKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSNumber+GKit.m"; sourceTree = "<group>"; };
-		F88F7A35171803F1003F9238 /* NSObject+GKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+GKit.h"; sourceTree = "<group>"; };
-		F88F7A36171803F1003F9238 /* NSObject+GKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+GKit.m"; sourceTree = "<group>"; };
-		F88F7A37171803F1003F9238 /* NSString+GKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+GKit.h"; sourceTree = "<group>"; };
-		F88F7A38171803F1003F9238 /* NSString+GKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+GKit.m"; sourceTree = "<group>"; };
-		F88F7A39171803F1003F9238 /* NSUserDefaults+GKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSUserDefaults+GKit.h"; sourceTree = "<group>"; };
-		F88F7A3A171803F1003F9238 /* NSUserDefaults+GKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSUserDefaults+GKit.m"; sourceTree = "<group>"; };
-		F88F7A3B171803F1003F9238 /* UIApplication+GKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIApplication+GKit.h"; sourceTree = "<group>"; };
-		F88F7A3C171803F1003F9238 /* UIApplication+GKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIApplication+GKit.m"; sourceTree = "<group>"; };
-		F88F7A3D171803F1003F9238 /* UIColor+GKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+GKit.h"; sourceTree = "<group>"; };
-		F88F7A3E171803F1003F9238 /* UIColor+GKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+GKit.m"; sourceTree = "<group>"; };
-		F88F7A3F171803F1003F9238 /* UIDevice+GKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIDevice+GKit.h"; sourceTree = "<group>"; };
-		F88F7A40171803F1003F9238 /* UIDevice+GKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIDevice+GKit.m"; sourceTree = "<group>"; };
-		F88F7A41171803F1003F9238 /* UILabel+GKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UILabel+GKit.h"; sourceTree = "<group>"; };
-		F88F7A42171803F1003F9238 /* UILabel+GKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UILabel+GKit.m"; sourceTree = "<group>"; };
-		F88F7A43171803F1003F9238 /* UIView+GKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+GKit.h"; sourceTree = "<group>"; };
-		F88F7A44171803F1003F9238 /* UIView+GKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+GKit.m"; sourceTree = "<group>"; };
-		F88F7A46171803F1003F9238 /* GCoreData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCoreData.h; sourceTree = "<group>"; };
-		F88F7A47171803F1003F9238 /* GCoreData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCoreData.m; sourceTree = "<group>"; };
-		F88F7A48171803F1003F9238 /* NSArray+GCoreData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+GCoreData.h"; sourceTree = "<group>"; };
-		F88F7A49171803F1003F9238 /* NSArray+GCoreData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+GCoreData.m"; sourceTree = "<group>"; };
-		F88F7A4A171803F1003F9238 /* NSFetchedResultsController+GCoreData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSFetchedResultsController+GCoreData.h"; sourceTree = "<group>"; };
-		F88F7A4B171803F1003F9238 /* NSFetchedResultsController+GCoreData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSFetchedResultsController+GCoreData.m"; sourceTree = "<group>"; };
-		F88F7A4C171803F1003F9238 /* NSManagedObject+GCoreData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSManagedObject+GCoreData.h"; sourceTree = "<group>"; };
-		F88F7A4D171803F1003F9238 /* NSManagedObject+GCoreData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSManagedObject+GCoreData.m"; sourceTree = "<group>"; };
-		F88F7A4E171803F1003F9238 /* NSManagedObjectContext+GCoreData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSManagedObjectContext+GCoreData.h"; sourceTree = "<group>"; };
-		F88F7A4F171803F1003F9238 /* NSManagedObjectContext+GCoreData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSManagedObjectContext+GCoreData.m"; sourceTree = "<group>"; };
-		F88F7A50171803F1003F9238 /* NSSet+GCoreData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSSet+GCoreData.h"; sourceTree = "<group>"; };
-		F88F7A51171803F1003F9238 /* NSSet+GCoreData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSSet+GCoreData.m"; sourceTree = "<group>"; };
-		F88F7A53171803F1003F9238 /* GImageManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GImageManager.h; sourceTree = "<group>"; };
-		F88F7A54171803F1003F9238 /* GImageManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GImageManager.m; sourceTree = "<group>"; };
-		F88F7A56171803F1003F9238 /* GLocationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLocationManager.h; sourceTree = "<group>"; };
-		F88F7A57171803F1003F9238 /* GLocationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLocationManager.m; sourceTree = "<group>"; };
-		F88F7A59171803F1003F9238 /* GAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAlertView.h; sourceTree = "<group>"; };
-		F88F7A5A171803F1003F9238 /* GAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GAlertView.m; sourceTree = "<group>"; };
-		F88F7A5B171803F1003F9238 /* GBlockTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GBlockTableViewController.h; sourceTree = "<group>"; };
-		F88F7A5C171803F1003F9238 /* GBlockTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GBlockTableViewController.m; sourceTree = "<group>"; };
-		F88F7A5D171803F1003F9238 /* GEfficientTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GEfficientTableViewController.h; sourceTree = "<group>"; };
-		F88F7A5E171803F1003F9238 /* GEfficientTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GEfficientTableViewController.m; sourceTree = "<group>"; };
-		F88F7A5F171803F1003F9238 /* GSelectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GSelectionViewController.h; sourceTree = "<group>"; };
-		F88F7A60171803F1003F9238 /* GSelectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GSelectionViewController.m; sourceTree = "<group>"; };
-		F88F7A61171803F1003F9238 /* GTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTabBarController.h; sourceTree = "<group>"; };
-		F88F7A62171803F1003F9238 /* GTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GTabBarController.m; sourceTree = "<group>"; };
-		F88F7A63171803F1003F9238 /* GTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTableViewController.h; sourceTree = "<group>"; };
-		F88F7A64171803F1003F9238 /* GTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GTableViewController.m; sourceTree = "<group>"; };
-		F88F7A65171803F1003F9238 /* GViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GViewController.h; sourceTree = "<group>"; };
-		F88F7A66171803F1003F9238 /* GViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GViewController.m; sourceTree = "<group>"; };
 		F88F7A67171803F1003F9238 /* GKit.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = GKit.podspec; path = ../../GKit.podspec; sourceTree = "<group>"; };
 		F88F7A68171803F1003F9238 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = LICENSE; path = ../../LICENSE; sourceTree = "<group>"; };
 		F88F7A69171803F1003F9238 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = README.md; path = ../../README.md; sourceTree = "<group>"; };
@@ -180,10 +123,100 @@
 		F8B6BFD2172671DB00214182 /* CustomUIViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomUIViewController.m; sourceTree = "<group>"; };
 		F8B6BFD3172671DB00214182 /* DemosViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DemosViewController.h; sourceTree = "<group>"; };
 		F8B6BFD4172671DB00214182 /* DemosViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DemosViewController.m; sourceTree = "<group>"; };
-		F8B6BFE6172676B600214182 /* GNavigationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GNavigationViewController.h; sourceTree = "<group>"; };
-		F8B6BFE7172676B600214182 /* GNavigationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GNavigationViewController.m; sourceTree = "<group>"; };
-		F8B6BFE91726850A00214182 /* GPoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GPoint.h; sourceTree = "<group>"; };
-		F8B6BFEA1726850A00214182 /* GPoint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GPoint.m; sourceTree = "<group>"; };
+		F8B6BFEE1726C54000214182 /* GAudio.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAudio.h; sourceTree = "<group>"; };
+		F8B6BFEF1726C54000214182 /* GAudio.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GAudio.m; sourceTree = "<group>"; };
+		F8B6BFF11726C54000214182 /* GCalendar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCalendar.h; sourceTree = "<group>"; };
+		F8B6BFF21726C54000214182 /* GDayView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GDayView.h; sourceTree = "<group>"; };
+		F8B6BFF31726C54000214182 /* GDayView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GDayView.m; sourceTree = "<group>"; };
+		F8B6BFF41726C54000214182 /* GEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GEvent.h; sourceTree = "<group>"; };
+		F8B6BFF51726C54000214182 /* GEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GEvent.m; sourceTree = "<group>"; };
+		F8B6BFF61726C54000214182 /* GEventView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GEventView.h; sourceTree = "<group>"; };
+		F8B6BFF71726C54000214182 /* GEventView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GEventView.m; sourceTree = "<group>"; };
+		F8B6BFF81726C54000214182 /* GMonthView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GMonthView.h; sourceTree = "<group>"; };
+		F8B6BFF91726C54000214182 /* GMonthView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GMonthView.m; sourceTree = "<group>"; };
+		F8B6BFFA1726C54000214182 /* GWeekView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GWeekView.h; sourceTree = "<group>"; };
+		F8B6BFFB1726C54000214182 /* GWeekView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GWeekView.m; sourceTree = "<group>"; };
+		F8B6BFFD1726C54000214182 /* GCamera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCamera.h; sourceTree = "<group>"; };
+		F8B6BFFE1726C54000214182 /* GCamera.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCamera.m; sourceTree = "<group>"; };
+		F8B6C0001726C54000214182 /* GCore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCore.h; sourceTree = "<group>"; };
+		F8B6C0011726C54000214182 /* GMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GMacros.h; sourceTree = "<group>"; };
+		F8B6C0021726C54000214182 /* GMath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GMath.h; sourceTree = "<group>"; };
+		F8B6C0031726C54000214182 /* GMath.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GMath.m; sourceTree = "<group>"; };
+		F8B6C0041726C54000214182 /* NSArray+GKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+GKit.h"; sourceTree = "<group>"; };
+		F8B6C0051726C54000214182 /* NSArray+GKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+GKit.m"; sourceTree = "<group>"; };
+		F8B6C0061726C54000214182 /* NSData+GKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+GKit.h"; sourceTree = "<group>"; };
+		F8B6C0071726C54000214182 /* NSData+GKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+GKit.m"; sourceTree = "<group>"; };
+		F8B6C0081726C54000214182 /* NSDate+GKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+GKit.h"; sourceTree = "<group>"; };
+		F8B6C0091726C54000214182 /* NSDate+GKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+GKit.m"; sourceTree = "<group>"; };
+		F8B6C00A1726C54000214182 /* NSFileManager+GKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSFileManager+GKit.h"; sourceTree = "<group>"; };
+		F8B6C00B1726C54000214182 /* NSFileManager+GKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSFileManager+GKit.m"; sourceTree = "<group>"; };
+		F8B6C00C1726C54000214182 /* NSMutableArray+GKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableArray+GKit.h"; sourceTree = "<group>"; };
+		F8B6C00D1726C54000214182 /* NSMutableArray+GKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableArray+GKit.m"; sourceTree = "<group>"; };
+		F8B6C00E1726C54000214182 /* NSNumber+GKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSNumber+GKit.h"; sourceTree = "<group>"; };
+		F8B6C00F1726C54000214182 /* NSNumber+GKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSNumber+GKit.m"; sourceTree = "<group>"; };
+		F8B6C0101726C54000214182 /* NSObject+GKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+GKit.h"; sourceTree = "<group>"; };
+		F8B6C0111726C54000214182 /* NSObject+GKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+GKit.m"; sourceTree = "<group>"; };
+		F8B6C0121726C54000214182 /* NSString+GKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+GKit.h"; sourceTree = "<group>"; };
+		F8B6C0131726C54000214182 /* NSString+GKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+GKit.m"; sourceTree = "<group>"; };
+		F8B6C0141726C54000214182 /* NSUserDefaults+GKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSUserDefaults+GKit.h"; sourceTree = "<group>"; };
+		F8B6C0151726C54000214182 /* NSUserDefaults+GKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSUserDefaults+GKit.m"; sourceTree = "<group>"; };
+		F8B6C0161726C54000214182 /* UIApplication+GKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIApplication+GKit.h"; sourceTree = "<group>"; };
+		F8B6C0171726C54000214182 /* UIApplication+GKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIApplication+GKit.m"; sourceTree = "<group>"; };
+		F8B6C0181726C54000214182 /* UIColor+GKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+GKit.h"; sourceTree = "<group>"; };
+		F8B6C0191726C54000214182 /* UIColor+GKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+GKit.m"; sourceTree = "<group>"; };
+		F8B6C01A1726C54000214182 /* UIDevice+GKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIDevice+GKit.h"; sourceTree = "<group>"; };
+		F8B6C01B1726C54000214182 /* UIDevice+GKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIDevice+GKit.m"; sourceTree = "<group>"; };
+		F8B6C01C1726C54000214182 /* UILabel+GKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UILabel+GKit.h"; sourceTree = "<group>"; };
+		F8B6C01D1726C54000214182 /* UILabel+GKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UILabel+GKit.m"; sourceTree = "<group>"; };
+		F8B6C01E1726C54000214182 /* UIScrollView+GKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+GKit.h"; sourceTree = "<group>"; };
+		F8B6C01F1726C54000214182 /* UIScrollView+GKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+GKit.m"; sourceTree = "<group>"; };
+		F8B6C0201726C54000214182 /* UIView+GKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+GKit.h"; sourceTree = "<group>"; };
+		F8B6C0211726C54000214182 /* UIView+GKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+GKit.m"; sourceTree = "<group>"; };
+		F8B6C0231726C54000214182 /* GCoreData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCoreData.h; sourceTree = "<group>"; };
+		F8B6C0241726C54000214182 /* GCoreData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCoreData.m; sourceTree = "<group>"; };
+		F8B6C0251726C54000214182 /* NSArray+GCoreData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+GCoreData.h"; sourceTree = "<group>"; };
+		F8B6C0261726C54000214182 /* NSArray+GCoreData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+GCoreData.m"; sourceTree = "<group>"; };
+		F8B6C0271726C54000214182 /* NSFetchedResultsController+GCoreData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSFetchedResultsController+GCoreData.h"; sourceTree = "<group>"; };
+		F8B6C0281726C54000214182 /* NSFetchedResultsController+GCoreData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSFetchedResultsController+GCoreData.m"; sourceTree = "<group>"; };
+		F8B6C0291726C54000214182 /* NSManagedObject+GCoreData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSManagedObject+GCoreData.h"; sourceTree = "<group>"; };
+		F8B6C02A1726C54000214182 /* NSManagedObject+GCoreData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSManagedObject+GCoreData.m"; sourceTree = "<group>"; };
+		F8B6C02B1726C54000214182 /* NSManagedObjectContext+GCoreData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSManagedObjectContext+GCoreData.h"; sourceTree = "<group>"; };
+		F8B6C02C1726C54000214182 /* NSManagedObjectContext+GCoreData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSManagedObjectContext+GCoreData.m"; sourceTree = "<group>"; };
+		F8B6C02D1726C54000214182 /* NSSet+GCoreData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSSet+GCoreData.h"; sourceTree = "<group>"; };
+		F8B6C02E1726C54000214182 /* NSSet+GCoreData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSSet+GCoreData.m"; sourceTree = "<group>"; };
+		F8B6C0301726C54000214182 /* GImageManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GImageManager.h; sourceTree = "<group>"; };
+		F8B6C0311726C54000214182 /* GImageManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GImageManager.m; sourceTree = "<group>"; };
+		F8B6C0331726C54000214182 /* GLocationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLocationManager.h; sourceTree = "<group>"; };
+		F8B6C0341726C54000214182 /* GLocationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLocationManager.m; sourceTree = "<group>"; };
+		F8B6C0361726C54000214182 /* GMove.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GMove.h; sourceTree = "<group>"; };
+		F8B6C0371726C54000214182 /* GMoveScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GMoveScene.h; sourceTree = "<group>"; };
+		F8B6C0381726C54000214182 /* GMoveScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GMoveScene.m; sourceTree = "<group>"; };
+		F8B6C0391726C54000214182 /* GMoveSnapshot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GMoveSnapshot.h; sourceTree = "<group>"; };
+		F8B6C03A1726C54000214182 /* GMoveSnapshot.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GMoveSnapshot.m; sourceTree = "<group>"; };
+		F8B6C03B1726C54000214182 /* GMoveSpriteCatcherProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GMoveSpriteCatcherProtocol.h; sourceTree = "<group>"; };
+		F8B6C03C1726C54000214182 /* GMoveSpriteProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GMoveSpriteProtocol.h; sourceTree = "<group>"; };
+		F8B6C03D1726C54000214182 /* UIView+GMove.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+GMove.h"; sourceTree = "<group>"; };
+		F8B6C03E1726C54000214182 /* UIView+GMove.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+GMove.m"; sourceTree = "<group>"; };
+		F8B6C0401726C54000214182 /* GAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAlertView.h; sourceTree = "<group>"; };
+		F8B6C0411726C54000214182 /* GAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GAlertView.m; sourceTree = "<group>"; };
+		F8B6C0421726C54000214182 /* GBlockTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GBlockTableViewController.h; sourceTree = "<group>"; };
+		F8B6C0431726C54000214182 /* GBlockTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GBlockTableViewController.m; sourceTree = "<group>"; };
+		F8B6C0441726C54000214182 /* GEfficientTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GEfficientTableViewController.h; sourceTree = "<group>"; };
+		F8B6C0451726C54000214182 /* GEfficientTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GEfficientTableViewController.m; sourceTree = "<group>"; };
+		F8B6C0461726C54000214182 /* GNavigationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GNavigationViewController.h; sourceTree = "<group>"; };
+		F8B6C0471726C54000214182 /* GNavigationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GNavigationViewController.m; sourceTree = "<group>"; };
+		F8B6C0481726C54000214182 /* GPoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GPoint.h; sourceTree = "<group>"; };
+		F8B6C0491726C54000214182 /* GPoint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GPoint.m; sourceTree = "<group>"; };
+		F8B6C04A1726C54000214182 /* GSelectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GSelectionViewController.h; sourceTree = "<group>"; };
+		F8B6C04B1726C54000214182 /* GSelectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GSelectionViewController.m; sourceTree = "<group>"; };
+		F8B6C04C1726C54000214182 /* GTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTabBarController.h; sourceTree = "<group>"; };
+		F8B6C04D1726C54000214182 /* GTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GTabBarController.m; sourceTree = "<group>"; };
+		F8B6C04E1726C54000214182 /* GTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTableViewController.h; sourceTree = "<group>"; };
+		F8B6C04F1726C54000214182 /* GTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GTableViewController.m; sourceTree = "<group>"; };
+		F8B6C0501726C54000214182 /* GViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GViewController.h; sourceTree = "<group>"; };
+		F8B6C0511726C54000214182 /* GViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GViewController.m; sourceTree = "<group>"; };
+		F8B6C07D1726C5E300214182 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		F8B6C07F1726C7ED00214182 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		FD0BC5DA17043C60000CC973 /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
 		FD0BC5E417044A54000CC973 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		FD47A80916F83D4200CEA15A /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
@@ -196,6 +229,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F8B6C0801726C7F000214182 /* CoreGraphics.framework in Frameworks */,
+				F8B6C07E1726C5E300214182 /* QuartzCore.framework in Frameworks */,
 				FD0BC5E517044A54000CC973 /* CoreLocation.framework in Frameworks */,
 				FD0BC5DB17043C61000CC973 /* AssetsLibrary.framework in Frameworks */,
 				FDF1EF7E16F1BD6900FCDC64 /* AudioToolbox.framework in Frameworks */,
@@ -203,7 +238,6 @@
 				F8862CBD16CA74AF006EB467 /* CoreData.framework in Frameworks */,
 				F8862C4516CA6A35006EB467 /* UIKit.framework in Frameworks */,
 				F8862C4716CA6A35006EB467 /* Foundation.framework in Frameworks */,
-				F8862C4916CA6A35006EB467 /* CoreGraphics.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -226,12 +260,7 @@
 				F88F7A67171803F1003F9238 /* GKit.podspec */,
 				F88F7A68171803F1003F9238 /* LICENSE */,
 				F88F7A69171803F1003F9238 /* README.md */,
-				F88F7A1D171803F1003F9238 /* GKit */,
-				FD0BC5DA17043C60000CC973 /* AssetsLibrary.framework */,
-				FDF1EF7D16F1BD6900FCDC64 /* AudioToolbox.framework */,
-				FDF1EF7B16F1BD6400FCDC64 /* AVFoundation.framework */,
-				F8862CBC16CA74AF006EB467 /* CoreData.framework */,
-				FD0BC5E417044A54000CC973 /* CoreLocation.framework */,
+				F8B6BFEC1726C53F00214182 /* GKit */,
 				F8862C4A16CA6A35006EB467 /* GKitDemo */,
 				F8862C6816CA6A36006EB467 /* GKitDemoTests */,
 				F8862C4316CA6A35006EB467 /* Frameworks */,
@@ -253,7 +282,6 @@
 			children = (
 				F8862C4416CA6A35006EB467 /* UIKit.framework */,
 				F8862C4616CA6A35006EB467 /* Foundation.framework */,
-				F8862C4816CA6A35006EB467 /* CoreGraphics.framework */,
 				F8862C6216CA6A36006EB467 /* SenTestingKit.framework */,
 			);
 			name = Frameworks;
@@ -300,140 +328,6 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		F88F7A1D171803F1003F9238 /* GKit */ = {
-			isa = PBXGroup;
-			children = (
-				F88F7A1E171803F1003F9238 /* Audio */,
-				F88F7A21171803F1003F9238 /* Camera */,
-				F88F7A24171803F1003F9238 /* Core */,
-				F88F7A45171803F1003F9238 /* CoreData */,
-				F88F7A52171803F1003F9238 /* ImageManager */,
-				F88F7A55171803F1003F9238 /* Location */,
-				F88F7A58171803F1003F9238 /* UI */,
-			);
-			name = GKit;
-			path = ../../GKit;
-			sourceTree = "<group>";
-		};
-		F88F7A1E171803F1003F9238 /* Audio */ = {
-			isa = PBXGroup;
-			children = (
-				F88F7A1F171803F1003F9238 /* GAudio.h */,
-				F88F7A20171803F1003F9238 /* GAudio.m */,
-			);
-			path = Audio;
-			sourceTree = "<group>";
-		};
-		F88F7A21171803F1003F9238 /* Camera */ = {
-			isa = PBXGroup;
-			children = (
-				F88F7A22171803F1003F9238 /* GCamera.h */,
-				F88F7A23171803F1003F9238 /* GCamera.m */,
-			);
-			path = Camera;
-			sourceTree = "<group>";
-		};
-		F88F7A24171803F1003F9238 /* Core */ = {
-			isa = PBXGroup;
-			children = (
-				F88F7A25171803F1003F9238 /* GCore.h */,
-				F88F7A26171803F1003F9238 /* GMacros.h */,
-				F88F7A27171803F1003F9238 /* GMath.h */,
-				F88F7A28171803F1003F9238 /* GMath.m */,
-				F88F7A29171803F1003F9238 /* NSArray+GKit.h */,
-				F88F7A2A171803F1003F9238 /* NSArray+GKit.m */,
-				F88F7A2B171803F1003F9238 /* NSData+GKit.h */,
-				F88F7A2C171803F1003F9238 /* NSData+GKit.m */,
-				F88F7A2D171803F1003F9238 /* NSDate+GKit.h */,
-				F88F7A2E171803F1003F9238 /* NSDate+GKit.m */,
-				F88F7A2F171803F1003F9238 /* NSFileManager+GKit.h */,
-				F88F7A30171803F1003F9238 /* NSFileManager+GKit.m */,
-				F88F7A31171803F1003F9238 /* NSMutableArray+GKit.h */,
-				F88F7A32171803F1003F9238 /* NSMutableArray+GKit.m */,
-				F88F7A33171803F1003F9238 /* NSNumber+GKit.h */,
-				F88F7A34171803F1003F9238 /* NSNumber+GKit.m */,
-				F88F7A35171803F1003F9238 /* NSObject+GKit.h */,
-				F88F7A36171803F1003F9238 /* NSObject+GKit.m */,
-				F88F7A37171803F1003F9238 /* NSString+GKit.h */,
-				F88F7A38171803F1003F9238 /* NSString+GKit.m */,
-				F88F7A39171803F1003F9238 /* NSUserDefaults+GKit.h */,
-				F88F7A3A171803F1003F9238 /* NSUserDefaults+GKit.m */,
-				F88F7A3B171803F1003F9238 /* UIApplication+GKit.h */,
-				F88F7A3C171803F1003F9238 /* UIApplication+GKit.m */,
-				F88F7A3D171803F1003F9238 /* UIColor+GKit.h */,
-				F88F7A3E171803F1003F9238 /* UIColor+GKit.m */,
-				F88F7A3F171803F1003F9238 /* UIDevice+GKit.h */,
-				F88F7A40171803F1003F9238 /* UIDevice+GKit.m */,
-				F88F7A41171803F1003F9238 /* UILabel+GKit.h */,
-				F88F7A42171803F1003F9238 /* UILabel+GKit.m */,
-				F88F7A43171803F1003F9238 /* UIView+GKit.h */,
-				F88F7A44171803F1003F9238 /* UIView+GKit.m */,
-			);
-			path = Core;
-			sourceTree = "<group>";
-		};
-		F88F7A45171803F1003F9238 /* CoreData */ = {
-			isa = PBXGroup;
-			children = (
-				F88F7A46171803F1003F9238 /* GCoreData.h */,
-				F88F7A47171803F1003F9238 /* GCoreData.m */,
-				F88F7A48171803F1003F9238 /* NSArray+GCoreData.h */,
-				F88F7A49171803F1003F9238 /* NSArray+GCoreData.m */,
-				F88F7A4A171803F1003F9238 /* NSFetchedResultsController+GCoreData.h */,
-				F88F7A4B171803F1003F9238 /* NSFetchedResultsController+GCoreData.m */,
-				F88F7A4C171803F1003F9238 /* NSManagedObject+GCoreData.h */,
-				F88F7A4D171803F1003F9238 /* NSManagedObject+GCoreData.m */,
-				F88F7A4E171803F1003F9238 /* NSManagedObjectContext+GCoreData.h */,
-				F88F7A4F171803F1003F9238 /* NSManagedObjectContext+GCoreData.m */,
-				F88F7A50171803F1003F9238 /* NSSet+GCoreData.h */,
-				F88F7A51171803F1003F9238 /* NSSet+GCoreData.m */,
-			);
-			path = CoreData;
-			sourceTree = "<group>";
-		};
-		F88F7A52171803F1003F9238 /* ImageManager */ = {
-			isa = PBXGroup;
-			children = (
-				F88F7A53171803F1003F9238 /* GImageManager.h */,
-				F88F7A54171803F1003F9238 /* GImageManager.m */,
-			);
-			path = ImageManager;
-			sourceTree = "<group>";
-		};
-		F88F7A55171803F1003F9238 /* Location */ = {
-			isa = PBXGroup;
-			children = (
-				F88F7A56171803F1003F9238 /* GLocationManager.h */,
-				F88F7A57171803F1003F9238 /* GLocationManager.m */,
-			);
-			path = Location;
-			sourceTree = "<group>";
-		};
-		F88F7A58171803F1003F9238 /* UI */ = {
-			isa = PBXGroup;
-			children = (
-				F88F7A59171803F1003F9238 /* GAlertView.h */,
-				F88F7A5A171803F1003F9238 /* GAlertView.m */,
-				F88F7A5B171803F1003F9238 /* GBlockTableViewController.h */,
-				F88F7A5C171803F1003F9238 /* GBlockTableViewController.m */,
-				F88F7A5D171803F1003F9238 /* GEfficientTableViewController.h */,
-				F88F7A5E171803F1003F9238 /* GEfficientTableViewController.m */,
-				F88F7A5F171803F1003F9238 /* GSelectionViewController.h */,
-				F88F7A60171803F1003F9238 /* GSelectionViewController.m */,
-				F88F7A61171803F1003F9238 /* GTabBarController.h */,
-				F88F7A62171803F1003F9238 /* GTabBarController.m */,
-				F88F7A63171803F1003F9238 /* GTableViewController.h */,
-				F88F7A64171803F1003F9238 /* GTableViewController.m */,
-				F8B6BFE6172676B600214182 /* GNavigationViewController.h */,
-				F8B6BFE7172676B600214182 /* GNavigationViewController.m */,
-				F8B6BFE91726850A00214182 /* GPoint.h */,
-				F8B6BFEA1726850A00214182 /* GPoint.m */,
-				F88F7A65171803F1003F9238 /* GViewController.h */,
-				F88F7A66171803F1003F9238 /* GViewController.m */,
-			);
-			path = UI;
-			sourceTree = "<group>";
-		};
 		F8B6BFBF172671D100214182 /* Images */ = {
 			isa = PBXGroup;
 			children = (
@@ -467,6 +361,185 @@
 				F8B6BFD2172671DB00214182 /* CustomUIViewController.m */,
 			);
 			name = UI;
+			sourceTree = "<group>";
+		};
+		F8B6BFEC1726C53F00214182 /* GKit */ = {
+			isa = PBXGroup;
+			children = (
+				F8B6BFED1726C54000214182 /* Audio */,
+				F8B6BFF01726C54000214182 /* Calendar */,
+				F8B6BFFC1726C54000214182 /* Camera */,
+				F8B6BFFF1726C54000214182 /* Core */,
+				F8B6C0221726C54000214182 /* CoreData */,
+				F8B6C02F1726C54000214182 /* ImageManager */,
+				F8B6C0321726C54000214182 /* Location */,
+				F8B6C0351726C54000214182 /* Move */,
+				F8B6C03F1726C54000214182 /* UI */,
+			);
+			name = GKit;
+			path = ../../GKit;
+			sourceTree = "<group>";
+		};
+		F8B6BFED1726C54000214182 /* Audio */ = {
+			isa = PBXGroup;
+			children = (
+				FDF1EF7D16F1BD6900FCDC64 /* AudioToolbox.framework */,
+				FDF1EF7B16F1BD6400FCDC64 /* AVFoundation.framework */,
+				F8B6BFEE1726C54000214182 /* GAudio.h */,
+				F8B6BFEF1726C54000214182 /* GAudio.m */,
+			);
+			path = Audio;
+			sourceTree = "<group>";
+		};
+		F8B6BFF01726C54000214182 /* Calendar */ = {
+			isa = PBXGroup;
+			children = (
+				F8B6BFF11726C54000214182 /* GCalendar.h */,
+				F8B6BFF21726C54000214182 /* GDayView.h */,
+				F8B6BFF31726C54000214182 /* GDayView.m */,
+				F8B6BFF41726C54000214182 /* GEvent.h */,
+				F8B6BFF51726C54000214182 /* GEvent.m */,
+				F8B6BFF61726C54000214182 /* GEventView.h */,
+				F8B6BFF71726C54000214182 /* GEventView.m */,
+				F8B6BFF81726C54000214182 /* GMonthView.h */,
+				F8B6BFF91726C54000214182 /* GMonthView.m */,
+				F8B6BFFA1726C54000214182 /* GWeekView.h */,
+				F8B6BFFB1726C54000214182 /* GWeekView.m */,
+			);
+			path = Calendar;
+			sourceTree = "<group>";
+		};
+		F8B6BFFC1726C54000214182 /* Camera */ = {
+			isa = PBXGroup;
+			children = (
+				F8B6BFFD1726C54000214182 /* GCamera.h */,
+				F8B6BFFE1726C54000214182 /* GCamera.m */,
+			);
+			path = Camera;
+			sourceTree = "<group>";
+		};
+		F8B6BFFF1726C54000214182 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				F8B6C07D1726C5E300214182 /* QuartzCore.framework */,
+				F8B6C0001726C54000214182 /* GCore.h */,
+				F8B6C0011726C54000214182 /* GMacros.h */,
+				F8B6C0021726C54000214182 /* GMath.h */,
+				F8B6C0031726C54000214182 /* GMath.m */,
+				F8B6C0041726C54000214182 /* NSArray+GKit.h */,
+				F8B6C0051726C54000214182 /* NSArray+GKit.m */,
+				F8B6C0061726C54000214182 /* NSData+GKit.h */,
+				F8B6C0071726C54000214182 /* NSData+GKit.m */,
+				F8B6C0081726C54000214182 /* NSDate+GKit.h */,
+				F8B6C0091726C54000214182 /* NSDate+GKit.m */,
+				F8B6C00A1726C54000214182 /* NSFileManager+GKit.h */,
+				F8B6C00B1726C54000214182 /* NSFileManager+GKit.m */,
+				F8B6C00C1726C54000214182 /* NSMutableArray+GKit.h */,
+				F8B6C00D1726C54000214182 /* NSMutableArray+GKit.m */,
+				F8B6C00E1726C54000214182 /* NSNumber+GKit.h */,
+				F8B6C00F1726C54000214182 /* NSNumber+GKit.m */,
+				F8B6C0101726C54000214182 /* NSObject+GKit.h */,
+				F8B6C0111726C54000214182 /* NSObject+GKit.m */,
+				F8B6C0121726C54000214182 /* NSString+GKit.h */,
+				F8B6C0131726C54000214182 /* NSString+GKit.m */,
+				F8B6C0141726C54000214182 /* NSUserDefaults+GKit.h */,
+				F8B6C0151726C54000214182 /* NSUserDefaults+GKit.m */,
+				F8B6C0161726C54000214182 /* UIApplication+GKit.h */,
+				F8B6C0171726C54000214182 /* UIApplication+GKit.m */,
+				F8B6C0181726C54000214182 /* UIColor+GKit.h */,
+				F8B6C0191726C54000214182 /* UIColor+GKit.m */,
+				F8B6C01A1726C54000214182 /* UIDevice+GKit.h */,
+				F8B6C01B1726C54000214182 /* UIDevice+GKit.m */,
+				F8B6C01C1726C54000214182 /* UILabel+GKit.h */,
+				F8B6C01D1726C54000214182 /* UILabel+GKit.m */,
+				F8B6C01E1726C54000214182 /* UIScrollView+GKit.h */,
+				F8B6C01F1726C54000214182 /* UIScrollView+GKit.m */,
+				F8B6C0201726C54000214182 /* UIView+GKit.h */,
+				F8B6C0211726C54000214182 /* UIView+GKit.m */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		F8B6C0221726C54000214182 /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				F8862CBC16CA74AF006EB467 /* CoreData.framework */,
+				F8B6C0231726C54000214182 /* GCoreData.h */,
+				F8B6C0241726C54000214182 /* GCoreData.m */,
+				F8B6C0251726C54000214182 /* NSArray+GCoreData.h */,
+				F8B6C0261726C54000214182 /* NSArray+GCoreData.m */,
+				F8B6C0271726C54000214182 /* NSFetchedResultsController+GCoreData.h */,
+				F8B6C0281726C54000214182 /* NSFetchedResultsController+GCoreData.m */,
+				F8B6C0291726C54000214182 /* NSManagedObject+GCoreData.h */,
+				F8B6C02A1726C54000214182 /* NSManagedObject+GCoreData.m */,
+				F8B6C02B1726C54000214182 /* NSManagedObjectContext+GCoreData.h */,
+				F8B6C02C1726C54000214182 /* NSManagedObjectContext+GCoreData.m */,
+				F8B6C02D1726C54000214182 /* NSSet+GCoreData.h */,
+				F8B6C02E1726C54000214182 /* NSSet+GCoreData.m */,
+			);
+			path = CoreData;
+			sourceTree = "<group>";
+		};
+		F8B6C02F1726C54000214182 /* ImageManager */ = {
+			isa = PBXGroup;
+			children = (
+				FD0BC5DA17043C60000CC973 /* AssetsLibrary.framework */,
+				F8B6C0301726C54000214182 /* GImageManager.h */,
+				F8B6C0311726C54000214182 /* GImageManager.m */,
+			);
+			path = ImageManager;
+			sourceTree = "<group>";
+		};
+		F8B6C0321726C54000214182 /* Location */ = {
+			isa = PBXGroup;
+			children = (
+				FD0BC5E417044A54000CC973 /* CoreLocation.framework */,
+				F8B6C0331726C54000214182 /* GLocationManager.h */,
+				F8B6C0341726C54000214182 /* GLocationManager.m */,
+			);
+			path = Location;
+			sourceTree = "<group>";
+		};
+		F8B6C0351726C54000214182 /* Move */ = {
+			isa = PBXGroup;
+			children = (
+				F8B6C0361726C54000214182 /* GMove.h */,
+				F8B6C0371726C54000214182 /* GMoveScene.h */,
+				F8B6C0381726C54000214182 /* GMoveScene.m */,
+				F8B6C0391726C54000214182 /* GMoveSnapshot.h */,
+				F8B6C03A1726C54000214182 /* GMoveSnapshot.m */,
+				F8B6C03B1726C54000214182 /* GMoveSpriteCatcherProtocol.h */,
+				F8B6C03C1726C54000214182 /* GMoveSpriteProtocol.h */,
+				F8B6C03D1726C54000214182 /* UIView+GMove.h */,
+				F8B6C03E1726C54000214182 /* UIView+GMove.m */,
+			);
+			path = Move;
+			sourceTree = "<group>";
+		};
+		F8B6C03F1726C54000214182 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				F8B6C07F1726C7ED00214182 /* CoreGraphics.framework */,
+				F8B6C0401726C54000214182 /* GAlertView.h */,
+				F8B6C0411726C54000214182 /* GAlertView.m */,
+				F8B6C0421726C54000214182 /* GBlockTableViewController.h */,
+				F8B6C0431726C54000214182 /* GBlockTableViewController.m */,
+				F8B6C0441726C54000214182 /* GEfficientTableViewController.h */,
+				F8B6C0451726C54000214182 /* GEfficientTableViewController.m */,
+				F8B6C0461726C54000214182 /* GNavigationViewController.h */,
+				F8B6C0471726C54000214182 /* GNavigationViewController.m */,
+				F8B6C0481726C54000214182 /* GPoint.h */,
+				F8B6C0491726C54000214182 /* GPoint.m */,
+				F8B6C04A1726C54000214182 /* GSelectionViewController.h */,
+				F8B6C04B1726C54000214182 /* GSelectionViewController.m */,
+				F8B6C04C1726C54000214182 /* GTabBarController.h */,
+				F8B6C04D1726C54000214182 /* GTabBarController.m */,
+				F8B6C04E1726C54000214182 /* GTableViewController.h */,
+				F8B6C04F1726C54000214182 /* GTableViewController.m */,
+				F8B6C0501726C54000214182 /* GViewController.h */,
+				F8B6C0511726C54000214182 /* GViewController.m */,
+			);
+			path = UI;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -587,43 +660,52 @@
 			buildActionMask = 2147483647;
 			files = (
 				F8862C5116CA6A35006EB467 /* main.m in Sources */,
-				F88F7A6A171803F1003F9238 /* GAudio.m in Sources */,
-				F88F7A6B171803F1003F9238 /* GCamera.m in Sources */,
-				F88F7A6C171803F1003F9238 /* GMath.m in Sources */,
-				F88F7A6D171803F1003F9238 /* NSArray+GKit.m in Sources */,
-				F88F7A6E171803F1003F9238 /* NSData+GKit.m in Sources */,
-				F88F7A6F171803F1003F9238 /* NSDate+GKit.m in Sources */,
-				F88F7A70171803F1003F9238 /* NSFileManager+GKit.m in Sources */,
-				F88F7A71171803F1003F9238 /* NSMutableArray+GKit.m in Sources */,
-				F88F7A72171803F1003F9238 /* NSNumber+GKit.m in Sources */,
-				F88F7A73171803F1003F9238 /* NSObject+GKit.m in Sources */,
-				F88F7A74171803F1003F9238 /* NSString+GKit.m in Sources */,
-				F88F7A75171803F1003F9238 /* NSUserDefaults+GKit.m in Sources */,
-				F88F7A76171803F1003F9238 /* UIApplication+GKit.m in Sources */,
-				F88F7A77171803F1003F9238 /* UIColor+GKit.m in Sources */,
-				F88F7A78171803F1003F9238 /* UIDevice+GKit.m in Sources */,
-				F88F7A79171803F1003F9238 /* UILabel+GKit.m in Sources */,
-				F88F7A7A171803F1003F9238 /* UIView+GKit.m in Sources */,
-				F88F7A7B171803F1003F9238 /* GCoreData.m in Sources */,
-				F88F7A7C171803F1003F9238 /* NSArray+GCoreData.m in Sources */,
-				F88F7A7D171803F1003F9238 /* NSFetchedResultsController+GCoreData.m in Sources */,
-				F88F7A7E171803F1003F9238 /* NSManagedObject+GCoreData.m in Sources */,
-				F88F7A7F171803F1003F9238 /* NSManagedObjectContext+GCoreData.m in Sources */,
-				F88F7A80171803F1003F9238 /* NSSet+GCoreData.m in Sources */,
-				F88F7A81171803F1003F9238 /* GImageManager.m in Sources */,
-				F88F7A82171803F1003F9238 /* GLocationManager.m in Sources */,
-				F88F7A83171803F1003F9238 /* GAlertView.m in Sources */,
-				F88F7A84171803F1003F9238 /* GBlockTableViewController.m in Sources */,
-				F88F7A85171803F1003F9238 /* GEfficientTableViewController.m in Sources */,
-				F88F7A86171803F1003F9238 /* GSelectionViewController.m in Sources */,
-				F88F7A87171803F1003F9238 /* GTabBarController.m in Sources */,
-				F88F7A88171803F1003F9238 /* GTableViewController.m in Sources */,
-				F88F7A89171803F1003F9238 /* GViewController.m in Sources */,
 				F8B6BFDD172671DB00214182 /* AppDelegate.m in Sources */,
 				F8B6BFDE172671DB00214182 /* CustomUIViewController.m in Sources */,
 				F8B6BFDF172671DB00214182 /* DemosViewController.m in Sources */,
-				F8B6BFE8172676B700214182 /* GNavigationViewController.m in Sources */,
-				F8B6BFEB1726850B00214182 /* GPoint.m in Sources */,
+				F8B6C0521726C54000214182 /* GAudio.m in Sources */,
+				F8B6C0531726C54000214182 /* GDayView.m in Sources */,
+				F8B6C0541726C54000214182 /* GEvent.m in Sources */,
+				F8B6C0551726C54000214182 /* GEventView.m in Sources */,
+				F8B6C0561726C54000214182 /* GMonthView.m in Sources */,
+				F8B6C0571726C54000214182 /* GWeekView.m in Sources */,
+				F8B6C0581726C54000214182 /* GCamera.m in Sources */,
+				F8B6C0591726C54000214182 /* GMath.m in Sources */,
+				F8B6C05A1726C54000214182 /* NSArray+GKit.m in Sources */,
+				F8B6C05B1726C54000214182 /* NSData+GKit.m in Sources */,
+				F8B6C05C1726C54000214182 /* NSDate+GKit.m in Sources */,
+				F8B6C05D1726C54000214182 /* NSFileManager+GKit.m in Sources */,
+				F8B6C05E1726C54000214182 /* NSMutableArray+GKit.m in Sources */,
+				F8B6C05F1726C54000214182 /* NSNumber+GKit.m in Sources */,
+				F8B6C0601726C54000214182 /* NSObject+GKit.m in Sources */,
+				F8B6C0611726C54000214182 /* NSString+GKit.m in Sources */,
+				F8B6C0621726C54000214182 /* NSUserDefaults+GKit.m in Sources */,
+				F8B6C0631726C54000214182 /* UIApplication+GKit.m in Sources */,
+				F8B6C0641726C54000214182 /* UIColor+GKit.m in Sources */,
+				F8B6C0651726C54000214182 /* UIDevice+GKit.m in Sources */,
+				F8B6C0661726C54000214182 /* UILabel+GKit.m in Sources */,
+				F8B6C0671726C54000214182 /* UIScrollView+GKit.m in Sources */,
+				F8B6C0681726C54000214182 /* UIView+GKit.m in Sources */,
+				F8B6C0691726C54000214182 /* GCoreData.m in Sources */,
+				F8B6C06A1726C54000214182 /* NSArray+GCoreData.m in Sources */,
+				F8B6C06B1726C54000214182 /* NSFetchedResultsController+GCoreData.m in Sources */,
+				F8B6C06C1726C54000214182 /* NSManagedObject+GCoreData.m in Sources */,
+				F8B6C06D1726C54000214182 /* NSManagedObjectContext+GCoreData.m in Sources */,
+				F8B6C06E1726C54000214182 /* NSSet+GCoreData.m in Sources */,
+				F8B6C06F1726C54000214182 /* GImageManager.m in Sources */,
+				F8B6C0701726C54000214182 /* GLocationManager.m in Sources */,
+				F8B6C0711726C54000214182 /* GMoveScene.m in Sources */,
+				F8B6C0721726C54000214182 /* GMoveSnapshot.m in Sources */,
+				F8B6C0731726C54000214182 /* UIView+GMove.m in Sources */,
+				F8B6C0741726C54000214182 /* GAlertView.m in Sources */,
+				F8B6C0751726C54000214182 /* GBlockTableViewController.m in Sources */,
+				F8B6C0761726C54000214182 /* GEfficientTableViewController.m in Sources */,
+				F8B6C0771726C54000214182 /* GNavigationViewController.m in Sources */,
+				F8B6C0781726C54000214182 /* GPoint.m in Sources */,
+				F8B6C0791726C54000214182 /* GSelectionViewController.m in Sources */,
+				F8B6C07A1726C54000214182 /* GTabBarController.m in Sources */,
+				F8B6C07B1726C54000214182 /* GTableViewController.m in Sources */,
+				F8B6C07C1726C54000214182 /* GViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

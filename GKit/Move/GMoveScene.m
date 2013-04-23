@@ -12,7 +12,6 @@
 #import "GMoveSpriteCatcherProtocol.h"
 #import "UIView+GMove.h"
 #import "GCore.h"
-#import <QuartzCore/QuartzCore.h>
 
 @interface GMoveScene ()
 @property (nonatomic, strong) GMoveSnapshot *currentSnapshot;
@@ -59,18 +58,14 @@
                 {
                     snapshot = [catcher prepareSnapshotForSprite:sprite];
                 }
-                if (snapshot == nil) {
-                    
-                    UIGraphicsBeginImageContextWithOptions(sprite.frame.size, NO, GScreenScale);
-                    [[sprite layer] renderInContext:UIGraphicsGetCurrentContext()];
-                    UIImage *snapshotImage = UIGraphicsGetImageFromCurrentImageContext();
-                    UIImageView *snapshotImageView = [[UIImageView alloc] initWithImage:snapshotImage];
-                    UIGraphicsEndImageContext();
-                    
+                
+                if (snapshot == nil)
+                {
                     snapshot = [[GMoveSnapshot alloc] initWithFrame:spriteFrameInSelf];
-                    [snapshot addSubviewToFill:snapshotImageView];
+                    [snapshot addSubviewToFill:[sprite snapshot]];
                     [snapshot setTransform:CGAffineTransformMakeScale(1.1, 1.1)];
                 }
+                
                 snapshot.sprite = sprite;
                 [snapshot setCenter:CGPointMake( CGRectGetMidX(spriteFrameInSelf),
                                                 CGRectGetMidY(spriteFrameInSelf))];

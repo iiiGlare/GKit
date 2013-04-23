@@ -20,7 +20,11 @@ Pod::Spec.new do |s|
     audio.source_files = 'GKit/Audio/**/*.{h,m}'
     audio.frameworks = 'AVFoundation', 'AudioToolbox'
   end
-  
+
+  s.subspec 'Calendar' do |calendar|
+    calendar.source_files = 'GKit/Calendar/**/*.{h,m}'
+  end
+
   s.subspec 'Camera' do |camera|
     camera.source_files = 'GKit/Camera/**/*.{h,m}'
 	camera.frameworks = 'AVFoundation'
@@ -28,6 +32,7 @@ Pod::Spec.new do |s|
 
   s.subspec 'Core' do |core|
     core.source_files = 'GKit/Core/**/*.{h,m}'
+    core.frameworks = 'QuartzCore'
   end
 
   s.subspec 'CoreData' do |coredata|
@@ -45,12 +50,14 @@ Pod::Spec.new do |s|
     location.frameworks = 'CoreLocation'
   end
 
-  s.subspec 'UI' do |ui|
-    ui.source_files = 'GKit/UI/**/*.{h,m}'
-  end
-
   s.subspec 'Move' do |move|
     move.source_files = 'GKit/Move/**/*.{h,m}'
   end
-  
+
+  s.subspec 'UI' do |ui|
+    ui.source_files = 'GKit/UI/**/*.{h,m}'
+    ui.frameworks = 'CoreGraphics'
+  end
+
+
 end

@@ -6,8 +6,8 @@
 //  Copyright (c) 2013年 Hoewo. All rights reserved.
 //
 
-#import "GTableViewController.h"
+#import "GViewController.h"
 
-@interface CustomUIViewController : GTableViewController
+@interface CustomUIViewController : GViewController
 
 @end
