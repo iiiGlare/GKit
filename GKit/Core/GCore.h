@@ -21,6 +21,9 @@
 //Math
 #import "GMath.h"
 
+//Custom Data
+#import "GPoint.h"
+
 //Categories
 #import "NSArray+GKit.h"
 #import "NSData+GKit.h"

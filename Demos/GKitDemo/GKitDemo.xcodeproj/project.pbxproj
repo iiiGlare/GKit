@@ -75,6 +75,7 @@
 		F8B6C07E1726C5E300214182 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8B6C07D1726C5E300214182 /* QuartzCore.framework */; };
 		F8B6C0801726C7F000214182 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8B6C07F1726C7ED00214182 /* CoreGraphics.framework */; };
 		FD07BDD51727605100D8E26A /* GPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = FD07BDD41727605100D8E26A /* GPoint.m */; };
+		FD07BDD8172761DF00D8E26A /* GSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = FD07BDD7172761DF00D8E26A /* GSlider.m */; };
 		FD0BC5DB17043C61000CC973 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD0BC5DA17043C60000CC973 /* AssetsLibrary.framework */; };
 		FD0BC5E517044A54000CC973 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD0BC5E417044A54000CC973 /* CoreLocation.framework */; };
 		FD47A80A16F83D4200CEA15A /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = FD47A80916F83D4200CEA15A /* Localizable.strings */; };
@@ -217,6 +218,8 @@
 		F8B6C07F1726C7ED00214182 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		FD07BDD31727605100D8E26A /* GPoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GPoint.h; sourceTree = "<group>"; };
 		FD07BDD41727605100D8E26A /* GPoint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GPoint.m; sourceTree = "<group>"; };
+		FD07BDD6172761DF00D8E26A /* GSlider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GSlider.h; sourceTree = "<group>"; };
+		FD07BDD7172761DF00D8E26A /* GSlider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GSlider.m; sourceTree = "<group>"; };
 		FD0BC5DA17043C60000CC973 /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
 		FD0BC5E417044A54000CC973 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		FD47A80916F83D4200CEA15A /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
@@ -524,6 +527,8 @@
 				F8B6C07F1726C7ED00214182 /* CoreGraphics.framework */,
 				F8B6C0401726C54000214182 /* GAlertView.h */,
 				F8B6C0411726C54000214182 /* GAlertView.m */,
+				FD07BDD6172761DF00D8E26A /* GSlider.h */,
+				FD07BDD7172761DF00D8E26A /* GSlider.m */,
 				F8B6C0421726C54000214182 /* GBlockTableViewController.h */,
 				F8B6C0431726C54000214182 /* GBlockTableViewController.m */,
 				F8B6C0441726C54000214182 /* GEfficientTableViewController.h */,
@@ -714,6 +719,7 @@
 			files = (
 				F8862C7016CA6A36006EB467 /* GKitDemoTests.m in Sources */,
 				FD07BDD51727605100D8E26A /* GPoint.m in Sources */,
+				FD07BDD8172761DF00D8E26A /* GSlider.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
