@@ -8,24 +8,31 @@
 
 #import "GSlider.h"
 
+@interface GSlider ()
+
+@end
+
 @implementation GSlider
 
+#pragma mark - Init
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
     if (self) {
         // Initialization code
+        [self customInitialize];
     }
     return self;
 }
 
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect
+- (void)customInitialize
 {
-    // Drawing code
+    
 }
-*/
 
+#pragma mark - Setter / Getter
+- (void)setValue:(float)value animated:(BOOL)animated
+{
+    
+}
 @end

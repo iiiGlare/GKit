@@ -8,7 +8,6 @@
 
 #import "GNavigationViewController.h"
 #import "GCore.h"
-#import "GPoint.h"
 
 @interface GNavigationViewController ()
 {
