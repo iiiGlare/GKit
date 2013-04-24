@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+#define kGEvent @"GEvent"
+
 @interface GEvent : NSObject
 
 @property (nonatomic, copy) NSDate *beginDate;

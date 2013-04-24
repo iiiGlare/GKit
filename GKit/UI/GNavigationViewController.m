@@ -40,6 +40,8 @@
 - (void)customInitialize
 {
     _canDragBack = YES;
+    _navigationAnimationType = GNavigationAnimationTypeHide;
+    
     _shouldPopItem = NO;
     _snapshots = [NSMutableArray array];
     
@@ -72,14 +74,33 @@
 - (void)pushViewController:(UIViewController *)viewController animated:(BOOL)animated
 {
     [_snapshots addObject:[self.view snapshot]];
-    [super pushViewController:viewController animated:animated];
+    
+    if ([self.viewControllers count]>=1 &&
+        _navigationAnimationType == GNavigationAnimationTypeHide)
+    {
+        [self showViewController:viewController];
+    }else {
+        [super pushViewController:viewController animated:animated];
+    }
+
+}
+- (UIViewController *)popViewControllerAnimated:(BOOL)animated
+{
+    if ([self.viewControllers count]>1 &&
+        _navigationAnimationType == GNavigationAnimationTypeHide) {
+        UIViewController *preViewController = [self.viewControllers objectAtPosition:-2];
+        [self hideTopViewController];
+        return preViewController;
+    }else {
+        _shouldPopItem = YES;
+        [_snapshots removeLastObject];
+        return [super popViewControllerAnimated:animated];
+    }
 }
 
 #pragma mark - Custom Push/Pop Methods
 - (void)showViewController:(UIViewController *)viewController
 {
-    [_snapshots addObject:[self.view snapshot]];
-    
     [self prepareSceneAndSnapshot];
     
     [self goToNextViewController:viewController];
@@ -232,11 +253,22 @@
 #pragma mark - 
 - (BOOL)navigationBar:(UINavigationBar *)navigationBar shouldPopItem:(UINavigationItem *)item
 {
+    
+    //_shouldPopItem is always NO, to make sure the navigationBar's delegate will not automatically manage pop stuff.
+    
     if (_shouldPopItem) {
+        
         _shouldPopItem = NO;
         return YES;
+        
     }else{
-        [self hideTopViewController];
+        
+        if (_navigationAnimationType == GNavigationAnimationTypeHide) {
+            [self hideTopViewController];
+        }else {
+            [self popViewControllerAnimated:YES];
+        }
+        
         return NO;
     }
 }

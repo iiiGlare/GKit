@@ -44,7 +44,8 @@
 //                                         action:@selector(centerTabBarItemSelected)];
     
     DemosViewController *demosVC = [[DemosViewController alloc] initWithStyle:UITableViewStyleGrouped];
-	self.window.rootViewController = [[GNavigationViewController alloc] initWithRootViewController:demosVC];
+    GNavigationViewController *navigationViewController = [[GNavigationViewController alloc] initWithRootViewController:demosVC];
+	self.window.rootViewController = navigationViewController;
     [self.window makeKeyAndVisible];
     return YES;
 }

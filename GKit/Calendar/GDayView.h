@@ -13,7 +13,6 @@
 @protocol GDayViewDataSource, GDayViewDelegate;
 
 #pragma mark - GDayView
-
 @interface GDayView : UIView
 <GMoveSpriteCatcherProtocol>
 
@@ -23,11 +22,28 @@
 @property (nonatomic, weak) id<GDayViewDelegate> delegate;
 
 - (void)reloadData;
+- (BOOL)canShowEvent:(GEvent *)event;
+
+@end
+
+#pragma mark - Called By Catcher
+@interface GDayView (CalledByCatcher)
+
+//prepare
+- (GMoveSnapshot *)dayViewPrepareSnapshotForOwnEventView:(GEventView *)eventView;
+- (CGRect)dayViewrepareFrameForSnapshot:(GMoveSnapshot *)snapshot;
+- (void)dayViewDidPrepareSnapshot:(GMoveSnapshot *)snapshot;
+//moving event
+- (void)dayViewBeginCatchingSnapshot:(GMoveSnapshot *)snapshot withEvent:(GEvent *)event;
+- (void)dayViewIsCatchingSnapshot:(GMoveSnapshot *)snapshot;
+- (void)dayViewEndCatchingSnapshot:(GMoveSnapshot *)snapshot;
+//end
+- (void)dayViewDidCatchSnapshot:(GMoveSnapshot *)snapshot withEvent:(GEvent *)event;
+- (void)dayViewRemoveOwnEventView:(GEventView *)eventView;
 
 @end
 
 #pragma mark - GDayViewDataSource
-
 @protocol GDayViewDataSource <NSObject>
 
 - (NSArray *)dayView:(GDayView *)dayView eventsForDate:(NSDate *)date;
@@ -37,13 +53,12 @@
 
 @end
 
-
 #pragma mark - GDayViewDelegate
-
 @protocol GDayViewDelegate <NSObject>
 
 @optional
 - (void)dayView:(GDayView *)dayView didRemoveEvent:(GEvent *)event;
 - (void)dayView:(GDayView *)dayView didChangeEvent:(GEvent *)event;
+- (void)dayView:(GDayView *)dayView didSelectEvent:(GEvent *)event;
 
 @end

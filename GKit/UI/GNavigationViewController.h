@@ -8,15 +8,15 @@
 
 #import <UIKit/UIKit.h>
 
-@interface UINavigationController (GNavigationViewController)
-
-- (void)showViewController:(UIViewController *)viewController;
-- (void)hideTopViewController;
-
-@end
+enum {
+    GNavigationAnimationTypNormal,
+    GNavigationAnimationTypeHide
+};
+typedef NSInteger GNavigationAnimationType;
 
 @interface GNavigationViewController : UINavigationController
 
-@property (nonatomic,assign) BOOL canDragBack;
+@property (nonatomic) BOOL canDragBack;  //default YES
+@property (nonatomic) GNavigationAnimationType navigationAnimationType; //default hide
 
 @end

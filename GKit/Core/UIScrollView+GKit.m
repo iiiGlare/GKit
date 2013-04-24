@@ -10,35 +10,67 @@
 #import "NSArray+GKit.h"
 #import "NSMutableArray+GKit.h"
 #import "UIView+GKit.h"
-static NSMutableArray *_autoScrollViews = nil;
-static NSMutableArray *_autoScrollTimers = nil;
+
+static NSMutableArray *_autoScrollTopViews = nil;
+static NSMutableArray *_autoScrollTopTimers = nil;
+
+static NSMutableArray *_autoScrollBottomViews = nil;
+static NSMutableArray *_autoScrollBottomTimers = nil;
 
 @implementation UIScrollView (GKit)
-@dynamic autoScrollTimer;
+@dynamic autoScrollTopTimer;
+@dynamic autoScrollBottomTimer;
 //Seter / Getter
-- (NSTimer *)autoScrollTimer
+//Top
+- (NSTimer *)autoScrollTopTimer
 {
-    NSUInteger index = [_autoScrollViews indexOfObject:self];
+    NSUInteger index = [_autoScrollTopViews indexOfObject:self];
     if (index==NSNotFound) return nil;
     
-    return [_autoScrollTimers objectAtPosition:index];
+    return [_autoScrollTopTimers objectAtPosition:index];
 }
-- (void)setAutoScrollTimer:(NSTimer *)autoScrollTimer
+- (void)setAutoScrollTopTimer:(NSTimer *)autoScrollTopTimer
 {
-    if (_autoScrollViews==nil) _autoScrollViews = [NSMutableArray array];
-    if (_autoScrollTimers==nil) _autoScrollTimers = [NSMutableArray array];
+    if (_autoScrollTopViews==nil) _autoScrollTopViews = [NSMutableArray array];
+    if (_autoScrollTopTimers==nil) _autoScrollTopTimers = [NSMutableArray array];
     
-    if (autoScrollTimer==nil) {
+    if (autoScrollTopTimer==nil) {
         
-        NSUInteger index = [_autoScrollViews indexOfObject:self];
+        NSUInteger index = [_autoScrollTopViews indexOfObject:self];
         if (index==NSNotFound) return;
         
-        [_autoScrollViews removeObjectAtPosition:index];
-        [_autoScrollTimers removeObjectAtPosition:index];
+        [_autoScrollTopViews removeObjectAtPosition:index];
+        [_autoScrollTopTimers removeObjectAtPosition:index];
 
     }else{
-        [_autoScrollViews addObject:self];
-        [_autoScrollTimers addObject:autoScrollTimer];
+        [_autoScrollTopViews addObject:self];
+        [_autoScrollTopTimers addObject:autoScrollTopTimer];
+    }
+}
+//Bottom
+- (NSTimer *)autoScrollBottomTimer
+{
+    NSUInteger index = [_autoScrollBottomViews indexOfObject:self];
+    if (index==NSNotFound) return nil;
+    
+    return [_autoScrollBottomTimers objectAtPosition:index];
+}
+- (void)setAutoScrollBottomTimer:(NSTimer *)autoScrollBottomTimer
+{
+    if (_autoScrollBottomViews==nil) _autoScrollBottomViews = [NSMutableArray array];
+    if (_autoScrollBottomTimers==nil) _autoScrollBottomTimers = [NSMutableArray array];
+    
+    if (autoScrollBottomTimer==nil) {
+        
+        NSUInteger index = [_autoScrollBottomViews indexOfObject:self];
+        if (index==NSNotFound) return;
+        
+        [_autoScrollBottomViews removeObjectAtPosition:index];
+        [_autoScrollBottomTimers removeObjectAtPosition:index];
+        
+    }else{
+        [_autoScrollBottomViews addObject:self];
+        [_autoScrollBottomTimers addObject:autoScrollBottomTimer];
     }
 }
 
@@ -49,12 +81,14 @@ static NSMutableArray *_autoScrollTimers = nil;
 }
 - (void)setupAutoScrollToTopTimer
 {
-    if (self.autoScrollTimer) return;
-    self.autoScrollTimer = [NSTimer scheduledTimerWithTimeInterval: 0.02
-                                                            target: self
-                                                          selector: @selector(autoScrollToTop)
-                                                          userInfo: nil
-                                                           repeats: YES];
+    if (self.autoScrollTopTimer) return;
+    
+    [self stopAutoScroll];
+    self.autoScrollTopTimer = [NSTimer scheduledTimerWithTimeInterval: 0.02
+                                                               target: self
+                                                             selector: @selector(autoScrollToTop)
+                                                             userInfo: nil
+                                                              repeats: YES];
 }
 - (void)autoScrollToTop
 {
@@ -68,12 +102,14 @@ static NSMutableArray *_autoScrollTimers = nil;
 }
 - (void)setupAutoScrollToBottomTimer
 {
-    if (self.autoScrollTimer) return;
-    self.autoScrollTimer = [NSTimer scheduledTimerWithTimeInterval: 0.02
-                                                            target: self
-                                                          selector: @selector(autoScrollToBottom)
-                                                          userInfo: nil
-                                                           repeats: YES];
+    if (self.autoScrollBottomTimer) return;
+    
+    [self stopAutoScroll];
+    self.autoScrollBottomTimer = [NSTimer scheduledTimerWithTimeInterval: 0.02
+                                                                  target: self
+                                                                selector: @selector(autoScrollToBottom)
+                                                                userInfo: nil
+                                                                 repeats: YES];
 }
 - (void)autoScrollToBottom
 {
@@ -90,8 +126,12 @@ static NSMutableArray *_autoScrollTimers = nil;
     [NSObject cancelPreviousPerformRequestsWithTarget: self
                                              selector: @selector(setupAutoScrollToBottomTimer)
                                                object: nil];
-    [self.autoScrollTimer invalidate];
-    self.autoScrollTimer = nil;
+    
+    [self.autoScrollTopTimer invalidate];
+    self.autoScrollTopTimer = nil;
+
+    [self.autoScrollBottomTimer invalidate];
+    self.autoScrollBottomTimer = nil;
 }
 
 @end

@@ -19,10 +19,10 @@
 
 /**
  */
-NSTimeInterval GTimeIntervalFromMinitues(NSUInteger minutes);
-NSTimeInterval GTimeIntervalFromHours(NSUInteger hours);
-NSTimeInterval GTimeIntervalFromDays(NSUInteger days);
-NSTimeInterval GTimeIntervalFromWeeks(NSUInteger weeks);
+NSTimeInterval GTimeIntervalFromMinitues(CGFloat minutes);
+NSTimeInterval GTimeIntervalFromHours(CGFloat hours);
+NSTimeInterval GTimeIntervalFromDays(CGFloat days);
+NSTimeInterval GTimeIntervalFromWeeks(CGFloat weeks);
 
 /**
  Timer String 61:59

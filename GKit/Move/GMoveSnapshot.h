@@ -8,5 +8,5 @@
 
 @interface GMoveSnapshot : UIView
 @property (nonatomic, strong) UIView *sprite;
-@property (nonatomic, strong) NSDictionary *spriteInfo;
+@property (nonatomic, strong) NSDictionary *userInfo;
 @end

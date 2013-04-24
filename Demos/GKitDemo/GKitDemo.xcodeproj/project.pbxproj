@@ -7,8 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F80B4740172831AF00F4FBEB /* GMoveSnapshot+GCalendar.m in Sources */ = {isa = PBXBuildFile; fileRef = F80B473F172831AF00F4FBEB /* GMoveSnapshot+GCalendar.m */; };
 		F82369BD1727B53C00868E8B /* GPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = FD07BDD41727605100D8E26A /* GPoint.m */; };
 		F82369BE1727B53C00868E8B /* GSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = FD07BDD7172761DF00D8E26A /* GSlider.m */; };
+		F82369C21727D46500868E8B /* CalendarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F82369C11727D46500868E8B /* CalendarViewController.m */; };
 		F8862C4516CA6A35006EB467 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8862C4416CA6A35006EB467 /* UIKit.framework */; };
 		F8862C4716CA6A35006EB467 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8862C4616CA6A35006EB467 /* Foundation.framework */; };
 		F8862C4F16CA6A35006EB467 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = F8862C4D16CA6A35006EB467 /* InfoPlist.strings */; };
@@ -96,6 +98,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		F80B473E172831AE00F4FBEB /* GMoveSnapshot+GCalendar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GMoveSnapshot+GCalendar.h"; sourceTree = "<group>"; };
+		F80B473F172831AF00F4FBEB /* GMoveSnapshot+GCalendar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "GMoveSnapshot+GCalendar.m"; sourceTree = "<group>"; };
+		F82369C01727D46500868E8B /* CalendarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CalendarViewController.h; sourceTree = "<group>"; };
+		F82369C11727D46500868E8B /* CalendarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CalendarViewController.m; sourceTree = "<group>"; };
 		F8862C4116CA6A35006EB467 /* GKitDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GKitDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F8862C4416CA6A35006EB467 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		F8862C4616CA6A35006EB467 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -259,6 +265,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		F82369BF1727D41400868E8B /* Calendar */ = {
+			isa = PBXGroup;
+			children = (
+				F82369C01727D46500868E8B /* CalendarViewController.h */,
+				F82369C11727D46500868E8B /* CalendarViewController.m */,
+			);
+			name = Calendar;
+			sourceTree = "<group>";
+		};
 		F8862C3816CA6A35006EB467 = {
 			isa = PBXGroup;
 			children = (
@@ -354,18 +369,19 @@
 				F8B6BFD0172671DB00214182 /* AppDelegate.m */,
 				F8B6BFD3172671DB00214182 /* DemosViewController.h */,
 				F8B6BFD4172671DB00214182 /* DemosViewController.m */,
-				F8B6BFE5172671EF00214182 /* UI */,
+				F82369BF1727D41400868E8B /* Calendar */,
+				F8B6BFE5172671EF00214182 /* CustomUI */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
 		};
-		F8B6BFE5172671EF00214182 /* UI */ = {
+		F8B6BFE5172671EF00214182 /* CustomUI */ = {
 			isa = PBXGroup;
 			children = (
 				F8B6BFD1172671DB00214182 /* CustomUIViewController.h */,
 				F8B6BFD2172671DB00214182 /* CustomUIViewController.m */,
 			);
-			name = UI;
+			name = CustomUI;
 			sourceTree = "<group>";
 		};
 		F8B6BFEC1726C53F00214182 /* GKit */ = {
@@ -410,6 +426,8 @@
 				F8B6BFF91726C54000214182 /* GMonthView.m */,
 				F8B6BFFA1726C54000214182 /* GWeekView.h */,
 				F8B6BFFB1726C54000214182 /* GWeekView.m */,
+				F80B473E172831AE00F4FBEB /* GMoveSnapshot+GCalendar.h */,
+				F80B473F172831AF00F4FBEB /* GMoveSnapshot+GCalendar.m */,
 			);
 			path = Calendar;
 			sourceTree = "<group>";
@@ -714,6 +732,8 @@
 				F8B6C07A1726C54000214182 /* GTabBarController.m in Sources */,
 				F8B6C07B1726C54000214182 /* GTableViewController.m in Sources */,
 				F8B6C07C1726C54000214182 /* GViewController.m in Sources */,
+				F82369C21727D46500868E8B /* CalendarViewController.m in Sources */,
+				F80B4740172831AF00F4FBEB /* GMoveSnapshot+GCalendar.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

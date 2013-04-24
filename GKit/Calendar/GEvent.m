@@ -11,4 +11,16 @@
 
 @implementation GEvent
 
+- (id)init
+{
+    self = [super init];
+    if (self) {
+        NSDate *date = [NSDate date];
+        self.beginDate = date;
+        self.endDate = [date dateByAddingTimeInterval:GTimeIntervalFromHours(1)];
+        self.title = GLocalizedString(@"New Event");
+    }
+    return self;
+}
+
 @end

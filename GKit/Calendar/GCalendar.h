@@ -7,8 +7,10 @@
 //
 
 #import "GEvent.h"
+#import "GEventView.h"
 
 #import "GDayView.h"
 #import "GWeekView.h"
 #import "GMonthView.h"
 
+#import "GMoveSnapshot+GCalendar.h"

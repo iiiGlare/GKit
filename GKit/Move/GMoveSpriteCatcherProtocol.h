@@ -14,8 +14,8 @@
 
 @optional
 //prepare
-- (GMoveSnapshot *)prepareSnapshotForSprite:(UIView *)sprite;
-- (CGRect)endFrameForSnapshot:(GMoveSnapshot *)snapshot;
+- (GMoveSnapshot *)prepareSnapshotForOwnSprite:(UIView *)sprite;
+- (CGRect)prepareFrameForSnapshot:(GMoveSnapshot *)snapshot;
 - (void)didPrepareSnapshot:(GMoveSnapshot *)snapshot;
 
 //moving snapshot
@@ -24,8 +24,8 @@
 - (void)endCatchingSnapshot:(GMoveSnapshot *)snapshot;
 
 //did finish
-- (void)failedCatchSnapshot:(GMoveSnapshot *)snapshot;
 - (void)didCatchSnapshot:(GMoveSnapshot *)snapshot;
+- (void)removeOwnSprite:(UIView *)sprite;
 
 @end
 

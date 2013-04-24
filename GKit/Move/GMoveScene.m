@@ -54,9 +54,9 @@
                 //prepare snapshot to move
                 GMoveSnapshot *snapshot = nil;
                 if (catcher &&
-                    [catcher respondsToSelector:@selector(prepareSnapshotForSprite:)])
+                    [catcher respondsToSelector:@selector(prepareSnapshotForOwnSprite:)])
                 {
-                    snapshot = [catcher prepareSnapshotForSprite:sprite];
+                    snapshot = [catcher prepareSnapshotForOwnSprite:sprite];
                 }
                 
                 if (snapshot == nil)
@@ -72,11 +72,11 @@
                 [self addSubview:snapshot];
                 
                 if (catcher &&
-                    [catcher respondsToSelector:@selector(endFrameForSnapshot:)])
+                    [catcher respondsToSelector:@selector(prepareFrameForSnapshot:)])
                 {
                     [UIView animateWithDuration: 0.25
                                      animations: ^{
-                                         snapshot.frame = [catcher endFrameForSnapshot:snapshot];
+                                         snapshot.frame = [catcher prepareFrameForSnapshot:snapshot];
                                      }];
                 }
                 
@@ -143,7 +143,7 @@
             
             //
             if (catcher!=_sourceCatcher) {
-                [self catcherFailedCatch:_sourceCatcher];
+                [self catcherRemoveOwnSprite:_sourceCatcher];
             }
             
             [self catcherDidCatch:catcher];
@@ -234,12 +234,12 @@
                          }];
     }
 }
-- (void)catcherFailedCatch:(id<GMoveSpriteCatcherProtocol>)catcher
+- (void)catcherRemoveOwnSprite:(id<GMoveSpriteCatcherProtocol>)catcher
 {
     if (catcher &&
-        [catcher respondsToSelector:@selector(failedCatchSnapshot:)])
+        [catcher respondsToSelector:@selector(removeOwnSprite:)])
     {
-        [catcher failedCatchSnapshot:_currentSnapshot];
+        [catcher removeOwnSprite:_currentSnapshot.sprite];
     }    
 }
 

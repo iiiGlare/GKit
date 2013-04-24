@@ -28,7 +28,8 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
 	
-	
+	UITapGestureRecognizer *tapGR = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(goBack)];
+    [self.view addGestureRecognizer:tapGR];
 }
 
 - (void)didReceiveMemoryWarning
@@ -37,5 +38,9 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)goBack
+{
+    [self.navigationController popViewControllerAnimated:YES];
+}
 
 @end

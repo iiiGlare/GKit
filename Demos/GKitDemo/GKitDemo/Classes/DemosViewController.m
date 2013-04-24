@@ -23,9 +23,10 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     _listInfo = [NSMutableDictionary dictionary];
-    [_listInfo setValue:GNumberWithInteger(1) forKey:kNumberOfSections];
+    [_listInfo setValue:GNumberWithInteger(2) forKey:kNumberOfSections];
     
     [_listInfo setValue:@[@"CustomUI"] forKey:@"0"];
+    [_listInfo setValue:@[@"Calendar"] forKey:@"1"];
 }
 
 - (void)didReceiveMemoryWarning
@@ -47,6 +48,7 @@
 {
     NSString *title = [[_listInfo valueForKey:[NSString stringWithFormat:@"%d",indexPath.section]] objectAtPosition:indexPath.row];
     if (title) {
+        [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
         [cell.textLabel setText:title];
     }
 }
@@ -55,7 +57,7 @@
     NSString *title = [[_listInfo valueForKey:[NSString stringWithFormat:@"%d",indexPath.section]] objectAtPosition:indexPath.row];
     if (title) {
         UIViewController *controller = [NSClassFromString([NSString stringWithFormat:@"%@ViewController",title]) new];
-        [self.navigationController showViewController:controller];
+        [self.navigationController pushViewController:controller animated:YES];
     }
 }
 

@@ -20,22 +20,22 @@
 #import "GMacros.h"
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////
-NSTimeInterval GTimeIntervalFromMinitues(NSUInteger minutes)
+NSTimeInterval GTimeIntervalFromMinitues(CGFloat minutes)
 {
     return minutes * 60;
 }
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////
-NSTimeInterval GTimeIntervalFromHours(NSUInteger hours)
+NSTimeInterval GTimeIntervalFromHours(CGFloat hours)
 {
     return GTimeIntervalFromMinitues(hours * 60);
 }
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////
-NSTimeInterval GTimeIntervalFromDays(NSUInteger days)
+NSTimeInterval GTimeIntervalFromDays(CGFloat days)
 {
     return GTimeIntervalFromHours(days * 24);
 }
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////
-NSTimeInterval GTimeIntervalFromWeeks(NSUInteger weeks)
+NSTimeInterval GTimeIntervalFromWeeks(CGFloat weeks)
 {
     return GTimeIntervalFromDays(weeks * 7);
 }
