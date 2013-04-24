@@ -68,13 +68,13 @@
 		F8B6C0751726C54000214182 /* GBlockTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F8B6C0431726C54000214182 /* GBlockTableViewController.m */; };
 		F8B6C0761726C54000214182 /* GEfficientTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F8B6C0451726C54000214182 /* GEfficientTableViewController.m */; };
 		F8B6C0771726C54000214182 /* GNavigationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F8B6C0471726C54000214182 /* GNavigationViewController.m */; };
-		F8B6C0781726C54000214182 /* GPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = F8B6C0491726C54000214182 /* GPoint.m */; };
 		F8B6C0791726C54000214182 /* GSelectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F8B6C04B1726C54000214182 /* GSelectionViewController.m */; };
 		F8B6C07A1726C54000214182 /* GTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = F8B6C04D1726C54000214182 /* GTabBarController.m */; };
 		F8B6C07B1726C54000214182 /* GTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F8B6C04F1726C54000214182 /* GTableViewController.m */; };
 		F8B6C07C1726C54000214182 /* GViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F8B6C0511726C54000214182 /* GViewController.m */; };
 		F8B6C07E1726C5E300214182 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8B6C07D1726C5E300214182 /* QuartzCore.framework */; };
 		F8B6C0801726C7F000214182 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8B6C07F1726C7ED00214182 /* CoreGraphics.framework */; };
+		FD07BDD51727605100D8E26A /* GPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = FD07BDD41727605100D8E26A /* GPoint.m */; };
 		FD0BC5DB17043C61000CC973 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD0BC5DA17043C60000CC973 /* AssetsLibrary.framework */; };
 		FD0BC5E517044A54000CC973 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD0BC5E417044A54000CC973 /* CoreLocation.framework */; };
 		FD47A80A16F83D4200CEA15A /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = FD47A80916F83D4200CEA15A /* Localizable.strings */; };
@@ -205,8 +205,6 @@
 		F8B6C0451726C54000214182 /* GEfficientTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GEfficientTableViewController.m; sourceTree = "<group>"; };
 		F8B6C0461726C54000214182 /* GNavigationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GNavigationViewController.h; sourceTree = "<group>"; };
 		F8B6C0471726C54000214182 /* GNavigationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GNavigationViewController.m; sourceTree = "<group>"; };
-		F8B6C0481726C54000214182 /* GPoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GPoint.h; sourceTree = "<group>"; };
-		F8B6C0491726C54000214182 /* GPoint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GPoint.m; sourceTree = "<group>"; };
 		F8B6C04A1726C54000214182 /* GSelectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GSelectionViewController.h; sourceTree = "<group>"; };
 		F8B6C04B1726C54000214182 /* GSelectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GSelectionViewController.m; sourceTree = "<group>"; };
 		F8B6C04C1726C54000214182 /* GTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTabBarController.h; sourceTree = "<group>"; };
@@ -217,6 +215,8 @@
 		F8B6C0511726C54000214182 /* GViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GViewController.m; sourceTree = "<group>"; };
 		F8B6C07D1726C5E300214182 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		F8B6C07F1726C7ED00214182 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		FD07BDD31727605100D8E26A /* GPoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GPoint.h; sourceTree = "<group>"; };
+		FD07BDD41727605100D8E26A /* GPoint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GPoint.m; sourceTree = "<group>"; };
 		FD0BC5DA17043C60000CC973 /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
 		FD0BC5E417044A54000CC973 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		FD47A80916F83D4200CEA15A /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
@@ -426,6 +426,8 @@
 				F8B6C0011726C54000214182 /* GMacros.h */,
 				F8B6C0021726C54000214182 /* GMath.h */,
 				F8B6C0031726C54000214182 /* GMath.m */,
+				FD07BDD31727605100D8E26A /* GPoint.h */,
+				FD07BDD41727605100D8E26A /* GPoint.m */,
 				F8B6C0041726C54000214182 /* NSArray+GKit.h */,
 				F8B6C0051726C54000214182 /* NSArray+GKit.m */,
 				F8B6C0061726C54000214182 /* NSData+GKit.h */,
@@ -528,8 +530,6 @@
 				F8B6C0451726C54000214182 /* GEfficientTableViewController.m */,
 				F8B6C0461726C54000214182 /* GNavigationViewController.h */,
 				F8B6C0471726C54000214182 /* GNavigationViewController.m */,
-				F8B6C0481726C54000214182 /* GPoint.h */,
-				F8B6C0491726C54000214182 /* GPoint.m */,
 				F8B6C04A1726C54000214182 /* GSelectionViewController.h */,
 				F8B6C04B1726C54000214182 /* GSelectionViewController.m */,
 				F8B6C04C1726C54000214182 /* GTabBarController.h */,
@@ -701,7 +701,6 @@
 				F8B6C0751726C54000214182 /* GBlockTableViewController.m in Sources */,
 				F8B6C0761726C54000214182 /* GEfficientTableViewController.m in Sources */,
 				F8B6C0771726C54000214182 /* GNavigationViewController.m in Sources */,
-				F8B6C0781726C54000214182 /* GPoint.m in Sources */,
 				F8B6C0791726C54000214182 /* GSelectionViewController.m in Sources */,
 				F8B6C07A1726C54000214182 /* GTabBarController.m in Sources */,
 				F8B6C07B1726C54000214182 /* GTableViewController.m in Sources */,
@@ -714,6 +713,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F8862C7016CA6A36006EB467 /* GKitDemoTests.m in Sources */,
+				FD07BDD51727605100D8E26A /* GPoint.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
