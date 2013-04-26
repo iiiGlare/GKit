@@ -18,15 +18,25 @@
 
 @implementation DemosViewController
 
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+{
+    self = [super initWithStyle:UITableViewStyleGrouped];
+    if (self) {
+        
+    }
+    return self;
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     _listInfo = [NSMutableDictionary dictionary];
-    [_listInfo setValue:GNumberWithInteger(2) forKey:kNumberOfSections];
+    [_listInfo setValue:GNumberWithInteger(3) forKey:kNumberOfSections];
     
     [_listInfo setValue:@[@"CustomUI"] forKey:@"0"];
     [_listInfo setValue:@[@"Calendar"] forKey:@"1"];
+    [_listInfo setValue:@[@"Present"] forKey:@"2"];
 }
 
 - (void)didReceiveMemoryWarning
@@ -57,6 +67,7 @@
     NSString *title = [[_listInfo valueForKey:[NSString stringWithFormat:@"%d",indexPath.section]] objectAtPosition:indexPath.row];
     if (title) {
         UIViewController *controller = [NSClassFromString([NSString stringWithFormat:@"%@ViewController",title]) new];
+        [controller setHidesBottomBarWhenPushed:YES];
         [self.navigationController pushViewController:controller animated:YES];
     }
 }

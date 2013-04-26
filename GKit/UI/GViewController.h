@@ -17,6 +17,13 @@
 
 #import <UIKit/UIKit.h>
 
+enum {
+    GPresentAnimationTypNormal,
+    GPresentAnimationTypeHide
+};
+typedef NSInteger GPresentAnimationType;
+
+
 @interface GViewController : UIViewController
 
 - (void)customInitialize;
@@ -30,5 +37,9 @@
 - (void)setTopViewHeight:(CGFloat)topViewHeight;
 - (void)setContentViewHeight:(CGFloat)contentViewHeight;
 - (void)setBottomViewHeight:(CGFloat)bottomViewHeight;
+
+// Present / Dismiss Animation
+@property (nonatomic) BOOL canDragDismiss;  //default YES
+@property (nonatomic, assign) GPresentAnimationType presentAnimationType;
 
 @end

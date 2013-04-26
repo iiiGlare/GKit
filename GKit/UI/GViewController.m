@@ -17,6 +17,17 @@
 #import "GViewController.h"
 #import "GCore.h"
 
+@interface GViewController ()
+
+//for present / dismiss animation
+@property (nonatomic, weak) UIViewController *container;
+@property (nonatomic, weak) UIView *presentedView;
+@property (nonatomic, strong) UIView *backgroundScene;
+@property (nonatomic, strong) UIImageView *snapshot;
+@property (nonatomic, strong) UIView *snapshotCover;
+
+@end
+
 @implementation GViewController
 
 #pragma mark - Init
@@ -31,7 +42,8 @@
 
 - (void)customInitialize
 {
-
+    _canDragDismiss = YES;
+    _presentAnimationType = GPresentAnimationTypeHide;
 };
 
 #pragma mark - View Life Cycle
@@ -87,7 +99,7 @@
     
     
     [self setTopViewHeight:topViewHeight];
-    [self setBottomViewHeight:bottomViewHeight];
+    [self setBottomViewHeight:bottomViewHeight];    
 }
 
 - (void)setTopViewHeight:(CGFloat)topViewHeight
@@ -110,6 +122,117 @@
     [_bottomView setHeight:MIN(MAX(0, bottomViewHeight), maxHeight)];
     [_bottomView setOrigin:CGPointMake(0, CGRectGetHeight(self.view.bounds) - CGRectGetHeight(_bottomView.frame))];
     [_contentView setHeight:maxHeight - CGRectGetHeight(_bottomView.frame)];
+}
+
+#pragma mark - Custom Present/Dismiss Animation
+- (UIViewController *)container
+{
+    if (_container==nil) {
+        //
+        if (self.tabBarController) {
+            _container = self.tabBarController;
+        }else if (self.navigationController) {
+            _container = self.navigationController;
+        }else if (self.parentViewController) {
+            _container = self.parentViewController;
+        }else {
+            _container = self;
+        }
+    }
+    return _container;
+}
+
+- (void)presentViewController:(UIViewController *)viewControllerToPresent animated:(BOOL)flag completion:(void (^)(void))completion
+{
+    
+    self.snapshot = [self.container.view snapshot];
+    
+    [super presentViewController: viewControllerToPresent
+                        animated: NO
+                      completion: nil];
+    
+    self.presentedView = viewControllerToPresent.view;
+    [self prepareSceneAndSnapshot];
+
+    CGPoint beginOrigin = viewControllerToPresent.view.origin;
+    CGPoint endOrigin = beginOrigin;
+    endOrigin.y += viewControllerToPresent.view.height;
+    [self moveViewToOrigin:endOrigin];
+    [UIView animateWithDuration: 0.25
+                     animations: ^{
+                         [self moveViewToOrigin:beginOrigin];
+                     }
+                     completion:^(BOOL finished){
+                         [self.snapshot setTransform:CGAffineTransformIdentity];
+                         [self cleanTemporaryData];
+                         if (completion) {
+                             completion();
+                         }
+                     }];
+}
+
+- (void)dismissViewControllerAnimated:(BOOL)flag completion:(void (^)(void))completion
+{
+
+    if (self.snapshot==nil) {
+        self.presentedView = [[self.presentingViewController presentedViewController] view];
+        self.snapshot = [[self.presentingViewController view] snapshot];
+    }
+    
+    [self prepareSceneAndSnapshot];
+    
+    CGPoint beginOrigin = self.presentedView.origin;
+    CGPoint endOrigin = beginOrigin;
+    endOrigin.y += self.presentedView.height/1.5;
+    
+    [UIView animateWithDuration: 0.25
+                     animations: ^{
+                         [self moveViewToOrigin:endOrigin];
+                     }
+                     completion: ^(BOOL finished){
+                         [super dismissViewControllerAnimated:NO completion:nil];
+                         [self.snapshot removeFromSuperview];
+                         self.snapshot = nil;
+                         [self cleanTemporaryData];
+                         if (completion) {
+                             completion();
+                         }
+                     }];
+}
+- (void)prepareSceneAndSnapshot
+{
+    _backgroundScene = [[UIView alloc] initWithFrame:self.presentedView.superview.bounds];
+    _backgroundScene.backgroundColor = [UIColor blackColor];
+    [self.presentedView.superview insertSubview: _backgroundScene
+                                   belowSubview: self.presentedView];
+    
+    
+    [_backgroundScene addSubviewToFill:self.snapshot];
+    [self.snapshot setTransform:CGAffineTransformMakeScale(0.95, 0.95)];
+    
+    _snapshotCover = [[UIView alloc] initWithFrame:CGRectZero];
+    _snapshotCover.backgroundColor = [UIColor blackColor];
+    [_backgroundScene addSubviewToFill:_snapshotCover];
+}
+
+- (void)moveViewToOrigin:(CGPoint)origin
+{
+    origin.y = MAX(_backgroundScene.y, origin.y);
+    [self.presentedView setOrigin:origin];
+    
+    CGFloat factor = MIN(1.0, MAX(0, (origin.y-_backgroundScene.y)/[_backgroundScene height]));
+    CGFloat scale = 0.95 + 0.05 * factor;
+    [self.snapshot setTransform:CGAffineTransformMakeScale(scale, scale)];
+    _snapshotCover.alpha = 0.5 * (1.0-factor);
+}
+
+- (void)cleanTemporaryData
+{
+    [self.backgroundScene removeFromSuperview];
+    self.backgroundScene = nil;
+        
+    [self.snapshotCover removeFromSuperview];
+    self.snapshotCover = nil;
 }
 
 @end

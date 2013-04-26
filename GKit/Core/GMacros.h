@@ -83,7 +83,7 @@
 #define GScreenScale    [[UIScreen mainScreen] scale]
 
 //Status Bar
-#define GStatusBarHeight	[[UIApplication sharedApplication] statusBarFrame].size.width
+#define GStatusBarHeight	[[UIApplication sharedApplication] statusBarFrame].size.height
 
 //Navigation Bar
 #define GNavigationBarHeight	44.0f

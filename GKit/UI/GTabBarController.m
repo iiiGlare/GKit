@@ -17,6 +17,7 @@
 
 #import "GTabBarController.h"
 #import "GCore.h"
+#import "GNavigationViewController.h"
 
 @implementation GTabBarController
 
@@ -42,7 +43,7 @@
 		[viewController setTitle:NSLocalizedString(title,@"")];
 		[viewController.tabBarItem setImage:[UIImage imageNamed:image]];
 
-		[controllers addObject:[[UINavigationController alloc] initWithRootViewController:viewController]];
+		[controllers addObject:[[GNavigationViewController alloc] initWithRootViewController:viewController]];
 	}
 	
 	GTabBarController *tabBarController = [[GTabBarController alloc] init];

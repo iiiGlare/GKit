@@ -13,6 +13,8 @@
 {
     BOOL _shouldPopItem;
 }
+
+@property (nonatomic, weak) UIViewController *container;
 @property (nonatomic, strong) NSMutableArray *snapshots;
 
 @property (nonatomic, strong) UIView *backgroundScene;
@@ -71,15 +73,30 @@
 }
 
 #pragma mark - Override Super Push/Pop Methods
+
+- (UIViewController *)container
+{
+    if (_container==nil) {
+        if (self.tabBarController) {
+            _container = self.tabBarController;
+        }else {
+            _container = self;
+        }
+    }
+    
+    return _container;
+}
+
 - (void)pushViewController:(UIViewController *)viewController animated:(BOOL)animated
 {
-    [_snapshots addObject:[self.view snapshot]];
-    
     if ([self.viewControllers count]>=1 &&
         _navigationAnimationType == GNavigationAnimationTypeHide)
     {
+        [_snapshots addObject:[self.container.view snapshot]];
+        
         [self showViewController:viewController];
     }else {
+        
         [super pushViewController:viewController animated:animated];
     }
 
@@ -109,24 +126,25 @@
 {
     [self prepareSceneAndSnapshot];
     
-    self.tempSnapshot = [self.view snapshot];
-    [self.view addSubviewToFill:self.tempSnapshot];
+    self.tempSnapshot = [self.container.view snapshot];
+    [self.container.view addSubviewToFill:self.tempSnapshot];
     [self goBackToPreViewController];
 }
 - (void)prepareSceneAndSnapshot
 {
-    _backgroundScene = [[UIView alloc] initWithFrame:self.view.frame];
+    _backgroundScene = [[UIView alloc] initWithFrame:self.container.view.frame];
     _backgroundScene.backgroundColor = [UIColor blackColor];
-    [[self.view superview] insertSubview:_backgroundScene belowSubview:self.view];
+    [[self.container.view superview] insertSubview:_backgroundScene belowSubview:self.container.view];
     
     
     [_backgroundScene addSubviewToFill:[_snapshots lastObject]];
     [[_snapshots lastObject] setTransform:CGAffineTransformMakeScale(0.95, 0.95)];
     
-    _snapshotCover = [[UIView alloc] initWithFrame:self.view.frame];
+    _snapshotCover = [[UIView alloc] initWithFrame:self.container.view.frame];
     _snapshotCover.backgroundColor = [UIColor blackColor];
     [_backgroundScene addSubviewToFill:_snapshotCover];
 }
+
 #pragma mark - Gesture Recognizer
 - (void)handlePan:(UIPanGestureRecognizer *)panGR
 {
@@ -151,7 +169,7 @@
             break;
         case UIGestureRecognizerStateEnded:
         {
-            if (self.view.x-_backgroundScene.x>30) {
+            if (self.container.view.x-_backgroundScene.x>30) {
                 [self goBackToPreViewController];
             }else {
                 [self stayInCurrentViewController];
@@ -191,7 +209,7 @@
 
 - (void)goBackToPreViewController
 {
-    [UIView animateWithDuration: 0.25 * ((CGRectGetMaxX(_backgroundScene.frame)-self.view.x)/_backgroundScene.width)
+    [UIView animateWithDuration: 0.25 * ((CGRectGetMaxX(_backgroundScene.frame)-self.container.view.x)/_backgroundScene.width)
                      animations: ^{
                          CGPoint origin = _backgroundScene.origin;
                          origin.x += _backgroundScene.width;
@@ -199,9 +217,14 @@
                      }
                      completion:^(BOOL finished){
                          [self moveViewToOrigin:_backgroundScene.origin];
-                         [_snapshots removeLastObject];
                          _shouldPopItem = YES;
+                         UIViewController *topViewController = [self topViewController];
+                         if ([topViewController respondsToSelector:@selector(tableView)]) {
+                             UITableView *tableView = [topViewController performSelector:@selector(tableView)];
+                             tableView.delegate = nil;
+                         }
                          [super popViewControllerAnimated:NO];
+                         [_snapshots removeLastObject];
                          [self cleanTemporaryData];
                      }];
 }
@@ -219,7 +242,7 @@
 
 - (void)moveViewAddOffset:(CGPoint)offset
 {
-    CGPoint origin = self.view.origin;
+    CGPoint origin = self.container.view.origin;
     origin.x += offset.x;
     origin.y += offset.y;
     [self moveViewToOrigin:origin];
@@ -228,7 +251,7 @@
 - (void)moveViewToOrigin:(CGPoint)origin
 {
     origin.x = MAX(_backgroundScene.x, origin.x);
-    [self.view setOrigin:origin];
+    [self.container.view setOrigin:origin];
     
     CGFloat factor = MIN(1.0, MAX(0, (origin.x-_backgroundScene.x)/[_backgroundScene width]));
     CGFloat scale = 0.95 + 0.05 * factor;

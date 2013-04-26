@@ -9,6 +9,7 @@
 #import "AppDelegate.h"
 #import "GCore.h"
 #import "GNavigationViewController.h"
+#import "GTabBarController.h"
 #import "DemosViewController.h"
 
 @implementation AppDelegate
@@ -39,13 +40,7 @@
     // Override point for customization after application launch.
     self.window.backgroundColor = [UIColor whiteColor];
 
-//    GTabBarController *tabbarController = [GTabBarController newWithControllerNames:@[@"MyTable",@"MyEfficientTable",@"CustomUI"]];
-//    [tabbarController addActionButtonWithTarget:self
-//                                         action:@selector(centerTabBarItemSelected)];
-    
-    DemosViewController *demosVC = [[DemosViewController alloc] initWithStyle:UITableViewStyleGrouped];
-    GNavigationViewController *navigationViewController = [[GNavigationViewController alloc] initWithRootViewController:demosVC];
-	self.window.rootViewController = navigationViewController;
+	self.window.rootViewController = [GTabBarController newWithControllerNames:@[@"Demos",@"Demos"]];
     [self.window makeKeyAndVisible];
     return YES;
 }
