@@ -546,8 +546,8 @@
         
         if (dateChanged) {
             if (_delegate &&
-                [_delegate respondsToSelector:@selector(dayView:didChangeEvent:)]) {
-                [_delegate dayView:self didChangeEvent:event];
+                [_delegate respondsToSelector:@selector(dayView:didUpdateEvent:)]) {
+                [_delegate dayView:self didUpdateEvent:event];
             }
         }
         

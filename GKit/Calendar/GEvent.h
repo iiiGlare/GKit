@@ -12,6 +12,8 @@
 
 @interface GEvent : NSObject
 
+@property (nonatomic, strong) id userObject;
+
 @property (nonatomic, copy) NSDate *beginDate;
 @property (nonatomic, copy) NSDate *endDate;
 @property (nonatomic, copy) NSString *title;

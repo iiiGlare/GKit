@@ -58,7 +58,7 @@
 
 @optional
 - (void)dayView:(GDayView *)dayView didRemoveEvent:(GEvent *)event;
-- (void)dayView:(GDayView *)dayView didChangeEvent:(GEvent *)event;
+- (void)dayView:(GDayView *)dayView didUpdateEvent:(GEvent *)event;
 - (void)dayView:(GDayView *)dayView didSelectEvent:(GEvent *)event;
 
 @end
