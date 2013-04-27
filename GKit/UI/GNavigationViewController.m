@@ -46,17 +46,16 @@
     
     _shouldPopItem = NO;
     _snapshots = [NSMutableArray array];
-    
-    UIPanGestureRecognizer *panGR =
-    [[UIPanGestureRecognizer alloc] initWithTarget: self
-                                            action: @selector(handlePan:)];
-    [self.view addGestureRecognizer:panGR];
 }
 
 #pragma mark -
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    UIPanGestureRecognizer *panGR =
+    [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handlePan:)];
+    [self.view addGestureRecognizer:panGR];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation

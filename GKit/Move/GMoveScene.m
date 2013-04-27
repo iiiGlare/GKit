@@ -32,6 +32,8 @@
         // Initialization code
         UILongPressGestureRecognizer *longPressGR = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(handleLongPress:)];
         [self addGestureRecognizer:longPressGR];
+        
+        self.backgroundColor = [UIColor whiteColor];
     }
     return self;
 }

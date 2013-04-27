@@ -17,12 +17,16 @@
 <GMoveSpriteCatcherProtocol>
 
 @property (nonatomic, copy) NSDate *date;
+- (void)jumpToToday;
+- (void)goToNextDay;
+- (void)backToPreviousDay;
 
 @property (nonatomic, weak) id<GDayViewDataSource> dataSource;
 @property (nonatomic, weak) id<GDayViewDelegate> delegate;
 
 - (void)reloadData;
 - (BOOL)canShowEvent:(GEvent *)event;
+
 
 @end
 

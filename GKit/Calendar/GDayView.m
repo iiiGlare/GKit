@@ -127,7 +127,7 @@
     self = [super initWithFrame:frame];
     if (self) {
         // Initialization code
-        [self initialize];
+        [self customInitialize];
         
     }
     return self;
@@ -136,29 +136,30 @@
 {
     self = [super initWithCoder:aDecoder];
     if (self) {
-        [self initialize];
+        [self customInitialize];
     }
     return self;
 }
-- (void)initialize
+- (void)customInitialize
 {
-    self.reloadDataToLayoutSubviews = YES;
-    self.hourHeight = 60.0;
-    self.hourViewWidth = 50.0;
-    self.gridLineOffset = 1.0;
-    self.gridTopMargin = 15.0;
-    self.gridBottomMargin = 15.0;
-    self.gridHeight = GHoursInDay * _hourHeight + 2 * _gridLineOffset;
+    _reloadDataToLayoutSubviews = YES;
+    _hourHeight = 60.0;
+    _hourViewWidth = 50.0;
+    _gridLineOffset = 1.0;
+    _gridTopMargin = 15.0;
+    _gridBottomMargin = 15.0;
+    _gridHeight = GHoursInDay * _hourHeight + 2 * _gridLineOffset;
 
-    self.date = [NSDate date];
+    _date = [NSDate date];
     
     [self addSubview:self.scrollView];
     [self.scrollView addSubview:self.dayGridView];
     [self.scrollView addSubview:self.dayHourView];
-    
+        
     //Tap Gesture
     UITapGestureRecognizer *tapGR = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTap:)];
     [self addGestureRecognizer:tapGR];
+
 }
 
 #pragma mark Setter / Getter
@@ -191,7 +192,28 @@
     return _dayHourView;
 }
 
+- (void)setDate:(NSDate *)date
+{
+    _date = [date copy];
+    [self reloadData];
+}
+
+- (void)jumpToToday
+{
+    self.date = [NSDate date];
+}
+
+- (void)goToNextDay
+{
+    self.date = [self.date nextDayBeginPoint];
+}
+
+- (void)backToPreviousDay
+{
+    self.date = [self.date previousDayBeginPoint];
+}
 #pragma mark Layout
+
 - (void)layoutSubviews
 {
     self.scrollView.frame = self.bounds;
@@ -379,8 +401,7 @@
     }
 }
 
-
-#pragma mark - GMoveSpriteCatcherProtocol
+#pragma mark GMoveSpriteCatcherProtocol
 //preprare
 - (GMoveSnapshot *)prepareSnapshotForOwnSprite:(UIView *)sprite
 {

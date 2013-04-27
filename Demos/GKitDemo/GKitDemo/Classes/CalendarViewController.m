@@ -10,12 +10,15 @@
 #import "GCore.h"
 #import "GMove.h"
 #import "GCalendar.h"
+#import "GNavigationViewController.h"
 
 @interface CalendarViewController ()
-<GDayViewDataSource, GDayViewDelegate,
-GMoveSpriteCatcherProtocol>
+<GDayViewDataSource, GDayViewDelegate>
 
 @property (nonatomic, weak) GDayView *dayView;
+@property (nonatomic, weak) GWeekView *weekView;
+@property (nonatomic, weak) GMonthView *monthView;
+
 @end
 
 @implementation CalendarViewController
@@ -35,6 +38,13 @@ GMoveSpriteCatcherProtocol>
     self.view.autoresizingMask = GViewAutoresizingFlexibleSize;
 }
 
+- (void)didReceiveMemoryWarning
+{
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+#pragma mark - 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -43,27 +53,51 @@ GMoveSpriteCatcherProtocol>
     [self setTopViewHeight:60];
     [self.topView setBackgroundColor:[UIColor randomColor]];
     
-    GEventView *outEventView = [[GEventView alloc] initWithFrame:CGRectMake(0, 0, 30, 30)];
-    outEventView.center = [self.topView innerCenter];
-    [self.topView addSubview:outEventView];
-    
-    
-    
     [self setBottomViewHeight:60];
     [self.bottomView setBackgroundColor:[UIColor randomColor]];
     
-    GDayView *dayView = [[GDayView alloc] init];
-    dayView.dataSource = self;
-    dayView.delegate = self;
-    [self.contentView addSubviewToFill:dayView];
-    self.dayView = dayView;
+    UISegmentedControl *segmentedControl = [[UISegmentedControl alloc] initWithItems:@[@"日",@"周",@"月"]];
+    [segmentedControl setWidth:200];
+    segmentedControl.center = self.topView.innerCenter;
+    [segmentedControl addTarget:self action:@selector(changeCalenderType:) forControlEvents:UIControlEventValueChanged];
+    [self.topView addSubview:segmentedControl];
+    [segmentedControl setSelectedSegmentIndex:0];
+    [self changeCalenderType:segmentedControl];
+
 }
 
-
-- (void)didReceiveMemoryWarning
+- (void)viewDidAppear:(BOOL)animated
 {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    [super viewDidAppear:animated];
+}
+
+#pragma mark - Action
+- (void)changeCalenderType:(UISegmentedControl *)control
+{
+    if (control.selectedSegmentIndex==0) {
+        [self.weekView removeFromSuperview];
+        [self.monthView removeFromSuperview];
+        
+        GDayView *dayView = [[GDayView alloc] init];
+        dayView.dataSource = self;
+        dayView.delegate = self;
+        [self.contentView addSubviewToFill:dayView];
+        self.dayView = dayView;
+    }else if (control.selectedSegmentIndex==1) {
+        [self.dayView removeFromSuperview];
+        [self.monthView removeFromSuperview];
+        
+        GWeekView *weekView = [[GWeekView alloc] init];
+        [self.contentView addSubviewToFill:weekView];
+        self.weekView = weekView;
+    }else {
+        [self.dayView removeFromSuperview];
+        [self.monthView removeFromSuperview];
+        
+        GMonthView *monthView = [[GMonthView alloc] init];
+        [self.contentView addSubview:monthView];
+        self.monthView = monthView;
+    }
 }
 
 #pragma mark - GDayViewDatasource / Delegate
