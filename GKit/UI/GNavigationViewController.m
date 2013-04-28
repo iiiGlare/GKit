@@ -14,6 +14,8 @@
     BOOL _shouldPopItem;
 }
 
+@property (nonatomic, weak) UIPanGestureRecognizer *dragGestureRecognizer;
+
 @property (nonatomic, weak) UIViewController *container;
 @property (nonatomic, strong) NSMutableArray *snapshots;
 
@@ -48,14 +50,12 @@
     _snapshots = [NSMutableArray array];
 }
 
-#pragma mark -
+#pragma mark - View Life Cycle
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    UIPanGestureRecognizer *panGR =
-    [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handlePan:)];
-    [self.view addGestureRecognizer:panGR];
+
+    self.canDragBack = _canDragBack;
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
@@ -69,6 +69,21 @@
 - (NSUInteger)supportedInterfaceOrientations
 {
     return UIInterfaceOrientationMaskPortrait;
+}
+
+#pragma mark - Setter / Getter
+- (void)setCanDragBack:(BOOL)canDragBack
+{
+	_canDragBack = canDragBack;
+
+	if (_canDragBack && self.dragGestureRecognizer==nil) {
+		UIPanGestureRecognizer *panGR =
+		[[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handlePan:)];
+		[self.view addGestureRecognizer:panGR];
+		self.dragGestureRecognizer = panGR;
+	} else {
+		[self.view removeGestureRecognizer:self.dragGestureRecognizer];
+	}
 }
 
 #pragma mark - Override Super Push/Pop Methods
@@ -272,7 +287,7 @@
     self.location = nil;
 }
 
-#pragma mark - 
+#pragma mark - Override UINavigationBarDelegate
 - (BOOL)navigationBar:(UINavigationBar *)navigationBar shouldPopItem:(UINavigationItem *)item
 {
     
