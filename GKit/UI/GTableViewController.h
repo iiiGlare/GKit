@@ -72,6 +72,7 @@
 - (void)unregisterForKeyboardNotifications;
 - (void)keyboardWillBeShown:(NSNotification*)aNotification;
 - (void)keyboardWillBeHidden:(NSNotification*)aNotification;
+- (CGFloat)tableViewBottomAdditionForKeyboard;
 
 /**
  * 子类可以重写以下方法，配置输入框

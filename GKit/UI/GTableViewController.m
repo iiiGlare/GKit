@@ -58,10 +58,13 @@
     [self registerForKeyboardNotifications];
 }
 
-- (void)viewDidDisappear:(BOOL)animated
+- (void)viewWillDisappear:(BOOL)animated
 {
-    [super viewDidDisappear:animated];
+    [super viewWillDisappear:animated];
     [self unregisterForKeyboardNotifications];
+	if ([_cellInputField isFirstResponder]) {
+		[_cellInputField resignFirstResponder];
+	}
 }
 
 - (void)viewDidUnload
@@ -224,9 +227,9 @@
     NSDictionary* info = [aNotification userInfo];
     CGSize kbSize = [[info objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue].size;
 	CGFloat kbHeight = kbSize.height;
-	
-	self.tableView.contentInset = UIEdgeInsetsMake(0, 0, kbHeight, 0);
-	self.tableView.scrollIndicatorInsets = UIEdgeInsetsMake(0, 0, kbHeight, 0);
+	CGFloat bottomEdgeInset = kbHeight - [self tableViewBottomAdditionForKeyboard];
+	self.tableView.contentInset = UIEdgeInsetsMake(0, 0, bottomEdgeInset, 0);
+	self.tableView.scrollIndicatorInsets = UIEdgeInsetsMake(0, 0, bottomEdgeInset, 0);
 	[self.tableView scrollRectToVisible:[self.tableView convertRect:self.cellInputField.frame fromView:self.cellInputField.superview] animated:YES];
 }
 
@@ -237,6 +240,10 @@
 	self.tableView.scrollIndicatorInsets = UIEdgeInsetsZero;
 }
 
+- (CGFloat)tableViewBottomAdditionForKeyboard
+{
+	return 0;
+}
 
 #pragma mark - Additional Cell
 - (void)insertAdditionalCellAtIndexPath:(NSIndexPath *)indexPath
