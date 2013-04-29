@@ -9,6 +9,82 @@
 #import "GNavigationViewController.h"
 #import "GCore.h"
 
+#pragma mark - GNavigationViewControllerInfo
+@interface GNavigationGlobalConfigurator ()
+
++ (GNavigationGlobalConfigurator *)sharedConfigurator;
+
+@property (nonatomic) BOOL canDragBack;  //default YES
+@property (nonatomic) GNavigationAnimationType navigationAnimationType; //default hide
+
+@property (nonatomic) BOOL useCustomBackItem;
+@property (nonatomic, strong) UIImage *backImage;
+@property (nonatomic, strong) NSString *backTitle;
+@property (nonatomic, strong) UIColor *backTitleColor;
+@property (nonatomic, strong) UIFont *backTitleFont;
+@property (nonatomic) UIEdgeInsets contentEdgeInsets;
+@property (nonatomic, strong) UIImage *backBackgroundImage;
+
+
+
+@end
+@implementation GNavigationGlobalConfigurator
+
++ (void)setCanDragBack:(BOOL)canDragBack
+{
+	GNavigationGlobalConfigurator *configurator = [GNavigationGlobalConfigurator sharedConfigurator];
+	configurator.canDragBack = canDragBack;
+}
++ (void)setNavigationAnimationType:(GNavigationAnimationType)navigationAnimationType
+{
+	GNavigationGlobalConfigurator *configurator = [GNavigationGlobalConfigurator sharedConfigurator];
+	configurator.navigationAnimationType = navigationAnimationType;
+}
++ (void)setBackItemWithImage: (UIImage *)image
+					   title: (NSString *)title
+				  titleColor: (UIColor *)color
+				   titleFont: (UIFont *)font
+		   contentEdgeInsets: (UIEdgeInsets)contentEdgeInsets
+			 backgroundImage: (UIImage *)backgroundImage;
+{
+	GNavigationGlobalConfigurator *configurator = [GNavigationGlobalConfigurator sharedConfigurator];
+	configurator.useCustomBackItem = YES;
+	configurator.backImage = image;
+	configurator.backTitle = title;
+	configurator.backTitleColor = color;
+	configurator.backTitleFont = font;
+	configurator.contentEdgeInsets = contentEdgeInsets;
+	configurator.backBackgroundImage = backgroundImage;
+}
+
+//////
++ (GNavigationGlobalConfigurator *)sharedConfigurator
+{
+	static GNavigationGlobalConfigurator *_sharedConfigurator;
+	static dispatch_once_t onceToken;
+	dispatch_once(&onceToken, ^{
+		_sharedConfigurator = [[GNavigationGlobalConfigurator alloc] init];
+	});
+	return _sharedConfigurator;
+}
+
+- (id)init
+{
+	self = [super init];
+	if (self) {
+		_canDragBack = YES;
+		_navigationAnimationType = GNavigationAnimationTypeHide;
+		
+		_useCustomBackItem = NO;
+	}
+	return self;
+}
+
+
+
+@end
+
+#pragma mark - GNavigationViewController
 @interface GNavigationViewController ()
 {
     BOOL _shouldPopItem;
@@ -43,8 +119,8 @@
 }
 - (void)customInitialize
 {
-    _canDragBack = YES;
-    _navigationAnimationType = GNavigationAnimationTypeHide;
+    _canDragBack = [[GNavigationGlobalConfigurator sharedConfigurator] canDragBack];
+    _navigationAnimationType = [[GNavigationGlobalConfigurator sharedConfigurator] navigationAnimationType];
     
     _shouldPopItem = NO;
     _snapshots = [NSMutableArray array];
@@ -54,7 +130,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
+	
     self.canDragBack = _canDragBack;
 }
 
@@ -76,11 +152,13 @@
 {
 	_canDragBack = canDragBack;
 
-	if (_canDragBack && self.dragGestureRecognizer==nil) {
-		UIPanGestureRecognizer *panGR =
-		[[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handlePan:)];
-		[self.view addGestureRecognizer:panGR];
-		self.dragGestureRecognizer = panGR;
+	if (_canDragBack) {
+		if (self.dragGestureRecognizer==nil) {
+			UIPanGestureRecognizer *panGR =
+			[[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handlePan:)];
+			[self.view addGestureRecognizer:panGR];
+			self.dragGestureRecognizer = panGR;
+		}
 	} else {
 		[self.view removeGestureRecognizer:self.dragGestureRecognizer];
 	}
@@ -103,17 +181,56 @@
 
 - (void)pushViewController:(UIViewController *)viewController animated:(BOOL)animated
 {
-    if ([self.viewControllers count]>=1 &&
+    if ([self.viewControllers count]>=1) {
+		[_snapshots addObject:[self.container.view snapshot]];
+		
+		//Custom Back Item
+		GNavigationGlobalConfigurator *configurator = [GNavigationGlobalConfigurator sharedConfigurator];
+		if (configurator.useCustomBackItem)
+		{
+			UIButton *backButton = [UIButton buttonWithType:UIButtonTypeCustom];
+			
+			[backButton setImage:configurator.backImage forState:UIControlStateNormal];
+			
+			if (configurator.backTitle) {
+				[backButton setTitle:configurator.backTitle forState:UIControlStateNormal];
+			}else{
+				[backButton setTitle:viewController.title forState:UIControlStateNormal];
+			}
+			
+			if (configurator.backTitleColor) {
+				[backButton setTitleColor:configurator.backTitleColor forState:UIControlStateNormal];
+			}
+			
+			if (configurator.backTitleFont) {
+				[backButton.titleLabel setFont:configurator.backTitleFont];
+			}else {
+				[backButton.titleLabel setFont:[UIFont systemFontOfSize:12.0]];
+			}
+			
+			[backButton setContentEdgeInsets:configurator.contentEdgeInsets];
+			[backButton setBackgroundImage:configurator.backBackgroundImage forState:UIControlStateNormal];
+			[backButton sizeToFit];
+			[backButton setWidth:MIN(backButton.width, 70)];
+			[backButton addTarget:self action:@selector(goBack) forControlEvents:UIControlEventTouchUpInside];
+			UIBarButtonItem *backItem = [[UIBarButtonItem alloc] initWithCustomView:backButton];
+			viewController.navigationItem.leftBarButtonItem = backItem;
+		}
+	}
+	
+	if ([self.viewControllers count]>=1 &&
         _navigationAnimationType == GNavigationAnimationTypeHide)
     {
-        [_snapshots addObject:[self.container.view snapshot]];
-        
         [self showViewController:viewController];
     }else {
         
         [super pushViewController:viewController animated:animated];
     }
 
+}
+- (void)goBack
+{
+	[self popViewControllerAnimated:YES];
 }
 - (UIViewController *)popViewControllerAnimated:(BOOL)animated
 {

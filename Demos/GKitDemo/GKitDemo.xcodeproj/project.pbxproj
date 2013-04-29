@@ -86,6 +86,7 @@
 		FD47A80A16F83D4200CEA15A /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = FD47A80916F83D4200CEA15A /* Localizable.strings */; };
 		FDF1EF7C16F1BD6400FCDC64 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FDF1EF7B16F1BD6400FCDC64 /* AVFoundation.framework */; };
 		FDF1EF7E16F1BD6900FCDC64 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FDF1EF7D16F1BD6900FCDC64 /* AudioToolbox.framework */; };
+		FDF566E8172E1A8C00B79E81 /* back_item_backgournd@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FDF566E7172E1A8C00B79E81 /* back_item_backgournd@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -236,6 +237,7 @@
 		FD47A80916F83D4200CEA15A /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 		FDF1EF7B16F1BD6400FCDC64 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		FDF1EF7D16F1BD6900FCDC64 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		FDF566E7172E1A8C00B79E81 /* back_item_backgournd@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "back_item_backgournd@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -331,6 +333,7 @@
 		F8862C4B16CA6A35006EB467 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				FDF566E7172E1A8C00B79E81 /* back_item_backgournd@2x.png */,
 				F8B6BFBF172671D100214182 /* Images */,
 				F8862C4C16CA6A35006EB467 /* GKitDemo-Info.plist */,
 				F8862C4D16CA6A35006EB467 /* InfoPlist.strings */,
@@ -663,6 +666,7 @@
 				F8B6BFCB172671D100214182 /* Default@2x.png in Resources */,
 				F8B6BFCC172671D100214182 /* UIImage.png in Resources */,
 				F8B6BFCD172671D100214182 /* UIImage@2x.png in Resources */,
+				FDF566E8172E1A8C00B79E81 /* back_item_backgournd@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

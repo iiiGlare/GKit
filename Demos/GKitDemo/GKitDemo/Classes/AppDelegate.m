@@ -36,6 +36,15 @@
 //		}
 //	}
 	
+	[GNavigationGlobalConfigurator setNavigationAnimationType:GNavigationAnimationTypNormal];
+	[GNavigationGlobalConfigurator setCanDragBack:NO];
+	[GNavigationGlobalConfigurator setBackItemWithImage: nil
+												  title: @"Back"
+											 titleColor: [UIColor whiteColor]
+											  titleFont: [UIFont systemFontOfSize:12.0]
+									  contentEdgeInsets: UIEdgeInsetsMake(0, 8, 0, 2)
+										backgroundImage: [[UIImage imageNamed:@"back_item_backgournd"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 16, 0, 10)]];
+	
     self.window = [[UIWindow alloc] initWithFrame:GScreenBounds()];
     // Override point for customization after application launch.
     self.window.backgroundColor = [UIColor whiteColor];
