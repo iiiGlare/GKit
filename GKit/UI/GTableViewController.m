@@ -251,7 +251,7 @@
 	self.additionalCellIndexPath = indexPath;
 		
 	[self.tableView beginUpdates];
-	[self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+	[self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
 	[self.tableView endUpdates];
 }
 - (void)removeAdditionalCell
@@ -260,7 +260,7 @@
 	self.additionalCellIndexPath = nil;
 	
 	[self.tableView beginUpdates];
-	[self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+	[self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
 	[self.tableView endUpdates];
 }
 
