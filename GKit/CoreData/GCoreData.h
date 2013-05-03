@@ -128,6 +128,31 @@ typedef NSUInteger GConcurrencyType;
 						 limitedTo: (NSUInteger)limitNumber
 						 inContext: (NSManagedObjectContext *)context;
 
+//fetch all : predicate 、sort、limit、offset
+
++ (NSArray *) findAllForEntityName: (NSString *)entityName
+					 withPredicate: (NSPredicate *)predicate
+						sortByKeys: (NSArray *)keys
+						ascendings: (NSArray *)ascendings
+						 limitedTo: (NSUInteger)limitNumber
+                            offset: (NSUInteger)offset;
++ (NSArray *) findAllForEntityName: (NSString *)entityName
+					 withPredicate: (NSPredicate *)predicate
+						sortByKeys: (NSArray *)keys
+						ascendings: (NSArray *)ascendings
+						 limitedTo: (NSUInteger)limitNumber
+                            offset: (NSUInteger)offset
+						 inContext: (NSManagedObjectContext *)context;
+
++ (NSUInteger) countForEntityName: (NSString *)entityName
+                    withPredicate: (NSPredicate *)predicate
+                       sortByKeys: (NSArray *)keys
+                       ascendings: (NSArray *)ascendings
+                        limitedTo: (NSUInteger)limitNumber
+                           offset: (NSUInteger)offset
+                        inContext: (NSManagedObjectContext *)context;
+
+
 //fetch all : fetch results controller
 + (NSFetchedResultsController *) fetchedResultsForEntityName: (NSString *)entityName
                                                 withDelegate: (id<NSFetchedResultsControllerDelegate>)delegate

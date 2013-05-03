@@ -250,7 +250,7 @@ NSManagedObjectContext * MainContext(void)
 								sortByKeys: keys
 								ascendings: ascendings
 								 limitedTo: limitNumber
-								 inContext: MainContext()];
+                                    offset: 0];
 }
 + (NSArray *) findAllForEntityName:(NSString *)entityName
 					 withPredicate:(NSPredicate *)predicate
@@ -259,10 +259,112 @@ NSManagedObjectContext * MainContext(void)
 						 limitedTo:(NSUInteger)limitNumber
 						 inContext:(NSManagedObjectContext *)context
 {
+    return [GCoreData findAllForEntityName: entityName
+							 withPredicate: predicate
+								sortByKeys: keys
+								ascendings: ascendings
+								 limitedTo: limitNumber
+                                    offset: 0
+                                 inContext: context];
+}
+
++ (NSArray *) findAllForEntityName: (NSString *)entityName
+					 withPredicate: (NSPredicate *)predicate
+						sortByKeys: (NSArray *)keys
+						ascendings: (NSArray *)ascendings
+						 limitedTo: (NSUInteger)limitNumber
+                            offset: (NSUInteger)offset
+{
+    return [GCoreData findAllForEntityName: entityName
+							 withPredicate: predicate
+								sortByKeys: keys
+								ascendings: ascendings
+								 limitedTo: limitNumber
+                                    offset: offset
+                                 inContext: MainContext()];
+}
++ (NSArray *) findAllForEntityName: (NSString *)entityName
+					 withPredicate: (NSPredicate *)predicate
+						sortByKeys: (NSArray *)keys
+						ascendings: (NSArray *)ascendings
+						 limitedTo: (NSUInteger)limitNumber
+                            offset: (NSUInteger)offset
+						 inContext: (NSManagedObjectContext *)context
+{
+    //create fetch request
+    NSFetchRequest *request = [GCoreData fetchRequestForEntityName: entityName
+                                                     withPredicate: predicate
+                                                        sortByKeys: keys
+                                                        ascendings: ascendings
+                                                         limitedTo: limitNumber
+                                                            offset: offset
+                                                         inContext: context];
+
+    //fetch
+    NSError *error = nil;
+    NSMutableArray *mutableFetchResults = [[context executeFetchRequest:request error:&error] mutableCopy];
+    if (error)
+    {
+        // Handle the error.
+        mutableFetchResults = nil;
+    }
+    return mutableFetchResults;
+}
+
++ (NSInteger) countForEntityName: (NSString *)entityName
+                   withPredicate: (NSPredicate *)predicate
+                      sortByKeys: (NSArray *)keys
+                      ascendings: (NSArray *)ascendings
+                       limitedTo: (NSUInteger)limitNumber
+                          offset: (NSUInteger)offset
+{
+    return [GCoreData countForEntityName: entityName
+                           withPredicate: predicate
+                              sortByKeys: keys
+                              ascendings: ascendings
+                               limitedTo: limitNumber
+                                  offset: offset
+                               inContext: MainContext()];
+}
++ (NSUInteger) countForEntityName: (NSString *)entityName
+                   withPredicate: (NSPredicate *)predicate
+                      sortByKeys: (NSArray *)keys
+                      ascendings: (NSArray *)ascendings
+                       limitedTo: (NSUInteger)limitNumber
+                          offset: (NSUInteger)offset
+                       inContext: (NSManagedObjectContext *)context
+{
+    //create fetch request
+    NSFetchRequest *request = [GCoreData fetchRequestForEntityName: entityName
+                                                     withPredicate: predicate
+                                                        sortByKeys: keys
+                                                        ascendings: ascendings
+                                                         limitedTo: limitNumber
+                                                            offset: offset
+                                                         inContext: context];
+    //fetch
+    NSError *error = nil;
+    NSUInteger count = [context countForFetchRequest:request error:&error];
+    if (error)
+    {
+        // Handle the error.
+        count = 0;
+    }
+    return count;
+}
+
++ (NSFetchRequest *)fetchRequestForEntityName: (NSString *)entityName
+                                withPredicate: (NSPredicate *)predicate
+                                   sortByKeys: (NSArray *)keys
+                                   ascendings: (NSArray *)ascendings
+                                    limitedTo: (NSUInteger)limitNumber
+                                       offset: (NSUInteger)offset
+                                    inContext: (NSManagedObjectContext *)context
+{
     //create fetch request
     NSFetchRequest *request = [[NSFetchRequest alloc] init];
-    NSEntityDescription *entity = [NSEntityDescription entityForName:entityName
-                                              inManagedObjectContext:context];
+    NSEntityDescription *entity = [NSEntityDescription entityForName: entityName
+                                              inManagedObjectContext: context];
     [request setEntity:entity];
     [request setPredicate:predicate];
     NSMutableArray *dess = nil;
@@ -280,14 +382,9 @@ NSManagedObjectContext * MainContext(void)
     }
     [request setSortDescriptors:dess];
     [request setFetchLimit:limitNumber];
-    //fetch
-    NSError *error = nil;
-    NSMutableArray *mutableFetchResults = [[context executeFetchRequest:request error:&error] mutableCopy];
-    if (mutableFetchResults == nil)
-    {
-        // Handle the error.
-    }
-    return mutableFetchResults;
+    [request setFetchOffset:offset];
+    
+    return request;
 }
 
 //fetch all : fetch results controller
