@@ -32,18 +32,35 @@
 
 //////////////////////////////////////////////////////////////////////////////////
 - (id)objectAtPosition:(NSInteger)position {
-	NSInteger index;
+	
+    NSUInteger count = self.count;
+    if (count<1) return nil;
+    
+    NSInteger index;
 	if (position<0) {
-		index = self.count + position;
+		index = count + position;
 	}else {
 		index = position;
 	}
 	
-	if (index>=0 && index<[self count]) {
+	if (index>=0 && index<count) {
 		return [self objectAtIndex:index];
 	}else{
 		return nil;
 	}
 }
+- (id)objectAtCirclePosition:(NSInteger)position
+{
+    NSUInteger count = self.count;
+    if (count<=1) return [self firstObject];
+    
+    NSInteger index = position;
+    while (index<0) {
+        index += count;
+    }
+    
+    index = index%count;
 
+    return [self objectAtIndex:index];
+}
 @end

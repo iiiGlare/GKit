@@ -103,7 +103,7 @@
 #define GLocalizedString(x, ...) NSLocalizedString(x, nil)
 
 //Date
-#define GCurrentCalendar() [NSCalendar currentCalendar]
-#define GDateComponets (NSEraCalendarUnit | NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit | NSWeekCalendarUnit |  NSHourCalendarUnit | NSMinuteCalendarUnit | NSSecondCalendarUnit | NSWeekdayCalendarUnit | NSWeekdayOrdinalCalendarUnit)
+#define GDateComponents (NSEraCalendarUnit | NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit | NSWeekCalendarUnit |  NSHourCalendarUnit | NSMinuteCalendarUnit | NSSecondCalendarUnit | NSWeekdayCalendarUnit)
 #define GHoursInDay 24
+#define GDaysInWeek 7
 

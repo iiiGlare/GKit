@@ -35,5 +35,9 @@
 
  */
 - (id)objectAtPosition:(NSInteger)position;
+/**
+ 循环访问数组内容
+ */
+- (id)objectAtCirclePosition:(NSInteger)position;
 
 @end

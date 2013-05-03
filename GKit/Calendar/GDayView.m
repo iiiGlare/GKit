@@ -15,14 +15,15 @@
 
 #pragma mark - GDayGridView
 @interface GDayGridView : UIView
-@property (nonatomic, assign) CGFloat gridLineOffset;
+@property (nonatomic, assign) CGFloat gridLineTopMargin;
+@property (nonatomic, assign) CGFloat gridLineBottomMargin;
 @end
 @implementation GDayGridView
 - (void)drawRect:(CGRect)rect
 {
     [super drawRect:rect];
     
-    CGFloat hourHeight = (rect.size.height-2*_gridLineOffset)/GHoursInDay;
+    CGFloat hourHeight = (rect.size.height-_gridLineTopMargin-_gridLineBottomMargin)/GHoursInDay;
     CGFloat width = rect.size.width;
     
     CGContextRef c = UIGraphicsGetCurrentContext();
@@ -32,11 +33,10 @@
     CGContextSetStrokeColorWithColor(c, [[UIColor grayColor] CGColor]);
     CGContextBeginPath(c);
     for (NSInteger i=0; i<GHoursInDay+1; i++) {
-        CGFloat y = i*hourHeight+_gridLineOffset;
+        CGFloat y = i*hourHeight+_gridLineTopMargin;
         CGContextMoveToPoint(c, 0, y);
         CGContextAddLineToPoint(c, width, y);
     }
-    CGContextClosePath(c);
     CGContextStrokePath(c);
     
     //half hour lines
@@ -46,11 +46,10 @@
     CGContextSetLineDash(c, 0, lengths, 2);
     CGContextBeginPath(c);
     for (NSInteger i=0; i<GHoursInDay+1; i++) {
-        CGFloat y = (i+0.5)*hourHeight+_gridLineOffset;
+        CGFloat y = (i+0.5)*hourHeight+_gridLineTopMargin;
         CGContextMoveToPoint(c, 0, y);
         CGContextAddLineToPoint(c, width, y);
     }
-    CGContextClosePath(c);
     CGContextStrokePath(c);
 }
 @end
@@ -95,23 +94,28 @@
 @end
 #pragma mark - GDayView
 @interface GDayView ()
+<UIScrollViewDelegate>
 
 //layout
-@property (nonatomic, assign) CGFloat gridLineOffset;
+@property (nonatomic, assign) CGFloat gridHeight;
 @property (nonatomic, assign) CGFloat gridTopMargin;
 @property (nonatomic, assign) CGFloat gridBottomMargin;
-@property (nonatomic, assign) CGFloat gridHeight;
-@property (nonatomic, assign) CGFloat hourHeight;
+@property (nonatomic, assign) CGFloat gridLineTopMargin;
+@property (nonatomic, assign) CGFloat gridLineBottomMargin;
+
 @property (nonatomic, assign) CGFloat hourViewWidth;
+@property (nonatomic, assign) CGFloat hourHeight;
+
+//
+@property (nonatomic, assign) CGFloat dayEventViewWidth;
+@property (nonatomic, assign) CGFloat dayBeginTimeOffset;
+@property (nonatomic, assign) CGFloat dayEndTimeOffset;
+
 
 //subviews
 @property (nonatomic, strong) UIScrollView *scrollView;
 @property (nonatomic, strong) GDayGridView *dayGridView;
 @property (nonatomic, strong) GDayHourView *dayHourView;
-
-//data
-@property (nonatomic, assign) BOOL reloadDataToLayoutSubviews;
-@property (nonatomic, strong) NSMutableArray *events;
 
 //move
 @property (nonatomic, weak) GEventView *movingEventView;
@@ -142,33 +146,37 @@
 }
 - (void)customInitialize
 {
-    _reloadDataToLayoutSubviews = YES;
     _hourHeight = 60.0;
     _hourViewWidth = 50.0;
-    _gridLineOffset = 1.0;
     _gridTopMargin = 15.0;
     _gridBottomMargin = 15.0;
-    _gridHeight = GHoursInDay * _hourHeight + 2 * _gridLineOffset;
-
-    _date = [NSDate date];
-    
-    [self addSubview:self.scrollView];
-    [self.scrollView addSubview:self.dayGridView];
-    [self.scrollView addSubview:self.dayHourView];
+    _gridLineTopMargin = 1.0;
+    _gridLineBottomMargin = 1.0;
+    _gridHeight = GHoursInDay * _hourHeight + _gridLineTopMargin + _gridLineBottomMargin;
         
     //Tap Gesture
     UITapGestureRecognizer *tapGR = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTap:)];
     [self addGestureRecognizer:tapGR];
+}
 
+- (void)didMoveToSuperview
+{
+    if (_scrollView==nil)
+    {
+        [self.scrollView addSubview:self.dayGridView];
+        [self.scrollView addSubview:self.dayHourView];
+        [self addSubview:self.scrollView];
+    }
 }
 
 #pragma mark Setter / Getter
-
 - (UIScrollView *)scrollView
 {
     if (_scrollView==nil) {
-        _scrollView = [[UIScrollView alloc] initWithFrame:CGRectZero];
+        _scrollView = [[UIScrollView alloc] initWithFrame:self.bounds];
+        _scrollView.autoresizingMask = GViewAutoresizingFlexibleSize;
         _scrollView.backgroundColor = [UIColor whiteColor];
+        _scrollView.delegate = self;
     }
     return _scrollView;
 }
@@ -176,9 +184,10 @@
 - (GDayGridView *)dayGridView
 {
     if (_dayGridView==nil) {
-        _dayGridView = [[GDayGridView alloc] initWithFrame:CGRectZero];
+        _dayGridView = [[GDayGridView alloc] initWithFrame:CGRectMake(0, _gridTopMargin, _scrollView.width, _gridHeight)];
         _dayGridView.backgroundColor = [UIColor whiteColor];
-        _dayGridView.gridLineOffset = self.gridLineOffset;
+        _dayGridView.gridLineTopMargin = _gridLineTopMargin;
+        _dayGridView.gridLineBottomMargin = _gridLineBottomMargin;
     }
     return _dayGridView;
 }
@@ -186,55 +195,75 @@
 - (GDayHourView *)dayHourView
 {
     if (_dayHourView==nil) {
-        _dayHourView = [[GDayHourView alloc] initWithFrame:CGRectZero];
+        _dayHourView = [[GDayHourView alloc] initWithFrame:CGRectMake(0, 0, _hourViewWidth, _scrollView.contentSize.height)];
         _dayHourView.backgroundColor = [UIColor whiteColor];
+        _dayHourView.startCenterY = _gridTopMargin + _gridLineTopMargin;
+        _dayHourView.endCenterY = _gridTopMargin + _gridHeight - _gridLineBottomMargin;
     }
     return _dayHourView;
 }
 
-- (void)setDate:(NSDate *)date
+- (void)setDay:(NSDate *)day
 {
-    _date = [date copy];
-    [self reloadData];
+    _day = [day beginningOfDay];
+    _nextDay = [_day dateByAddingTimeInterval:GTimeIntervalFromDays(1)];
+    _previousDay = [_day dateByAddingTimeInterval:-GTimeIntervalFromDays(1)];
 }
+
+#pragma mark Action
 
 - (void)jumpToToday
 {
-    self.date = [NSDate date];
+    NSDate *beginningOfToday = [[NSDate date] beginningOfDay];
+    
+    if ([self.day isEqualToDate:beginningOfToday]) return;
+    
+    self.day = beginningOfToday;
+    [self reloadData];
 }
 
 - (void)goToNextDay
 {
-    self.date = [self.date nextDayBeginPoint];
+    self.day = self.nextDay;
+    [self reloadData];
 }
 
 - (void)backToPreviousDay
 {
-    self.date = [self.date previousDayBeginPoint];
+    self.day = self.previousDay;
+    [self reloadData];
 }
-#pragma mark Layout
 
-- (void)layoutSubviews
+- (void)reloadData
 {
-    self.scrollView.frame = self.bounds;
-    [self.scrollView setContentSize:CGSizeMake([_scrollView width],
-                                               _gridHeight+_gridTopMargin+_gridBottomMargin)];
+    //remove all event views
+    [self.scrollView removeAllSubviewOfClass:[GEventView class]];
     
-    self.dayGridView.frame = CGRectMake(0, _gridTopMargin,
-                                        [_scrollView width], _gridHeight);
+    _scrollView.contentSize = CGSizeMake(_scrollView.width, _gridHeight+_gridTopMargin+_gridBottomMargin);
+    _dayEventViewWidth = [_scrollView contentSize].width - _hourViewWidth;
+    _dayBeginTimeOffset = _gridTopMargin + _gridLineTopMargin;
+    _dayEndTimeOffset = _hourHeight*GHoursInDay + _dayBeginTimeOffset;
+
     
-    self.dayHourView.startCenterY = _gridTopMargin + _gridLineOffset;
-    self.dayHourView.endCenterY = _gridTopMargin + _gridHeight;
-    self.dayHourView.frame = CGRectMake(0, 0,
-                                        _hourViewWidth, _scrollView.contentSize.height);
-    
-    if (_reloadDataToLayoutSubviews)
+    //show events
+    if (_dataSource &&
+        [_dataSource respondsToSelector:@selector(dayView:eventsForDay:)])
     {
-        _reloadDataToLayoutSubviews = NO;
-        [self reloadData];
+        NSArray *events = [_dataSource dayView:self eventsForDay:self.day];
+        for (GEvent *event in events)
+        {
+            [self layoutEvent:event];
+        }
     }
 }
 
+#pragma mark Layout
+- (void)layoutSubviews
+{
+    [super layoutSubviews];
+    
+    
+}
 - (void)layoutEvent:(GEvent *)event
 {    
     GEventView *eventView = [self eventViewForEvent:event];
@@ -263,7 +292,7 @@
     }
     
     //
-    CGFloat eventViewWidth = [self defaultEventViewWidth]/[sameTimeViews count];
+    CGFloat eventViewWidth = _dayEventViewWidth/[sameTimeViews count];
 
     if (animated)
     {
@@ -272,8 +301,11 @@
     }
     for (NSInteger i=0; i<[sameTimeViews count]; i++) {
         GEventView *view = [sameTimeViews objectAtPosition:i];
-        view.frame = CGRectMake(_hourViewWidth+i*eventViewWidth, [view y],
-                                eventViewWidth, [view height]);
+        CGFloat x = _hourViewWidth + i*eventViewWidth;
+        CGFloat y = MAX(view.y, _dayBeginTimeOffset);
+        CGFloat w = eventViewWidth;
+        CGFloat h = MIN(CGRectGetMaxY(view.frame), _dayEndTimeOffset) - y;
+        view.frame = CGRectMake(x,y,w,h);
     }
     if (animated)
     {
@@ -299,7 +331,7 @@
     }
     
     eventView.event = event;
-    eventView.frame = [self frameForEvent:event];
+    eventView.frame = frame;
     
     return eventView;
 }
@@ -309,32 +341,23 @@
 {
     if (![self canShowEvent:event]) return CGRectZero;
     
-    NSDate *beginDate = event.beginDate;
-    NSDate *endDate = event.endDate;
-    NSDate *beginPoint = [self.date beginPoint];
-    
     //
-    NSTimeInterval beginTimeInterval = [beginDate timeIntervalSinceDate:beginPoint];
-    if (beginTimeInterval<0) beginTimeInterval = 0;
-    NSTimeInterval endTimeInterval = [endDate timeIntervalSinceDate:beginPoint];
-    if (endTimeInterval>GTimeIntervalFromHours(GHoursInDay)) endTimeInterval = GTimeIntervalFromHours(GHoursInDay);
+    NSTimeInterval beginTimeInterval = [event.beginTime timeIntervalSinceDate:self.day];
+    NSTimeInterval endTimeInterval = [event.endTime timeIntervalSinceDate:self.day];
+
+    CGFloat beginY = _hourHeight * beginTimeInterval/GTimeIntervalFromHours(1) + _gridTopMargin + _gridLineTopMargin;
+    CGFloat endY = _hourHeight * endTimeInterval/GTimeIntervalFromHours(1) + _gridTopMargin + _gridLineTopMargin;
     
-    CGFloat beginY = _hourHeight * beginTimeInterval/GTimeIntervalFromHours(1) + _gridTopMargin + _gridLineOffset;
-    CGFloat endY = _hourHeight * endTimeInterval/GTimeIntervalFromHours(1) + _gridTopMargin + _gridLineOffset;
-    
-    return CGRectMake(_hourViewWidth, beginY, [self defaultEventViewWidth], endY-beginY);
+    return CGRectMake(_hourViewWidth, beginY, _dayEventViewWidth, endY-beginY);
 }
 
 - (BOOL)canShowEvent:(GEvent *)event
 {
-    NSDate *beginDate = event.beginDate;
-    NSDate *endDate = event.endDate;
-    
-    NSDate *beginPoint = [self.date beginPoint];
-    NSDate *nextDayBeginPoint = [self.date nextDayBeginPoint];
-    
-    if ([beginDate compare:nextDayBeginPoint]!=NSOrderedAscending ||
-        [endDate compare:beginPoint]!=NSOrderedDescending)
+    NSDate *beginTime = event.beginTime;
+    NSDate *endTime = event.endTime;
+        
+    if ([beginTime compare:self.nextDay]!=NSOrderedAscending ||
+        [endTime compare:self.day]!=NSOrderedDescending)
     {
         return NO;
     }
@@ -343,48 +366,10 @@
 }
 
 - (NSDate *)dateForOffset:(CGFloat)offset
-{
-    NSDate *beginPoint = [self.date beginPoint];
-    NSDate *nextDayBeginPoint = [self.date nextDayBeginPoint];
-    
-    CGFloat dayBeginOffset = CGRectGetMinY(self.dayGridView.frame);
-    CGFloat dayEndOffset = CGRectGetMaxY(self.dayGridView.frame);
-    
-    if (offset<=dayBeginOffset) {
-        return beginPoint;
-    }else if (offset>=dayEndOffset) {
-        return nextDayBeginPoint;
-    }else {
-        NSTimeInterval interval = gfloor(((offset-dayBeginOffset)/self.hourHeight)*GTimeIntervalFromHours(1));
-        return [NSDate dateWithTimeInterval:interval sinceDate:beginPoint];
-    }
-}
-
-- (CGFloat)defaultEventViewWidth
-{
-    return [_scrollView contentSize].width - _hourViewWidth;
-}
-
-#pragma mark Load Data
-- (void)reloadData
-{
-    //remove all event views
-    [self.scrollView removeAllSubviewOfClass:[GEventView class]];
-    
-    //get events
-    self.events = [NSMutableArray array];
-    if (_dataSource &&
-        [_dataSource respondsToSelector:@selector(dayView:eventsForDate:)])
-    {
-        [self.events addObjectsFromArray:[_dataSource dayView:self eventsForDate:self.date]];
-        
-    }
-    
-    //add event views
-    for (GEvent *event in self.events)
-    {
-        [self layoutEvent:event];
-    }
+{    
+    CGFloat dayBeginOffset = _gridTopMargin + _gridLineTopMargin;
+    NSTimeInterval interval = gfloor(((offset-dayBeginOffset)/self.hourHeight)*GTimeIntervalFromHours(1));
+    return [NSDate dateWithTimeInterval:interval sinceDate:self.day];
 }
 
 #pragma mark Gesture Recognizer
@@ -399,6 +384,12 @@
             [_delegate dayView:self didSelectEvent:[(GEventView *)view event]];
         }
     }
+}
+
+#pragma mark UIScrollViewDelegate
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+    
 }
 
 #pragma mark GMoveSpriteCatcherProtocol
@@ -482,9 +473,8 @@
 }
 - (CGRect)dayViewPrepareFrameForSnapshot:(GMoveSnapshot *)snapshot
 {
-    CGRect endFrame = GRectSetWidth(snapshot.frame, [self defaultEventViewWidth]);
-    endFrame = GRectSetOrigin(endFrame, CGPointMake(_hourViewWidth, [snapshot y]));
-    return endFrame;
+    CGRect eventFrame = [self frameForEvent: [snapshot.userInfo valueForKey:kGEvent]];
+    return [snapshot.superview convertRect:eventFrame fromView:self.scrollView];
 }
 - (void)dayViewDidPrepareSnapshot:(GMoveSnapshot *)snapshot
 {
@@ -550,26 +540,15 @@
     if (self.movingEventView)
     {
         [self.scrollView stopAutoScroll];
-        
-        BOOL dateChanged = NO;
-        
+
         CGRect eventRect = GRectAddPoint(self.movingEventView.frame, self.scrollView.contentOffset);
-        if ([event.beginDate compare:[self.date beginPoint]]!=NSOrderedAscending) {
-            //reset beginDate only if the event's begin date is in today
-            event.beginDate = [self dateForOffset:CGRectGetMinY(eventRect)];
-            dateChanged = YES;
-        }
-        if ([event.endDate compare:[self.date nextDayBeginPoint]]!=NSOrderedDescending) {
-            //reset endDate only if the event's end date is in today
-            event.endDate = [self dateForOffset:CGRectGetMaxY(eventRect)];
-            dateChanged = YES;
-        }
         
-        if (dateChanged) {
-            if (_delegate &&
-                [_delegate respondsToSelector:@selector(dayView:didUpdateEvent:)]) {
-                [_delegate dayView:self didUpdateEvent:event];
-            }
+        event.beginTime = [self dateForOffset:CGRectGetMinY(eventRect)];
+        event.endTime = [self dateForOffset:CGRectGetMaxY(eventRect)];
+        
+        if (_delegate &&
+            [_delegate respondsToSelector:@selector(dayView:didUpdateEvent:)]) {
+            [_delegate dayView:self didUpdateEvent:event];
         }
         
         [self.movingEventView removeFromSuperview];
@@ -577,18 +556,12 @@
     
     if (event)
     {
-        if (![self.events containsObject:event]) {
-            [self.events addObject:event];
-        }
         [self layoutEvent:event];
     }
 }
 
 - (void)dayViewRemoveOwnEventView:(GEventView *)eventView
-{
-    
-    [self.events removeObject:eventView.event];
-    
+{    
     if (_delegate &&
         [_delegate respondsToSelector:@selector(dayView:didRemoveEvent:)]) {
         [_delegate dayView:self didRemoveEvent:eventView.event];

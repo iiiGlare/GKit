@@ -82,37 +82,31 @@ NSString * GTimerStringFromTimeInterval(NSTimeInterval timeInterval)
 }
 
 ///////////////
-- (NSDate *)beginPoint
+- (GWeekdayType)weekday
 {
-    NSDateComponents *components = [GCurrentCalendar() components: GDateComponets
-                                                         fromDate: self];
+    NSCalendar *gregorianCalendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+    NSDateComponents *components = [gregorianCalendar components: GDateComponents
+                                                        fromDate: self];
+    return components.weekday;
+}
+- (NSDate *)beginningOfDay
+{
+    NSCalendar *gregorianCalendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+    NSDateComponents *components = [gregorianCalendar components: GDateComponents
+                                                        fromDate: self];
 	[components setHour:0];
 	[components setMinute:0];
 	[components setSecond:0];
-	return [GCurrentCalendar() dateFromComponents:components];
+	return [gregorianCalendar dateFromComponents:components];
 }
-
-- (NSDate *)previousDayBeginPoint
+- (NSDate *)beginningOfWeekWithFirstWeekday:(GWeekdayType)firstWeekday
 {
-    NSDateComponents *components = [GCurrentCalendar() components: GDateComponets
-                                                         fromDate: self];
-    [components setDay:(components.day-1)];
-	[components setHour:0];
-	[components setMinute:0];
-	[components setSecond:0];
-	return [GCurrentCalendar() dateFromComponents:components];
+    GWeekdayType weekday = [self weekday];
+    NSDate *beginningOfDay = [self beginningOfDay];
+    NSInteger daysToSubtract = weekday-firstWeekday;
+    if (daysToSubtract<0) daysToSubtract += GDaysInWeek;
+    
+    return [beginningOfDay dateByAddingTimeInterval:-GTimeIntervalFromDays(daysToSubtract)];
 }
-
-- (NSDate *)nextDayBeginPoint
-{
-    NSDateComponents *components = [GCurrentCalendar() components: GDateComponets
-                                                         fromDate: self];
-    [components setDay:(components.day+1)];
-	[components setHour:0];
-	[components setMinute:0];
-	[components setSecond:0];
-	return [GCurrentCalendar() dateFromComponents:components];
-}
-
 
 @end

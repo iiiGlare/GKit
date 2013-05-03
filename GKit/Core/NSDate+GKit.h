@@ -30,6 +30,17 @@ NSTimeInterval GTimeIntervalFromWeeks(CGFloat weeks);
 NSString * GTimerElementStringFormElement(NSUInteger element);
 NSString * GTimerStringFromTimeInterval(NSTimeInterval timeInterval);
 
+enum {
+    GWeekdayTypeSunday = 1,
+    GWeekdayTypeMonday = 2,
+    GWeekdayTypeTuesday = 3,
+    GWeekdayTypeWednesday = 4,
+    GWeekdayTypeThursday = 5,
+    GWeekdayTypeFriday = 6,
+    GWeekdayTypeSaturday = 7
+};
+typedef NSInteger GWeekdayType;
+
 @interface NSDate (GKit)
 
 //string from date
@@ -43,9 +54,8 @@ NSString * GTimerStringFromTimeInterval(NSTimeInterval timeInterval);
 
 
 ////
-- (NSDate *)beginPoint;
-- (NSDate *)previousDayBeginPoint;
-- (NSDate *)nextDayBeginPoint;
-
+- (GWeekdayType)weekday;
+- (NSDate *)beginningOfDay;
+- (NSDate *)beginningOfWeekWithFirstWeekday:(GWeekdayType)firstWeekday;
 
 @end

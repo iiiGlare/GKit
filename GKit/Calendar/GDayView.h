@@ -16,7 +16,9 @@
 @interface GDayView : UIView
 <GMoveSpriteCatcherProtocol>
 
-@property (nonatomic, copy) NSDate *date;
+@property (nonatomic, copy) NSDate *day;
+@property (nonatomic, copy, readonly) NSDate *nextDay;
+@property (nonatomic, copy, readonly) NSDate *previousDay;
 - (void)jumpToToday;
 - (void)goToNextDay;
 - (void)backToPreviousDay;
@@ -50,7 +52,7 @@
 #pragma mark - GDayViewDataSource
 @protocol GDayViewDataSource <NSObject>
 
-- (NSArray *)dayView:(GDayView *)dayView eventsForDate:(NSDate *)date;
+- (NSArray *)dayView:(GDayView *)dayView eventsForDay:(NSDate *)day;
 
 @optional
 - (GEventView *)dayView:(GDayView *)dayView eventViewForEvent:(GEvent *)event;

@@ -19,8 +19,8 @@
         self.userObject = nil;
         
         NSDate *date = [NSDate date];
-        self.beginDate = MIN(date, [[date beginPoint] dateByAddingTimeInterval:GTimeIntervalFromHours(23)]);
-        self.endDate = [_beginDate dateByAddingTimeInterval:GTimeIntervalFromHours(1)];
+        self.beginTime = MIN(date, [[date beginningOfDay] dateByAddingTimeInterval:GTimeIntervalFromHours(23)]);
+        self.endTime = [_beginTime dateByAddingTimeInterval:GTimeIntervalFromHours(1)];
         self.title = GLocalizedString(@"New Event");
     }
     return self;

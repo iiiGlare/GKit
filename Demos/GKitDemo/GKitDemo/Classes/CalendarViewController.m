@@ -13,23 +13,20 @@
 #import "GNavigationViewController.h"
 
 @interface CalendarViewController ()
-<GDayViewDataSource, GDayViewDelegate>
+<GDayViewDataSource, GDayViewDelegate,
+ GWeekViewDataSource, GWeekViewDelegate>
 
-@property (nonatomic, weak) GDayView *dayView;
-@property (nonatomic, weak) GWeekView *weekView;
-@property (nonatomic, weak) GMonthView *monthView;
+@property (nonatomic, strong) GDayView *dayView;
+@property (nonatomic, strong) GWeekView *weekView;
+@property (nonatomic, strong) GMonthView *monthView;
 
 @end
 
 @implementation CalendarViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+- (void)customInitialize
 {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
+    
 }
 
 - (void)loadView
@@ -56,19 +53,23 @@
     [self setBottomViewHeight:60];
     [self.bottomView setBackgroundColor:[UIColor randomColor]];
     
+    self.dayView = [[GDayView alloc] initWithFrame:self.contentView.bounds];
+    self.weekView = [[GWeekView alloc] initWithFrame:self.contentView.bounds];
+    self.weekView.firstWeekday = GWeekdayTypeMonday;
+    self.monthView = [[GMonthView alloc] initWithFrame:self.contentView.bounds];
+    
     UISegmentedControl *segmentedControl = [[UISegmentedControl alloc] initWithItems:@[@"日",@"周",@"月"]];
     [segmentedControl setWidth:200];
     segmentedControl.center = self.topView.innerCenter;
     [segmentedControl addTarget:self action:@selector(changeCalenderType:) forControlEvents:UIControlEventValueChanged];
     [self.topView addSubview:segmentedControl];
     [segmentedControl setSelectedSegmentIndex:0];
-    [self changeCalenderType:segmentedControl];
-
+    
 }
-
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
+    [self changeCalenderType:[[self.topView subviews] objectAtIndex:0]];
 }
 
 #pragma mark - Action
@@ -78,77 +79,77 @@
         [self.weekView removeFromSuperview];
         [self.monthView removeFromSuperview];
         
-        GDayView *dayView = [[GDayView alloc] init];
-        dayView.dataSource = self;
-        dayView.delegate = self;
-        [self.contentView addSubviewToFill:dayView];
-        self.dayView = dayView;
+        self.dayView.dataSource = self;
+        self.dayView.delegate = self;
+        [self.contentView addSubviewToFill:self.dayView];
+        [self.dayView jumpToToday];
+        
     }else if (control.selectedSegmentIndex==1) {
         [self.dayView removeFromSuperview];
         [self.monthView removeFromSuperview];
         
-        GWeekView *weekView = [[GWeekView alloc] init];
-        [self.contentView addSubviewToFill:weekView];
-        self.weekView = weekView;
+        self.weekView.dataSource = self;
+        self.weekView.delegate = self;
+        [self.contentView addSubviewToFill:self.weekView];
+        [self.weekView jumpToToday];
+
     }else {
         [self.dayView removeFromSuperview];
         [self.monthView removeFromSuperview];
         
-        GMonthView *monthView = [[GMonthView alloc] init];
-        [self.contentView addSubview:monthView];
-        self.monthView = monthView;
+        [self.contentView addSubview:self.monthView];
     }
 }
 
 #pragma mark - GDayViewDatasource / Delegate
-- (NSArray *)dayView:(GDayView *)dayView eventsForDate:(NSDate *)date
+- (NSArray *)dayView:(GDayView *)dayView eventsForDay:(NSDate *)day
 {
     NSMutableArray *events = [NSMutableArray array];
     
     //-03:00 to 01:00
     GEvent *event = [[GEvent alloc] init];
     event.title = @"test -03:00 to 01:00";
-    event.beginDate = [NSDate dateWithTimeInterval: -GTimeIntervalFromHours(3)
-                                         sinceDate: [dayView.date beginPoint]];
-    event.endDate = [NSDate dateWithTimeInterval: GTimeIntervalFromHours(1)
-                                       sinceDate: [dayView.date beginPoint]];
+    event.beginTime = [NSDate dateWithTimeInterval: -GTimeIntervalFromHours(3)
+                                         sinceDate: dayView.day];
+    event.endTime = [NSDate dateWithTimeInterval: GTimeIntervalFromHours(1)
+                                       sinceDate: dayView.day];
     [events addObject:event];
     
     // 21:00 to 25:00
     event = [[GEvent alloc] init];
     event.title = @"test 21:00 to 25:00";
-    event.beginDate = [NSDate dateWithTimeInterval: -GTimeIntervalFromHours(3)
-                                         sinceDate: [dayView.date nextDayBeginPoint]];
-    event.endDate = [NSDate dateWithTimeInterval: GTimeIntervalFromHours(1)
-                                       sinceDate: [dayView.date nextDayBeginPoint]];
+    event.beginTime = [NSDate dateWithTimeInterval: -GTimeIntervalFromHours(3)
+                                         sinceDate: dayView.nextDay];
+    event.endTime = [NSDate dateWithTimeInterval: GTimeIntervalFromHours(1)
+                                       sinceDate: dayView.nextDay];
     [events addObject:event];
     
     //08:00 to 11:30
     event = [[GEvent alloc] init];
     event.title = @"test 08:00 to 11:30";
-    event.beginDate = [NSDate dateWithTimeInterval: GTimeIntervalFromHours(8)
-                                         sinceDate: [dayView.date beginPoint]];
-    event.endDate = [NSDate dateWithTimeInterval: GTimeIntervalFromHours(11.5)
-                                       sinceDate: [dayView.date beginPoint]];
+    event.beginTime = [NSDate dateWithTimeInterval: GTimeIntervalFromHours(8)
+                                         sinceDate: dayView.day];
+    event.endTime = [NSDate dateWithTimeInterval: GTimeIntervalFromHours(11.5)
+                                       sinceDate: dayView.day];
     [events addObject:event];
     
     //10:00 to 12:00
     event = [[GEvent alloc] init];
     event.title = @"test 10:00 to 12:00";
-    event.beginDate = [NSDate dateWithTimeInterval: GTimeIntervalFromHours(10)
-                                         sinceDate: [dayView.date beginPoint]];
-    event.endDate = [NSDate dateWithTimeInterval: GTimeIntervalFromHours(12)
-                                       sinceDate: [dayView.date beginPoint]];
+    event.beginTime = [NSDate dateWithTimeInterval: GTimeIntervalFromHours(10)
+                                         sinceDate: dayView.day];
+    event.endTime = [NSDate dateWithTimeInterval: GTimeIntervalFromHours(12)
+                                       sinceDate: dayView.day];
     [events addObject:event];
     
     
     //13:00 to 18:00
     event = [[GEvent alloc] init];
     event.title = @"test 13:00 to 18:00";
-    event.beginDate = [NSDate dateWithTimeInterval: GTimeIntervalFromHours(13)
-                                         sinceDate: [dayView.date beginPoint]];
-    event.endDate = [NSDate dateWithTimeInterval: GTimeIntervalFromHours(18)
-                                       sinceDate: [dayView.date beginPoint]];
+    event.beginTime = [NSDate dateWithTimeInterval: GTimeIntervalFromHours(13)
+                                         sinceDate: dayView.day];
+    event.endTime = [NSDate dateWithTimeInterval: GTimeIntervalFromHours(18)
+                                       sinceDate: dayView.day];
     [events addObject:event];
     
     return events;
@@ -159,6 +160,60 @@
     GViewController *eventVC = [GViewController new];
     eventVC.title = event.title;
     [self.navigationController pushViewController:eventVC animated:YES];
+}
+
+#pragma mark - GWeekView
+- (NSArray *)weekView:(GWeekView *)weekView eventsForDay:(NSDate *)day
+{
+    NSMutableArray *events = [NSMutableArray array];
+
+    //-03:00 to 01:00
+    GEvent *event = [[GEvent alloc] init];
+    event.title = @"test -03:00 to 01:00";
+    event.beginTime = [NSDate dateWithTimeInterval: -GTimeIntervalFromHours(3)
+                                         sinceDate: day];
+    event.endTime = [NSDate dateWithTimeInterval: GTimeIntervalFromHours(1)
+                                       sinceDate: day];
+    [events addObject:event];
+    
+    // 21:00 to 25:00
+    event = [[GEvent alloc] init];
+    event.title = @"test 21:00 to 25:00";
+    event.beginTime = [NSDate dateWithTimeInterval: GTimeIntervalFromHours(21)
+                                         sinceDate: day];
+    event.endTime = [NSDate dateWithTimeInterval: GTimeIntervalFromHours(25)
+                                       sinceDate: day];
+    [events addObject:event];
+    
+    //08:00 to 11:30
+    event = [[GEvent alloc] init];
+    event.title = @"test 08:00 to 11:30";
+    event.beginTime = [NSDate dateWithTimeInterval: GTimeIntervalFromHours(8)
+                                         sinceDate: day];
+    event.endTime = [NSDate dateWithTimeInterval: GTimeIntervalFromHours(11.5)
+                                       sinceDate: day];
+    [events addObject:event];
+    
+    //10:00 to 12:00
+    event = [[GEvent alloc] init];
+    event.title = @"test 10:00 to 12:00";
+    event.beginTime = [NSDate dateWithTimeInterval: GTimeIntervalFromHours(10)
+                                         sinceDate: day];
+    event.endTime = [NSDate dateWithTimeInterval: GTimeIntervalFromHours(12)
+                                       sinceDate: day];
+    [events addObject:event];
+    
+    
+    //13:00 to 18:00
+    event = [[GEvent alloc] init];
+    event.title = @"test 13:00 to 18:00";
+    event.beginTime = [NSDate dateWithTimeInterval: GTimeIntervalFromHours(13)
+                                         sinceDate: day];
+    event.endTime = [NSDate dateWithTimeInterval: GTimeIntervalFromHours(18)
+                                       sinceDate: day];
+    [events addObject:event];
+    
+    return events;
 }
 
 #pragma mark - GMove
