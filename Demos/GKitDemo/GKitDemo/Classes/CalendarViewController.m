@@ -216,6 +216,14 @@
     return events;
 }
 
+- (void)weekView:(GDayView *)dayView didSelectEvent:(GEvent *)event
+{
+    GViewController *eventVC = [GViewController new];
+    eventVC.title = event.title;
+    [self.navigationController pushViewController:eventVC animated:YES];
+}
+
+
 #pragma mark - GMove
 - (void)didPrepareSnapshot:(GMoveSnapshot *)snapshot
 {

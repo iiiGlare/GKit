@@ -487,7 +487,15 @@
 #pragma mark Gesture Recognizer
 - (void)handleTap:(UITapGestureRecognizer *)tapGR
 {
-    
+    UIView *view = [self hitTest:[tapGR locationInView:self] withEvent:nil];
+    if (view && [view isKindOfClass:[GEventView class]])
+    {
+        if (_delegate &&
+            [_delegate respondsToSelector:@selector(weekView:didSelectEvent:)])
+        {
+            [_delegate weekView:self didSelectEvent:[(GEventView *)view event]];
+        }
+    }
 }
 
 #pragma mark GMoveSpriteCatcherProtocol
