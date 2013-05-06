@@ -12,6 +12,8 @@
 		F82369BE1727B53C00868E8B /* GSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = FD07BDD7172761DF00D8E26A /* GSlider.m */; };
 		F82369C21727D46500868E8B /* CalendarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F82369C11727D46500868E8B /* CalendarViewController.m */; };
 		F8263B25172A9D3900075959 /* PresentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F8263B24172A9D3900075959 /* PresentViewController.m */; };
+		F86D68551737C1DF003EFE6C /* GTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = F86D68541737C1DF003EFE6C /* GTextField.m */; };
+		F86D68581737CE03003EFE6C /* GScrollSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = F86D68571737CE03003EFE6C /* GScrollSlider.m */; };
 		F8862C4516CA6A35006EB467 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8862C4416CA6A35006EB467 /* UIKit.framework */; };
 		F8862C4716CA6A35006EB467 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8862C4616CA6A35006EB467 /* Foundation.framework */; };
 		F8862C4F16CA6A35006EB467 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = F8862C4D16CA6A35006EB467 /* InfoPlist.strings */; };
@@ -106,6 +108,10 @@
 		F82369C11727D46500868E8B /* CalendarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CalendarViewController.m; sourceTree = "<group>"; };
 		F8263B23172A9D3900075959 /* PresentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PresentViewController.h; sourceTree = "<group>"; };
 		F8263B24172A9D3900075959 /* PresentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PresentViewController.m; sourceTree = "<group>"; };
+		F86D68531737C1DF003EFE6C /* GTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTextField.h; sourceTree = "<group>"; };
+		F86D68541737C1DF003EFE6C /* GTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GTextField.m; sourceTree = "<group>"; };
+		F86D68561737CE03003EFE6C /* GScrollSlider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GScrollSlider.h; sourceTree = "<group>"; };
+		F86D68571737CE03003EFE6C /* GScrollSlider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GScrollSlider.m; sourceTree = "<group>"; };
 		F8862C4116CA6A35006EB467 /* GKitDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GKitDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F8862C4416CA6A35006EB467 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		F8862C4616CA6A35006EB467 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -563,8 +569,12 @@
 				F8B6C07F1726C7ED00214182 /* CoreGraphics.framework */,
 				F8B6C0401726C54000214182 /* GAlertView.h */,
 				F8B6C0411726C54000214182 /* GAlertView.m */,
+				F86D68561737CE03003EFE6C /* GScrollSlider.h */,
+				F86D68571737CE03003EFE6C /* GScrollSlider.m */,
 				FD07BDD6172761DF00D8E26A /* GSlider.h */,
 				FD07BDD7172761DF00D8E26A /* GSlider.m */,
+				F86D68531737C1DF003EFE6C /* GTextField.h */,
+				F86D68541737C1DF003EFE6C /* GTextField.m */,
 				F8B6C0421726C54000214182 /* GBlockTableViewController.h */,
 				F8B6C0431726C54000214182 /* GBlockTableViewController.m */,
 				F8B6C0441726C54000214182 /* GEfficientTableViewController.h */,
@@ -752,6 +762,8 @@
 				F82369C21727D46500868E8B /* CalendarViewController.m in Sources */,
 				F80B4740172831AF00F4FBEB /* GMoveSnapshot+GCalendar.m in Sources */,
 				F8263B25172A9D3900075959 /* PresentViewController.m in Sources */,
+				F86D68551737C1DF003EFE6C /* GTextField.m in Sources */,
+				F86D68581737CE03003EFE6C /* GScrollSlider.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

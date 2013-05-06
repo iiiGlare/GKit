@@ -72,11 +72,13 @@
 - (void)unregisterForKeyboardNotifications;
 - (void)keyboardWillBeShown:(NSNotification*)aNotification;
 - (void)keyboardWillBeHidden:(NSNotification*)aNotification;
-- (CGFloat)tableViewBottomAdditionForKeyboard;
 
 /**
  * 子类可以重写以下方法，配置输入框
  */
+
+- (CGFloat)tableViewBottomAdditionForKeyboard;
+
 - (Class)cellInputFieldClass;
 - (void)cellInputFieldDidLoad:(UITextField *)textField;
 - (void)cellInputFieldWillAddAtIndexPath:(NSIndexPath *)indexPath;
@@ -84,26 +86,12 @@
 - (void)cellInputFieldWillRemoveFromIndexPath:(NSIndexPath *)indexPath;
 - (void)cellInputFieldDidRemoveFromIndexPath:(NSIndexPath *)indexPath;
 
-#pragma mark - additional cell
+#pragma mark - Expand and Collapse Cell
 
-@property (nonatomic, strong) NSIndexPath *additionalCellIndexPath;
-/**
- * 子类调用以下方法插入附加cell
- *		insertAdditionalCellAtIndexPath:
- * 子类调用以下方法移除附加cell
- *		removeAdditionalCell
- */
-- (void)insertAdditionalCellAtIndexPath:(NSIndexPath *)indexPath;
-- (void)removeAdditionalCell;
+@property (nonatomic, strong) NSIndexPath *expandedCellIndexPath;
 
-/**
- * 子类调用以下方法判断当前是否存在附加cell
- *		hasAdditionalCell
- * 子类调用以下方法判断某cell是否为附加cell
- *		isAdditionalCellAtIndexPath:
- */
-- (BOOL)hasAdditionalCell;
-- (BOOL)isAdditionalCellAtIndexPath:(NSIndexPath *)indexPath;
+- (void)expandCellAtIndexPath:(NSIndexPath *)indexPath;
+- (void)collapseExpandedCell;
 
 @end
 

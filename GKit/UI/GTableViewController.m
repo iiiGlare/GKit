@@ -17,6 +17,7 @@
 
 #import "GTableViewController.h"
 #import "GCore.h"
+#import "GTextField.h"
 
 @interface GTableViewController ()
 
@@ -179,21 +180,16 @@
 
 
 //Override by Subclass
-- (Class)cellInputFieldClass{
-    return [UITextField class];
-}
-- (void)cellInputFieldDidLoad:(UITextField *)textField{
-}
+- (CGFloat)tableViewBottomAdditionForKeyboard{return 0;}
 
-- (void)cellInputFieldWillAddAtIndexPath:(NSIndexPath *)indexPath{
-}
-- (void)cellInputFieldDidAddAtIndexPath:(NSIndexPath *)indexPath{
-}
+- (Class)cellInputFieldClass{return [GTextField class];}
+- (void)cellInputFieldDidLoad:(UITextField *)textField{}
 
-- (void)cellInputFieldWillRemoveFromIndexPath:(NSIndexPath *)indexPath{
-}
-- (void)cellInputFieldDidRemoveFromIndexPath:(NSIndexPath *)indexPath{
-}
+- (void)cellInputFieldWillAddAtIndexPath:(NSIndexPath *)indexPath{}
+- (void)cellInputFieldDidAddAtIndexPath:(NSIndexPath *)indexPath{}
+
+- (void)cellInputFieldWillRemoveFromIndexPath:(NSIndexPath *)indexPath{}
+- (void)cellInputFieldDidRemoveFromIndexPath:(NSIndexPath *)indexPath{}
 
 #pragma mark - KeyboardNotification
 // Call this method somewhere in your view controller setup code.
@@ -240,45 +236,33 @@
 	self.tableView.scrollIndicatorInsets = UIEdgeInsetsZero;
 }
 
-- (CGFloat)tableViewBottomAdditionForKeyboard
-{
-	return 0;
-}
-
 #pragma mark - Additional Cell
-- (void)insertAdditionalCellAtIndexPath:(NSIndexPath *)indexPath
+
+- (void)expandCellAtIndexPath:(NSIndexPath *)indexPath
 {
-	self.additionalCellIndexPath = indexPath;
+    if ([indexPath isEqual:self.expandedCellIndexPath])
+	{
+		[self collapseExpandedCell];
 		
-	[self.tableView beginUpdates];
-	[self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-	[self.tableView endUpdates];
-}
-- (void)removeAdditionalCell
-{
-	NSIndexPath *indexPath = self.additionalCellIndexPath;
-	self.additionalCellIndexPath = nil;
-	
-	[self.tableView beginUpdates];
-	[self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-	[self.tableView endUpdates];
+	}else {
+        
+		[self collapseExpandedCell];
+		
+		self.expandedCellIndexPath = indexPath;
+		[self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+		[self.tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionMiddle animated:YES];
+	}
 }
 
-//
-- (BOOL)hasAdditionalCell
+- (void)collapseExpandedCell
 {
-	if (self.additionalCellIndexPath) {
-		return YES;
-	}else {
-		return NO;
+    if (self.expandedCellIndexPath)
+	{
+		NSIndexPath *preExpandCellIndexPath = self.expandedCellIndexPath;
+		self.expandedCellIndexPath = nil;
+		[self.tableView reloadRowsAtIndexPaths:@[preExpandCellIndexPath] withRowAnimation:UITableViewRowAnimationFade];
 	}
 }
-- (BOOL)isAdditionalCellAtIndexPath:(NSIndexPath *)indexPath
-{
-	if ([indexPath isEqual:self.additionalCellIndexPath]) {
-		return YES;
-	}else{
-		return NO;
-	}
-}
+
+
 @end
