@@ -245,6 +245,20 @@
         return [super popViewControllerAnimated:animated];
     }
 }
+- (NSArray *)popToRootViewControllerAnimated:(BOOL)animated
+{
+    if ([self.viewControllers count]>1 &&
+        _navigationAnimationType == GNavigationAnimationTypeHide) {
+        [_snapshots removeObjectsInRange:NSMakeRange(1, [self.viewControllers count]-1)];
+        UIViewController *preViewController = [self.viewControllers objectAtPosition:0];
+        [self hideTopViewController];
+        return @[preViewController];
+    }else {
+        _shouldPopItem = YES;
+        [_snapshots removeAllObjects];
+        return [super popToRootViewControllerAnimated:animated];
+    }
+}
 
 #pragma mark - Custom Push/Pop Methods
 - (void)showViewController:(UIViewController *)viewController

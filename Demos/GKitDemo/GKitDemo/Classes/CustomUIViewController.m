@@ -28,8 +28,15 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
 	
-	UITapGestureRecognizer *tapGR = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(goBack)];
-    [self.view addGestureRecognizer:tapGR];
+	UITapGestureRecognizer *doubleTapGR = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(goBack)];
+    doubleTapGR.numberOfTapsRequired = 2;
+    [self.view addGestureRecognizer:doubleTapGR];
+    
+    UITapGestureRecognizer *singleTapGR = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(goOn)];
+    singleTapGR.numberOfTapsRequired = 1;
+    [singleTapGR requireGestureRecognizerToFail:doubleTapGR];
+    [self.view addGestureRecognizer:singleTapGR];
+
 }
 
 - (void)didReceiveMemoryWarning
@@ -38,9 +45,13 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)goOn
+{
+    [self.navigationController pushViewController:[CustomUIViewController new] animated:YES];
+}
 - (void)goBack
 {
-    [self.navigationController popViewControllerAnimated:YES];
+    [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
 @end
