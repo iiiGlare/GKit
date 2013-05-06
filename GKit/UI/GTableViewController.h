@@ -45,7 +45,6 @@
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath;
 
 
-
 #pragma mark - cell input field
 
 @property (nonatomic, strong) UITextField *cellInputField;
@@ -92,6 +91,9 @@
 
 - (void)expandCellAtIndexPath:(NSIndexPath *)indexPath;
 - (void)collapseExpandedCell;
+
+- (UITableViewCell *)expandedCellForTableView:(UITableView *)tableView atIndexPath:(NSIndexPath *)indexPath;
+- (void)configureExpandedCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath;
 
 @end
 

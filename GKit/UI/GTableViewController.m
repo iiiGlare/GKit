@@ -98,31 +98,53 @@
     return 1;
 }
 
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-	UITableViewCell *cell = [self cellForTableView:tableView atIndexPath:indexPath];
-	[self configureCell:cell atIndexPath:indexPath];
+	UITableViewCell *cell = nil;
+	if ([indexPath isEqual:self.expandedCellIndexPath]) {
+		cell = [self expandedCellForTableView:tableView atIndexPath:indexPath];
+		[self configureExpandedCell:cell atIndexPath:indexPath];
+		return cell;
+	}else {
+		cell = [self cellForTableView:tableView atIndexPath:indexPath];
+		[self configureCell:cell atIndexPath:indexPath];
+		return cell;
+	}
+    
 	return cell;
 }
 
-//create cell
 - (UITableViewCell *)cellForTableView:(UITableView *)tableView atIndexPath:(NSIndexPath *)indexPath
 {
-	NSString *CellIdentifier = @"Cell";
-    
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-    }
-
-    return cell;
+	static NSString *CellIdentifier = @"Cell";
+	UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+	if (cell==nil) {
+		cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+	}
+	return cell;
 }
 
-//configure cell
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath
 {
-	[cell.textLabel setText:[NSString stringWithFormat:@"Section-%d Row-%d",indexPath.section,indexPath.row]];
+    [cell.textLabel setText:[NSString stringWithFormat:@"Cell Section-%d Row-%d",indexPath.section,indexPath.row]];
 }
+
+- (UITableViewCell *)expandedCellForTableView:(UITableView *)tableView atIndexPath:(NSIndexPath *)indexPath
+{
+    static NSString *CellIdentifier = @"ExpandedCell";
+	UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+	if (cell==nil) {
+		cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+	}
+	return cell;
+}
+
+- (void)configureExpandedCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath
+{
+    [cell.textLabel setText:[NSString stringWithFormat:@"ExpandedCell Section-%d Row-%d",indexPath.section,indexPath.row]];
+}
+
 
 #pragma mark UITableViewDelegate
 
