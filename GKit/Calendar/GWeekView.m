@@ -301,12 +301,14 @@
 {
     _day = [day beginningOfDay];
     _beginningOfWeek = [day beginningOfWeekWithFirstWeekday:_firstWeekday];
+    _endingOfWeek = [_beginningOfWeek dateByAddingTimeInterval:GTimeIntervalFromDays(7)];
 }
 
 - (void)setFirstWeekday:(GWeekdayType)firstWeekday
 {
     _firstWeekday = firstWeekday;
     _beginningOfWeek = [_day beginningOfWeekWithFirstWeekday:_firstWeekday];
+    _endingOfWeek = [_beginningOfWeek dateByAddingTimeInterval:GTimeIntervalFromDays(7)];
 }
 
 #pragma mark - Action
@@ -342,31 +344,28 @@
     
     //show events
     if (_dataSource &&
-        [_dataSource respondsToSelector:@selector(weekView:eventsForDay:)])
+        [_dataSource respondsToSelector:@selector(eventsForWeekView:)])
     {
-        for (NSInteger i=0; i<GDaysInWeek; i++)
-        {
-            NSDate *day = [self.beginningOfWeek dateByAddingTimeInterval:GTimeIntervalFromDays(i)];
-            NSArray *events = [_dataSource weekView:self eventsForDay:day];
-            for (GEvent *event in events)
-            {
-                [self layoutEvent:event atDayPosition:i];
-            }
-        }
-    }    
+        NSArray *events = [_dataSource eventsForWeekView:self];
+        
+        for (GEvent *event in events) {
+            [self layoutEvent:event];
+        }        
+    }
 }
 
 #pragma mark Layout
-- (void)layoutEvent:(GEvent *)event atDayPosition:(NSInteger)dayPosition
+- (void)layoutEvent:(GEvent *)event
 {
-    GEventView *eventView = [self eventViewForEvent:event atDayPosition:dayPosition];
-    if (eventView)
+    NSArray *eventViews = [self eventViewsForEvent:event];
+    
+    for (GEventView *eventView in eventViews)
     {
         [_scrollView addSubview:eventView];
         
         [self layoutEventViewsFromBeginY: eventView.y
                                   toEndY: eventView.y + eventView.height
-                           atDayPosition: dayPosition
+                           atDayPosition: [self dayPositionForDate:eventView.beginTime]
                                 animated: NO];
     }
 }
@@ -418,39 +417,54 @@
     }
 }
 
-
-- (GEventView *)eventViewForEvent:(GEvent *)event atDayPosition:(NSInteger)dayPosition
+- (NSArray *)eventViewsForEvent:(GEvent *)event
 {
-    CGRect frame = [self frameForEvent:event atDayPosition:dayPosition];
-    if (CGRectEqualToRect(frame, CGRectZero)) return nil;
+    NSMutableArray *eventViews = [NSMutableArray array];
     
-    GEventView *eventView = nil;
-    if (_dataSource &&
-        [_dataSource respondsToSelector:@selector(weekView:eventViewForEvent:)])
-    {
-        eventView = [_dataSource weekView:self eventViewForEvent:event];
-    }
-    if (eventView==nil)
-    {
-        eventView = [[GEventView alloc] init];
-    }
+    //BeginTime
+    NSDate *beginTime = event.beginTime;
+    if ([beginTime compare:_beginningOfWeek]==NSOrderedAscending) beginTime = _beginningOfWeek;
     
-    eventView.event = event;
-    eventView.frame = frame;
+    //EndTime
+    NSDate *endTime = event.endTime;
+    if ([endTime compare:_endingOfWeek]==NSOrderedDescending) endTime = _endingOfWeek;
     
-    return eventView;
+    //Check BeginTime and EndTime first
+    if ([beginTime compare:endTime]!=NSOrderedAscending) return nil;
+
+    NSDate *eventViewBeginTime = beginTime;
+    NSDate *eventViewEndTime;
+    
+    do {
+        
+        eventViewEndTime = [[eventViewBeginTime beginningOfDay] dateByAddingTimeInterval:GTimeIntervalFromHours(GHoursInDay)];
+        eventViewEndTime = ([eventViewEndTime compare:endTime]==NSOrderedAscending)?eventViewEndTime:endTime;
+        
+        CGRect frame = [self frameForBeginTime: eventViewBeginTime
+                                       endTime: eventViewEndTime
+                                 atDayPosition: [self dayPositionForDate:eventViewBeginTime]];
+        
+        GEventView *eventView = [[GEventView alloc] initWithFrame:frame];
+        eventView.event = event;
+        eventView.beginTime = eventViewBeginTime;
+        eventView.endTime = eventViewEndTime;
+        
+        [eventViews addObject:eventView];
+        
+        eventViewBeginTime = eventViewEndTime;
+        
+    } while ([eventViewBeginTime compare:endTime]==NSOrderedAscending);
+    
+    return eventViews;
 }
 
-
-- (CGRect)frameForEvent:(GEvent *)event atDayPosition:(NSInteger)dayPosition
+- (CGRect)frameForBeginTime:(NSDate *)beginTime endTime:(NSDate *)endTime atDayPosition:(NSInteger)dayPosition
 {
-    if (![self canShowEvent:event atDayPosition:dayPosition]) return CGRectZero;
-
     NSDate *dayBeginPoint = [self.beginningOfWeek dateByAddingTimeInterval:GTimeIntervalFromDays(dayPosition)];
     
     //
-    NSTimeInterval beginTimeInterval = [event.beginTime timeIntervalSinceDate:dayBeginPoint];
-    NSTimeInterval endTimeInterval = [event.endTime timeIntervalSinceDate:dayBeginPoint];
+    NSTimeInterval beginTimeInterval = [beginTime timeIntervalSinceDate:dayBeginPoint];
+    NSTimeInterval endTimeInterval = [endTime timeIntervalSinceDate:dayBeginPoint];
     
     CGFloat beginY = _hourHeight * beginTimeInterval/GTimeIntervalFromHours(1) + _gridTopMargin + _gridLineTopMargin;
     CGFloat endY = _hourHeight * endTimeInterval/GTimeIntervalFromHours(1) + _gridTopMargin + _gridLineTopMargin;
@@ -459,30 +473,26 @@
                       _dayEventViewWidth, endY-beginY);
 }
 
-- (BOOL)canShowEvent:(GEvent *)event atDayPosition:(NSInteger)dayPosition
-{
-    NSDate *dayBeginPoint = [self.beginningOfWeek dateByAddingTimeInterval:GTimeIntervalFromDays(dayPosition)];
-    NSDate *nextDayBeginPoint = [dayBeginPoint dateByAddingTimeInterval:GTimeIntervalFromDays(1)];
-    
-    if ([event.beginTime compare:nextDayBeginPoint]!=NSOrderedAscending ||
-        [event.endTime compare:dayBeginPoint]!=NSOrderedDescending)
-    {
-        return NO;
-    }
-    
-    return YES;
-}
-
 - (NSDate *)dateForOffset:(CGFloat)offset atDayPosition:(NSInteger)dayPosition
 {
     NSTimeInterval interval = gfloor(((offset-_dayBeginTimeOffset)/self.hourHeight)*GTimeIntervalFromHours(1));
     return [NSDate dateWithTimeInterval:interval sinceDate:[self.beginningOfWeek dateByAddingTimeInterval:GTimeIntervalFromDays(dayPosition)]];
 }
 
-- (NSInteger)dayPositionOfPoint:(CGPoint)point
+- (NSInteger)dayPositionForPoint:(CGPoint)point
 {
     return gfloor((point.x - _hourViewWidth)/_dayEventViewWidth);
 }
+
+- (NSInteger)dayPositionForDate:(NSDate *)date
+{
+    if ([date compare:_beginningOfWeek]!=NSOrderedDescending) return 0;
+    if ([date compare:_endingOfWeek]!=NSOrderedAscending) return 6;
+    
+    NSTimeInterval timeInterval = [date timeIntervalSinceDate:_beginningOfWeek];
+    return gfloor(timeInterval/GTimeIntervalFromHours(GHoursInDay));
+}
+
 
 #pragma mark Gesture Recognizer
 - (void)handleTap:(UITapGestureRecognizer *)tapGR
@@ -575,20 +585,32 @@
     [snapshot addSubviewToFill:eventView];
     [snapshot becomeCatchableInCalendarWithEvent:eventView.event];
     snapshot.alpha = 0.7;
+    
+    //remove all event views for event
+    for (UIView *view in self.scrollView.subviews) {
+        if ([view isKindOfClass:[GEventView class]] &&
+            [[(GEventView *)view event] isEqual:eventView.event])
+        {
+            [view removeFromSuperview];
+        }
+    }
+    
     return snapshot;
 }
 - (CGRect)weekViewPrepareFrameForSnapshot:(GMoveSnapshot *)snapshot
 {
     CGPoint snapshotCenter = [self convertPoint:snapshot.center fromView:snapshot.superview];
-    NSInteger dayPosition = [self dayPositionOfPoint:snapshotCenter];
-    CGRect eventFrame = [self frameForEvent: [snapshot.userInfo valueForKey:kGEvent]
-                              atDayPosition: dayPosition];
+    NSInteger dayPosition = [self dayPositionForPoint:snapshotCenter];
+    GEvent *event = [snapshot.userInfo valueForKey:kGEvent];
+    CGRect eventFrame = [self frameForBeginTime: event.beginTime
+                                        endTime: event.endTime
+                                  atDayPosition: dayPosition];
     return [snapshot.superview convertRect:eventFrame fromView:self.scrollView];
 }
 - (void)weekViewDidPrepareSnapshot:(GMoveSnapshot *)snapshot
 {
     CGPoint snapshotCenter = [self convertPoint:snapshot.center fromView:snapshot.superview];
-    NSInteger dayPosition = [self dayPositionOfPoint:snapshotCenter];
+    NSInteger dayPosition = [self dayPositionForPoint:snapshotCenter];
     CGRect eventRect = GRectAddPoint([self convertRect:snapshot.frame fromView:snapshot.superview],
                                      self.scrollView.contentOffset);
     [self layoutEventViewsFromBeginY: CGRectGetMinY(eventRect)
@@ -601,10 +623,14 @@
 //moving event
 - (void)weekViewBeginCatchingSnapshot:(GMoveSnapshot *)snapshot withEvent:(GEvent *)event
 {
-    CGPoint snapshotCenter = [self convertPoint:snapshot.center fromView:snapshot.superview];
-    NSInteger dayPosition = [self dayPositionOfPoint:snapshotCenter];
-
-    GEventView *movingEventView = [self eventViewForEvent:event atDayPosition:dayPosition];
+    GEvent *tempEvent = [[GEvent alloc] init];
+    tempEvent.title = event.title;
+    tempEvent.beginTime = [self dateForOffset:0 atDayPosition:0];
+    tempEvent.endTime = [tempEvent.beginTime dateByAddingTimeInterval:[event.endTime timeIntervalSinceDate:event.beginTime]];
+    CGRect eventViewFrame = [self frameForBeginTime: tempEvent.beginTime
+                                            endTime: tempEvent.endTime
+                                      atDayPosition: 0];
+    GEventView *movingEventView = [[GEventView alloc] initWithFrame:eventViewFrame];
     if (movingEventView) {
         
         _snapshotAlpha = snapshot.alpha;
@@ -652,20 +678,24 @@
 - (void)weekViewDidCatchSnapshot:(GMoveSnapshot *)snapshot withEvent:(GEvent *)event
 {
     CGPoint snapshotCenter = [self convertPoint:snapshot.center fromView:snapshot.superview];
-    NSInteger dayPosition = [self dayPositionOfPoint:snapshotCenter];
+    NSInteger dayPosition = [self dayPositionForPoint:snapshotCenter];
     
     if (self.movingEventView)
     {
         [self.scrollView stopAutoScroll];
         
         CGRect eventRect = GRectAddPoint(self.movingEventView.frame, self.scrollView.contentOffset);
-        
-        event.beginTime = [self dateForOffset:CGRectGetMinY(eventRect) atDayPosition:dayPosition];
-        event.endTime = [self dateForOffset:CGRectGetMaxY(eventRect) atDayPosition:dayPosition];
-        
-        if (_delegate &&
-            [_delegate respondsToSelector:@selector(weekView:didUpdateEvent:)]) {
-            [_delegate weekView:self didUpdateEvent:event];
+        if (!(CGRectGetMaxY(eventRect)<_gridTopMargin+_gridLineTopMargin) &&
+            !(CGRectGetMinY(eventRect)>_gridTopMargin+_gridHeight-_gridLineBottomMargin))
+        {
+            event.beginTime = [self dateForOffset:CGRectGetMinY(eventRect) atDayPosition:dayPosition];
+            event.endTime = [self dateForOffset:CGRectGetMaxY(eventRect) atDayPosition:dayPosition];
+            
+            if (_delegate &&
+                [_delegate respondsToSelector:@selector(weekView:didUpdateEvent:)])
+            {
+                [_delegate weekView:self didUpdateEvent:event];
+            }
         }
         
         [self.movingEventView removeFromSuperview];
@@ -673,7 +703,7 @@
     
     if (event)
     {
-        [self layoutEvent:event atDayPosition:dayPosition];
+        [self layoutEvent:event];
     }
 }
 

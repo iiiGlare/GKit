@@ -247,9 +247,9 @@
     
     //show events
     if (_dataSource &&
-        [_dataSource respondsToSelector:@selector(dayView:eventsForDay:)])
+        [_dataSource respondsToSelector:@selector(eventsForDayView:)])
     {
-        NSArray *events = [_dataSource dayView:self eventsForDay:self.day];
+        NSArray *events = [_dataSource eventsForDayView:self];
         for (GEvent *event in events)
         {
             [self layoutEvent:event];
@@ -542,13 +542,16 @@
         [self.scrollView stopAutoScroll];
 
         CGRect eventRect = GRectAddPoint(self.movingEventView.frame, self.scrollView.contentOffset);
-        
-        event.beginTime = [self dateForOffset:CGRectGetMinY(eventRect)];
-        event.endTime = [self dateForOffset:CGRectGetMaxY(eventRect)];
-        
-        if (_delegate &&
-            [_delegate respondsToSelector:@selector(dayView:didUpdateEvent:)]) {
-            [_delegate dayView:self didUpdateEvent:event];
+        if (!(CGRectGetMaxY(eventRect)<_gridTopMargin+_gridLineTopMargin) &&
+            !(CGRectGetMinY(eventRect)>_gridTopMargin+_gridHeight-_gridLineBottomMargin))
+        {
+            event.beginTime = [self dateForOffset:CGRectGetMinY(eventRect)];
+            event.endTime = [self dateForOffset:CGRectGetMaxY(eventRect)];
+            
+            if (_delegate &&
+                [_delegate respondsToSelector:@selector(dayView:didUpdateEvent:)]) {
+                [_delegate dayView:self didUpdateEvent:event];
+            }
         }
         
         [self.movingEventView removeFromSuperview];

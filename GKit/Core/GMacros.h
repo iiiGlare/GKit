@@ -104,6 +104,8 @@
 
 //Date
 #define GDateComponents (NSEraCalendarUnit | NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit | NSWeekCalendarUnit |  NSHourCalendarUnit | NSMinuteCalendarUnit | NSSecondCalendarUnit | NSWeekdayCalendarUnit)
+#define GSecondsInMinute 60
+#define GMinutesInHour 60
 #define GHoursInDay 24
 #define GDaysInWeek 7
 

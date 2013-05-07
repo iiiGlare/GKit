@@ -102,7 +102,7 @@
 }
 
 #pragma mark - GDayViewDatasource / Delegate
-- (NSArray *)dayView:(GDayView *)dayView eventsForDay:(NSDate *)day
+- (NSArray *)eventsForDayView:(GDayView *)dayView
 {
     NSMutableArray *events = [NSMutableArray array];
     
@@ -163,54 +163,39 @@
 }
 
 #pragma mark - GWeekView
-- (NSArray *)weekView:(GWeekView *)weekView eventsForDay:(NSDate *)day
+- (NSArray *)eventsForWeekView:(GWeekView *)weekView
 {
     NSMutableArray *events = [NSMutableArray array];
 
-    //-03:00 to 01:00
     GEvent *event = [[GEvent alloc] init];
-    event.title = @"test -03:00 to 01:00";
-    event.beginTime = [NSDate dateWithTimeInterval: -GTimeIntervalFromHours(3)
-                                         sinceDate: day];
-    event.endTime = [NSDate dateWithTimeInterval: GTimeIntervalFromHours(1)
-                                       sinceDate: day];
+    event.title = @"0 03:00 to 0 10:00";
+    event.beginTime = [weekView.beginningOfWeek dateByAddingTimeInterval:GTimeIntervalFromHours(3)];
+    event.endTime = [weekView.beginningOfWeek dateByAddingTimeInterval:GTimeIntervalFromHours(10)];
     [events addObject:event];
     
-    // 21:00 to 25:00
     event = [[GEvent alloc] init];
-    event.title = @"test 21:00 to 25:00";
-    event.beginTime = [NSDate dateWithTimeInterval: GTimeIntervalFromHours(21)
-                                         sinceDate: day];
-    event.endTime = [NSDate dateWithTimeInterval: GTimeIntervalFromHours(25)
-                                       sinceDate: day];
+    event.title = @"0 21:00 to 1 05:00";
+    event.beginTime = [weekView.beginningOfWeek dateByAddingTimeInterval:GTimeIntervalFromHours(21)];
+    event.endTime = [weekView.beginningOfWeek dateByAddingTimeInterval:GTimeIntervalFromHours(5+GHoursInDay)];
     [events addObject:event];
     
-    //08:00 to 11:30
     event = [[GEvent alloc] init];
-    event.title = @"test 08:00 to 11:30";
-    event.beginTime = [NSDate dateWithTimeInterval: GTimeIntervalFromHours(8)
-                                         sinceDate: day];
-    event.endTime = [NSDate dateWithTimeInterval: GTimeIntervalFromHours(11.5)
-                                       sinceDate: day];
+    event.title = @"3 08:00 to 3 11:30";
+    event.beginTime = [weekView.beginningOfWeek dateByAddingTimeInterval:GTimeIntervalFromHours(8+GHoursInDay*3)];
+    event.endTime = [weekView.beginningOfWeek dateByAddingTimeInterval:GTimeIntervalFromHours(11.5+GHoursInDay*3)];
     [events addObject:event];
     
-    //10:00 to 12:00
     event = [[GEvent alloc] init];
-    event.title = @"test 10:00 to 12:00";
-    event.beginTime = [NSDate dateWithTimeInterval: GTimeIntervalFromHours(10)
-                                         sinceDate: day];
-    event.endTime = [NSDate dateWithTimeInterval: GTimeIntervalFromHours(12)
-                                       sinceDate: day];
+    event.title = @"3 10:00 to 3 12:00";
+    event.beginTime = [weekView.beginningOfWeek dateByAddingTimeInterval:GTimeIntervalFromHours(10+GHoursInDay*3)];
+    event.endTime = [weekView.beginningOfWeek dateByAddingTimeInterval:GTimeIntervalFromHours(12+GHoursInDay*3)];
     [events addObject:event];
     
     
-    //13:00 to 18:00
     event = [[GEvent alloc] init];
-    event.title = @"test 13:00 to 18:00";
-    event.beginTime = [NSDate dateWithTimeInterval: GTimeIntervalFromHours(13)
-                                         sinceDate: day];
-    event.endTime = [NSDate dateWithTimeInterval: GTimeIntervalFromHours(18)
-                                       sinceDate: day];
+    event.title = @"5 00:00 to 6 24:00";
+    event.beginTime = [weekView.beginningOfWeek dateByAddingTimeInterval:GTimeIntervalFromHours(0+GHoursInDay*5)];
+    event.endTime = [weekView.beginningOfWeek dateByAddingTimeInterval:GTimeIntervalFromHours(24+GHoursInDay*6)];
     [events addObject:event];
     
     return events;

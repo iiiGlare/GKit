@@ -20,6 +20,7 @@
 @property (nonatomic, assign) GWeekdayType firstWeekday;   //defalut GWeekdayTypeSunday
 @property (nonatomic, copy) NSDate *day;
 @property (nonatomic, copy, readonly) NSDate *beginningOfWeek;
+@property (nonatomic, copy, readonly) NSDate *endingOfWeek;
 
 - (void)jumpToToday;
 - (void)goToNextWeek;
@@ -41,7 +42,7 @@
 #pragma mark - GWeekViewDataSource
 @protocol GWeekViewDataSource <NSObject>
 
-- (NSArray *)weekView:(GWeekView *)weekView eventsForDay:(NSDate *)day;
+- (NSArray *)eventsForWeekView:(GWeekView *)weekView;
 
 @optional
 - (GEventView *)weekView:(GWeekView *)weekView eventViewForEvent:(GEvent *)event;

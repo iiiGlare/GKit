@@ -15,6 +15,8 @@
 <GMoveSpriteProtocol>
 
 @property (nonatomic, strong) GEvent *event;
+@property (nonatomic, strong) NSDate *beginTime;
+@property (nonatomic, strong) NSDate *endTime;
 @property (nonatomic, assign) BOOL shouldMove;
 
 @end

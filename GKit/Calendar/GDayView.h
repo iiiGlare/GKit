@@ -52,7 +52,7 @@
 #pragma mark - GDayViewDataSource
 @protocol GDayViewDataSource <NSObject>
 
-- (NSArray *)dayView:(GDayView *)dayView eventsForDay:(NSDate *)day;
+- (NSArray *)eventsForDayView:(GDayView *)dayView;
 
 @optional
 - (GEventView *)dayView:(GDayView *)dayView eventViewForEvent:(GEvent *)event;
