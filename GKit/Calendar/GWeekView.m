@@ -631,6 +631,7 @@
                                             endTime: tempEvent.endTime
                                       atDayPosition: 0];
     GEventView *movingEventView = [[GEventView alloc] initWithFrame:eventViewFrame];
+	movingEventView.event = tempEvent;
     if (movingEventView) {
         
         _snapshotAlpha = snapshot.alpha;
