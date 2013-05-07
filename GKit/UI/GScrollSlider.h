@@ -33,5 +33,6 @@
 @property (nonatomic, assign) NSInteger autoScrollStepsPerSecond; //default 10
 
 - (void)setValue:(CGFloat)value animated:(BOOL)animated;
+- (void)reloadSlider;
 
 @end

@@ -56,6 +56,12 @@
     self.clipsToBounds = YES;
     self.backgroundColor = [UIColor blackColor];
 
+    UIView *contentView = [[UIView alloc] init];
+    contentView.backgroundColor = [UIColor clearColor];
+    [self addSubviewToFill:contentView];
+    
+    
+    
     _scalesViewTopMargin = 0;
     _scalesViewTopMargin = 0;
     
@@ -74,22 +80,22 @@
     //scales
     _scalesView = [[UIView alloc] initWithFrame:CGRectZero];
     _scalesView.backgroundColor = [UIColor randomColor];
-    [self addSubview:self.scalesView];
+    [contentView addSubview:self.scalesView];
     
     //minTrack
     _minTrackView = [[UIView alloc] initWithFrame:CGRectZero];
     _minTrackView.backgroundColor = [UIColor randomColor];
-    [self addSubview:_minTrackView];
+    [contentView addSubview:_minTrackView];
     
     //maxTrack
     _maxTrackView = [[UIView alloc] initWithFrame:CGRectZero];
     _maxTrackView.backgroundColor = [UIColor randomColor];
-    [self addSubview:_maxTrackView];
+    [contentView addSubview:_maxTrackView];
     
     //thumb
     _thumbView = [[UIView alloc] initWithFrame:CGRectZero];
     _thumbView.backgroundColor = [UIColor randomColor];
-    [self addSubview:_thumbView];
+    [contentView addSubview:_thumbView];
     
     
     //indicator
@@ -102,12 +108,17 @@
     
     //pan gesture
     UIPanGestureRecognizer *panGR = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handlePan:)];
-    [self addGestureRecognizer:panGR];
+    [contentView addGestureRecognizer:panGR];
     
     [self reloadSlider];
 }
 
 #pragma mark - Layout
+- (void)layoutSubviews
+{
+    GPRINT(@"layout");
+    [self reloadSlider];
+}
 - (void)reloadSlider
 {
     _contentLeftMargin = 5 + _thumbViewSize.width/2;
