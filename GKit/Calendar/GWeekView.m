@@ -72,13 +72,11 @@
 @end
 
 #pragma mark - GWeekdayView
-@interface GWeekdayView : UIView
-
+@interface GWeekdayView ()
 @property (nonatomic, assign) GWeekdayType firstWeekday;
-
 @property (nonatomic, assign) CGFloat hourViewWidth;
 @property (nonatomic, assign) CGFloat dayTitleBottomMargin;
-@property (nonatomic, strong) NSArray *weekdayLabels;
+@property (nonatomic, strong) NSDate *beginningOfWeek;
 @end
 
 @implementation GWeekdayView
@@ -86,18 +84,25 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
+        
+        _weekdayFont = [UIFont systemFontOfSize:12.0];
+        _weekdayColor = [UIColor blackColor];
+        
+        _todayFont = [UIFont systemFontOfSize:12.0];
+        _todayColor = [UIColor blueColor];
+        
         NSMutableArray *weekdayLabels = [NSMutableArray arrayWithCapacity:GDaysInWeek];
         for (int i=0; i<GDaysInWeek; i++) {
             UILabel *label = [[UILabel alloc] initWithFrame:CGRectZero];
             label.autoresizingMask = UIViewAutoresizingFlexibleTopMargin|UIViewAutoresizingFlexibleWidth;
             label.textAlignmentG = GTextAlignmentCenter;
-            label.font = [UIFont systemFontOfSize:12];
-            label.textColor = [UIColor blackColor];
+            label.font = _weekdayFont;
+            label.textColor = _weekdayColor;
             label.backgroundColor = [UIColor clearColor];
             [self addSubview:label];
             [weekdayLabels addObject:label];
         }
-        self.weekdayLabels = weekdayLabels;
+        _weekdayLabels = weekdayLabels;
     }
     return self;
 }
@@ -114,7 +119,62 @@
                                  labelWidth,
                                  label.height);
     }
+    [self hightlightToday];
 }
+
+#pragma mark Setter
+- (void)setWeekdayFont:(UIFont *)weekdayFont
+{
+    _weekdayFont = [weekdayFont copy];
+    
+    [self hightlightToday];
+}
+- (void)setWeekdayColor:(UIColor *)weekdayColor
+{
+    _weekdayColor = [weekdayColor copy];
+    
+    [self hightlightToday];
+}
+- (void)setTodayFont:(UIFont *)todayFont
+{
+    _todayFont = [todayFont copy];
+    
+    [self hightlightToday];
+}
+- (void)setTodayColor:(UIColor *)todayColor
+{
+    _todayColor = [todayColor copy];
+    
+    [self hightlightToday];
+}
+- (void)setBeginningOfWeek:(NSDate *)beginningOfWeek
+{
+    _beginningOfWeek = beginningOfWeek;
+    
+    [self hightlightToday];
+}
+#pragma mark Weekdaylabels
+- (void)hightlightToday
+{
+    for (UILabel *label in self.weekdayLabels){
+        label.textColor = _weekdayColor;
+        label.font = _weekdayFont;
+    }
+    
+    NSDate *today = [NSDate date];
+    NSTimeInterval timeInterval = [today timeIntervalSinceDate:_beginningOfWeek];
+    if (timeInterval>=0 && timeInterval<GTimeIntervalFromDays(GDaysInWeek))
+    {
+        UILabel *todayLabel = [self weekdayLabelForWeekday:[today weekday]];
+        todayLabel.textColor = _todayColor;
+        todayLabel.font = _todayFont;
+    }
+}
+- (UILabel *)weekdayLabelForWeekday:(GWeekdayType)weekdayType
+{
+    return [self.weekdayLabels objectAtCirclePosition:weekdayType-_firstWeekday];
+}
+
 @end
 
 
@@ -182,7 +242,6 @@
 //subviews
 @property (nonatomic, strong) UIScrollView *scrollView;
 @property (nonatomic, strong) GWeekGridView *weekGridView;
-@property (nonatomic, strong) GWeekdayView *weekdayView;
 @property (nonatomic, strong) GWeekHourView *weekHourView;
 
 
@@ -240,9 +299,10 @@
     if (_scrollView==nil)
     {
         [self.scrollView addSubview:self.weekGridView];
-        [self.scrollView addSubview:self.weekdayView];
         [self.scrollView addSubview:self.weekHourView];
         [self addSubview:self.scrollView];
+        
+        [self addSubview:self.weekdayView];
     }
 }
 
@@ -288,11 +348,12 @@
 {
     if (_weekdayView==nil) {
         _weekdayView = [[GWeekdayView alloc] initWithFrame:
-                        CGRectMake(0, _gridTopMargin, _scrollView.width, _dayViewHeight)];
+                        CGRectMake(0, 0, _scrollView.width, _dayViewHeight)];
         _weekdayView.backgroundColor = [UIColor whiteColor];
         _weekdayView.hourViewWidth = _hourViewWidth;
         _weekdayView.dayTitleBottomMargin = _dayTitleBottomMargin;
         _weekdayView.firstWeekday = _firstWeekday;
+        _weekdayView.beginningOfWeek = _beginningOfWeek;
     }
     return _weekdayView;
 }
@@ -302,6 +363,9 @@
     _day = [day beginningOfDay];
     _beginningOfWeek = [day beginningOfWeekWithFirstWeekday:_firstWeekday];
     _endingOfWeek = [_beginningOfWeek dateByAddingTimeInterval:GTimeIntervalFromDays(7)];
+    
+    //WeekdayView
+    _weekdayView.beginningOfWeek = _beginningOfWeek;
 }
 
 - (void)setFirstWeekday:(GWeekdayType)firstWeekday
@@ -309,6 +373,9 @@
     _firstWeekday = firstWeekday;
     _beginningOfWeek = [_day beginningOfWeekWithFirstWeekday:_firstWeekday];
     _endingOfWeek = [_beginningOfWeek dateByAddingTimeInterval:GTimeIntervalFromDays(7)];
+    
+    //WeekdayView
+    _weekdayView.beginningOfWeek = _beginningOfWeek;
 }
 
 #pragma mark - Action
