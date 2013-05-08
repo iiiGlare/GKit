@@ -183,7 +183,7 @@
     
     CGPoint beginOrigin = self.presentedView.origin;
     CGPoint endOrigin = beginOrigin;
-    endOrigin.y += self.presentedView.height/1.5;
+    endOrigin.y += self.presentedView.height;
     
     [UIView animateWithDuration: 0.25
                      animations: ^{
