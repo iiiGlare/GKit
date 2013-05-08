@@ -37,9 +37,14 @@ typedef NSInteger AudioSessionCategory;
 					 withExtension:(NSString *)extension;
 + (void)playMusicWithContentsOfURL:(NSURL *)fileURL
 							volume:(CGFloat)volume;
++ (void)stopPlayMusic;
 
 //record
-//+ (void)recordAudioWithURL:(NSURL *)
++ (BOOL)recordAudioAtURL:(NSURL *)fileURL;
++ (void)startRecording;
++ (void)pauseRecording;
++ (void)stopRecording;
++ (void)deleteRecording;
 
 //audio session
 + (void)activeAudioSession;

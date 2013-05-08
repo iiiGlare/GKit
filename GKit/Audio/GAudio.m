@@ -21,32 +21,39 @@
 
 #import "GCore.h"
 
-static GAudio *_sharedAudio = nil;
-
 @interface GAudio ()
-<AVAudioPlayerDelegate>
-
-@property (nonatomic, strong) AVAudioSession *audioSession;
-+ (void)initSharedAudio;
-+ (void)initSharedAudioSession;
+<AVAudioPlayerDelegate, AVAudioRecorderDelegate>
 
 @property (nonatomic, strong) AVAudioPlayer *audioPlayer;
-- (void)playMusicWithContentsOfURL:(NSURL *)fileURL volume:(CGFloat)volume;
-
-
+@property (nonatomic, strong) AVAudioRecorder *audioRecorder;
+@property (nonatomic, strong) AVAudioSession *audioSession;
 
 @end
 
 @implementation GAudio
-@synthesize audioPlayer;
-@synthesize audioSession = _audioSession;
 
-+ (void)initSharedAudio
+#pragma mark - Init
+
++ (GAudio *)sharedAudio
 {
-	if (_sharedAudio==nil) {
-		_sharedAudio = [[GAudio alloc] init];
-	}
+    static GAudio *_sharedAudio;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        _sharedAudio = [[GAudio alloc] init];
+    });
+    return _sharedAudio;    
 }
+
+- (id)init
+{
+    self = [super init];
+    if (self) {
+        self.audioSession = [AVAudioSession sharedInstance];
+    }
+    return self;
+}
+
+#pragma mark - Play
 
 + (void)vibrate
 {
@@ -74,50 +81,113 @@ static GAudio *_sharedAudio = nil;
 }
 + (void)playMusicWithContentsOfURL:(NSURL *)fileURL volume:(CGFloat)volume
 {
-	[self initSharedAudio];
-	[_sharedAudio playMusicWithContentsOfURL:fileURL volume:volume];
-}
-
-- (void)playMusicWithContentsOfURL:(NSURL *)fileURL volume:(CGFloat)volume
-{
-	AVAudioPlayer *newPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:fileURL
+    AVAudioPlayer *newPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:fileURL
 																	  error:nil];
 	newPlayer.volume = volume;
-	newPlayer.delegate = self;
+	newPlayer.delegate = [GAudio sharedAudio];
 	[newPlayer prepareToPlay];
 	[newPlayer setCurrentTime:0];
 	[newPlayer play];
-	self.audioPlayer = newPlayer;
+    [[GAudio sharedAudio] setAudioPlayer:newPlayer];
 }
 
-#pragma mark - AVAudioPlayerDelegate
++ (void)stopPlayMusic
+{
+    [[[GAudio sharedAudio] audioPlayer] stop];
+    [[GAudio sharedAudio] setAudioPlayer:nil];
+}
+
+//AVAudioPlayerDelegate
 - (void)audioPlayerDidFinishPlaying:(AVAudioPlayer *)player successfully:(BOOL)flag
 {
 	self.audioPlayer = nil;
 }
 
-#pragma mark - AVAudioSession
-+ (void)initSharedAudioSession
+#pragma mark - Record
++ (BOOL)recordAudioAtURL:(NSURL *)fileURL
 {
-	[self initSharedAudio];
-	//init session
-	if (_sharedAudio.audioSession==nil) {
-		_sharedAudio.audioSession = [AVAudioSession sharedInstance];
-	}
+    NSError *error;
+    AVAudioRecorder *audioRecorder =
+    [[AVAudioRecorder alloc] initWithURL: fileURL
+                                settings: @{ AVFormatIDKey: GNumberWithInt(kAudioFormatLinearPCM),
+                         AVSampleRateKey: GNumberWithFloat(8000.0),
+                   AVNumberOfChannelsKey: GNumberWithInt(1),
+                  AVLinearPCMBitDepthKey: GNumberWithInteger(16),
+               AVLinearPCMIsBigEndianKey: GNumberWithBOOL(NO),
+                   AVLinearPCMIsFloatKey: GNumberWithBOOL(NO)
+     }
+                                   error: &error];
+    if (!audioRecorder) {
+        GPRINT(@"Error establishing recorder: %@", error.localizedFailureReason);
+        return NO;
+    }
+    
+    audioRecorder.delegate = [GAudio sharedAudio];
+    [audioRecorder prepareToRecord];
+    [GAudio sharedAudio].audioRecorder = audioRecorder;
+    
+    BOOL inputAvailable;
+    if ([UIDevice isOSVersionHigherThanVersion:@"6.0" includeEqual:YES]) {
+        inputAvailable = [GAudio sharedAudio].audioSession.inputAvailable;
+    }else {
+        inputAvailable = [GAudio sharedAudio].audioSession.inputIsAvailable;
+    }
+    if (!inputAvailable) {
+        GPRINT(@"Audio input hardware not available");
+        return NO;
+    }
+    
+    return [audioRecorder record];
 }
+
++ (void)startRecording
+{
+    [[[GAudio sharedAudio] audioRecorder] record];
+}
++ (void)pauseRecording
+{
+    [[[GAudio sharedAudio] audioRecorder] pause];
+}
++ (void)stopRecording
+{
+    [[[GAudio sharedAudio] audioRecorder] stop];
+}
++ (void)deleteRecording
+{
+    [[[GAudio sharedAudio] audioRecorder] deleteRecording];
+}
+
+//
+- (void)audioRecorderBeginInterruption:(AVAudioRecorder *)recorder
+{
+    [GAudio pauseRecording];
+}
+- (void)audioRecorderEndInterruption:(AVAudioRecorder *)recorder withOptions:(NSUInteger)flags
+{
+    
+}
+
+- (void)audioRecorderEndInterruption:(AVAudioRecorder *)recorder withFlags:(NSUInteger)flags
+{
+    
+}
+
+#pragma mark - AVAudioSession
 
 + (void)activeAudioSession
 {
 	//activating
 	NSError *activationError = nil;
-	[_sharedAudio.audioSession setActive:YES error:&activationError];
+	[[[GAudio sharedAudio] audioSession] setActive:YES error:&activationError];
 }
+
 + (void)deactiveAudioSession
 {
 	//activating
 	NSError *activationError = nil;
-	[_sharedAudio.audioSession setActive:NO error:&activationError];
+	[[[GAudio sharedAudio] audioSession] setActive:NO error:&activationError];
 }
+
 + (void)setSessionProperty:(AudioSessionCategory)category
 {
 	NSString *theCategory = nil;
@@ -159,24 +229,21 @@ static GAudio *_sharedAudio = nil;
 	}
 next:
 	if (theCategory) {
-		[GAudio initSharedAudioSession];
 		
-		if ([_sharedAudio.audioSession.category isEqualToString:theCategory]) {
+		if ([[[GAudio sharedAudio] audioSession].category isEqualToString:theCategory]) {
 			return;
 		}
 		
 		[GAudio deactiveAudioSession];
 		//setting the category
 		NSError *setCategoryError = nil;
-		[_sharedAudio.audioSession setCategory:theCategory error:&setCategoryError];
+		[[[GAudio sharedAudio] audioSession] setCategory:theCategory error:&setCategoryError];
 		[GAudio activeAudioSession];
 	}
 }
 + (void)overrideCategoryDefaultToSpeaker:(BOOL)isOverride
 {
-	[GAudio initSharedAudioSession];
-	
-	//
+    //
 	OSStatus propertySetError = 0;
 	UInt32 allowOverride = true;
 	if (isOverride==NO) {
@@ -203,13 +270,11 @@ next:
 }
 + (void)overrideAudioRouteToSpeaker:(BOOL)isOverride
 {
-	[GAudio initSharedAudioSession];
-	
 	//
 	OSStatus propertySetError = 0;
 	UInt32 allowOverride = kAudioSessionOverrideAudioRoute_None;
 	if (isOverride==YES) {
-        //		[GAudio setSessionProperty:AudioSessionCategoryPlayAndRecord];
+//		[GAudio setSessionProperty:AudioSessionCategoryPlayAndRecord];
 		allowOverride = kAudioSessionOverrideAudioRoute_Speaker;
 	}
 	
@@ -235,8 +300,6 @@ next:
 	// return NO in simulator. Code causes crashes for some reason.
 	return NO;
 #endif
-	
-	[GAudio initSharedAudioSession];
 	
 	if ([UIDevice isOSVersionLowerThanVersion:@"5.0" includeEqual:NO]) {
 		CFStringRef state;

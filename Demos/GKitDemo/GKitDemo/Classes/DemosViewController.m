@@ -32,11 +32,12 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     _listInfo = [NSMutableDictionary dictionary];
-    [_listInfo setValue:GNumberWithInteger(3) forKey:kNumberOfSections];
+    [_listInfo setValue:GNumberWithInteger(4) forKey:kNumberOfSections];
     
-    [_listInfo setValue:@[@"CustomUI"] forKey:@"0"];
+    [_listInfo setValue:@[@"Audio"] forKey:@"0"];
     [_listInfo setValue:@[@"Calendar"] forKey:@"1"];
-    [_listInfo setValue:@[@"Present"] forKey:@"2"];
+    [_listInfo setValue:@[@"CustomUI"] forKey:@"2"];
+    [_listInfo setValue:@[@"Present"] forKey:@"3"];
 }
 
 - (void)didReceiveMemoryWarning

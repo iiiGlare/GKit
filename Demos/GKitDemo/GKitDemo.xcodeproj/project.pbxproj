@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F80B212E173AD1AC00DDA0D6 /* AudioViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F80B212D173AD1AC00DDA0D6 /* AudioViewController.m */; };
 		F80B4740172831AF00F4FBEB /* GMoveSnapshot+GCalendar.m in Sources */ = {isa = PBXBuildFile; fileRef = F80B473F172831AF00F4FBEB /* GMoveSnapshot+GCalendar.m */; };
 		F82369BD1727B53C00868E8B /* GPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = FD07BDD41727605100D8E26A /* GPoint.m */; };
 		F82369BE1727B53C00868E8B /* GSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = FD07BDD7172761DF00D8E26A /* GSlider.m */; };
@@ -102,6 +103,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		F80B212C173AD1AC00DDA0D6 /* AudioViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioViewController.h; sourceTree = "<group>"; };
+		F80B212D173AD1AC00DDA0D6 /* AudioViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioViewController.m; sourceTree = "<group>"; };
 		F80B473E172831AE00F4FBEB /* GMoveSnapshot+GCalendar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GMoveSnapshot+GCalendar.h"; sourceTree = "<group>"; };
 		F80B473F172831AF00F4FBEB /* GMoveSnapshot+GCalendar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "GMoveSnapshot+GCalendar.m"; sourceTree = "<group>"; };
 		F82369C01727D46500868E8B /* CalendarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CalendarViewController.h; sourceTree = "<group>"; };
@@ -276,6 +279,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		F80B212B173AD19500DDA0D6 /* Audio */ = {
+			isa = PBXGroup;
+			children = (
+				F80B212C173AD1AC00DDA0D6 /* AudioViewController.h */,
+				F80B212D173AD1AC00DDA0D6 /* AudioViewController.m */,
+			);
+			name = Audio;
+			sourceTree = "<group>";
+		};
 		F82369BF1727D41400868E8B /* Calendar */ = {
 			isa = PBXGroup;
 			children = (
@@ -390,6 +402,7 @@
 				F8B6BFD0172671DB00214182 /* AppDelegate.m */,
 				F8B6BFD3172671DB00214182 /* DemosViewController.h */,
 				F8B6BFD4172671DB00214182 /* DemosViewController.m */,
+				F80B212B173AD19500DDA0D6 /* Audio */,
 				F8263B22172A9D2900075959 /* Present */,
 				F82369BF1727D41400868E8B /* Calendar */,
 				F8B6BFE5172671EF00214182 /* CustomUI */,
@@ -764,6 +777,7 @@
 				F8263B25172A9D3900075959 /* PresentViewController.m in Sources */,
 				F86D68551737C1DF003EFE6C /* GTextField.m in Sources */,
 				F86D68581737CE03003EFE6C /* GScrollSlider.m in Sources */,
+				F80B212E173AD1AC00DDA0D6 /* AudioViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
