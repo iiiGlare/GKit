@@ -23,8 +23,8 @@
 {
     [super drawRect:rect];
     
-    CGFloat dayWidth = gfloor((rect.size.width-_hourViewWidth)/GDaysInWeek);
-    CGFloat height = rect.size.height;
+    CGFloat dayWidth = gfloor((self.width-_hourViewWidth)/GDaysInWeek);
+    CGFloat height = self.height;
     
     CGContextRef c = UIGraphicsGetCurrentContext();
     
@@ -40,8 +40,8 @@
     CGContextStrokePath(c);
     
     
-    CGFloat hourHeight = (rect.size.height-_gridLineTopMargin-_gridLineBottomMargin)/GHoursInDay;
-    CGFloat width = rect.size.width;
+    CGFloat hourHeight = (self.height-_gridLineTopMargin-_gridLineBottomMargin)/GHoursInDay;
+    CGFloat width = self.width;
     
     //hour lines
     CGContextSetLineWidth(c, 0.4);
