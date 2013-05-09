@@ -85,7 +85,7 @@
 	AudioServicesPlaySystemSound (soundFileObject);
 	CFBridgingRelease(soundFileURLRef);
 }
-+ (void)playMusicWithContentsOfURL:(NSURL *)fileURL volume:(CGFloat)volume
++ (void)playAudioWithContentsOfURL:(NSURL *)fileURL volume:(CGFloat)volume
 {
     AVAudioPlayer *newPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:fileURL
 																	  error:nil];
@@ -97,7 +97,7 @@
     [[GAudio sharedAudio] setAudioPlayer:newPlayer];
 }
 
-+ (void)stopPlayMusic
++ (void)stopPlayAudio
 {
     [[[GAudio sharedAudio] audioPlayer] stop];
     [[GAudio sharedAudio] setAudioPlayer:nil];
@@ -110,6 +110,10 @@
 }
 
 #pragma mark - Record
+NSURL * GAudioRecordingFileURL(void)
+{
+    return [[GAudio sharedAudio] audioRecordingFileURL];
+}
 + (void)prepareRecordingWithCallback:(void (^)(NSTimeInterval currentTime, BOOL recording, BOOL interruption, NSError *error))callback
 {
     [[GAudio sharedAudio] prepareRecordingWithCallback:callback];
@@ -196,8 +200,6 @@
 {
     [self.audioRecordingTimer invalidate];
     self.audioRecordingTimer = nil;
-
-    [self audioRecordingTimerDidFire];
     
     [self.audioRecorder pause];
     
@@ -208,8 +210,6 @@
     self.audioRecorder.delegate = nil;
     [self.audioRecordingTimer invalidate];
     self.audioRecordingTimer = nil;
-    
-    [self audioRecordingTimerDidFire];
 
     //stop
     [self.audioRecorder stop];
@@ -241,8 +241,6 @@
     self.audioRecorder.delegate = nil;
     [self.audioRecordingTimer invalidate];
     self.audioRecordingTimer = nil;
-    
-    [self audioRecordingTimerDidFire];
     
     //stop
     [self.audioRecorder stop];

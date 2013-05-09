@@ -78,15 +78,43 @@
         [GAudio startRecording];
         sender.tag = 1;
         [sender setTitle:@"停止" forState:UIControlStateNormal];
+        
+        UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+        button.frame = sender.bounds;
+        button.y = self.contentView.height - button.height;
+        button.tag = 0;
+        [button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+        [button setTitleColor:[UIColor grayColor] forState:UIControlStateHighlighted];
+        [button setTitle:@"暂停并播放" forState:UIControlStateNormal];
+        [button addTarget:self action:@selector(stopAndPreview:) forControlEvents:UIControlEventTouchUpInside];
+        [self.contentView addSubview:button];
+ 
+        
     }else if (sender.tag==1) {
+        [self.contentView removeAllSubviewOfClass:[UIButton class]];
         [GAudio stopAndMoveRecordedAudioFileToURL:fileURL];
         [self performSelectorInBackground:@selector(prepareForNewRecording) withObject:nil];
         sender.tag = 2;
         [sender setTitle:@"播放" forState:UIControlStateNormal];
     }else if (sender.tag==2) {
-        [GAudio playMusicWithContentsOfURL:fileURL volume:1.0];
+        [GAudio playAudioWithContentsOfURL:fileURL volume:1.0];
         sender.tag = 0;
         [sender setTitle:@"录音" forState:UIControlStateNormal];
+    }
+}
+
+- (void)stopAndPreview:(UIButton *)sender
+{
+    if (sender.tag == 0) {
+        [GAudio pauseRecording];
+        [GAudio playAudioWithContentsOfURL:GAudioRecordingFileURL() volume:1.0];
+        [sender setTitle:@"继续" forState:UIControlStateNormal];
+        sender.tag = 1;
+    }else {
+        [GAudio stopPlayAudio];
+        [GAudio startRecording];
+        [sender setTitle:@"暂停并播放" forState:UIControlStateNormal];
+        sender.tag = 0;
     }
 }
 
