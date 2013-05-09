@@ -40,11 +40,12 @@ typedef NSInteger AudioSessionCategory;
 + (void)stopPlayMusic;
 
 //record
-+ (BOOL)recordAudioAtURL:(NSURL *)fileURL;
++ (void)prepareRecordingWithCallback:(void (^)(NSTimeInterval currentTime, BOOL recording, BOOL interruption, NSError *error))callback;
 + (void)startRecording;
 + (void)pauseRecording;
-+ (void)stopRecording;
-+ (void)deleteRecording;
++ (void)stopAndMoveRecordedAudioFileToURL:(NSURL *)url;
++ (void)stopAndDeleteRecording;
+
 
 //audio session
 + (void)activeAudioSession;

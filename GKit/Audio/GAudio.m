@@ -25,7 +25,12 @@
 <AVAudioPlayerDelegate, AVAudioRecorderDelegate>
 
 @property (nonatomic, strong) AVAudioPlayer *audioPlayer;
+
 @property (nonatomic, strong) AVAudioRecorder *audioRecorder;
+@property (nonatomic, strong) NSURL *audioRecordingFileURL;
+@property (nonatomic, strong) NSTimer *audioRecordingTimer;
+@property (nonatomic, copy) void (^audioRecordingCallback)(NSTimeInterval currentTime, BOOL recording, BOOL interruption, NSError *error);
+
 @property (nonatomic, strong) AVAudioSession *audioSession;
 
 @end
@@ -48,6 +53,7 @@
 {
     self = [super init];
     if (self) {
+        self.audioRecordingFileURL = [GCachesDirectoryURL() URLByAppendingPathComponent:@"AudioRecording.caf"];
         self.audioSession = [AVAudioSession sharedInstance];
     }
     return self;
@@ -104,72 +110,163 @@
 }
 
 #pragma mark - Record
-+ (BOOL)recordAudioAtURL:(NSURL *)fileURL
++ (void)prepareRecordingWithCallback:(void (^)(NSTimeInterval currentTime, BOOL recording, BOOL interruption, NSError *error))callback
 {
-    NSError *error;
-    AVAudioRecorder *audioRecorder =
-    [[AVAudioRecorder alloc] initWithURL: fileURL
-                                settings: @{ AVFormatIDKey: GNumberWithInt(kAudioFormatLinearPCM),
-                         AVSampleRateKey: GNumberWithFloat(8000.0),
-                   AVNumberOfChannelsKey: GNumberWithInt(1),
-                  AVLinearPCMBitDepthKey: GNumberWithInteger(16),
-               AVLinearPCMIsBigEndianKey: GNumberWithBOOL(NO),
-                   AVLinearPCMIsFloatKey: GNumberWithBOOL(NO)
-     }
-                                   error: &error];
-    if (!audioRecorder) {
-        GPRINT(@"Error establishing recorder: %@", error.localizedFailureReason);
-        return NO;
-    }
-    
-    audioRecorder.delegate = [GAudio sharedAudio];
-    [audioRecorder prepareToRecord];
-    [GAudio sharedAudio].audioRecorder = audioRecorder;
-    
-    BOOL inputAvailable;
-    if ([UIDevice isOSVersionHigherThanVersion:@"6.0" includeEqual:YES]) {
-        inputAvailable = [GAudio sharedAudio].audioSession.inputAvailable;
-    }else {
-        inputAvailable = [GAudio sharedAudio].audioSession.inputIsAvailable;
-    }
-    if (!inputAvailable) {
-        GPRINT(@"Audio input hardware not available");
-        return NO;
-    }
-    
-    return [audioRecorder record];
+    [[GAudio sharedAudio] prepareRecordingWithCallback:callback];
 }
-
 + (void)startRecording
 {
-    [[[GAudio sharedAudio] audioRecorder] record];
+    [[GAudio sharedAudio] startRecording];
 }
 + (void)pauseRecording
 {
-    [[[GAudio sharedAudio] audioRecorder] pause];
+    [[GAudio sharedAudio] pauseRecording];
 }
-+ (void)stopRecording
++ (void)stopAndMoveRecordedAudioFileToURL:(NSURL *)url
 {
-    [[[GAudio sharedAudio] audioRecorder] stop];
+    [[GAudio sharedAudio] stopAndMoveRecordedAudioFileToURL:url];
 }
-+ (void)deleteRecording
++ (void)stopAndDeleteRecording
 {
-    [[[GAudio sharedAudio] audioRecorder] deleteRecording];
+    [[GAudio sharedAudio] stopAndDeleteRecording];
 }
 
-//
+- (void)prepareRecordingWithCallback:(void (^)(NSTimeInterval currentTime, BOOL recording, BOOL interruption, NSError *error))callback
+{
+    self.audioRecordingCallback = callback;
+    
+    NSError *error;
+    AVAudioRecorder *audioRecorder =
+    [[AVAudioRecorder alloc] initWithURL: self.audioRecordingFileURL
+                                settings: @{ AVFormatIDKey: GNumberWithInt(kAudioFormatLinearPCM),
+                                           AVSampleRateKey: GNumberWithFloat(8000.0),
+                                     AVNumberOfChannelsKey: GNumberWithInt(1),
+                                    AVLinearPCMBitDepthKey: GNumberWithInteger(16),
+                                 AVLinearPCMIsBigEndianKey: GNumberWithBOOL(NO),
+                                     AVLinearPCMIsFloatKey: GNumberWithBOOL(NO) }
+                                   error: &error];
+    
+    //
+    if (!audioRecorder) {
+        GPRINT(@"Error establishing recorder: %@", error.localizedFailureReason);
+        _audioRecordingCallback(0, NO, NO, error);
+        return;
+    }
+
+    //
+    BOOL inputAvailable;
+    if ([UIDevice isOSVersionHigherThanVersion:@"6.0" includeEqual:YES]) {
+        inputAvailable = self.audioSession.inputAvailable;
+    }else {
+        inputAvailable = self.audioSession.inputIsAvailable;
+    }
+    if (!inputAvailable) {
+        GPRINT(@"Audio input hardware not available");
+        NSError *error = [[NSError alloc] initWithDomain: @"GAudioRecordingError"
+                                                    code: 0
+                                                userInfo: nil];
+        _audioRecordingCallback(0, NO, NO,error);
+        return;
+    }
+    
+    //
+    audioRecorder.delegate = self;
+    [audioRecorder prepareToRecord];
+    self.audioRecorder = audioRecorder;
+}
+
+- (void)startRecording
+{
+    [self.audioRecorder record];
+    
+    self.audioRecordingTimer = [NSTimer scheduledTimerWithTimeInterval: 1.0
+                                                                target: self
+                                                              selector: @selector(audioRecordingTimerDidFire)
+                                                              userInfo: nil
+                                                               repeats: YES];
+    [self.audioRecordingTimer fire];
+}
+
+- (void)audioRecordingTimerDidFire
+{
+    _audioRecordingCallback(_audioRecorder.currentTime, _audioRecorder.recording, NO, nil);
+}
+
+- (void)pauseRecording
+{
+    [self.audioRecordingTimer invalidate];
+    self.audioRecordingTimer = nil;
+
+    [self audioRecordingTimerDidFire];
+    
+    [self.audioRecorder pause];
+    
+}
+
+- (void)stopAndMoveRecordedAudioFileToURL:(NSURL *)url
+{
+    self.audioRecorder.delegate = nil;
+    [self.audioRecordingTimer invalidate];
+    self.audioRecordingTimer = nil;
+    
+    [self audioRecordingTimerDidFire];
+
+    //stop
+    [self.audioRecorder stop];
+    
+    //move
+    
+    NSError *error = nil;
+    [[NSFileManager defaultManager] removeItemAtURL: url
+                                              error: &error];
+    if (error) {
+        GPRINTError(error);
+    }
+    error = nil;
+    [[NSFileManager defaultManager] copyItemAtURL: self.audioRecordingFileURL
+                                            toURL: url
+                                            error: &error];
+    if (error) {
+        GPRINTError(error);
+    }
+    
+    //delete
+    [self.audioRecorder deleteRecording];
+    self.audioRecorder = nil;
+    self.audioRecordingCallback = nil;
+}
+
+- (void)stopAndDeleteRecording
+{
+    self.audioRecorder.delegate = nil;
+    [self.audioRecordingTimer invalidate];
+    self.audioRecordingTimer = nil;
+    
+    [self audioRecordingTimerDidFire];
+    
+    //stop
+    [self.audioRecorder stop];
+    
+    //delete
+    [self.audioRecorder deleteRecording];
+    self.audioRecorder = nil;
+    self.audioRecordingCallback = nil;
+}
+
+//AVAudioRecorderDelegate
 - (void)audioRecorderBeginInterruption:(AVAudioRecorder *)recorder
 {
-    [GAudio pauseRecording];
+    _audioRecordingCallback(_audioRecorder.currentTime, _audioRecorder.recording, YES, nil);
 }
+
 - (void)audioRecorderEndInterruption:(AVAudioRecorder *)recorder withOptions:(NSUInteger)flags
 {
-    
+    _audioRecordingCallback(_audioRecorder.currentTime, _audioRecorder.recording, NO, nil);
 }
 
 - (void)audioRecorderEndInterruption:(AVAudioRecorder *)recorder withFlags:(NSUInteger)flags
 {
-    
+    _audioRecordingCallback(_audioRecorder.currentTime, _audioRecorder.recording, NO, nil);
 }
 
 #pragma mark - AVAudioSession

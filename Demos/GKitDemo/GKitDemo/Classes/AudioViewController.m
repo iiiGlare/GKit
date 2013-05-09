@@ -51,17 +51,36 @@
     [button setTitle:@"录制" forState:UIControlStateNormal];
     [self.bottomView addSubviewToFill:button];
     [button addTarget:self action:@selector(recording:) forControlEvents:UIControlEventTouchUpInside];
+    
+
+    [self prepareForNewRecording];
+}
+- (void)prepareForNewRecording
+{
+    [GAudio prepareRecordingWithCallback:^(NSTimeInterval currentTime, BOOL recording, BOOL interruption, NSError *error)
+     {
+         UILabel *timeLabel = [[self.contentView subviews] firstObject];
+         timeLabel.text = GTimerStringFromTimeInterval(currentTime);
+         if (interruption) {
+             [GAudio pauseRecording];
+         }else {
+             if (!recording) {
+                 [GAudio startRecording];
+             }
+         }
+     }];
 }
 - (void)recording:(UIButton *)sender
 {
     NSURL *fileURL = [GDocumentsDirectoryURL() URLByAppendingPathComponent:@"audio.caf"];
     
     if (sender.tag == 0) {
-        [GAudio recordAudioAtURL:fileURL];
+        [GAudio startRecording];
         sender.tag = 1;
         [sender setTitle:@"停止" forState:UIControlStateNormal];
     }else if (sender.tag==1) {
-        [GAudio stopRecording];
+        [GAudio stopAndMoveRecordedAudioFileToURL:fileURL];
+        [self performSelectorInBackground:@selector(prepareForNewRecording) withObject:nil];
         sender.tag = 2;
         [sender setTitle:@"播放" forState:UIControlStateNormal];
     }else if (sender.tag==2) {
