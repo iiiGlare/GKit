@@ -92,12 +92,13 @@
         
     }else if (sender.tag==1) {
         [self.contentView removeAllSubviewOfClass:[UIButton class]];
-        [GAudio stopAndMoveRecordedAudioFileToURL:fileURL];
+        [GAudio stopRecording];
+        [GAudio moveRecordedAudioFileToURL:fileURL];
         [self performSelectorInBackground:@selector(prepareForNewRecording) withObject:nil];
         sender.tag = 2;
         [sender setTitle:@"播放" forState:UIControlStateNormal];
     }else if (sender.tag==2) {
-        [GAudio playAudioWithContentsOfURL:fileURL volume:1.0];
+        [GAudio playAudioWithContentsOfURL:fileURL volume:1.0 completion:nil];
         sender.tag = 0;
         [sender setTitle:@"录音" forState:UIControlStateNormal];
     }
@@ -107,7 +108,7 @@
 {
     if (sender.tag == 0) {
         [GAudio pauseRecording];
-        [GAudio playAudioWithContentsOfURL:GAudioRecordingFileURL() volume:1.0];
+        [GAudio playAudioWithContentsOfURL:GAudioRecordingFileURL() volume:1.0 completion:nil];
         [sender setTitle:@"继续" forState:UIControlStateNormal];
         sender.tag = 1;
     }else {
