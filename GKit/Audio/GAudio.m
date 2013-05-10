@@ -25,12 +25,12 @@
 <AVAudioPlayerDelegate, AVAudioRecorderDelegate>
 
 @property (nonatomic, strong) AVAudioPlayer *audioPlayer;
-@property (nonatomic, strong) void (^blockAudioStopPlayCallback)(void);
+@property (nonatomic, copy) void (^blockAudioStopPlayCallback)(void);
 
 @property (nonatomic, strong) AVAudioRecorder *audioRecorder;
 @property (nonatomic, strong) NSURL *audioRecordingFileURL;
 @property (nonatomic, strong) NSTimer *audioRecordingTimer;
-@property (nonatomic, strong) void (^blockAudioRecordingCallback)(NSTimeInterval currentTime, BOOL recording, BOOL interruption, NSError *error);
+@property (nonatomic, copy) void (^blockAudioRecordingCallback)(NSTimeInterval currentTime, BOOL recording, BOOL interruption, NSError *error);
 
 @property (nonatomic, strong) AVAudioSession *audioSession;
 
