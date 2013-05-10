@@ -93,6 +93,8 @@
         [self.contentView addSubviewToFill:self.weekView];
         [self.weekView jumpToToday];
 
+        //显示今日
+        
     }else {
         [self.dayView removeFromSuperview];
         [self.monthView removeFromSuperview];

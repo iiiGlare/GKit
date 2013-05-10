@@ -21,32 +21,46 @@
 
 #import "GCore.h"
 
-static GAudio *_sharedAudio = nil;
-
 @interface GAudio ()
-<AVAudioPlayerDelegate>
-
-@property (nonatomic, strong) AVAudioSession *audioSession;
-+ (void)initSharedAudio;
-+ (void)initSharedAudioSession;
+<AVAudioPlayerDelegate, AVAudioRecorderDelegate>
 
 @property (nonatomic, strong) AVAudioPlayer *audioPlayer;
-- (void)playMusicWithContentsOfURL:(NSURL *)fileURL volume:(CGFloat)volume;
+@property (nonatomic, copy) void (^blockAudioStopPlayCallback)(void);
 
+@property (nonatomic, strong) AVAudioRecorder *audioRecorder;
+@property (nonatomic, strong) NSURL *audioRecordingFileURL;
+@property (nonatomic, strong) NSTimer *audioRecordingTimer;
+@property (nonatomic, copy) void (^blockAudioRecordingCallback)(NSTimeInterval currentTime, BOOL recording, BOOL interruption, NSError *error);
 
+@property (nonatomic, strong) AVAudioSession *audioSession;
 
 @end
 
 @implementation GAudio
-@synthesize audioPlayer;
-@synthesize audioSession = _audioSession;
 
-+ (void)initSharedAudio
+#pragma mark - Init
+
++ (GAudio *)sharedAudio
 {
-	if (_sharedAudio==nil) {
-		_sharedAudio = [[GAudio alloc] init];
-	}
+    static GAudio *_sharedAudio;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        _sharedAudio = [[GAudio alloc] init];
+    });
+    return _sharedAudio;    
 }
+
+- (id)init
+{
+    self = [super init];
+    if (self) {
+        self.audioRecordingFileURL = [GCachesDirectoryURL() URLByAppendingPathComponent:@"AudioRecording.caf"];
+        self.audioSession = [AVAudioSession sharedInstance];
+    }
+    return self;
+}
+
+#pragma mark - Play
 
 + (void)vibrate
 {
@@ -72,52 +86,227 @@ static GAudio *_sharedAudio = nil;
 	AudioServicesPlaySystemSound (soundFileObject);
 	CFBridgingRelease(soundFileURLRef);
 }
-+ (void)playMusicWithContentsOfURL:(NSURL *)fileURL volume:(CGFloat)volume
++ (void)playAudioWithContentsOfURL:(NSURL *)fileURL
+							volume:(CGFloat)volume
+                        completion:(void (^)(void))completion
 {
-	[self initSharedAudio];
-	[_sharedAudio playMusicWithContentsOfURL:fileURL volume:volume];
-}
-
-- (void)playMusicWithContentsOfURL:(NSURL *)fileURL volume:(CGFloat)volume
-{
-	AVAudioPlayer *newPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:fileURL
-																	  error:nil];
+    [[GAudio sharedAudio] setBlockAudioStopPlayCallback:completion];
+    
+    NSError *error = nil;
+    AVAudioPlayer *newPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:fileURL
+																	  error:&error];
+    if (error) {
+        GPRINTError(error);
+    }
 	newPlayer.volume = volume;
-	newPlayer.delegate = self;
-	[newPlayer prepareToPlay];
-	[newPlayer setCurrentTime:0];
-	[newPlayer play];
-	self.audioPlayer = newPlayer;
+	newPlayer.delegate = [GAudio sharedAudio];
+	if ([newPlayer prepareToPlay]) {
+        [newPlayer setCurrentTime:0];
+        [[GAudio sharedAudio] setAudioPlayer:newPlayer];
+        if (![newPlayer play]) {
+            GPRINT(@"AVAudioPlayer failed play");
+        }
+    }else {
+        GPRINT(@"AVAudioPlayer failed prepareToPlay");
+    }
 }
 
-#pragma mark - AVAudioPlayerDelegate
++ (void)stopPlayAudio
+{
+    [[GAudio sharedAudio].audioPlayer stop];
+    [[GAudio sharedAudio] setAudioPlayer:nil];
+    [[GAudio sharedAudio] setBlockAudioStopPlayCallback:nil];
+}
+
+//AVAudioPlayerDelegate
 - (void)audioPlayerDidFinishPlaying:(AVAudioPlayer *)player successfully:(BOOL)flag
 {
 	self.audioPlayer = nil;
+    
+    if (_blockAudioStopPlayCallback)
+    {
+        _blockAudioStopPlayCallback();
+        _blockAudioStopPlayCallback = nil;
+    }
+}
+
+#pragma mark - Record
+NSURL * GAudioRecordingFileURL(void)
+{
+    return [[GAudio sharedAudio] audioRecordingFileURL];
+}
++ (void)prepareRecordingWithCallback:(void (^)(NSTimeInterval currentTime, BOOL recording, BOOL interruption, NSError *error))callback
+{
+    [[GAudio sharedAudio] prepareRecordingWithCallback:callback];
+}
++ (void)startRecording
+{
+    [[GAudio sharedAudio] startRecording];
+}
++ (void)pauseRecording
+{
+    [[GAudio sharedAudio] pauseRecording];
+}
++ (void)stopRecording
+{
+    [[GAudio sharedAudio] stopRecording];
+}
++ (void)copyRecordedAudioFileToURL:(NSURL *)url
+{
+    [[GAudio sharedAudio] copyRecordedAudioFileToURL:url];
+}
++ (void)deleteRecording
+{
+    [[GAudio sharedAudio] deleteRecording];
+}
+
+- (void)prepareRecordingWithCallback:(void (^)(NSTimeInterval currentTime, BOOL recording, BOOL interruption, NSError *error))callback
+{
+    self.blockAudioRecordingCallback = callback;
+    
+    NSError *error;
+    AVAudioRecorder *audioRecorder =
+    [[AVAudioRecorder alloc] initWithURL: self.audioRecordingFileURL
+                                settings: @{ AVFormatIDKey: GNumberWithInt(kAudioFormatLinearPCM),
+                                           AVSampleRateKey: GNumberWithFloat(8000.0),
+                                     AVNumberOfChannelsKey: GNumberWithInt(1),
+                                    AVLinearPCMBitDepthKey: GNumberWithInteger(16),
+                                 AVLinearPCMIsBigEndianKey: GNumberWithBOOL(NO),
+                                     AVLinearPCMIsFloatKey: GNumberWithBOOL(NO) }
+                                   error: &error];
+    
+    //
+    if (!audioRecorder) {
+        GPRINT(@"Error establishing recorder: %@", error.localizedFailureReason);
+        if (_blockAudioRecordingCallback) {
+            _blockAudioRecordingCallback(0, NO, NO, error);
+        }
+        
+        return;
+    }
+
+    //
+    BOOL inputAvailable;
+    if ([UIDevice isOSVersionHigherThanVersion:@"6.0" includeEqual:YES]) {
+        inputAvailable = self.audioSession.inputAvailable;
+    }else {
+        inputAvailable = self.audioSession.inputIsAvailable;
+    }
+    if (!inputAvailable) {
+        GPRINT(@"Audio input hardware not available");
+        NSError *error = [[NSError alloc] initWithDomain: @"GAudioRecordingError"
+                                                    code: 0
+                                                userInfo: nil];
+        if (_blockAudioRecordingCallback) {
+            _blockAudioRecordingCallback(0, NO, NO,error);
+        }
+        return;
+    }
+    
+    //
+    audioRecorder.delegate = self;
+    [audioRecorder prepareToRecord];
+    self.audioRecorder = audioRecorder;
+}
+
+- (void)startRecording
+{
+    [self.audioRecorder record];
+    
+    self.audioRecordingTimer = [NSTimer scheduledTimerWithTimeInterval: 1.0
+                                                                target: self
+                                                              selector: @selector(audioRecordingTimerDidFire)
+                                                              userInfo: nil
+                                                               repeats: YES];
+    [self.audioRecordingTimer fire];
+}
+
+- (void)audioRecordingTimerDidFire
+{
+    if (_blockAudioRecordingCallback) {
+        _blockAudioRecordingCallback(_audioRecorder.currentTime, _audioRecorder.recording, NO, nil);
+    }
+}
+
+- (void)pauseRecording
+{
+    [self.audioRecordingTimer invalidate];
+    self.audioRecordingTimer = nil;
+    
+    [self.audioRecorder pause];
+    
+}
+- (void)stopRecording
+{
+    self.audioRecorder.delegate = nil;
+    [self.audioRecordingTimer invalidate];
+    self.audioRecordingTimer = nil;
+    
+    //stop
+    [self.audioRecorder stop];
+}
+- (void)copyRecordedAudioFileToURL:(NSURL *)url
+{
+    NSError *error = nil;
+    [[NSFileManager defaultManager] removeItemAtURL: url
+                                              error: &error];
+    if (error) {
+        GPRINTError(error);
+    }
+    error = nil;
+    [[NSFileManager defaultManager] copyItemAtURL: self.audioRecordingFileURL
+                                            toURL: url
+                                            error: &error];
+    if (error) {
+        GPRINTError(error);
+    }    
+}
+
+- (void)deleteRecording
+{
+    [self.audioRecorder deleteRecording];
+    self.audioRecorder = nil;
+    self.blockAudioRecordingCallback = nil;
+}
+
+//AVAudioRecorderDelegate
+- (void)audioRecorderBeginInterruption:(AVAudioRecorder *)recorder
+{
+    if (_blockAudioRecordingCallback) {
+        _blockAudioRecordingCallback(_audioRecorder.currentTime, _audioRecorder.recording, YES, nil);
+    }
+}
+
+- (void)audioRecorderEndInterruption:(AVAudioRecorder *)recorder withOptions:(NSUInteger)flags
+{
+    if (_blockAudioRecordingCallback) {
+        _blockAudioRecordingCallback(_audioRecorder.currentTime, _audioRecorder.recording, NO, nil);
+    }
+}
+
+- (void)audioRecorderEndInterruption:(AVAudioRecorder *)recorder withFlags:(NSUInteger)flags
+{
+    if (_blockAudioRecordingCallback) {
+        _blockAudioRecordingCallback(_audioRecorder.currentTime, _audioRecorder.recording, NO, nil);
+    }
 }
 
 #pragma mark - AVAudioSession
-+ (void)initSharedAudioSession
-{
-	[self initSharedAudio];
-	//init session
-	if (_sharedAudio.audioSession==nil) {
-		_sharedAudio.audioSession = [AVAudioSession sharedInstance];
-	}
-}
 
 + (void)activeAudioSession
 {
 	//activating
 	NSError *activationError = nil;
-	[_sharedAudio.audioSession setActive:YES error:&activationError];
+	[[[GAudio sharedAudio] audioSession] setActive:YES error:&activationError];
 }
+
 + (void)deactiveAudioSession
 {
 	//activating
 	NSError *activationError = nil;
-	[_sharedAudio.audioSession setActive:NO error:&activationError];
+	[[[GAudio sharedAudio] audioSession] setActive:NO error:&activationError];
 }
+
 + (void)setSessionProperty:(AudioSessionCategory)category
 {
 	NSString *theCategory = nil;
@@ -159,24 +348,21 @@ static GAudio *_sharedAudio = nil;
 	}
 next:
 	if (theCategory) {
-		[GAudio initSharedAudioSession];
 		
-		if ([_sharedAudio.audioSession.category isEqualToString:theCategory]) {
+		if ([[[GAudio sharedAudio] audioSession].category isEqualToString:theCategory]) {
 			return;
 		}
 		
 		[GAudio deactiveAudioSession];
 		//setting the category
 		NSError *setCategoryError = nil;
-		[_sharedAudio.audioSession setCategory:theCategory error:&setCategoryError];
+		[[[GAudio sharedAudio] audioSession] setCategory:theCategory error:&setCategoryError];
 		[GAudio activeAudioSession];
 	}
 }
 + (void)overrideCategoryDefaultToSpeaker:(BOOL)isOverride
 {
-	[GAudio initSharedAudioSession];
-	
-	//
+    //
 	OSStatus propertySetError = 0;
 	UInt32 allowOverride = true;
 	if (isOverride==NO) {
@@ -203,13 +389,11 @@ next:
 }
 + (void)overrideAudioRouteToSpeaker:(BOOL)isOverride
 {
-	[GAudio initSharedAudioSession];
-	
 	//
 	OSStatus propertySetError = 0;
 	UInt32 allowOverride = kAudioSessionOverrideAudioRoute_None;
 	if (isOverride==YES) {
-        //		[GAudio setSessionProperty:AudioSessionCategoryPlayAndRecord];
+//		[GAudio setSessionProperty:AudioSessionCategoryPlayAndRecord];
 		allowOverride = kAudioSessionOverrideAudioRoute_Speaker;
 	}
 	
@@ -235,8 +419,6 @@ next:
 	// return NO in simulator. Code causes crashes for some reason.
 	return NO;
 #endif
-	
-	[GAudio initSharedAudioSession];
 	
 	if ([UIDevice isOSVersionLowerThanVersion:@"5.0" includeEqual:NO]) {
 		CFStringRef state;

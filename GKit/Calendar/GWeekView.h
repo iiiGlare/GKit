@@ -13,9 +13,24 @@
 @class GEventView, GEvent;
 @protocol GWeekViewDataSource, GWeekViewDelegate;
 
+#pragma mark - GWeekdayView
+@interface GWeekdayView : UIView
+@property (nonatomic, strong, readonly) NSArray *weekdayLabels;
+
+@property (nonatomic, copy) UIFont *weekdayFont;
+@property (nonatomic, copy) UIColor *weekdayColor;
+
+@property (nonatomic, copy) UIFont *todayFont;
+@property (nonatomic, copy) UIColor *todayColor;
+
+@end
+
+
 #pragma mark - GWeekView
 @interface GWeekView : UIView
 <GMoveSpriteCatcherProtocol>
+
+@property (nonatomic, strong) GWeekdayView *weekdayView;
 
 @property (nonatomic, assign) GWeekdayType firstWeekday;   //defalut GWeekdayTypeSunday
 @property (nonatomic, copy) NSDate *day;
@@ -25,11 +40,6 @@
 - (void)jumpToToday;
 - (void)goToNextWeek;
 - (void)backToPreviousWeek;
-
-//first weekday
-
-
-
 
 @property (nonatomic, weak) id<GWeekViewDataSource> dataSource;
 @property (nonatomic, weak) id<GWeekViewDelegate> delegate;

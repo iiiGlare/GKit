@@ -35,11 +35,20 @@ typedef NSInteger AudioSessionCategory;
 + (void)vibrate;
 + (void)playSystemSoundForResource:(NSString *)resource
 					 withExtension:(NSString *)extension;
-+ (void)playMusicWithContentsOfURL:(NSURL *)fileURL
-							volume:(CGFloat)volume;
++ (void)playAudioWithContentsOfURL:(NSURL *)fileURL
+							volume:(CGFloat)volume
+                        completion:(void (^)(void))completion;
++ (void)stopPlayAudio;
 
 //record
-//+ (void)recordAudioWithURL:(NSURL *)
+NSURL * GAudioRecordingFileURL(void);
++ (void)prepareRecordingWithCallback:(void (^)(NSTimeInterval currentTime, BOOL recording, BOOL interruption, NSError *error))callback;
++ (void)startRecording;
++ (void)pauseRecording;
++ (void)stopRecording;
++ (void)copyRecordedAudioFileToURL:(NSURL *)url;
++ (void)deleteRecording;
+
 
 //audio session
 + (void)activeAudioSession;
