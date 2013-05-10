@@ -79,22 +79,22 @@
     
     //scales
     _scalesView = [[UIView alloc] initWithFrame:CGRectZero];
-    _scalesView.backgroundColor = [UIColor randomColor];
+    _scalesView.backgroundColor = GRandomColor();
     [contentView addSubview:self.scalesView];
     
     //minTrack
     _minTrackView = [[UIView alloc] initWithFrame:CGRectZero];
-    _minTrackView.backgroundColor = [UIColor randomColor];
+    _minTrackView.backgroundColor = GRandomColor();
     [contentView addSubview:_minTrackView];
     
     //maxTrack
     _maxTrackView = [[UIView alloc] initWithFrame:CGRectZero];
-    _maxTrackView.backgroundColor = [UIColor randomColor];
+    _maxTrackView.backgroundColor = GRandomColor();
     [contentView addSubview:_maxTrackView];
     
     //thumb
     _thumbView = [[UIView alloc] initWithFrame:CGRectZero];
-    _thumbView.backgroundColor = [UIColor randomColor];
+    _thumbView.backgroundColor = GRandomColor();
     [contentView addSubview:_thumbView];
     
     

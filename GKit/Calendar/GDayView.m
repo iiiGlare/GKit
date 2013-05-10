@@ -328,6 +328,7 @@
     if (eventView==nil)
     {
         eventView = [[GEventView alloc] init];
+		eventView.backgroundColor = GRandomColorWithAlpha(0.5);
     }
     
     eventView.event = event;
@@ -466,6 +467,7 @@
 - (GMoveSnapshot *)dayViewPrepareSnapshotForOwnEventView:(GEventView *)eventView
 {
     GMoveSnapshot *snapshot = [[GMoveSnapshot alloc] initWithFrame:eventView.frame];
+	eventView.backgroundColor = [UIColor orangeColor];
     [snapshot addSubviewToFill:eventView];
     [snapshot becomeCatchableInCalendarWithEvent:eventView.event];
     snapshot.alpha = 0.7;
@@ -495,6 +497,7 @@
         _snapshotAlpha = snapshot.alpha;
         snapshot.alpha = 0.0;
         
+		movingEventView.backgroundColor = [UIColor orangeColor];
         movingEventView.alpha = 0.7;
         movingEventView.center = [self.scrollView convertPoint: snapshot.center
                                                       fromView: snapshot.superview];

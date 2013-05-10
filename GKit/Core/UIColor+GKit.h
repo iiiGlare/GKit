@@ -20,29 +20,30 @@
 /**
  * Create UIColor object 
  */
-UIColor * GMakeWhiteColor(CGFloat white);
-UIColor * GMakeWhiteAlphaColor(CGFloat white, CGFloat alpha);
-UIColor * GMakeRGBColor(CGFloat red, CGFloat green, CGFloat blue);
-UIColor * GMakeRGBAColor(CGFloat red, CGFloat green, CGFloat blue, CGFloat alpha);
+//white
+UIColor * GColorWithWhite(CGFloat white);
+
+//white alpha
+UIColor * GColorWithWhiteAlpha(CGFloat white, CGFloat alpha);
+
+//r g b
+UIColor * GColorWithRGB(CGFloat red, CGFloat green, CGFloat blue);
+
+//r g b a
+UIColor * GColorWithRGBA(CGFloat red, CGFloat green, CGFloat blue, CGFloat alpha);
+
+//hex
+UIColor * GColorWithHex(unsigned int hex);
+
+//hex alpha
+UIColor * GColorWithHexAlpha(unsigned int hex, CGFloat alpha);
+
+//random
+UIColor * GRandomColor(void);
+
+//random alpha
+UIColor * GRandomColorWithAlpha(CGFloat alpha);
 
 @interface UIColor (GKit)
-
-/** Creates and returns a color object using the specific hex value.
- @param hex The hex value that will decide the color.
- @return The `UIColor` object.
- */
-+ (UIColor *) colorWithHex:(unsigned int)hex;
-
-/** Creates and returns a color object using the specific hex value.
- @param hex The hex value that will decide the color.
- @param alpha The opacity of the color.
- @return The `UIColor` object.
- */
-+ (UIColor *) colorWithHex:(unsigned int)hex alpha:(CGFloat)alpha;
-
-/** Creates and returns a color object with a random color value. The alpha property is 1.0.
- @return The `UIColor` object.
- */
-+ (UIColor *) randomColor;
 
 @end

@@ -21,17 +21,18 @@
     self = [super initWithFrame:frame];
     if (self) {
         // Initialization code
-        self.backgroundColor = [UIColor orangeColor];
         [self drawBorderWithColor:[UIColor blackColor]
-                                 width:2.0
-                          cornerRadius:5.0];
+                                 width:1.0
+                          cornerRadius:3.0];
         self.shouldMove = YES;
         
-        _titleLabel = [[UILabel alloc] initWithFrame:CGRectZero];
+        _titleLabel = [[UILabel alloc] init];
         _titleLabel.backgroundColor = [UIColor clearColor];
         _titleLabel.textColor = [UIColor whiteColor];
-        _titleLabel.textAlignmentG = GTextAlignmentCenter;
-        [self addSubviewToFill:_titleLabel];
+		_titleLabel.font = [UIFont systemFontOfSize:12.0];
+		_titleLabel.numberOfLines = 0;
+		_titleLabel.lineBreakMode = UILineBreakModeCharacterWrap;
+        [self addSubview:_titleLabel];
         
     }
     return self;
@@ -41,6 +42,8 @@
 {
     _event = event;
     _titleLabel.text = event.title;
+	_titleLabel.frame = self.bounds;
+	[_titleLabel sizeToFit];
 }
 
 #pragma mark - GMoveSpriteProtocol

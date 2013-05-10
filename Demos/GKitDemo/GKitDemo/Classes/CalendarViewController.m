@@ -48,10 +48,10 @@
 	// Do any additional setup after loading the view.
     
     [self setTopViewHeight:60];
-    [self.topView setBackgroundColor:[UIColor randomColor]];
+    [self.topView setBackgroundColor:GRandomColor()];
     
     [self setBottomViewHeight:60];
-    [self.bottomView setBackgroundColor:[UIColor randomColor]];
+    [self.bottomView setBackgroundColor:GRandomColor()];
     
     self.dayView = [[GDayView alloc] initWithFrame:self.contentView.bounds];
     self.weekView = [[GWeekView alloc] initWithFrame:self.contentView.bounds];

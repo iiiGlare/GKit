@@ -363,10 +363,10 @@
     {
         [_scrollView addSubview:eventView];
         
-        [self layoutEventViewsFromBeginY: eventView.y
-                                  toEndY: eventView.y + eventView.height
-                           atDayPosition: [self dayPositionForDate:eventView.beginTime]
-                                animated: NO];
+//        [self layoutEventViewsFromBeginY: eventView.y
+//                                  toEndY: eventView.y + eventView.height
+//                           atDayPosition: [self dayPositionForDate:eventView.beginTime]
+//                                animated: NO];
     }
 }
 
@@ -435,6 +435,8 @@
     NSDate *eventViewBeginTime = beginTime;
     NSDate *eventViewEndTime;
     
+	UIColor *color = GRandomColorWithAlpha(0.5);
+	
     do {
         
         eventViewEndTime = [[eventViewBeginTime beginningOfDay] dateByAddingTimeInterval:GTimeIntervalFromHours(GHoursInDay)];
@@ -445,6 +447,7 @@
                                  atDayPosition: [self dayPositionForDate:eventViewBeginTime]];
         
         GEventView *eventView = [[GEventView alloc] initWithFrame:frame];
+		eventView.backgroundColor = color;
         eventView.event = event;
         eventView.beginTime = eventViewBeginTime;
         eventView.endTime = eventViewEndTime;
@@ -582,6 +585,7 @@
 - (GMoveSnapshot *)weekViewPrepareSnapshotForOwnEventView:(GEventView *)eventView
 {
     GMoveSnapshot *snapshot = [[GMoveSnapshot alloc] initWithFrame:eventView.frame];
+	eventView.backgroundColor = [UIColor orangeColor];
     [snapshot addSubviewToFill:eventView];
     [snapshot becomeCatchableInCalendarWithEvent:eventView.event];
     snapshot.alpha = 0.7;
@@ -609,14 +613,14 @@
 }
 - (void)weekViewDidPrepareSnapshot:(GMoveSnapshot *)snapshot
 {
-    CGPoint snapshotCenter = [self convertPoint:snapshot.center fromView:snapshot.superview];
-    NSInteger dayPosition = [self dayPositionForPoint:snapshotCenter];
-    CGRect eventRect = GRectAddPoint([self convertRect:snapshot.frame fromView:snapshot.superview],
-                                     self.scrollView.contentOffset);
-    [self layoutEventViewsFromBeginY: CGRectGetMinY(eventRect)
-                              toEndY: CGRectGetMaxY(eventRect)
-                       atDayPosition: dayPosition
-                            animated: YES];
+//    CGPoint snapshotCenter = [self convertPoint:snapshot.center fromView:snapshot.superview];
+//    NSInteger dayPosition = [self dayPositionForPoint:snapshotCenter];
+//    CGRect eventRect = GRectAddPoint([self convertRect:snapshot.frame fromView:snapshot.superview],
+//                                     self.scrollView.contentOffset);
+//    [self layoutEventViewsFromBeginY: CGRectGetMinY(eventRect)
+//                              toEndY: CGRectGetMaxY(eventRect)
+//                       atDayPosition: dayPosition
+//                            animated: YES];
     
 }
 
@@ -631,6 +635,7 @@
                                             endTime: tempEvent.endTime
                                       atDayPosition: 0];
     GEventView *movingEventView = [[GEventView alloc] initWithFrame:eventViewFrame];
+	movingEventView.backgroundColor = [UIColor orangeColor];
 	movingEventView.event = tempEvent;
     if (movingEventView) {
         
