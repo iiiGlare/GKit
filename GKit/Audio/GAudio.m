@@ -25,12 +25,12 @@
 <AVAudioPlayerDelegate, AVAudioRecorderDelegate>
 
 @property (nonatomic, strong) AVAudioPlayer *audioPlayer;
-@property (nonatomic, copy) void (^blockAudioStopPlayCallback)(void);
+@property (nonatomic, strong) void (^blockAudioStopPlayCallback)(void);
 
 @property (nonatomic, strong) AVAudioRecorder *audioRecorder;
 @property (nonatomic, strong) NSURL *audioRecordingFileURL;
 @property (nonatomic, strong) NSTimer *audioRecordingTimer;
-@property (nonatomic, copy) void (^blockAudioRecordingCallback)(NSTimeInterval currentTime, BOOL recording, BOOL interruption, NSError *error);
+@property (nonatomic, strong) void (^blockAudioRecordingCallback)(NSTimeInterval currentTime, BOOL recording, BOOL interruption, NSError *error);
 
 @property (nonatomic, strong) AVAudioSession *audioSession;
 
@@ -90,15 +90,25 @@
 							volume:(CGFloat)volume
                         completion:(void (^)(void))completion
 {
+    [[GAudio sharedAudio] setBlockAudioStopPlayCallback:completion];
+    
+    NSError *error = nil;
     AVAudioPlayer *newPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:fileURL
-																	  error:nil];
+																	  error:&error];
+    if (error) {
+        GPRINTError(error);
+    }
 	newPlayer.volume = volume;
 	newPlayer.delegate = [GAudio sharedAudio];
-	[newPlayer prepareToPlay];
-	[newPlayer setCurrentTime:0];
-	[newPlayer play];
-    [[GAudio sharedAudio] setAudioPlayer:newPlayer];
-    [[GAudio sharedAudio] setBlockAudioStopPlayCallback:completion];
+	if ([newPlayer prepareToPlay]) {
+        [newPlayer setCurrentTime:0];
+        [[GAudio sharedAudio] setAudioPlayer:newPlayer];
+        if (![newPlayer play]) {
+            GPRINT(@"AVAudioPlayer failed play");
+        }
+    }else {
+        GPRINT(@"AVAudioPlayer failed prepareToPlay");
+    }
 }
 
 + (void)stopPlayAudio
@@ -112,8 +122,12 @@
 - (void)audioPlayerDidFinishPlaying:(AVAudioPlayer *)player successfully:(BOOL)flag
 {
 	self.audioPlayer = nil;
-    self.blockAudioStopPlayCallback();
-    self.blockAudioStopPlayCallback = nil;
+    
+    if (_blockAudioStopPlayCallback)
+    {
+        _blockAudioStopPlayCallback();
+        _blockAudioStopPlayCallback = nil;
+    }
 }
 
 #pragma mark - Record
@@ -137,9 +151,9 @@ NSURL * GAudioRecordingFileURL(void)
 {
     [[GAudio sharedAudio] stopRecording];
 }
-+ (void)moveRecordedAudioFileToURL:(NSURL *)url
++ (void)copyRecordedAudioFileToURL:(NSURL *)url
 {
-    [[GAudio sharedAudio] moveRecordedAudioFileToURL:url];
+    [[GAudio sharedAudio] copyRecordedAudioFileToURL:url];
 }
 + (void)deleteRecording
 {
@@ -164,7 +178,10 @@ NSURL * GAudioRecordingFileURL(void)
     //
     if (!audioRecorder) {
         GPRINT(@"Error establishing recorder: %@", error.localizedFailureReason);
-        _blockAudioRecordingCallback(0, NO, NO, error);
+        if (_blockAudioRecordingCallback) {
+            _blockAudioRecordingCallback(0, NO, NO, error);
+        }
+        
         return;
     }
 
@@ -180,7 +197,9 @@ NSURL * GAudioRecordingFileURL(void)
         NSError *error = [[NSError alloc] initWithDomain: @"GAudioRecordingError"
                                                     code: 0
                                                 userInfo: nil];
-        _blockAudioRecordingCallback(0, NO, NO,error);
+        if (_blockAudioRecordingCallback) {
+            _blockAudioRecordingCallback(0, NO, NO,error);
+        }
         return;
     }
     
@@ -204,7 +223,9 @@ NSURL * GAudioRecordingFileURL(void)
 
 - (void)audioRecordingTimerDidFire
 {
-    _blockAudioRecordingCallback(_audioRecorder.currentTime, _audioRecorder.recording, NO, nil);
+    if (_blockAudioRecordingCallback) {
+        _blockAudioRecordingCallback(_audioRecorder.currentTime, _audioRecorder.recording, NO, nil);
+    }
 }
 
 - (void)pauseRecording
@@ -224,7 +245,7 @@ NSURL * GAudioRecordingFileURL(void)
     //stop
     [self.audioRecorder stop];
 }
-- (void)moveRecordedAudioFileToURL:(NSURL *)url
+- (void)copyRecordedAudioFileToURL:(NSURL *)url
 {
     NSError *error = nil;
     [[NSFileManager defaultManager] removeItemAtURL: url
@@ -251,17 +272,23 @@ NSURL * GAudioRecordingFileURL(void)
 //AVAudioRecorderDelegate
 - (void)audioRecorderBeginInterruption:(AVAudioRecorder *)recorder
 {
-    _blockAudioRecordingCallback(_audioRecorder.currentTime, _audioRecorder.recording, YES, nil);
+    if (_blockAudioRecordingCallback) {
+        _blockAudioRecordingCallback(_audioRecorder.currentTime, _audioRecorder.recording, YES, nil);
+    }
 }
 
 - (void)audioRecorderEndInterruption:(AVAudioRecorder *)recorder withOptions:(NSUInteger)flags
 {
-    _blockAudioRecordingCallback(_audioRecorder.currentTime, _audioRecorder.recording, NO, nil);
+    if (_blockAudioRecordingCallback) {
+        _blockAudioRecordingCallback(_audioRecorder.currentTime, _audioRecorder.recording, NO, nil);
+    }
 }
 
 - (void)audioRecorderEndInterruption:(AVAudioRecorder *)recorder withFlags:(NSUInteger)flags
 {
-    _blockAudioRecordingCallback(_audioRecorder.currentTime, _audioRecorder.recording, NO, nil);
+    if (_blockAudioRecordingCallback) {
+        _blockAudioRecordingCallback(_audioRecorder.currentTime, _audioRecorder.recording, NO, nil);
+    }
 }
 
 #pragma mark - AVAudioSession

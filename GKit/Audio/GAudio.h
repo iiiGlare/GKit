@@ -46,7 +46,7 @@ NSURL * GAudioRecordingFileURL(void);
 + (void)startRecording;
 + (void)pauseRecording;
 + (void)stopRecording;
-+ (void)moveRecordedAudioFileToURL:(NSURL *)url;
++ (void)copyRecordedAudioFileToURL:(NSURL *)url;
 + (void)deleteRecording;
 
 

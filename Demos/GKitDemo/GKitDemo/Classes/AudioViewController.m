@@ -93,7 +93,7 @@
     }else if (sender.tag==1) {
         [self.contentView removeAllSubviewOfClass:[UIButton class]];
         [GAudio stopRecording];
-        [GAudio moveRecordedAudioFileToURL:fileURL];
+        [GAudio copyRecordedAudioFileToURL:fileURL];
         [self performSelectorInBackground:@selector(prepareForNewRecording) withObject:nil];
         sender.tag = 2;
         [sender setTitle:@"播放" forState:UIControlStateNormal];
@@ -106,9 +106,11 @@
 
 - (void)stopAndPreview:(UIButton *)sender
 {
+    NSURL *fileURL = [GDocumentsDirectoryURL() URLByAppendingPathComponent:@"audio.caf"];
     if (sender.tag == 0) {
         [GAudio pauseRecording];
-        [GAudio playAudioWithContentsOfURL:GAudioRecordingFileURL() volume:1.0 completion:nil];
+        [GAudio copyRecordedAudioFileToURL:fileURL];
+        [GAudio playAudioWithContentsOfURL:fileURL volume:1.0 completion:nil];
         [sender setTitle:@"继续" forState:UIControlStateNormal];
         sender.tag = 1;
     }else {
