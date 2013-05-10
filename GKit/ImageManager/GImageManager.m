@@ -78,9 +78,13 @@
 			 dispatch_sync(dispatch_get_main_queue(), ^{
 				 if (error) {
 					 GPRINTError(error);
-					 blockFailed();
+                     if (blockFailed) {
+                        blockFailed();
+                     }
 				 }else{
-					 blockSucceed();
+                     if (blockSucceed) {
+                        blockSucceed();
+                     }
 				 }
 			 });
 		 }];

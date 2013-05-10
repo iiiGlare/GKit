@@ -16,46 +16,68 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <AVFoundation/AVFoundation.h>
+#import <AudioToolbox/AudioToolbox.h>
 
-enum{
-	AudioSessionCategoryAmbient = 0,		//3.0
-	AudioSessionCategorySoloAmbient,		//3.0
-	AudioSessionCategoryPlayback,			//3.0
-	AudioSessionCategoryRecord,				//3.0
-	AudioSessionCategoryPlayAndRecord,		//3.0
-	AudioSessionCategoryAudioProcessing,	//3.1
-	AudioSessionCategoryMultiRoute			//6.0
+enum {
+	GAudioSessionCategoryAmbient = 0,		//3.0
+	GAudioSessionCategorySoloAmbient,		//3.0
+	GAudioSessionCategoryPlayback,			//3.0
+	GAudioSessionCategoryRecord,			//3.0
+	GAudioSessionCategoryPlayAndRecord,		//3.0
+	GAudioSessionCategoryAudioProcessing,	//3.1
+	GAudioSessionCategoryMultiRoute			//6.0
 };
-typedef NSInteger AudioSessionCategory;
+typedef NSInteger GAudioSessionCategory;
 
+enum  {
+    GAudioInterruptionNone,
+    GAudioInterruptionBegin,
+    GAudioInterruptionEnd
+};
+typedef NSInteger GAudioInterruptionType;
 
 @interface GAudio : NSObject
 
-//play
+//Vibrate && SystemSound
 + (void)vibrate;
 + (void)playSystemSoundForResource:(NSString *)resource
 					 withExtension:(NSString *)extension;
-+ (void)playAudioWithContentsOfURL:(NSURL *)fileURL
-							volume:(CGFloat)volume
-                        completion:(void (^)(void))completion;
-+ (void)stopPlayAudio;
 
-//record
-NSURL * GAudioRecordingFileURL(void);
-+ (void)prepareRecordingWithCallback:(void (^)(NSTimeInterval currentTime, BOOL recording, BOOL interruption, NSError *error))callback;
-+ (void)startRecording;
-+ (void)pauseRecording;
-+ (void)stopRecording;
-+ (void)copyRecordedAudioFileToURL:(NSURL *)url;
-+ (void)deleteRecording;
-
-
-//audio session
+//Audio Session
 + (void)activeAudioSession;
 + (void)deactiveAudioSession;
-+ (void)setSessionProperty:(AudioSessionCategory)category;
++ (void)setSessionProperty:(GAudioSessionCategory)category;
 + (void)overrideCategoryDefaultToSpeaker:(BOOL)isOverride;
 + (void)overrideAudioRouteToSpeaker:(BOOL)isOverride;
-+ (BOOL)isSilenced;
+//+ (BOOL)isSilenced;
+
+//Init
++ (GAudio *)sharedAudio;
++ (GAudio *)newAudio;
+
+//Play
+@property (nonatomic, strong, readonly) AVAudioPlayer *player;
+
+- (void)preparePlayingWithContents:(id)audioContents
+                          callback:(void (^)(GAudio *audio, GAudioInterruptionType type, NSError *error))callback
+                            finish:(void (^)(GAudio *audio, BOOL successfully))finish;
+- (void)startPlayingWithCurrentTime:(NSTimeInterval)currentTime;
+- (void)pausePlaying;
+- (void)stopPlaying;
+- (void)stopAndPreparePlaying;
+- (void)deletePlaying;
+
+//Record
+@property (nonatomic, strong, readonly) AVAudioRecorder *recorder;
+
+NSURL * GAudioRecordingFileURL(void);
+- (void)prepareRecordingWithCallback:(void (^)(GAudio *audio, GAudioInterruptionType type, NSError *error))callback;
+- (void)startRecording;
+- (void)pauseRecording;
+- (void)stopRecording;
+- (void)stopAndPrepareRecording;
+- (BOOL)copyRecordedAudioFileToURL:(NSURL *)url;
+- (void)deleteRecording;
 
 @end
