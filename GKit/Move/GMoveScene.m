@@ -137,30 +137,32 @@
             UIView *topestView = [self hitTest:touchPoint withEvent:nil];
             id<GMoveSpriteCatcherProtocol> catcher = [topestView findCatcher];
             if (catcher==nil) catcher = self.sourceCatcher;
-            //
-            if (catcher!=self.currentCatcher)
-            {
-                [self catcherEndCatching:self.currentCatcher];
-            }
+            [self catcherDidCatch:catcher];
             
+            //
+            if (catcher!=_currentCatcher)
+            {
+                [self catcherEndCatching:_currentCatcher];
+            }
             //
             if (catcher!=_sourceCatcher) {
                 [self catcherRemoveOwnSprite:_sourceCatcher];
             }
             
-            [self catcherDidCatch:catcher];
+            
             
         }
             break;
         case UIGestureRecognizerStateCancelled:
         {
-            //
-            if (_sourceCatcher!=self.currentCatcher)
-            {
-                [self catcherEndCatching:self.currentCatcher];
-            }
-            
             [self catcherDidCatch:_sourceCatcher];
+            
+            //
+            if (_sourceCatcher!=_currentCatcher)
+            {
+                [self catcherEndCatching:_currentCatcher];
+            }
+
         }
             break;
         default:
