@@ -11,6 +11,6 @@
 
 @interface GMoveSnapshot (GCalendar)
 
-- (void)becomeCatchableInCalendarWithEvent:(GEvent *)event;
+- (void)becomeCatchableInCalendarWithGEvent:(GEvent *)event;
 
 @end

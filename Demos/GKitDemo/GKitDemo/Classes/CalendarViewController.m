@@ -157,11 +157,20 @@
     return events;
 }
 
-- (void)dayView:(GDayView *)dayView didSelectEvent:(GEvent *)event
+- (void)dayView:(GDayView *)dayView didSelectGEvent:(GEvent *)event
 {
     GViewController *eventVC = [GViewController new];
     eventVC.title = event.title;
     [self.navigationController pushViewController:eventVC animated:YES];
+}
+
+- (void)dayView:(GDayView *)dayView requireGEventAtDate:(NSDate *)date
+{
+    [[[UIAlertView alloc] initWithTitle:@"GDayView"
+                                message:[date dateStringWithFormat:@"yyyy-MM-dd HH:mm:SS"]
+                               delegate:nil
+                      cancelButtonTitle:@"OK"
+                      otherButtonTitles:nil] show];
 }
 
 #pragma mark - GWeekView
@@ -203,19 +212,27 @@
     return events;
 }
 
-- (void)weekView:(GDayView *)dayView didSelectEvent:(GEvent *)event
+- (void)weekView:(GDayView *)dayView didSelectGEvent:(GEvent *)event
 {
     GViewController *eventVC = [GViewController new];
     eventVC.title = event.title;
     [self.navigationController pushViewController:eventVC animated:YES];
 }
 
+- (void)weekView:(GWeekView *)weekView requireGEventAtDate:(NSDate *)date
+{
+    [[[UIAlertView alloc] initWithTitle:@"GWeekView"
+                                message:[date dateStringWithFormat:@"yyyy-MM-dd HH:mm:SS"]
+                               delegate:nil
+                      cancelButtonTitle:@"OK"
+                      otherButtonTitles:nil] show];
+}
 
 #pragma mark - GMove
 - (void)didPrepareSnapshot:(GMoveSnapshot *)snapshot
 {
     GEvent *event = [[GEvent alloc] init];
-    [snapshot becomeCatchableInCalendarWithEvent:event];
+    [snapshot becomeCatchableInCalendarWithGEvent:event];
 }
 @end
 

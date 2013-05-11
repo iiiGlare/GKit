@@ -416,15 +416,15 @@
         NSArray *events = [_dataSource eventsForWeekView:self];
         
         for (GEvent *event in events) {
-            [self layoutEvent:event];
+            [self layoutGEvent:event];
         }        
     }
 }
 
 #pragma mark Layout
-- (void)layoutEvent:(GEvent *)event
+- (void)layoutGEvent:(GEvent *)event
 {
-    NSArray *eventViews = [self eventViewsForEvent:event];
+    NSArray *eventViews = [self eventViewsForGEvent:event];
     
     for (GEventView *eventView in eventViews)
     {
@@ -484,7 +484,7 @@
     }
 }
 
-- (NSArray *)eventViewsForEvent:(GEvent *)event
+- (NSArray *)eventViewsForGEvent:(GEvent *)event
 {
     NSMutableArray *eventViews = [NSMutableArray array];
     
@@ -567,13 +567,24 @@
 #pragma mark Gesture Recognizer
 - (void)handleTap:(UITapGestureRecognizer *)tapGR
 {
-    UIView *view = [self hitTest:[tapGR locationInView:self] withEvent:nil];
+    CGPoint location = [tapGR locationInView:self];
+    UIView *view = [self hitTest:location withEvent:nil];
     if (view && [view isKindOfClass:[GEventView class]])
     {
         if (_delegate &&
-            [_delegate respondsToSelector:@selector(weekView:didSelectEvent:)])
+            [_delegate respondsToSelector:@selector(weekView:didSelectGEvent:)])
         {
-            [_delegate weekView:self didSelectEvent:[(GEventView *)view event]];
+            [_delegate weekView:self didSelectGEvent:[(GEventView *)view event]];
+        }
+    }else {
+        
+        if (_delegate &&
+            [_delegate respondsToSelector:@selector(weekView:requireGEventAtDate:)])
+        {
+            CGPoint offsetPoint = [self.scrollView convertPoint:location fromView:self];
+            NSInteger dayPosition = [self dayPositionForPoint:offsetPoint];
+            NSDate *date = [self dateForOffset:offsetPoint.y atDayPosition:dayPosition];
+            [_delegate weekView:self requireGEventAtDate:date];
         }
     }
 }
@@ -610,7 +621,7 @@
     GEvent *event = [snapshot.userInfo valueForKey:kGEvent];
     if (event)
     {
-        [self weekViewBeginCatchingSnapshot:snapshot withEvent:event];
+        [self weekViewBeginCatchingSnapshot:snapshot withGEvent:event];
     }
 }
 - (void)isCatchingSnapshot:(GMoveSnapshot *)snapshot
@@ -636,7 +647,7 @@
     GEvent *event = [snapshot.userInfo valueForKey:kGEvent];
     if (event)
     {
-        [self weekViewDidCatchSnapshot:snapshot withEvent:event];
+        [self weekViewDidCatchSnapshot:snapshot withGEvent:event];
     }
 }
 - (void)removeOwnSprite:(UIView *)sprite
@@ -654,7 +665,7 @@
     GMoveSnapshot *snapshot = [[GMoveSnapshot alloc] initWithFrame:eventView.frame];
 	eventView.backgroundColor = [UIColor orangeColor];
     [snapshot addSubviewToFill:eventView];
-    [snapshot becomeCatchableInCalendarWithEvent:eventView.event];
+    [snapshot becomeCatchableInCalendarWithGEvent:eventView.event];
     snapshot.alpha = 0.7;
     
     //remove all event views for event
@@ -692,7 +703,7 @@
 }
 
 //moving event
-- (void)weekViewBeginCatchingSnapshot:(GMoveSnapshot *)snapshot withEvent:(GEvent *)event
+- (void)weekViewBeginCatchingSnapshot:(GMoveSnapshot *)snapshot withGEvent:(GEvent *)event
 {
     GEvent *tempEvent = [[GEvent alloc] init];
     tempEvent.title = event.title;
@@ -748,7 +759,7 @@
 }
 
 //did finish
-- (void)weekViewDidCatchSnapshot:(GMoveSnapshot *)snapshot withEvent:(GEvent *)event
+- (void)weekViewDidCatchSnapshot:(GMoveSnapshot *)snapshot withGEvent:(GEvent *)event
 {
     CGPoint snapshotCenter = [self convertPoint:snapshot.center fromView:snapshot.superview];
     NSInteger dayPosition = [self dayPositionForPoint:snapshotCenter];
@@ -765,9 +776,9 @@
             event.endTime = [self dateForOffset:CGRectGetMaxY(eventRect) atDayPosition:dayPosition];
             
             if (_delegate &&
-                [_delegate respondsToSelector:@selector(weekView:didUpdateEvent:)])
+                [_delegate respondsToSelector:@selector(weekView:didUpdateGEvent:)])
             {
-                [_delegate weekView:self didUpdateEvent:event];
+                [_delegate weekView:self didUpdateGEvent:event];
             }
         }
         
@@ -776,15 +787,15 @@
     
     if (event)
     {
-        [self layoutEvent:event];
+        [self layoutGEvent:event];
     }
 }
 
 - (void)weekViewRemoveOwnEventView:(GEventView *)eventView
 {
     if (_delegate &&
-        [_delegate respondsToSelector:@selector(weekView:didRemoveEvent:)]) {
-        [_delegate weekView:self didRemoveEvent:eventView.event];
+        [_delegate respondsToSelector:@selector(weekView:didRemoveGEvent:)]) {
+        [_delegate weekView:self didRemoveGEvent:eventView.event];
     }
     
     

@@ -55,7 +55,7 @@
 - (NSArray *)eventsForWeekView:(GWeekView *)weekView;
 
 @optional
-- (GEventView *)weekView:(GWeekView *)weekView eventViewForEvent:(GEvent *)event;
+- (GEventView *)weekView:(GWeekView *)weekView eventViewForGEvent:(GEvent *)event;
 
 @end
 
@@ -63,8 +63,10 @@
 @protocol GWeekViewDelegate <NSObject>
 
 @optional
-- (void)weekView:(GWeekView *)weekView didRemoveEvent:(GEvent *)event;
-- (void)weekView:(GWeekView *)weekView didUpdateEvent:(GEvent *)event;
-- (void)weekView:(GWeekView *)weekView didSelectEvent:(GEvent *)event;
+- (void)weekView:(GWeekView *)weekView didRemoveGEvent:(GEvent *)event;
+- (void)weekView:(GWeekView *)weekView didUpdateGEvent:(GEvent *)event;
+- (void)weekView:(GWeekView *)weekView didSelectGEvent:(GEvent *)event;
+
+- (void)weekView:(GWeekView *)weekView requireGEventAtDate:(NSDate *)date;
 
 @end

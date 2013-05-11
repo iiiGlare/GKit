@@ -252,7 +252,7 @@
         NSArray *events = [_dataSource eventsForDayView:self];
         for (GEvent *event in events)
         {
-            [self layoutEvent:event];
+            [self layoutGEvent:event];
         }
     }
 }
@@ -264,9 +264,9 @@
     
     
 }
-- (void)layoutEvent:(GEvent *)event
+- (void)layoutGEvent:(GEvent *)event
 {    
-    GEventView *eventView = [self eventViewForEvent:event];
+    GEventView *eventView = [self eventViewForGEvent:event];
     if (eventView)
     {    
         [_scrollView addSubview:eventView];
@@ -314,16 +314,16 @@
 }
 
 #pragma mark Utils
-- (GEventView *)eventViewForEvent:(GEvent *)event
+- (GEventView *)eventViewForGEvent:(GEvent *)event
 {
-    CGRect frame = [self frameForEvent:event];
+    CGRect frame = [self frameForGEvent:event];
     if (CGRectEqualToRect(frame, CGRectZero)) return nil;
     
     GEventView *eventView = nil;
     if (_dataSource &&
-        [_dataSource respondsToSelector:@selector(dayView:eventViewForEvent:)])
+        [_dataSource respondsToSelector:@selector(dayView:eventViewForGEvent:)])
     {
-        eventView = [_dataSource dayView:self eventViewForEvent:event];
+        eventView = [_dataSource dayView:self eventViewForGEvent:event];
     }
     if (eventView==nil)
     {
@@ -338,9 +338,9 @@
 }
 
 
-- (CGRect)frameForEvent:(GEvent *)event
+- (CGRect)frameForGEvent:(GEvent *)event
 {
-    if (![self canShowEvent:event]) return CGRectZero;
+    if (![self canShowGEvent:event]) return CGRectZero;
     
     //
     NSTimeInterval beginTimeInterval = [event.beginTime timeIntervalSinceDate:self.day];
@@ -352,7 +352,7 @@
     return CGRectMake(_hourViewWidth, beginY, _dayEventViewWidth, endY-beginY);
 }
 
-- (BOOL)canShowEvent:(GEvent *)event
+- (BOOL)canShowGEvent:(GEvent *)event
 {
     NSDate *beginTime = event.beginTime;
     NSDate *endTime = event.endTime;
@@ -373,17 +373,34 @@
     return [NSDate dateWithTimeInterval:interval sinceDate:self.day];
 }
 
+- (CGFloat)offsetForDate:(NSDate *)date
+{
+    NSTimeInterval interval = [date timeIntervalSinceDate:self.day];
+    CGFloat dayBeginOffset = _gridTopMargin + _gridLineTopMargin;
+    return gfloor(interval * self.hourHeight/GTimeIntervalFromHours(1)) + dayBeginOffset;
+}
+
 #pragma mark Gesture Recognizer
 - (void)handleTap:(UITapGestureRecognizer *)tapGR
 {
+    CGPoint location = [tapGR locationInView:self];
     UIView *view = [self hitTest:[tapGR locationInView:self] withEvent:nil];
     if (view && [view isKindOfClass:[GEventView class]])
     {
         if (_delegate &&
-            [_delegate respondsToSelector:@selector(dayView:didSelectEvent:)])
+            [_delegate respondsToSelector:@selector(dayView:didSelectGEvent:)])
         {
-            [_delegate dayView:self didSelectEvent:[(GEventView *)view event]];
+            [_delegate dayView:self didSelectGEvent:[(GEventView *)view event]];
         }
+    }else {
+        
+        if (_delegate &&
+            [_delegate respondsToSelector:@selector(dayView:requireGEventAtDate:)])
+        {
+            CGFloat offset = [self.scrollView convertPoint:location fromView:self].y;
+            [_delegate dayView:self requireGEventAtDate:[self dateForOffset:offset]];
+        }
+        
     }
 }
 
@@ -425,7 +442,7 @@
     GEvent *event = [snapshot.userInfo valueForKey:kGEvent];
     if (event)
     {
-        [self dayViewBeginCatchingSnapshot:snapshot withEvent:event];
+        [self dayViewBeginCatchingSnapshot:snapshot withGEvent:event];
     }
 }
 - (void)isCatchingSnapshot:(GMoveSnapshot *)snapshot
@@ -451,7 +468,7 @@
     GEvent *event = [snapshot.userInfo valueForKey:kGEvent];
     if (event)
     {
-        [self dayViewDidCatchSnapshot:snapshot withEvent:event];
+        [self dayViewDidCatchSnapshot:snapshot withGEvent:event];
     }
 }
 - (void)removeOwnSprite:(UIView *)sprite
@@ -469,13 +486,13 @@
     GMoveSnapshot *snapshot = [[GMoveSnapshot alloc] initWithFrame:eventView.frame];
 	eventView.backgroundColor = [UIColor orangeColor];
     [snapshot addSubviewToFill:eventView];
-    [snapshot becomeCatchableInCalendarWithEvent:eventView.event];
+    [snapshot becomeCatchableInCalendarWithGEvent:eventView.event];
     snapshot.alpha = 0.7;
     return snapshot;
 }
 - (CGRect)dayViewPrepareFrameForSnapshot:(GMoveSnapshot *)snapshot
 {
-    CGRect eventFrame = [self frameForEvent: [snapshot.userInfo valueForKey:kGEvent]];
+    CGRect eventFrame = [self frameForGEvent: [snapshot.userInfo valueForKey:kGEvent]];
     return [snapshot.superview convertRect:eventFrame fromView:self.scrollView];
 }
 - (void)dayViewDidPrepareSnapshot:(GMoveSnapshot *)snapshot
@@ -489,9 +506,9 @@
 }
 
 //moving event
-- (void)dayViewBeginCatchingSnapshot:(GMoveSnapshot *)snapshot withEvent:(GEvent *)event
+- (void)dayViewBeginCatchingSnapshot:(GMoveSnapshot *)snapshot withGEvent:(GEvent *)event
 {
-    GEventView *movingEventView = [self eventViewForEvent:event];
+    GEventView *movingEventView = [self eventViewForGEvent:event];
     if (movingEventView) {
         
         _snapshotAlpha = snapshot.alpha;
@@ -537,7 +554,7 @@
 }
 
 //did finish
-- (void)dayViewDidCatchSnapshot:(GMoveSnapshot *)snapshot withEvent:(GEvent *)event
+- (void)dayViewDidCatchSnapshot:(GMoveSnapshot *)snapshot withGEvent:(GEvent *)event
 {
     
     if (self.movingEventView)
@@ -552,8 +569,8 @@
             event.endTime = [self dateForOffset:CGRectGetMaxY(eventRect)];
             
             if (_delegate &&
-                [_delegate respondsToSelector:@selector(dayView:didUpdateEvent:)]) {
-                [_delegate dayView:self didUpdateEvent:event];
+                [_delegate respondsToSelector:@selector(dayView:didUpdateGEvent:)]) {
+                [_delegate dayView:self didUpdateGEvent:event];
             }
         }
         
@@ -562,15 +579,15 @@
     
     if (event)
     {
-        [self layoutEvent:event];
+        [self layoutGEvent:event];
     }
 }
 
 - (void)dayViewRemoveOwnEventView:(GEventView *)eventView
 {    
     if (_delegate &&
-        [_delegate respondsToSelector:@selector(dayView:didRemoveEvent:)]) {
-        [_delegate dayView:self didRemoveEvent:eventView.event];
+        [_delegate respondsToSelector:@selector(dayView:didRemoveGEvent:)]) {
+        [_delegate dayView:self didRemoveGEvent:eventView.event];
     }
     
     

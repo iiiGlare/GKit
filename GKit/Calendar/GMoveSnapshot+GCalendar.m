@@ -10,7 +10,7 @@
 
 @implementation GMoveSnapshot (GCalendar)
 
-- (void)becomeCatchableInCalendarWithEvent:(GEvent *)event
+- (void)becomeCatchableInCalendarWithGEvent:(GEvent *)event
 {
     NSMutableDictionary *userInfo = [NSMutableDictionary dictionary];
     [userInfo addEntriesFromDictionary:self.userInfo];

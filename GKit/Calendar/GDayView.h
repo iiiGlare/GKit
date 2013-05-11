@@ -27,8 +27,9 @@
 @property (nonatomic, weak) id<GDayViewDelegate> delegate;
 
 - (void)reloadData;
-- (BOOL)canShowEvent:(GEvent *)event;
+- (BOOL)canShowGEvent:(GEvent *)gEvent;
 
+- (CGFloat)offsetForDate:(NSDate *)date;
 
 @end
 
@@ -40,11 +41,11 @@
 - (CGRect)dayViewrepareFrameForSnapshot:(GMoveSnapshot *)snapshot;
 - (void)dayViewDidPrepareSnapshot:(GMoveSnapshot *)snapshot;
 //moving event
-- (void)dayViewBeginCatchingSnapshot:(GMoveSnapshot *)snapshot withEvent:(GEvent *)event;
+- (void)dayViewBeginCatchingSnapshot:(GMoveSnapshot *)snapshot withGEvent:(GEvent *)gEvent;
 - (void)dayViewIsCatchingSnapshot:(GMoveSnapshot *)snapshot;
 - (void)dayViewEndCatchingSnapshot:(GMoveSnapshot *)snapshot;
 //end
-- (void)dayViewDidCatchSnapshot:(GMoveSnapshot *)snapshot withEvent:(GEvent *)event;
+- (void)dayViewDidCatchSnapshot:(GMoveSnapshot *)snapshot withGEvent:(GEvent *)gEvent;
 - (void)dayViewRemoveOwnEventView:(GEventView *)eventView;
 
 @end
@@ -55,7 +56,7 @@
 - (NSArray *)eventsForDayView:(GDayView *)dayView;
 
 @optional
-- (GEventView *)dayView:(GDayView *)dayView eventViewForEvent:(GEvent *)event;
+- (GEventView *)dayView:(GDayView *)dayView eventViewForGEvent:(GEvent *)gEvent;
 
 @end
 
@@ -63,8 +64,10 @@
 @protocol GDayViewDelegate <NSObject>
 
 @optional
-- (void)dayView:(GDayView *)dayView didRemoveEvent:(GEvent *)event;
-- (void)dayView:(GDayView *)dayView didUpdateEvent:(GEvent *)event;
-- (void)dayView:(GDayView *)dayView didSelectEvent:(GEvent *)event;
+- (void)dayView:(GDayView *)dayView didRemoveGEvent:(GEvent *)gEvent;
+- (void)dayView:(GDayView *)dayView didUpdateGEvent:(GEvent *)gEvent;
+- (void)dayView:(GDayView *)dayView didSelectGEvent:(GEvent *)gEvent;
+
+- (void)dayView:(GDayView *)dayView requireGEventAtDate:(NSDate *)date;
 
 @end
