@@ -87,6 +87,9 @@
 		FD0BC5DB17043C61000CC973 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD0BC5DA17043C60000CC973 /* AssetsLibrary.framework */; };
 		FD0BC5E517044A54000CC973 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD0BC5E417044A54000CC973 /* CoreLocation.framework */; };
 		FD47A80A16F83D4200CEA15A /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = FD47A80916F83D4200CEA15A /* Localizable.strings */; };
+		FDA02EE1173FB09400AA3D8D /* max_track@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FDA02EDE173FB09400AA3D8D /* max_track@2x.png */; };
+		FDA02EE2173FB09400AA3D8D /* min_track@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FDA02EDF173FB09400AA3D8D /* min_track@2x.png */; };
+		FDA02EE3173FB09400AA3D8D /* thumb@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FDA02EE0173FB09400AA3D8D /* thumb@2x.png */; };
 		FDF1EF7C16F1BD6400FCDC64 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FDF1EF7B16F1BD6400FCDC64 /* AVFoundation.framework */; };
 		FDF1EF7E16F1BD6900FCDC64 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FDF1EF7D16F1BD6900FCDC64 /* AudioToolbox.framework */; };
 		FDF566E8172E1A8C00B79E81 /* back_item_backgournd@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FDF566E7172E1A8C00B79E81 /* back_item_backgournd@2x.png */; };
@@ -244,6 +247,9 @@
 		FD0BC5DA17043C60000CC973 /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
 		FD0BC5E417044A54000CC973 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		FD47A80916F83D4200CEA15A /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
+		FDA02EDE173FB09400AA3D8D /* max_track@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "max_track@2x.png"; sourceTree = "<group>"; };
+		FDA02EDF173FB09400AA3D8D /* min_track@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "min_track@2x.png"; sourceTree = "<group>"; };
+		FDA02EE0173FB09400AA3D8D /* thumb@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "thumb@2x.png"; sourceTree = "<group>"; };
 		FDF1EF7B16F1BD6400FCDC64 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		FDF1EF7D16F1BD6900FCDC64 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		FDF566E7172E1A8C00B79E81 /* back_item_backgournd@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "back_item_backgournd@2x.png"; sourceTree = "<group>"; };
@@ -415,6 +421,9 @@
 			children = (
 				F8B6BFD1172671DB00214182 /* CustomUIViewController.h */,
 				F8B6BFD2172671DB00214182 /* CustomUIViewController.m */,
+				FDA02EDE173FB09400AA3D8D /* max_track@2x.png */,
+				FDA02EDF173FB09400AA3D8D /* min_track@2x.png */,
+				FDA02EE0173FB09400AA3D8D /* thumb@2x.png */,
 			);
 			name = CustomUI;
 			sourceTree = "<group>";
@@ -690,6 +699,9 @@
 				F8B6BFCC172671D100214182 /* UIImage.png in Resources */,
 				F8B6BFCD172671D100214182 /* UIImage@2x.png in Resources */,
 				FDF566E8172E1A8C00B79E81 /* back_item_backgournd@2x.png in Resources */,
+				FDA02EE1173FB09400AA3D8D /* max_track@2x.png in Resources */,
+				FDA02EE2173FB09400AA3D8D /* min_track@2x.png in Resources */,
+				FDA02EE3173FB09400AA3D8D /* thumb@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

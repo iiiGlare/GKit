@@ -11,6 +11,12 @@
 
 @interface GScrollSlider ()
 
+//
+@property (nonatomic, weak) UIImageView *thumbImageView;
+@property (nonatomic, weak) UIImageView *minTrackImageView;
+@property (nonatomic, weak) UIImageView *maxTrackImageView;
+
+//
 @property (nonatomic, assign) CGFloat contentLeftMargin; // default 5 + thumbViewSize.width/2
 @property (nonatomic, assign) CGFloat contentRightMargin; // default 5 + thumbViewSize.width/2
 @property (nonatomic, assign) CGFloat scalesViewWidth;
@@ -19,7 +25,7 @@
 @property (nonatomic, strong) UIView *minTrackView;
 @property (nonatomic, strong) UIView *maxTrackView;
 @property (nonatomic, strong) UIView *thumbView;
-@property (nonatomic, strong) UILabel *indicator;
+//@property (nonatomic, strong) UILabel *indicator;
 
 @property (nonatomic, strong) GPoint *gPoint;
 
@@ -99,12 +105,12 @@
     
     
     //indicator
-    _indicator = [[UILabel alloc] initWithFrame:CGRectZero];
-    _indicator.backgroundColor = [UIColor clearColor];
-    _indicator.textColor = [UIColor whiteColor];
-    _indicator.textAlignmentG = GTextAlignmentCenter;
-    _indicator.font = [UIFont systemFontOfSize:14.0];
-    [_thumbView addSubview:_indicator];
+//    _indicator = [[UILabel alloc] initWithFrame:CGRectZero];
+//    _indicator.backgroundColor = [UIColor clearColor];
+//    _indicator.textColor = [UIColor whiteColor];
+//    _indicator.textAlignmentG = GTextAlignmentCenter;
+//    _indicator.font = [UIFont systemFontOfSize:14.0];
+//    [_thumbView addSubview:_indicator];
     
     //pan gesture
     UIPanGestureRecognizer *panGR = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handlePan:)];
@@ -131,8 +137,44 @@
     self.minTrackView.frame = CGRectMake(0, 0, 0, _trackViewHeight);
     self.maxTrackView.frame = CGRectMake(0, 0, 0, _trackViewHeight);
     self.thumbView.frame = CGRectMake(0, 0, _thumbViewSize.width, _thumbViewSize.height);
-    self.indicator.frame = self.thumbView.bounds;
+//    self.indicator.frame = self.thumbView.bounds;
     
+	//thumb image
+	[self.thumbImageView removeFromSuperview];
+	if (_thumbImage) {
+		
+		_thumbView.backgroundColor = [UIColor clearColor];
+		
+		UIImageView *imageView = [[UIImageView alloc] initWithImage:_thumbImage];
+		[imageView sizeToFit];
+		imageView.center = _thumbView.innerCenter;
+		[_thumbView addSubview:imageView];
+		self.thumbImageView = imageView;
+	}
+	
+	//min track image
+	[self.minTrackImageView removeFromSuperview];
+	if (_minTrackImage) {
+		
+		_minTrackView.backgroundColor = [UIColor clearColor];
+		
+		UIImageView *imageView = [[UIImageView alloc] initWithImage:_minTrackImage];
+		[_minTrackView addSubviewToFill:imageView];
+		self.minTrackImageView = imageView;
+	}
+	
+	//max track image
+	[self.maxTrackImageView removeFromSuperview];
+	if (_maxTrackImage) {
+		
+		_maxTrackView.backgroundColor = [UIColor clearColor];
+		
+		UIImageView *imageView = [[UIImageView alloc] initWithImage:_maxTrackImage];
+		[_maxTrackView addSubviewToFill:imageView];
+		self.maxTrackImageView = imageView;
+	}
+
+	
     [self setValue:_value animated:NO];
 }
 
@@ -140,7 +182,7 @@
 - (void)setValue:(CGFloat)value
 {
     _value = value;
-    self.indicator.text = [NSString stringWithFormat:@"%.1f",value];
+//    self.indicator.text = [NSString stringWithFormat:@"%.1f",value];
 }
 
 #pragma mark - Action
@@ -187,7 +229,7 @@
     CGFloat minTrackViewWidth = _visibleValueWidth * (self.value-_minValue) / _visibleValueLength;
     CGFloat maxTrackViewWidth = _scalesViewWidth - minTrackViewWidth;
     self.minTrackView.width = minTrackViewWidth;
-    self.maxTrackView.width = maxTrackViewWidth;
+    self.maxTrackView.width = gceil(maxTrackViewWidth);
 
     CGFloat thumbCenterX = self.thumbView.center.x;
     CGFloat thumbCenterY = self.thumbView.center.y;

@@ -36,32 +36,22 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
 	
-//	UITapGestureRecognizer *doubleTapGR = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(goBack)];
-//    doubleTapGR.numberOfTapsRequired = 2;
-//    [self.view addGestureRecognizer:doubleTapGR];
-//    
-//    UITapGestureRecognizer *singleTapGR = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(goOn)];
-//    singleTapGR.numberOfTapsRequired = 1;
-//    [singleTapGR requireGestureRecognizerToFail:doubleTapGR];
-//    [self.view addGestureRecognizer:singleTapGR];
     
     [self showScrollSlider];
 
 }
 
-//- (void)goOn
-//{
-//    [self.navigationController pushViewController:[CustomUIViewController new] animated:YES];
-//}
-//- (void)goBack
-//{
-//    [self.navigationController popToRootViewControllerAnimated:YES];
-//}
 
 #pragma mark - 
 - (void)showScrollSlider
 {
     GScrollSlider *scrollSlider = [[GScrollSlider alloc] initWithFrame:CGRectMake(10, 10, 300, 50)];
+	scrollSlider.thumbImage = [UIImage imageNamed:@"thumb.png"];
+	scrollSlider.minTrackImage = [[UIImage imageNamed:@"min_track.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 10, 0, 10)];
+	scrollSlider.maxTrackImage = [[UIImage imageNamed:@"max_track.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 10, 0, 10)];
+	scrollSlider.trackViewHeight = 8;
+	scrollSlider.backgroundColor = [UIColor clearColor];
+	scrollSlider.scalesView.backgroundColor = [UIColor clearColor];
     [scrollSlider addTarget:self action:@selector(sliderValueChanged:) forControlEvents:UIControlEventValueChanged];
     [self.view addSubview:scrollSlider];
 }
