@@ -20,30 +20,34 @@
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
-    self = [super initWithStyle:UITableViewStyleGrouped];
-    if (self) {
-        
-    }
-    return self;
-}
-
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-	// Do any additional setup after loading the view.
-    _listInfo = [NSMutableDictionary dictionary];
-    [_listInfo setValue:GNumberWithInteger(4) forKey:kNumberOfSections];
-    
-    [_listInfo setValue:@[@"Audio"] forKey:@"0"];
-    [_listInfo setValue:@[@"Calendar"] forKey:@"1"];
-    [_listInfo setValue:@[@"CustomUI"] forKey:@"2"];
-    [_listInfo setValue:@[@"Present"] forKey:@"3"];
+    return [self initWithStyle:UITableViewStyleGrouped];
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+	// Do any additional setup after loading the view.
+    _listInfo = [NSMutableDictionary dictionary];
+    [_listInfo setValue:GNumberWithInteger(5) forKey:kNumberOfSections];
+    
+    [_listInfo setValue:@[@"Audio"] forKey:@"0"];
+    [_listInfo setValue:@[@"Camera"] forKey:@"1"];
+    [_listInfo setValue:@[@"Calendar"] forKey:@"2"];
+    [_listInfo setValue:@[@"CustomUI"] forKey:@"3"];
+    [_listInfo setValue:@[@"Present"] forKey:@"4"];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    [self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:YES];
 }
 
 #pragma mark - 

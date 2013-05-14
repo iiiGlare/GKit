@@ -253,7 +253,7 @@ AVCaptureConnection *_VideoConnectionFromOutput(AVCaptureOutput *output, NSStrin
 	}
 }
 
-- (void)capturePicture
+- (void)capturePictureWithCallBack:(void (^)(UIImage *picture))blockCallBack
 {
     for (AVCaptureOutput *output in [self.session outputs]) {
         if ([[output class] isSubclassOfClass:[AVCaptureStillImageOutput class]]) {
@@ -278,8 +278,17 @@ AVCaptureConnection *_VideoConnectionFromOutput(AVCaptureOutput *output, NSStrin
 					}else {
 						newPicture = picture;
 					}
-					if (newPicture && _delegate && [_delegate respondsToSelector:@selector(gCamera:didCapturePicture:)]) {
-						[_delegate gCamera:self didCapturePicture:newPicture];
+					if (newPicture) {
+                        
+                        if (_delegate &&
+                            [_delegate respondsToSelector:@selector(camera:didCapturePicture:)]) {
+                            [_delegate camera:self didCapturePicture:newPicture];
+                        }
+                        
+                        if (blockCallBack)
+                        {
+                            blockCallBack(newPicture);
+                        }
 					}
 				}
             }];

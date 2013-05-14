@@ -72,7 +72,7 @@ typedef NSInteger GCaptureSessionPresetType;
 - (void)startRunning;
 - (void)stopRunning;
 
-- (void)capturePicture;
+- (void)capturePictureWithCallBack:(void (^)(UIImage *picture))blockCallBack;
 
 - (void)switchCaptureDevicePosition;
 
@@ -85,6 +85,6 @@ typedef NSInteger GCaptureSessionPresetType;
 @protocol GCameraDelegate <NSObject>
 
 @optional
-- (void)gCamera:(GCamera *)camera didCapturePicture:(UIImage *)picture;
+- (void)camera:(GCamera *)camera didCapturePicture:(UIImage *)picture;
 
 @end

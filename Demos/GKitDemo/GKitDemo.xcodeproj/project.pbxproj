@@ -82,6 +82,7 @@
 		F8B6C07C1726C54000214182 /* GViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F8B6C0511726C54000214182 /* GViewController.m */; };
 		F8B6C07E1726C5E300214182 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8B6C07D1726C5E300214182 /* QuartzCore.framework */; };
 		F8B6C0801726C7F000214182 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8B6C07F1726C7ED00214182 /* CoreGraphics.framework */; };
+		F8D1495E1742263B00F86E7C /* CameraViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F8D1495D1742263B00F86E7C /* CameraViewController.m */; };
 		FD07BDD51727605100D8E26A /* GPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = FD07BDD41727605100D8E26A /* GPoint.m */; };
 		FD07BDD8172761DF00D8E26A /* GSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = FD07BDD7172761DF00D8E26A /* GSlider.m */; };
 		FD0BC5DB17043C61000CC973 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD0BC5DA17043C60000CC973 /* AssetsLibrary.framework */; };
@@ -240,6 +241,8 @@
 		F8B6C0511726C54000214182 /* GViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GViewController.m; sourceTree = "<group>"; };
 		F8B6C07D1726C5E300214182 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		F8B6C07F1726C7ED00214182 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		F8D1495C1742263B00F86E7C /* CameraViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraViewController.h; sourceTree = "<group>"; };
+		F8D1495D1742263B00F86E7C /* CameraViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CameraViewController.m; sourceTree = "<group>"; };
 		FD07BDD31727605100D8E26A /* GPoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GPoint.h; sourceTree = "<group>"; };
 		FD07BDD41727605100D8E26A /* GPoint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GPoint.m; sourceTree = "<group>"; };
 		FD07BDD6172761DF00D8E26A /* GSlider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GSlider.h; sourceTree = "<group>"; };
@@ -408,6 +411,7 @@
 				F8B6BFD0172671DB00214182 /* AppDelegate.m */,
 				F8B6BFD3172671DB00214182 /* DemosViewController.h */,
 				F8B6BFD4172671DB00214182 /* DemosViewController.m */,
+				F8D1495B1742261700F86E7C /* Camera */,
 				F80B212B173AD19500DDA0D6 /* Audio */,
 				F8263B22172A9D2900075959 /* Present */,
 				F82369BF1727D41400868E8B /* Calendar */,
@@ -615,6 +619,15 @@
 			path = UI;
 			sourceTree = "<group>";
 		};
+		F8D1495B1742261700F86E7C /* Camera */ = {
+			isa = PBXGroup;
+			children = (
+				F8D1495C1742263B00F86E7C /* CameraViewController.h */,
+				F8D1495D1742263B00F86E7C /* CameraViewController.m */,
+			);
+			name = Camera;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -790,6 +803,7 @@
 				F86D68551737C1DF003EFE6C /* GTextField.m in Sources */,
 				F86D68581737CE03003EFE6C /* GScrollSlider.m in Sources */,
 				F80B212E173AD1AC00DDA0D6 /* AudioViewController.m in Sources */,
+				F8D1495E1742263B00F86E7C /* CameraViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
