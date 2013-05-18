@@ -25,6 +25,12 @@
 		F8862C6D16CA6A36006EB467 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = F8862C6B16CA6A36006EB467 /* InfoPlist.strings */; };
 		F8862C7016CA6A36006EB467 /* GKitDemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F8862C6F16CA6A36006EB467 /* GKitDemoTests.m */; };
 		F8862CBD16CA74AF006EB467 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8862CBC16CA74AF006EB467 /* CoreData.framework */; };
+		F888D8D5174763EC0026C1A4 /* TableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F888D8D4174763EC0026C1A4 /* TableViewController.m */; };
+		F888D8D8174771850026C1A4 /* GTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = F888D8D7174771850026C1A4 /* GTextView.m */; };
+		F888D8DB174789E70026C1A4 /* GLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = F888D8DA174789E70026C1A4 /* GLabel.m */; };
+		F888D8DE17478A4F0026C1A4 /* GLabelCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F888D8DD17478A4F0026C1A4 /* GLabelCell.m */; };
+		F888D8E11747A5600026C1A4 /* GTextFieldCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F888D8E01747A5600026C1A4 /* GTextFieldCell.m */; };
+		F888D8E41747A6860026C1A4 /* GTextViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F888D8E31747A6840026C1A4 /* GTextViewCell.m */; };
 		F88F7A8A171803F1003F9238 /* GKit.podspec in Resources */ = {isa = PBXBuildFile; fileRef = F88F7A67171803F1003F9238 /* GKit.podspec */; };
 		F88F7A8B171803F1003F9238 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = F88F7A68171803F1003F9238 /* LICENSE */; };
 		F88F7A8C171803F1003F9238 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = F88F7A69171803F1003F9238 /* README.md */; };
@@ -133,6 +139,18 @@
 		F8862C6E16CA6A36006EB467 /* GKitDemoTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GKitDemoTests.h; sourceTree = "<group>"; };
 		F8862C6F16CA6A36006EB467 /* GKitDemoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GKitDemoTests.m; sourceTree = "<group>"; };
 		F8862CBC16CA74AF006EB467 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		F888D8D3174763EC0026C1A4 /* TableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableViewController.h; sourceTree = "<group>"; };
+		F888D8D4174763EC0026C1A4 /* TableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableViewController.m; sourceTree = "<group>"; };
+		F888D8D6174771840026C1A4 /* GTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTextView.h; sourceTree = "<group>"; };
+		F888D8D7174771850026C1A4 /* GTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GTextView.m; sourceTree = "<group>"; };
+		F888D8D9174789E60026C1A4 /* GLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLabel.h; sourceTree = "<group>"; };
+		F888D8DA174789E70026C1A4 /* GLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLabel.m; sourceTree = "<group>"; };
+		F888D8DC17478A4E0026C1A4 /* GLabelCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLabelCell.h; sourceTree = "<group>"; };
+		F888D8DD17478A4F0026C1A4 /* GLabelCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLabelCell.m; sourceTree = "<group>"; };
+		F888D8DF1747A55F0026C1A4 /* GTextFieldCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTextFieldCell.h; sourceTree = "<group>"; };
+		F888D8E01747A5600026C1A4 /* GTextFieldCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GTextFieldCell.m; sourceTree = "<group>"; };
+		F888D8E21747A6830026C1A4 /* GTextViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTextViewCell.h; sourceTree = "<group>"; };
+		F888D8E31747A6840026C1A4 /* GTextViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GTextViewCell.m; sourceTree = "<group>"; };
 		F88F7A67171803F1003F9238 /* GKit.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = GKit.podspec; path = ../../GKit.podspec; sourceTree = "<group>"; };
 		F88F7A68171803F1003F9238 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = LICENSE; path = ../../LICENSE; sourceTree = "<group>"; };
 		F88F7A69171803F1003F9238 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = README.md; path = ../../README.md; sourceTree = "<group>"; };
@@ -390,6 +408,15 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		F888D8D2174763CA0026C1A4 /* Table */ = {
+			isa = PBXGroup;
+			children = (
+				F888D8D3174763EC0026C1A4 /* TableViewController.h */,
+				F888D8D4174763EC0026C1A4 /* TableViewController.m */,
+			);
+			name = Table;
+			sourceTree = "<group>";
+		};
 		F8B6BFBF172671D100214182 /* Images */ = {
 			isa = PBXGroup;
 			children = (
@@ -411,6 +438,7 @@
 				F8B6BFD0172671DB00214182 /* AppDelegate.m */,
 				F8B6BFD3172671DB00214182 /* DemosViewController.h */,
 				F8B6BFD4172671DB00214182 /* DemosViewController.m */,
+				F888D8D2174763CA0026C1A4 /* Table */,
 				F8D1495B1742261700F86E7C /* Camera */,
 				F80B212B173AD19500DDA0D6 /* Audio */,
 				F8263B22172A9D2900075959 /* Present */,
@@ -599,8 +627,12 @@
 				F86D68571737CE03003EFE6C /* GScrollSlider.m */,
 				FD07BDD6172761DF00D8E26A /* GSlider.h */,
 				FD07BDD7172761DF00D8E26A /* GSlider.m */,
+				F888D8D9174789E60026C1A4 /* GLabel.h */,
+				F888D8DA174789E70026C1A4 /* GLabel.m */,
 				F86D68531737C1DF003EFE6C /* GTextField.h */,
 				F86D68541737C1DF003EFE6C /* GTextField.m */,
+				F888D8D6174771840026C1A4 /* GTextView.h */,
+				F888D8D7174771850026C1A4 /* GTextView.m */,
 				F8B6C0421726C54000214182 /* GBlockTableViewController.h */,
 				F8B6C0431726C54000214182 /* GBlockTableViewController.m */,
 				F8B6C0441726C54000214182 /* GEfficientTableViewController.h */,
@@ -615,6 +647,12 @@
 				F8B6C04F1726C54000214182 /* GTableViewController.m */,
 				F8B6C0501726C54000214182 /* GViewController.h */,
 				F8B6C0511726C54000214182 /* GViewController.m */,
+				F888D8DC17478A4E0026C1A4 /* GLabelCell.h */,
+				F888D8DD17478A4F0026C1A4 /* GLabelCell.m */,
+				F888D8DF1747A55F0026C1A4 /* GTextFieldCell.h */,
+				F888D8E01747A5600026C1A4 /* GTextFieldCell.m */,
+				F888D8E21747A6830026C1A4 /* GTextViewCell.h */,
+				F888D8E31747A6840026C1A4 /* GTextViewCell.m */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -804,6 +842,12 @@
 				F86D68581737CE03003EFE6C /* GScrollSlider.m in Sources */,
 				F80B212E173AD1AC00DDA0D6 /* AudioViewController.m in Sources */,
 				F8D1495E1742263B00F86E7C /* CameraViewController.m in Sources */,
+				F888D8D5174763EC0026C1A4 /* TableViewController.m in Sources */,
+				F888D8D8174771850026C1A4 /* GTextView.m in Sources */,
+				F888D8DB174789E70026C1A4 /* GLabel.m in Sources */,
+				F888D8DE17478A4F0026C1A4 /* GLabelCell.m in Sources */,
+				F888D8E11747A5600026C1A4 /* GTextFieldCell.m in Sources */,
+				F888D8E41747A6860026C1A4 /* GTextViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

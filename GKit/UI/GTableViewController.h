@@ -19,7 +19,10 @@
 #import "GViewController.h"
 
 @interface GTableViewController : GViewController
-<UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate>
+<
+ UITableViewDataSource, UITableViewDelegate,
+ UITextFieldDelegate, UITextViewDelegate
+>
 {
 @private
 	UITableViewStyle _tableViewStyle;
@@ -67,23 +70,63 @@
 - (void)showCellInputField;
 - (void)hideCellInputField;
 
-- (void)registerForKeyboardNotifications;
-- (void)unregisterForKeyboardNotifications;
-- (void)keyboardWillBeShown:(NSNotification*)aNotification;
-- (void)keyboardWillBeHidden:(NSNotification*)aNotification;
 
 /**
- * 子类可以重写以下方法，配置输入框
+ * 子类可以重写以下方法，配置单行输入框
  */
-
-- (CGFloat)tableViewBottomAdditionForKeyboard;
-
 - (Class)cellInputFieldClass;
 - (void)cellInputFieldDidLoad:(UITextField *)textField;
 - (void)cellInputFieldWillAddAtIndexPath:(NSIndexPath *)indexPath;
 - (void)cellInputFieldDidAddAtIndexPath:(NSIndexPath *)indexPath;
 - (void)cellInputFieldWillRemoveFromIndexPath:(NSIndexPath *)indexPath;
 - (void)cellInputFieldDidRemoveFromIndexPath:(NSIndexPath *)indexPath;
+
+#pragma mark - cell input text view
+
+@property (nonatomic, strong) UITextView *cellInputView;
+@property (nonatomic, strong) NSIndexPath *cellInputViewIndexPath;
+/**
+ * 子类调用以下方法，加载输入框到cell上
+ *		addCellInputViewAtIndexPath:
+ * 子类调用以下方法，移除输入框
+ *		removeCellInputField
+ */
+- (void)addCellInputViewAtIndexPath:(NSIndexPath *)indexPath;
+- (void)removeCellInputView;
+
+/**
+ * 子类调用以下方法，显示输入框
+ *		showCellInputView
+ * 子类调用以下方法，隐藏输入框
+ *		hideCellInputView
+ */
+- (void)showCellInputView;
+- (void)hideCellInputView;
+
+
+/**
+ * 子类可以重写以下方法，配置多行输入框
+ */
+
+- (Class)cellInputViewClass;
+- (void)cellInputViewDidLoad:(UITextView *)textView;
+- (void)cellInputViewWillAddAtIndexPath:(NSIndexPath *)indexPath;
+- (void)cellInputViewDidAddAtIndexPath:(NSIndexPath *)indexPath;
+- (void)cellInputViewWillRemoveFromIndexPath:(NSIndexPath *)indexPath;
+- (void)cellInputViewDidRemoveFromIndexPath:(NSIndexPath *)indexPath;
+
+/////////////////////////
+/**
+ * 子类可以重写 tableViewBottomAdditionForKeyboard 来调整键盘弹出后 tableView 的可视区域
+ */
+- (CGFloat)tableViewBottomAdditionForKeyboard;
+
+
+- (void)registerForKeyboardNotifications;
+- (void)unregisterForKeyboardNotifications;
+- (void)keyboardWillBeShown:(NSNotification*)aNotification;
+- (void)keyboardWillBeHidden:(NSNotification*)aNotification;
+
 
 #pragma mark - Expand and Collapse Cell
 
