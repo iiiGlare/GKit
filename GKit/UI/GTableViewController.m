@@ -63,13 +63,8 @@
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
+
     [self unregisterForKeyboardNotifications];
-	if ([_cellInputField isFirstResponder]) {
-		[_cellInputField resignFirstResponder];
-    }
-    if ([_cellInputView isFirstResponder]) {
-        [_cellInputView resignFirstResponder];
-    }
 }
 
 - (void)viewDidUnload
@@ -77,12 +72,6 @@
     [super viewDidUnload];
     // Release any retained subviews of the main view.
 	self.tableView = nil;
-    
-    self.cellInputField = nil;
-    self.cellInputFieldIndexPath = nil;
-    
-    self.cellInputView = nil;
-    self.cellInputViewIndexPath = nil;
 }
 
 #pragma mark - Action
@@ -161,121 +150,6 @@
     
 }
 
-#pragma mark - Cell Input Text Field
-
-- (UITextField *)cellInputField
-{
-	if (_cellInputField) {
-		return _cellInputField;
-	}
-	
-	_cellInputField = [[[self cellInputFieldClass] alloc] initWithFrame:CGRectZero];
-	_cellInputField.backgroundColor = [UIColor whiteColor];
-	_cellInputField.delegate = self;
-	[self cellInputFieldDidLoad:_cellInputField];
-    
-	return _cellInputField;
-}
-
-- (void)addCellInputFieldAtIndexPath:(NSIndexPath *)indexPath
-{
-    self.cellInputFieldIndexPath = indexPath;
-    
-    [self cellInputFieldWillAddAtIndexPath:indexPath];
-	UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
-	[cell.contentView addSubview:self.cellInputField];
-    [self showCellInputField];
-	[self.cellInputField becomeFirstResponder];
-    [self cellInputFieldDidAddAtIndexPath:indexPath];
-}
-
-- (void)removeCellInputField
-{
-    [self cellInputFieldWillRemoveFromIndexPath:self.cellInputFieldIndexPath];
-	[self.cellInputField resignFirstResponder];
-	[self.cellInputField removeFromSuperview];
-    [self cellInputFieldDidRemoveFromIndexPath:self.cellInputFieldIndexPath];
-    
-    self.cellInputFieldIndexPath = nil;
-}
-
-- (void)showCellInputField
-{
-    [self.cellInputField show];
-}
-- (void)hideCellInputField
-{
-    [self.cellInputField hide];
-}
-
-
-//Override by Subclass
-- (Class)cellInputFieldClass{return [GTextField class];}
-- (void)cellInputFieldDidLoad:(UITextField *)textField{}
-
-- (void)cellInputFieldWillAddAtIndexPath:(NSIndexPath *)indexPath{}
-- (void)cellInputFieldDidAddAtIndexPath:(NSIndexPath *)indexPath{}
-
-- (void)cellInputFieldWillRemoveFromIndexPath:(NSIndexPath *)indexPath{}
-- (void)cellInputFieldDidRemoveFromIndexPath:(NSIndexPath *)indexPath{}
-
-#pragma mark - Cell Input Text View
-
-- (UITextView *)cellInputView
-{
-	if (_cellInputView) {
-		return _cellInputView;
-	}
-	
-	_cellInputView = [[[self cellInputViewClass] alloc] initWithFrame:CGRectZero];
-	_cellInputView.backgroundColor = [UIColor whiteColor];
-	_cellInputView.delegate = self;
-	[self cellInputViewDidLoad:_cellInputView];
-    
-	return _cellInputView;
-}
-
-- (void)addCellInputViewAtIndexPath:(NSIndexPath *)indexPath
-{
-    self.cellInputViewIndexPath = indexPath;
-    
-    [self cellInputViewWillAddAtIndexPath:indexPath];
-	UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
-	[cell.contentView addSubview:self.cellInputView];
-    [self showCellInputView];
-	[self.cellInputView becomeFirstResponder];
-    [self cellInputViewDidAddAtIndexPath:indexPath];
-}
-
-- (void)removeCellInputView
-{
-    [self cellInputViewWillRemoveFromIndexPath:self.cellInputViewIndexPath];
-	[self.cellInputView resignFirstResponder];
-	[self.cellInputView removeFromSuperview];
-    [self cellInputViewDidRemoveFromIndexPath:self.cellInputViewIndexPath];
-    
-    self.cellInputViewIndexPath = nil;
-}
-
-- (void)showCellInputView
-{
-    [self.cellInputView show];
-}
-- (void)hideCellInputView
-{
-    [self.cellInputView hide];
-}
-
-
-//Override by Subclass
-- (Class)cellInputViewClass{return [GTextView class];}
-- (void)cellInputViewDidLoad:(UITextView *)textView{}
-
-- (void)cellInputViewWillAddAtIndexPath:(NSIndexPath *)indexPath{}
-- (void)cellInputViewDidAddAtIndexPath:(NSIndexPath *)indexPath{}
-
-- (void)cellInputViewWillRemoveFromIndexPath:(NSIndexPath *)indexPath{}
-- (void)cellInputViewDidRemoveFromIndexPath:(NSIndexPath *)indexPath{}
 
 #pragma mark - KeyboardNotification
 //Override by Subclass
@@ -315,29 +189,21 @@
 	CGFloat bottomEdgeInset = kbHeight - [self tableViewBottomAdditionForKeyboard];
 	self.tableView.contentInset = UIEdgeInsetsMake(0, 0, bottomEdgeInset, 0);
 	self.tableView.scrollIndicatorInsets = UIEdgeInsetsMake(0, 0, bottomEdgeInset, 0);
-    
-    if (self.cellInputFieldIndexPath)
-    {
-        //scroll to input text field
-        [self.tableView scrollRectToVisible:[self.tableView convertRect:self.cellInputField.frame fromView:self.cellInputField.superview] animated:YES];
-        
-    }else if (self.cellInputViewIndexPath)
-    {
-        //scroll to input text view
-        [self.tableView scrollRectToVisible:[self.tableView convertRect:self.cellInputView.frame fromView:self.cellInputView.superview] animated:YES];
-    }
-    
+
     [self.tableView scrollToNearestSelectedRowAtScrollPosition:UITableViewScrollPositionBottom animated:YES];
 }
 
 // Called when the UIKeyboardWillHideNotification is sent
 - (void)keyboardWillBeHidden:(NSNotification*)aNotification
 {
-	self.tableView.contentInset = UIEdgeInsetsZero;
-	self.tableView.scrollIndicatorInsets = UIEdgeInsetsZero;
+	[UIView animateWithDuration:0.25
+					 animations:^{
+						 self.tableView.contentInset = UIEdgeInsetsZero;
+						 self.tableView.scrollIndicatorInsets = UIEdgeInsetsZero;
+					 }];
 }
 
-#pragma mark - Additional Cell
+#pragma mark - Expand and Collapse Cell
 
 - (void)expandCellAtIndexPath:(NSIndexPath *)indexPath
 {
