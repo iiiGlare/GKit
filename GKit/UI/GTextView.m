@@ -22,7 +22,7 @@
 	self = [super initWithFrame:frame];
 	if (self)
 	{
-		_placeHolderColor = [[UIColor grayColor] copy];
+		_placeHolderColor = [UIColor grayColor];
 	}
 	return self;
 }
@@ -50,7 +50,7 @@
 
 - (void)setPlaceHolderColor:(UIColor *)placeHolderColor
 {
-	_placeHolderColor = [placeHolderColor copy];
+	_placeHolderColor = placeHolderColor;
 	
 	if (_placeHolderTextView)
 	{
