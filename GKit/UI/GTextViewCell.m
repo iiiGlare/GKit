@@ -119,6 +119,8 @@
     {
         [_delegate textViewCellDidChange:self];
     }
+	
+	[_textView showOrHidePlaceHolderTextView];
 }
 
 - (void)textViewDidChangeSelection:(UITextView *)textView;

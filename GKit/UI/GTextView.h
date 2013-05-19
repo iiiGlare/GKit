@@ -10,4 +10,9 @@
 
 @interface GTextView : UITextView
 
+@property (nonatomic, copy) NSString *placeHolder;
+@property (nonatomic, copy) UIColor *placeHolderColor;
+
+- (void)showOrHidePlaceHolderTextView;
+
 @end
