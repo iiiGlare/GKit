@@ -38,6 +38,7 @@
 #import "UIApplication+GKit.h"
 #import "UIColor+GKit.h"
 #import "UIDevice+GKit.h"
+#import "UIImage+GKit.h"
 #import "UILabel+GKit.h"
 #import "UIScrollView+GKit.h"
 #import "UITableViewCell+GKit.h"

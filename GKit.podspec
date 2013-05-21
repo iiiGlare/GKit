@@ -18,7 +18,7 @@ Pod::Spec.new do |s|
   
   s.subspec 'Audio' do |audio|
     audio.source_files = 'GKit/Audio/**/*.{h,m}'
-    audio.frameworks = 'AVFoundation', 'AudioToolbox'
+    audio.frameworks = 'AVFoundation', 'AudioToolbox', 'MediaPlayer'
   end
 
   s.subspec 'Calendar' do |calendar|

@@ -15,6 +15,22 @@
 		F8263B25172A9D3900075959 /* PresentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F8263B24172A9D3900075959 /* PresentViewController.m */; };
 		F86D68551737C1DF003EFE6C /* GTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = F86D68541737C1DF003EFE6C /* GTextField.m */; };
 		F86D68581737CE03003EFE6C /* GScrollSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = F86D68571737CE03003EFE6C /* GScrollSlider.m */; };
+		F87191C9174B5DF600E5BEF9 /* UIImage+GKit.m in Sources */ = {isa = PBXBuildFile; fileRef = F87191C8174B5DF600E5BEF9 /* UIImage+GKit.m */; };
+		F885B54F174B569F0059E609 /* GSegmentedControl.m in Sources */ = {isa = PBXBuildFile; fileRef = F885B54E174B569F0059E609 /* GSegmentedControl.m */; };
+		F885B550174B569F0059E609 /* GSegmentedControl.m in Sources */ = {isa = PBXBuildFile; fileRef = F885B54E174B569F0059E609 /* GSegmentedControl.m */; };
+		F885B553174B594A0059E609 /* GMusicPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = F885B552174B594A0059E609 /* GMusicPlayer.m */; };
+		F885B554174B594A0059E609 /* GMusicPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = F885B552174B594A0059E609 /* GMusicPlayer.m */; };
+		F885B556174B599C0059E609 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F885B555174B599C0059E609 /* MediaPlayer.framework */; };
+		F885B55E174B5AA10059E609 /* GApp.m in Sources */ = {isa = PBXBuildFile; fileRef = F885B55C174B5AA10059E609 /* GApp.m */; };
+		F885B560174B5AB30059E609 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F885B55F174B5AB30059E609 /* MessageUI.framework */; };
+		F885B563174B5BE00059E609 /* GDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = F885B562174B5BE00059E609 /* GDownloader.m */; };
+		F885B564174B5BE00059E609 /* GDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = F885B562174B5BE00059E609 /* GDownloader.m */; };
+		F885B567174B5C970059E609 /* GPayment.m in Sources */ = {isa = PBXBuildFile; fileRef = F885B566174B5C970059E609 /* GPayment.m */; };
+		F885B568174B5C970059E609 /* GPayment.m in Sources */ = {isa = PBXBuildFile; fileRef = F885B566174B5C970059E609 /* GPayment.m */; };
+		F885B56A174B5CA20059E609 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F885B569174B5CA20059E609 /* StoreKit.framework */; };
+		F885B56D174B5D0F0059E609 /* GPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = F885B56C174B5D0F0059E609 /* GPickerView.m */; };
+		F885B56E174B5D0F0059E609 /* GPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = F885B56C174B5D0F0059E609 /* GPickerView.m */; };
+		F885B571174B5D280059E609 /* GSwitch.m in Sources */ = {isa = PBXBuildFile; fileRef = F885B570174B5D280059E609 /* GSwitch.m */; };
 		F8862C4516CA6A35006EB467 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8862C4416CA6A35006EB467 /* UIKit.framework */; };
 		F8862C4716CA6A35006EB467 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8862C4616CA6A35006EB467 /* Foundation.framework */; };
 		F8862C4F16CA6A35006EB467 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = F8862C4D16CA6A35006EB467 /* InfoPlist.strings */; };
@@ -126,6 +142,25 @@
 		F86D68541737C1DF003EFE6C /* GTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GTextField.m; sourceTree = "<group>"; };
 		F86D68561737CE03003EFE6C /* GScrollSlider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GScrollSlider.h; sourceTree = "<group>"; };
 		F86D68571737CE03003EFE6C /* GScrollSlider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GScrollSlider.m; sourceTree = "<group>"; };
+		F87191C7174B5DF600E5BEF9 /* UIImage+GKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+GKit.h"; sourceTree = "<group>"; };
+		F87191C8174B5DF600E5BEF9 /* UIImage+GKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+GKit.m"; sourceTree = "<group>"; };
+		F885B54D174B569F0059E609 /* GSegmentedControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GSegmentedControl.h; sourceTree = "<group>"; };
+		F885B54E174B569F0059E609 /* GSegmentedControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GSegmentedControl.m; sourceTree = "<group>"; };
+		F885B551174B594A0059E609 /* GMusicPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GMusicPlayer.h; sourceTree = "<group>"; };
+		F885B552174B594A0059E609 /* GMusicPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GMusicPlayer.m; sourceTree = "<group>"; };
+		F885B555174B599C0059E609 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
+		F885B55C174B5AA10059E609 /* GApp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GApp.m; sourceTree = "<group>"; };
+		F885B55D174B5AA10059E609 /* GApp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GApp.h; sourceTree = "<group>"; };
+		F885B55F174B5AB30059E609 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
+		F885B561174B5BE00059E609 /* GDownloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GDownloader.h; sourceTree = "<group>"; };
+		F885B562174B5BE00059E609 /* GDownloader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GDownloader.m; sourceTree = "<group>"; };
+		F885B565174B5C970059E609 /* GPayment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GPayment.h; sourceTree = "<group>"; };
+		F885B566174B5C970059E609 /* GPayment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GPayment.m; sourceTree = "<group>"; };
+		F885B569174B5CA20059E609 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		F885B56B174B5D0F0059E609 /* GPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GPickerView.h; sourceTree = "<group>"; };
+		F885B56C174B5D0F0059E609 /* GPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GPickerView.m; sourceTree = "<group>"; };
+		F885B56F174B5D270059E609 /* GSwitch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GSwitch.h; sourceTree = "<group>"; };
+		F885B570174B5D280059E609 /* GSwitch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GSwitch.m; sourceTree = "<group>"; };
 		F8862C4116CA6A35006EB467 /* GKitDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GKitDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F8862C4416CA6A35006EB467 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		F8862C4616CA6A35006EB467 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -284,6 +319,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F885B56A174B5CA20059E609 /* StoreKit.framework in Frameworks */,
+				F885B560174B5AB30059E609 /* MessageUI.framework in Frameworks */,
+				F885B556174B599C0059E609 /* MediaPlayer.framework in Frameworks */,
 				F8B6C0801726C7F000214182 /* CoreGraphics.framework in Frameworks */,
 				F8B6C07E1726C5E300214182 /* QuartzCore.framework in Frameworks */,
 				FD0BC5E517044A54000CC973 /* CoreLocation.framework in Frameworks */,
@@ -334,6 +372,25 @@
 				F8263B24172A9D3900075959 /* PresentViewController.m */,
 			);
 			name = Present;
+			sourceTree = "<group>";
+		};
+		F885B55B174B5A780059E609 /* Ohers */ = {
+			isa = PBXGroup;
+			children = (
+				F885B55F174B5AB30059E609 /* MessageUI.framework */,
+				F885B55D174B5AA10059E609 /* GApp.h */,
+				F885B55C174B5AA10059E609 /* GApp.m */,
+				F885B561174B5BE00059E609 /* GDownloader.h */,
+				F885B562174B5BE00059E609 /* GDownloader.m */,
+				F885B569174B5CA20059E609 /* StoreKit.framework */,
+				F885B565174B5C970059E609 /* GPayment.h */,
+				F885B566174B5C970059E609 /* GPayment.m */,
+				F885B56B174B5D0F0059E609 /* GPickerView.h */,
+				F885B56C174B5D0F0059E609 /* GPickerView.m */,
+				F885B56F174B5D270059E609 /* GSwitch.h */,
+				F885B570174B5D280059E609 /* GSwitch.m */,
+			);
+			path = Ohers;
 			sourceTree = "<group>";
 		};
 		F8862C3816CA6A35006EB467 = {
@@ -466,6 +523,7 @@
 		F8B6BFEC1726C53F00214182 /* GKit */ = {
 			isa = PBXGroup;
 			children = (
+				F885B55B174B5A780059E609 /* Ohers */,
 				F8B6BFED1726C54000214182 /* Audio */,
 				F8B6BFF01726C54000214182 /* Calendar */,
 				F8B6BFFC1726C54000214182 /* Camera */,
@@ -483,10 +541,13 @@
 		F8B6BFED1726C54000214182 /* Audio */ = {
 			isa = PBXGroup;
 			children = (
+				F885B555174B599C0059E609 /* MediaPlayer.framework */,
 				FDF1EF7D16F1BD6900FCDC64 /* AudioToolbox.framework */,
 				FDF1EF7B16F1BD6400FCDC64 /* AVFoundation.framework */,
 				F8B6BFEE1726C54000214182 /* GAudio.h */,
 				F8B6BFEF1726C54000214182 /* GAudio.m */,
+				F885B551174B594A0059E609 /* GMusicPlayer.h */,
+				F885B552174B594A0059E609 /* GMusicPlayer.m */,
 			);
 			path = Audio;
 			sourceTree = "<group>";
@@ -562,6 +623,8 @@
 				F8B6C0211726C54000214182 /* UIView+GKit.m */,
 				FD08F6DB174B2A2200BCA12D /* UITableViewCell+GKit.h */,
 				FD08F6DC174B2A2200BCA12D /* UITableViewCell+GKit.m */,
+				F87191C7174B5DF600E5BEF9 /* UIImage+GKit.h */,
+				F87191C8174B5DF600E5BEF9 /* UIImage+GKit.m */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -625,6 +688,8 @@
 		F8B6C03F1726C54000214182 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				F885B54D174B569F0059E609 /* GSegmentedControl.h */,
+				F885B54E174B569F0059E609 /* GSegmentedControl.m */,
 				F8B6C07F1726C7ED00214182 /* CoreGraphics.framework */,
 				F8B6C0401726C54000214182 /* GAlertView.h */,
 				F8B6C0411726C54000214182 /* GAlertView.m */,
@@ -854,6 +919,12 @@
 				F888D8E11747A5600026C1A4 /* GTextFieldCell.m in Sources */,
 				F888D8E41747A6860026C1A4 /* GTextViewCell.m in Sources */,
 				FD08F6DD174B2A2200BCA12D /* UITableViewCell+GKit.m in Sources */,
+				F885B54F174B569F0059E609 /* GSegmentedControl.m in Sources */,
+				F885B553174B594A0059E609 /* GMusicPlayer.m in Sources */,
+				F885B563174B5BE00059E609 /* GDownloader.m in Sources */,
+				F885B567174B5C970059E609 /* GPayment.m in Sources */,
+				F885B56D174B5D0F0059E609 /* GPickerView.m in Sources */,
+				F87191C9174B5DF600E5BEF9 /* UIImage+GKit.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -864,6 +935,13 @@
 				F8862C7016CA6A36006EB467 /* GKitDemoTests.m in Sources */,
 				FD07BDD51727605100D8E26A /* GPoint.m in Sources */,
 				FD07BDD8172761DF00D8E26A /* GSlider.m in Sources */,
+				F885B550174B569F0059E609 /* GSegmentedControl.m in Sources */,
+				F885B554174B594A0059E609 /* GMusicPlayer.m in Sources */,
+				F885B55E174B5AA10059E609 /* GApp.m in Sources */,
+				F885B564174B5BE00059E609 /* GDownloader.m in Sources */,
+				F885B568174B5C970059E609 /* GPayment.m in Sources */,
+				F885B56E174B5D0F0059E609 /* GPickerView.m in Sources */,
+				F885B571174B5D280059E609 /* GSwitch.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
