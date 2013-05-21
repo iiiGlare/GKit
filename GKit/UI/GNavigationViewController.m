@@ -234,6 +234,11 @@
 }
 - (UIViewController *)popViewControllerAnimated:(BOOL)animated
 {
+	// notify poped view controller
+	if ([[self.viewControllers lastObject] respondsToSelector:@selector(willPop)]) {
+		[[self.viewControllers lastObject] performSelector:@selector(willPop)];
+	}
+	
     if ([self.viewControllers count]>1 &&
         _navigationAnimationType == GNavigationAnimationTypeHide) {
         UIViewController *preViewController = [self.viewControllers objectAtPosition:-2];

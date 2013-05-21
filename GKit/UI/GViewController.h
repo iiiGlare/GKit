@@ -42,4 +42,7 @@ typedef NSInteger GPresentAnimationType;
 @property (nonatomic) BOOL canDragDismiss;  //default YES
 @property (nonatomic, assign) GPresentAnimationType presentAnimationType;
 
+// Navigation Control
+- (void)willPop;
+
 @end

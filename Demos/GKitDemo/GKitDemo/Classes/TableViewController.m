@@ -116,4 +116,11 @@
         return YES;
     }
 }
+
+#pragma mark - Pop Control
+- (void)willPop
+{
+	GPRINT(@"willPop");
+}
+
 @end

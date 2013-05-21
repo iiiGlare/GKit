@@ -235,4 +235,8 @@
     self.snapshotCover = nil;
 }
 
+#pragma mark - 
+- (void)willPop {
+}
+
 @end
