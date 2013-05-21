@@ -172,7 +172,7 @@ CGRect GRectAddSize(CGRect rect, CGSize size)
 /////////////
 - (void)removeAllSubviewOfClass:(Class)aClass
 {
-    [[self subviews] makeObjectsPerformSelector: @selector(removeFromSuperviewWhenSelfIsKindOfClass:)
+    [[self subviews] makeObjectsPerformSelector: @selector(removeFromSuperviewWhenSelfIsKindOfClassWithString:)
                                      withObject: NSStringFromClass(aClass)];
 }
 - (void)removeFromSuperviewWhenSelfIsKindOfClass:(Class)aClass {
@@ -181,6 +181,11 @@ CGRect GRectAddSize(CGRect rect, CGSize size)
         [self removeFromSuperview];
     }
 }
+- (void)removeFromSuperviewWhenSelfIsKindOfClassWithString:(NSString *)aClassString
+{
+    [self removeFromSuperviewWhenSelfIsKindOfClass:NSClassFromString(aClassString)];
+}
+
 
 /////////////
 - (UIView *)superviewOfClass:(Class)aClass
