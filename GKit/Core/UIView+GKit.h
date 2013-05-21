@@ -64,7 +64,10 @@ extern CGRect GRectAddSize(CGRect rect, CGSize size);
 
 //
 - (void)removeAllSubviewOfClass:(Class)aClass;
-- (void)removeFromSuperviewWhenSelfIsKindOfClass:(NSString *)aClass;
+- (void)removeFromSuperviewWhenSelfIsKindOfClass:(Class)aClass;
+
+//
+- (UIView *)superviewOfClass:(Class)aClass;
 
 //find view's controller or superview's controller
 - (UIViewController *)viewController;

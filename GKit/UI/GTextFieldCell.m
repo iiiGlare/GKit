@@ -72,7 +72,7 @@
     
     if (self.selected == NO)
     {
-        [self setSelected:YES animated:YES];
+        [self.tableView selectRowAtIndexPath:self.indexPath animated:YES scrollPosition:UITableViewScrollPositionNone];
     }
 }
 
@@ -96,7 +96,7 @@
     
     if (self.selected == YES)
     {
-        [self setSelected:NO animated:YES];
+        [self.tableView deselectRowAtIndexPath:self.indexPath animated:YES];
     }
 }
 

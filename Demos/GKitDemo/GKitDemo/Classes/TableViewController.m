@@ -22,6 +22,13 @@
 
 @implementation TableViewController
 
+- (void)viewWillDisappear:(BOOL)animated
+{
+	GPRINT(@"%d", [self.tableView indexPathForSelectedRow].row);
+	
+	[super viewDidDisappear:animated];
+}
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     return 50;
@@ -36,7 +43,7 @@
         GLabelCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
         if (cell == nil) {
             cell = [[GLabelCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+//            cell.selectionStyle = UITableViewCellSelectionStyleNone;
         }
         return cell;
 
@@ -47,7 +54,7 @@
         GTextFieldCell * cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
         if (cell == nil) {
             cell = [[GTextFieldCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+//            cell.selectionStyle = UITableViewCellSelectionStyleNone;
             cell.textField.returnKeyType = UIReturnKeyDone;
             cell.delegate = self;
         }
@@ -60,7 +67,7 @@
         GTextViewCell * cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
         if (cell == nil) {
             cell = [[GTextViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+//            cell.selectionStyle = UITableViewCellSelectionStyleNone;
             cell.textView.returnKeyType = UIReturnKeyDone;
             cell.delegate = self;
         }
@@ -93,7 +100,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
+    GPRINT(@"%@", indexPath);
 }
 
 #pragma mark - GTextFieldCellDelegate

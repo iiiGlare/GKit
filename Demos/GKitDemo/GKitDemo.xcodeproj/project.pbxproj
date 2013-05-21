@@ -91,6 +91,7 @@
 		F8D1495E1742263B00F86E7C /* CameraViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F8D1495D1742263B00F86E7C /* CameraViewController.m */; };
 		FD07BDD51727605100D8E26A /* GPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = FD07BDD41727605100D8E26A /* GPoint.m */; };
 		FD07BDD8172761DF00D8E26A /* GSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = FD07BDD7172761DF00D8E26A /* GSlider.m */; };
+		FD08F6DD174B2A2200BCA12D /* UITableViewCell+GKit.m in Sources */ = {isa = PBXBuildFile; fileRef = FD08F6DC174B2A2200BCA12D /* UITableViewCell+GKit.m */; };
 		FD0BC5DB17043C61000CC973 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD0BC5DA17043C60000CC973 /* AssetsLibrary.framework */; };
 		FD0BC5E517044A54000CC973 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD0BC5E417044A54000CC973 /* CoreLocation.framework */; };
 		FD47A80A16F83D4200CEA15A /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = FD47A80916F83D4200CEA15A /* Localizable.strings */; };
@@ -265,6 +266,8 @@
 		FD07BDD41727605100D8E26A /* GPoint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GPoint.m; sourceTree = "<group>"; };
 		FD07BDD6172761DF00D8E26A /* GSlider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GSlider.h; sourceTree = "<group>"; };
 		FD07BDD7172761DF00D8E26A /* GSlider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GSlider.m; sourceTree = "<group>"; };
+		FD08F6DB174B2A2200BCA12D /* UITableViewCell+GKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableViewCell+GKit.h"; sourceTree = "<group>"; };
+		FD08F6DC174B2A2200BCA12D /* UITableViewCell+GKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableViewCell+GKit.m"; sourceTree = "<group>"; };
 		FD0BC5DA17043C60000CC973 /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
 		FD0BC5E417044A54000CC973 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		FD47A80916F83D4200CEA15A /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
@@ -557,6 +560,8 @@
 				F8B6C01F1726C54000214182 /* UIScrollView+GKit.m */,
 				F8B6C0201726C54000214182 /* UIView+GKit.h */,
 				F8B6C0211726C54000214182 /* UIView+GKit.m */,
+				FD08F6DB174B2A2200BCA12D /* UITableViewCell+GKit.h */,
+				FD08F6DC174B2A2200BCA12D /* UITableViewCell+GKit.m */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -848,6 +853,7 @@
 				F888D8DE17478A4F0026C1A4 /* GLabelCell.m in Sources */,
 				F888D8E11747A5600026C1A4 /* GTextFieldCell.m in Sources */,
 				F888D8E41747A6860026C1A4 /* GTextViewCell.m in Sources */,
+				FD08F6DD174B2A2200BCA12D /* UITableViewCell+GKit.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

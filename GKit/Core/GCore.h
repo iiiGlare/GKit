@@ -40,4 +40,5 @@
 #import "UIDevice+GKit.h"
 #import "UILabel+GKit.h"
 #import "UIScrollView+GKit.h"
+#import "UITableViewCell+GKit.h"
 #import "UIView+GKit.h"
