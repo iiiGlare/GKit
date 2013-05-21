@@ -252,6 +252,11 @@
 }
 - (NSArray *)popToRootViewControllerAnimated:(BOOL)animated
 {
+	// notify poped view controller
+	if ([[self.viewControllers lastObject] respondsToSelector:@selector(willPop)]) {
+		[[self.viewControllers lastObject] performSelector:@selector(willPop)];
+	}
+	
     if ([self.viewControllers count]>1 &&
         _navigationAnimationType == GNavigationAnimationTypeHide) {
         [_snapshots removeObjectsInRange:NSMakeRange(1, [self.viewControllers count]-1)];
