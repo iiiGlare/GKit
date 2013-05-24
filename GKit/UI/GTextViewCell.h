@@ -19,6 +19,9 @@
 @property (nonatomic, strong, readonly) GTextView * textView;
 @property (nonatomic, weak) id<GTextViewCellDelegate> delegate;
 
++ (GTextView *)sharedTextView;
++ (CGFloat)heightForTitle:(NSString *)title withFont:(UIFont *)font width:(CGFloat)width;
+
 @end
 
 @protocol GTextViewCellDelegate <NSObject>

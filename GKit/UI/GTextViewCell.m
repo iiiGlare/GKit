@@ -48,6 +48,27 @@
     }
 }
 
+//
+#pragma mark - Caculate Cell Height
++ (GTextView *)sharedTextView
+{
+	static GTextView * sharedTextView;
+	static dispatch_once_t onceToken;
+	dispatch_once(&onceToken, ^{
+		sharedTextView = [[GTextView alloc] init];
+	});
+	return sharedTextView;
+}
++ (CGFloat)heightForTitle:(NSString *)title withFont:(UIFont *)font width:(CGFloat)width
+{
+	GTextView *sharedTextView = [GTextViewCell sharedTextView];
+    sharedTextView.font = font;
+	sharedTextView.frame = CGRectMake(0, 0, width, 44);
+	sharedTextView.text = title;
+	[sharedTextView sizeToFit];
+	return sharedTextView.contentSize.height;
+}
+
 #pragma mark - UITextViewDelegate
 
 - (BOOL)textViewShouldBeginEditing:(UITextView *)textView
