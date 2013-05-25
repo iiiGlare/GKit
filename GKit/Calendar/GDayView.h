@@ -16,9 +16,9 @@
 @interface GDayView : UIView
 <GMoveSpriteCatcherProtocol>
 
-@property (nonatomic, copy) NSDate *day;
-@property (nonatomic, copy, readonly) NSDate *nextDay;
-@property (nonatomic, copy, readonly) NSDate *previousDay;
+@property (nonatomic, copy) NSDate *day;    // time always is 00:00:00
+@property (nonatomic, copy, readonly) NSDate *nextDay; // time always is 00:00:00
+@property (nonatomic, copy, readonly) NSDate *previousDay; // time always is 00:00:00
 - (void)jumpToToday;
 - (void)goToNextDay;
 - (void)backToPreviousDay;
@@ -30,6 +30,9 @@
 - (BOOL)canShowGEvent:(GEvent *)gEvent;
 
 - (CGFloat)offsetForDate:(NSDate *)date;
+
+// time line
+@property (nonatomic, strong, readonly) UIView * timeIndicator;
 
 @end
 

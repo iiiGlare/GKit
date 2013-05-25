@@ -121,6 +121,9 @@
 @property (nonatomic, weak) GEventView *movingEventView;
 @property (nonatomic, assign) CGFloat snapshotAlpha;
 
+//Time Indicator
+@property (nonatomic, strong) NSTimer * timeIndicatorTimer;
+
 @end
 
 @implementation GDayView
@@ -153,7 +156,11 @@
     _gridLineTopMargin = 1.0;
     _gridLineBottomMargin = 1.0;
     _gridHeight = GHoursInDay * _hourHeight + _gridLineTopMargin + _gridLineBottomMargin;
-        
+    
+    //time indicator
+    _timeIndicator = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.width, 1)];
+    _timeIndicator.backgroundColor = [UIColor greenColor];
+    
     //Tap Gesture
     UITapGestureRecognizer *tapGR = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTap:)];
     [self addGestureRecognizer:tapGR];
@@ -255,15 +262,50 @@
             [self layoutGEvent:event];
         }
     }
+    
+    //show time indicator
+    
+    [self.timeIndicatorTimer invalidate];
+    self.timeIndicatorTimer = nil;
+
+    if ([self layoutTimeIndicator]) {
+        
+        self.timeIndicatorTimer = [NSTimer scheduledTimerWithTimeInterval: GTimeIntervalFromMinitues(1)
+                                                                   target: self
+                                                                 selector: @selector(layoutTimeIndicator)
+                                                                 userInfo: nil
+                                                                  repeats: YES];
+        CGFloat offsetY = MAX(0, self.timeIndicator.center.y-10);
+        offsetY = MIN(offsetY, self.scrollView.contentSize.height-self.scrollView.height);
+        [self.scrollView setContentOffset:CGPointMake(0, offsetY) animated:YES];
+        
+    }
 }
 
 #pragma mark Layout
-- (void)layoutSubviews
-{
-    [super layoutSubviews];
+- (BOOL)layoutTimeIndicator {
     
+    NSDate *now = [NSDate date];
+    NSTimeInterval timeInterval = [now timeIntervalSinceDate:self.day];
     
+    if (timeInterval >= 0 &&
+        timeInterval <= GTimeIntervalFromDays(21)) {
+        
+        _timeIndicator.center = CGPointMake(self.scrollView.innerCenter.x, [self offsetForDate:now]);
+        if (_timeIndicator.superview == nil) {
+            _timeIndicator.width = self.scrollView.width;    
+            [self.scrollView addSubview:_timeIndicator];
+        }
+        
+        
+        return YES;
+    } else {
+        
+        [_timeIndicator removeFromSuperview];
+        return NO;
+    }
 }
+
 - (void)layoutGEvent:(GEvent *)event
 {    
     GEventView *eventView = [self eventViewForGEvent:event];

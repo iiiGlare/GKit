@@ -33,9 +33,9 @@
 @property (nonatomic, strong) GWeekdayView *weekdayView;
 
 @property (nonatomic, assign) GWeekdayType firstWeekday;   //defalut GWeekdayTypeSunday
-@property (nonatomic, copy) NSDate *day;
-@property (nonatomic, copy, readonly) NSDate *beginningOfWeek;
-@property (nonatomic, copy, readonly) NSDate *endingOfWeek;
+@property (nonatomic, copy) NSDate *day;    // time always is 00:00:00
+@property (nonatomic, copy, readonly) NSDate *beginningOfWeek;  // time always is 00:00:00
+@property (nonatomic, copy, readonly) NSDate *endingOfWeek; // time always is 00:00:00
 
 - (void)jumpToToday;
 - (void)goToNextWeek;
@@ -45,6 +45,10 @@
 @property (nonatomic, weak) id<GWeekViewDelegate> delegate;
 
 - (void)reloadData;
+
+// time line
+@property (nonatomic, strong, readonly) UIView * timeIndicator;
+
 
 @end
 

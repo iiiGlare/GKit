@@ -249,6 +249,9 @@
 @property (nonatomic, weak) GEventView *movingEventView;
 @property (nonatomic) CGFloat snapshotAlpha;
 
+//Time Indicator
+@property (nonatomic, strong) NSTimer * timeIndicatorTimer;
+
 @end
 
 @implementation GWeekView
@@ -287,6 +290,10 @@
     _gridHeight = GHoursInDay * _hourHeight + _gridLineTopMargin + _gridLineBottomMargin;
 
     _firstWeekday = GWeekdayTypeSunday;
+    
+    //time indicator
+    _timeIndicator = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.width, 1)];
+    _timeIndicator.backgroundColor = [UIColor greenColor];
     
     //Tap Gesture
     UITapGestureRecognizer *tapGR = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTap:)];
@@ -419,9 +426,50 @@
             [self layoutGEvent:event];
         }        
     }
+    
+    //show time indicator
+    
+    [self.timeIndicatorTimer invalidate];
+    self.timeIndicatorTimer = nil;
+    
+    if ([self layoutTimeIndicator]) {
+        
+        self.timeIndicatorTimer = [NSTimer scheduledTimerWithTimeInterval: GTimeIntervalFromMinitues(1)
+                                                                   target: self
+                                                                 selector: @selector(layoutTimeIndicator)
+                                                                 userInfo: nil
+                                                                  repeats: YES];
+        CGFloat offsetY = MAX(0, self.timeIndicator.center.y-10);
+        offsetY = MIN(offsetY, self.scrollView.contentSize.height-self.scrollView.height);
+        [self.scrollView setContentOffset:CGPointMake(0, offsetY) animated:YES];
+        
+    }
 }
 
 #pragma mark Layout
+- (BOOL)layoutTimeIndicator {
+    
+    NSDate *now = [NSDate date];
+    NSTimeInterval timeInterval = [now timeIntervalSinceDate:self.beginningOfWeek];
+    
+    if (timeInterval >= 0 &&
+        timeInterval <= GTimeIntervalFromDays(7)) {
+        
+        _timeIndicator.center = CGPointMake(self.scrollView.innerCenter.x, [self offsetForDate:now]);
+        if (_timeIndicator.superview == nil) {
+            _timeIndicator.width = self.scrollView.width;
+            [self.scrollView addSubview:_timeIndicator];
+        }
+        
+        return YES;
+    } else {
+        
+        [_timeIndicator removeFromSuperview];
+        return NO;
+    }
+}
+
+
 - (void)layoutGEvent:(GEvent *)event
 {
     NSArray *eventViews = [self eventViewsForGEvent:event];
@@ -526,6 +574,17 @@
     } while ([eventViewBeginTime compare:endTime]==NSOrderedAscending);
     
     return eventViews;
+}
+
+- (CGFloat)offsetForDate:(NSDate *)date
+{
+    NSInteger dayPosition = [self dayPositionForDate:date];
+    
+    NSDate *dayBeginPoint = [self.beginningOfWeek dateByAddingTimeInterval:GTimeIntervalFromDays(dayPosition)];
+    
+    NSTimeInterval timeInterval = [date timeIntervalSinceDate:dayBeginPoint];
+    
+    return _hourHeight * timeInterval/GTimeIntervalFromHours(1) + _gridTopMargin + _gridLineTopMargin;
 }
 
 - (CGRect)frameForBeginTime:(NSDate *)beginTime endTime:(NSDate *)endTime atDayPosition:(NSInteger)dayPosition

@@ -26,7 +26,7 @@
 
 - (void)customInitialize
 {
-    
+    [super customInitialize];
 }
 
 - (void)loadView
@@ -39,6 +39,13 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)dealloc {
+    
+//    self.dayView = nil;
+    self.weekView = nil;
+    self.monthView = nil;
 }
 
 #pragma mark - 
@@ -234,5 +241,7 @@
     GEvent *event = [[GEvent alloc] init];
     [snapshot becomeCatchableInCalendarWithGEvent:event];
 }
+
+
 @end
 
