@@ -15,7 +15,12 @@ Pod::Spec.new do |s|
   s.requires_arc	= true
   
   s.source		= { :git => "https://github.com/GlareCH/GKit.git"}
-  
+
+  s.subspec 'AppStore' do |appStore|
+    appStore.source_files = 'GKit/AppStore/**/*.{h,m}'
+    appStore.frameworks = 'MessageUI', 'StoreKit'
+  end
+
   s.subspec 'Audio' do |audio|
     audio.source_files = 'GKit/Audio/**/*.{h,m}'
     audio.frameworks = 'AVFoundation', 'AudioToolbox', 'MediaPlayer'
@@ -40,9 +45,9 @@ Pod::Spec.new do |s|
     coredata.frameworks = 'CoreData'
   end
   
-  s.subspec 'ImageManager' do |imageManager|
-    imageManager.source_files = 'GKit/ImageManager/**/*.{h,m}'
-    imageManager.frameworks = 'AssetsLibrary'
+  s.subspec 'DataManager' do |dataManager|
+    dataManager.source_files = 'GKit/DataManager/**/*.{h,m}'
+    dataManager.frameworks = 'AssetsLibrary'
   end
 
   s.subspec 'Location' do |location|
