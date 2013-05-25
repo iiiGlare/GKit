@@ -70,7 +70,7 @@
     segmentedControl.center = self.topView.innerCenter;
     [segmentedControl addTarget:self action:@selector(changeCalenderType:) forControlEvents:UIControlEventValueChanged];
     [self.topView addSubview:segmentedControl];
-    [segmentedControl setSelectedSegmentIndex:0];
+    [segmentedControl setSelectedSegmentIndex:1];
     
 }
 - (void)viewDidAppear:(BOOL)animated

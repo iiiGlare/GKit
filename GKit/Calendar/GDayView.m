@@ -289,7 +289,7 @@
     NSTimeInterval timeInterval = [now timeIntervalSinceDate:self.day];
     
     if (timeInterval >= 0 &&
-        timeInterval <= GTimeIntervalFromDays(21)) {
+        timeInterval <= GTimeIntervalFromDays(1)) {
         
         _timeIndicator.center = CGPointMake(self.scrollView.innerCenter.x, [self offsetForDate:now]);
         if (_timeIndicator.superview == nil) {
