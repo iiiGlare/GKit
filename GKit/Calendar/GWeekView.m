@@ -212,7 +212,7 @@
         CGPoint center = [self innerCenter];
         center.y = _startCenterY + labelSpace*i;
         [label setCenter:center];
-        label.text = [NSString stringWithFormat:@"%d",i];
+        label.text = [NSString stringWithFormat:@"%d:00",i];
     }
 }
 @end

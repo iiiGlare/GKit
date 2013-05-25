@@ -73,7 +73,6 @@
             label.font = [UIFont systemFontOfSize:12];
             label.textColor = [UIColor blackColor];
             label.backgroundColor = [UIColor clearColor];
-            label.text = [NSString stringWithFormat:@"%d",i];
             [self addSubview:label];
             [_hourLabels addObject:label];
         }
@@ -89,6 +88,7 @@
         CGPoint center = [self innerCenter];
         center.y = _startCenterY + labelSpace*i;
         [label setCenter:center];
+        label.text = [NSString stringWithFormat:@"%d:00",i];
     }
 }
 @end
