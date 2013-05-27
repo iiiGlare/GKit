@@ -41,6 +41,11 @@ NSURL* GLibraryDirectoryURL(void);
 NSURL* GApplicationSupportDirectoryURL(void);
 
 /**
+ *
+ */
+UIWindow * GApplicationKeyWindow(void);
+
+/**
  */
 UIViewController * GApplicationRootViewController(void);
 

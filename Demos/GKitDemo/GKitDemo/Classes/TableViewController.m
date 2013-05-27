@@ -22,10 +22,13 @@
 
 @implementation TableViewController
 
-- (void)viewWillDisappear:(BOOL)animated
-{
-	GPRINT(@"%d", [self.tableView indexPathForSelectedRow].row);
+- (void)viewDidLoad {
 	
+	[super viewDidLoad];
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{	
 	[super viewDidDisappear:animated];
 }
 

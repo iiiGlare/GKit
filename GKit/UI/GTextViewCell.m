@@ -106,7 +106,20 @@
     
     if (self.selected == NO)
     {
-		[self.tableView selectRowAtIndexPath:self.indexPath animated:YES scrollPosition:UITableViewScrollPositionNone];
+		UITableView * tableView = [self tableView];
+		NSIndexPath * indexPath = [self indexPath];
+		
+		CGRect rect = [tableView rectForRowAtIndexPath:indexPath];
+		CGRect visibleRect = CGRectMake(0, tableView.contentOffset.y, tableView.width, tableView.height-tableView.contentInset.bottom);
+		[tableView selectRowAtIndexPath: indexPath
+							   animated: YES
+						 scrollPosition: (CGRectContainsRect(visibleRect, rect)?UITableViewScrollPositionNone:UITableViewScrollPositionBottom)];
+		
+		if (tableView.delegate &&
+			[tableView.delegate respondsToSelector:@selector(tableView:didSelectRowAtIndexPath:)]) {
+			
+			[tableView.delegate tableView:tableView didSelectRowAtIndexPath:indexPath];
+		}
     }
 }
 - (void)textViewDidEndEditing:(UITextView *)textView
@@ -119,7 +132,16 @@
     
     if (self.selected == YES)
     {
-        [self.tableView deselectRowAtIndexPath:self.indexPath animated:YES];
+		UITableView * tableView = [self tableView];
+		NSIndexPath * indexPath = [self indexPath];
+
+        [tableView deselectRowAtIndexPath:indexPath animated:YES];
+		
+		if (tableView.delegate &&
+			[tableView.delegate respondsToSelector:@selector(tableView:didDeselectRowAtIndexPath:)]) {
+			
+			[tableView.delegate tableView:tableView didDeselectRowAtIndexPath:indexPath];
+		}
     }
 }
 

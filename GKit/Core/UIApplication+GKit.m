@@ -53,6 +53,13 @@ UIViewController * GApplicationRootViewController(void)
     return [[[UIApplication sharedApplication] keyWindow] rootViewController];
 }
 
+//////////////////////////////////////////////////////////////////////////////////
+UIWindow * GApplicationKeyWindow(void) {
+	
+	return [[UIApplication sharedApplication] keyWindow];
+}
+
+
 @implementation UIApplication (GKit)
 
 @end

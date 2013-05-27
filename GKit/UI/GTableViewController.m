@@ -152,8 +152,6 @@
 
 
 #pragma mark - KeyboardNotification
-//Override by Subclass
-- (CGFloat)tableViewBottomAdditionForKeyboard{return 0;}
 
 // Call this method somewhere in your view controller setup code.
 - (void)registerForKeyboardNotifications
@@ -186,11 +184,11 @@
     NSDictionary* info = [aNotification userInfo];
     CGSize kbSize = [[info objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue].size;
 	CGFloat kbHeight = kbSize.height;
-	CGFloat bottomEdgeInset = kbHeight - [self tableViewBottomAdditionForKeyboard];
+	CGRect tableViewRect = [GApplicationKeyWindow() convertRect:self.tableView.frame fromView:self.tableView.superview];
+	CGFloat bottomEdgeInset = kbHeight - (GApplicationKeyWindow().height - CGRectGetMaxY(tableViewRect));
+	
 	self.tableView.contentInset = UIEdgeInsetsMake(0, 0, bottomEdgeInset, 0);
 	self.tableView.scrollIndicatorInsets = UIEdgeInsetsMake(0, 0, bottomEdgeInset, 0);
-
-    [self.tableView scrollToNearestSelectedRowAtScrollPosition:UITableViewScrollPositionBottom animated:YES];
 }
 
 // Called when the UIKeyboardWillHideNotification is sent

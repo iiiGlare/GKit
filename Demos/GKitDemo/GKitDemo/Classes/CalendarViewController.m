@@ -41,13 +41,6 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void)dealloc {
-    
-//    self.dayView = nil;
-    self.weekView = nil;
-    self.monthView = nil;
-}
-
 #pragma mark - 
 - (void)viewDidLoad
 {

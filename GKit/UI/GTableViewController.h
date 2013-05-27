@@ -49,11 +49,6 @@
 
 
 #pragma mark - Keyboard
-/**
- * 子类可以重写 tableViewBottomAdditionForKeyboard 来调整键盘弹出后 tableView 的可视区域
- */
-- (CGFloat)tableViewBottomAdditionForKeyboard;
-
 
 - (void)registerForKeyboardNotifications;
 - (void)unregisterForKeyboardNotifications;
