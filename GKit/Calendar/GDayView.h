@@ -33,6 +33,7 @@
 
 // time line
 @property (nonatomic, strong, readonly) UIView * timeIndicator;
+@property (nonatomic, assign) CGFloat timeIndicatorOffset; // default 1 hour height
 
 @end
 

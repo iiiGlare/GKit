@@ -292,6 +292,7 @@
     _firstWeekday = GWeekdayTypeSunday;
     
     //time indicator
+    _timeIndicatorOffset = _hourHeight;
     _timeIndicator = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.width, 1)];
     _timeIndicator.backgroundColor = [UIColor greenColor];
     
@@ -439,7 +440,7 @@
                                                                  selector: @selector(layoutTimeIndicator)
                                                                  userInfo: nil
                                                                   repeats: YES];
-        CGFloat offsetY = MAX(0, self.timeIndicator.center.y-10);
+        CGFloat offsetY = MAX(0, self.timeIndicator.center.y-_dayViewHeight-_timeIndicatorOffset);
         offsetY = MIN(offsetY, self.scrollView.contentSize.height-self.scrollView.height);
         [self.scrollView setContentOffset:CGPointMake(0, offsetY) animated:YES];
         
