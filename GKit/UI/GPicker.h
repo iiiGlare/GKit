@@ -20,6 +20,8 @@
 @property (nonatomic, strong) UIImage * separatorLineImage; //分隔线图片, default nil
 @property (nonatomic, assign) CGSize separatorLineSize;
 
+@property (nonatomic, assign) CGFloat rowHeight; //default 44
+
 @property (nonatomic, assign) UIEdgeInsets contentEdgeInsets; //default zero
 
 - (void)reloadAllComponents;
@@ -45,11 +47,8 @@
 @protocol GPickerDelegate <NSObject>
 @optional
 - (CGFloat)picker:(GPicker *)picker widthForComponent:(NSInteger)component;
-- (CGFloat)picker:(GPicker *)picker rowHeightForComponent:(NSInteger)component;
 - (NSString *)picker:(GPicker *)picker titleForRow:(NSInteger)row forComponent:(NSInteger)component;
-
 - (BOOL)picker:(GPicker *)picker selectableForRow:(NSInteger)row forComponent:(NSInteger)component;
-
 - (void)picker:(GPicker *)picker didSelectRow:(NSInteger)row inComponent:(NSInteger)component;
 
 @end

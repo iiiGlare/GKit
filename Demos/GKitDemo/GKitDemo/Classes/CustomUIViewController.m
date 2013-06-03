@@ -77,6 +77,7 @@
     picker.separatorLineImage = GImageNamed(@"picker_separator.png");
     picker.separatorLineSize = CGSizeMake(1, 191);
     picker.indicatorImage = GImageNamed(@"picker_indicator.png");
+    picker.rowHeight = 42;
     [self.view addSubview:picker];
     [picker reloadAllComponents];
     
@@ -103,10 +104,7 @@
             return 5;
     }
 }
-- (CGFloat)picker:(GPicker *)picker rowHeightForComponent:(NSInteger)component
-{
-    return 42;
-}
+
 - (CGFloat)picker:(GPicker *)picker widthForComponent:(NSInteger)component
 {
     switch (component) {

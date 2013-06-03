@@ -115,6 +115,8 @@
     _contentEdgeInsets = UIEdgeInsetsZero;
     _separatorLineSize = CGSizeMake(1, self.height);
     
+    _rowHeight = 44;
+    
     _componentTableViews = [NSMutableArray array];
     
     _textFontInfo = [NSMutableDictionary dictionary];
@@ -174,14 +176,14 @@
         tableView.showsHorizontalScrollIndicator = NO;
         tableView.showsVerticalScrollIndicator = NO;
         tableView.tag = i;
+        tableView.rowHeight = _rowHeight;
         tableView.dataSource = self;
         tableView.delegate = self;
         [self.contentView addSubview:tableView];
         [self.contentView sendSubviewToBack:tableView];
         
-        CGFloat rowHeight = [self tableView:tableView heightForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
-        tableView.contentInset = UIEdgeInsetsMake((componentHeight-rowHeight)/2, 0,
-                                                  (componentHeight-rowHeight)/2, 0);
+        tableView.contentInset = UIEdgeInsetsMake((componentHeight-_rowHeight)/2, 0,
+                                                  (componentHeight-_rowHeight)/2, 0);
         
         if (i>0) {
             UIImageView * separatorLineImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, _separatorLineSize.width, _separatorLineSize.height)];
@@ -213,8 +215,7 @@
 - (NSInteger)selectedRowInComponent:(NSInteger)component {
     
     UITableView * tableView = [_componentTableViews objectAtPosition:component];
-    CGFloat rowHeight = [self tableView:tableView heightForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
-    NSInteger rowForOffset = ((self.contentView.height-rowHeight)/2 + tableView.contentOffset.y)/rowHeight + 0.5;
+    NSInteger rowForOffset = ((self.contentView.height-_rowHeight)/2 + tableView.contentOffset.y)/_rowHeight + 0.5;
     return rowForOffset;
 }
 
@@ -251,9 +252,7 @@
 
 - (CGFloat)offsetForRow:(NSInteger)row inComponent:(NSInteger)component {
     
-    UITableView * tableView = [_componentTableViews objectAtPosition:component];
-    CGFloat rowHeight = [self tableView:tableView heightForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
-    CGFloat offsetForRow = row*rowHeight - (self.contentView.height-rowHeight)/2;
+    CGFloat offsetForRow = row*_rowHeight - (self.contentView.height-_rowHeight)/2;
     return offsetForRow;
 }
 
@@ -308,15 +307,6 @@
     }
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    
-    if (_delegate &&
-        [_delegate respondsToSelector:@selector(picker:rowHeightForComponent:)]) {
-        return [_delegate picker:self rowHeightForComponent:tableView.tag];
-    } else {
-        return 44;
-    }
-}
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
     [self scrollComponent:tableView.tag toRow:indexPath.row animated:YES];
@@ -332,8 +322,7 @@
         }
     }
     
-    CGFloat rowHeight = [self tableView:tableView heightForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
-    NSInteger numberOfIndicatorImageViewCells = (NSInteger)(self.indicatorImageView.height/rowHeight) + 2;
+    NSInteger numberOfIndicatorImageViewCells = (NSInteger)(self.indicatorImageView.height/_rowHeight) + 2;
     if (!isIndicatorImageViewHasCells) {
         for (NSInteger i=0; i<numberOfIndicatorImageViewCells; i++) {
             GLabelCell * cell = [self cellForTableView:nil atIndexPath:nil];
