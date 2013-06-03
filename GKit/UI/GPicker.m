@@ -234,13 +234,19 @@
 
 - (void)scrollComponent:(NSInteger)component toRow:(NSInteger)row animated:(BOOL)animated {
     
+    [self scrollComponent:component toRow:row considerSelectable:YES animated:animated];
+}
+
+- (void)scrollComponent:(NSInteger)component toRow:(NSInteger)row considerSelectable:(BOOL)considerSelectable animated:(BOOL)animated {
+    
     BOOL isSelectable = YES;
     if (_delegate &&
         [_delegate respondsToSelector:@selector(picker:selectableForRow:forComponent:)]) {
         isSelectable = [_delegate picker:self selectableForRow:row forComponent:component];
     }
     
-    if (isSelectable == NO) {
+    if (isSelectable == NO &&
+        considerSelectable) {
         row = [[_selectedRowInfo objectForKey:GNumberWithInteger(component)] integerValue];
     }
     
