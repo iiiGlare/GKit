@@ -80,7 +80,7 @@
     [self.view addSubview:picker];
     [picker reloadAllComponents];
     
-    [picker selectRow:1 inComponent:0 animated:NO];
+    [picker selectRow:0 inComponent:0 animated:NO];
     [picker selectRow:2 inComponent:1 animated:NO];
     [picker selectRow:3 inComponent:2 animated:NO];
     
@@ -122,4 +122,15 @@
 {
     GPRINT(@"component:%d row:%d",component,row);
 }
+
+- (BOOL)picker:(GPicker *)picker selectableForRow:(NSInteger)row forComponent:(NSInteger)component
+{
+    if (row<5) {
+        return YES;
+    } else {
+        return NO;
+    }
+    
+}
+
 @end

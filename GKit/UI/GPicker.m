@@ -17,10 +17,13 @@
 @property (nonatomic, weak) UIImageView * backgroundImageView;
 @property (nonatomic, weak) UIImageView * indicatorImageView;
 @property (nonatomic, weak) UIView * contentView;
+
 @property (nonatomic, strong) NSMutableArray * componentTableViews;
 
 @property (nonatomic, strong) NSMutableDictionary * textFontInfo;
 @property (nonatomic, strong) NSMutableDictionary * textColorInfo;
+
+@property (nonatomic, strong) NSMutableDictionary * selectedRowInfo;
 
 @end
 
@@ -71,13 +74,19 @@
 }
 
 - (UIFont *)textFontForControlState:(UIControlState)controlState {
-    
-    return [_textFontInfo objectForKey:GNumberWithInteger(controlState)];
+
+    UIFont * font = [_textFontInfo objectForKey:GNumberWithInteger(controlState)];
+    if (font==nil) font = [_textFontInfo objectForKey:GNumberWithInteger(UIControlStateNormal)];
+        
+    return font;
 }
 
 - (UIColor *)textColorForControlState:(UIControlState)controlState {
     
-    return [_textColorInfo objectForKey:GNumberWithInteger(controlState)];
+    UIColor * color = [_textColorInfo objectForKey:GNumberWithInteger(controlState)];
+    if (color==nil) color = [_textColorInfo objectForKey:GNumberWithInteger(UIControlStateNormal)];
+    
+    return color;
 }
 
 #pragma mark -
@@ -116,6 +125,8 @@
     [_textColorInfo setObject:[UIColor whiteColor] forKey:GNumberWithInteger(UIControlStateSelected)];
     [_textColorInfo setObject:[UIColor grayColor] forKey:GNumberWithInteger(UIControlStateDisabled)];
     
+    _selectedRowInfo = [NSMutableDictionary dictionary];
+    
     // background image view
     UIImageView * backgroundImageView = [[UIImageView alloc] init];
     [self addSubviewToFill:backgroundImageView];
@@ -139,6 +150,7 @@
     // remove all subviews
     [self.contentView removeAllSubviewOfClass:[UIView class]];
     [_componentTableViews removeAllObjects];
+    [_selectedRowInfo removeAllObjects];
     
     // 
     NSInteger numberOfComponents = [_dataSource numberOfComponentsInPicker:self];
@@ -190,17 +202,61 @@
 - (void)reloadComponent:(NSInteger)component {
     
     [[_componentTableViews objectAtPosition:component] reloadData];
+    [self scrollComponent:component toRow:0 animated:NO];
 }
 
 - (void)selectRow:(NSInteger)row inComponent:(NSInteger)component animated:(BOOL)animated {
     
-    [self scrollTableView:[_componentTableViews objectAtPosition:component] toRow:row animated:YES];
+    [self scrollComponent:component toRow:row animated:animated];
 }
 
 - (NSInteger)selectedRowInComponent:(NSInteger)component {
     
-    return [self selectedRowInTableView:[_componentTableViews objectAtPosition:component]];
+    UITableView * tableView = [_componentTableViews objectAtPosition:component];
+    CGFloat rowHeight = [self tableView:tableView heightForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
+    NSInteger rowForOffset = ((self.contentView.height-rowHeight)/2 + tableView.contentOffset.y)/rowHeight + 0.5;
+    return rowForOffset;
 }
+
+#pragma mark - Scroll
+
+- (void)scrollComponent:(NSInteger)component toRow:(NSInteger)row animated:(BOOL)animated {
+    
+    BOOL isSelectable = YES;
+    if (_delegate &&
+        [_delegate respondsToSelector:@selector(picker:selectableForRow:forComponent:)]) {
+        isSelectable = [_delegate picker:self selectableForRow:row forComponent:component];
+    }
+    
+    if (isSelectable == NO) {
+        row = [[_selectedRowInfo objectForKey:GNumberWithInteger(component)] integerValue];
+    }
+    
+    [_selectedRowInfo setObject:GNumberWithInteger(row) forKey:GNumberWithInteger(component)];
+    
+    UITableView * tableView = [_componentTableViews objectAtPosition:component];
+    CGFloat offsetForRow = [self offsetForRow:row inComponent:component];
+    
+    [tableView setContentOffset:CGPointMake(0, offsetForRow) animated:animated];
+    
+    if (row==0) {
+        [self scrollViewDidScroll:tableView];
+    }
+    
+    if (_delegate &&
+        [_delegate respondsToSelector:@selector(picker:didSelectRow:inComponent:)]) {
+        [_delegate picker:self didSelectRow:row inComponent:tableView.tag];
+    }
+}
+
+- (CGFloat)offsetForRow:(NSInteger)row inComponent:(NSInteger)component {
+    
+    UITableView * tableView = [_componentTableViews objectAtPosition:component];
+    CGFloat rowHeight = [self tableView:tableView heightForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
+    CGFloat offsetForRow = row*rowHeight - (self.contentView.height-rowHeight)/2;
+    return offsetForRow;
+}
+
 
 #pragma mark -
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -223,9 +279,22 @@
         cell = [[GLabelCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.label.textAlignmentG = GTextAlignmentCenter;
-        cell.label.textColor = [self textColorForControlState:UIControlStateNormal];
-        cell.label.font = [self textFontForControlState:UIControlStateNormal];
     }
+    
+    BOOL isSelectable = YES;
+    if (_delegate &&
+        [_delegate respondsToSelector:@selector(picker:selectableForRow:forComponent:)]) {
+        isSelectable = [_delegate picker:self selectableForRow:indexPath.row forComponent:tableView.tag];
+    }
+    
+    if (isSelectable) {
+        cell.label.font = [self textFontForControlState:UIControlStateNormal];
+        cell.label.textColor = [self textColorForControlState:UIControlStateNormal];
+    } else {
+        cell.label.font = [self textFontForControlState:UIControlStateDisabled];
+        cell.label.textColor = [self textColorForControlState:UIControlStateDisabled];
+    }
+    
     return cell;
 }
 
@@ -250,7 +319,7 @@
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    [self scrollTableView:tableView toRow:indexPath.row animated:YES];
+    [self scrollComponent:tableView.tag toRow:indexPath.row animated:YES];
 }
 
 - (void)scrollViewDidScroll:(UITableView *)tableView {
@@ -296,38 +365,18 @@
     }
 }
 
-- (void)scrollViewDidEndDecelerating:(UITableView *)tableView {
+- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate {
     
-    NSInteger rowForOffset = [self selectedRowInTableView:tableView];
-    
-    [self scrollTableView:tableView toRow:rowForOffset animated:YES];
-}
-
-- (void)scrollTableView:(UITableView *)tableView toRow:(NSInteger)row animated:(BOOL)animated {
-    
-    CGFloat offsetForRow = [self offsetForRow:row inTableView:tableView];
-    
-    [tableView setContentOffset:CGPointMake(0, offsetForRow) animated:animated];
-    
-    if (_delegate &&
-        [_delegate respondsToSelector:@selector(picker:didSelectRow:inComponent:)]) {
-        [_delegate picker:self didSelectRow:row inComponent:tableView.tag];
+    if (decelerate==NO) {
+        [self scrollViewDidEndDecelerating:scrollView];
     }
 }
 
-- (NSInteger)selectedRowInTableView:(UITableView *)tableView {
+- (void)scrollViewDidEndDecelerating:(UITableView *)tableView {
     
-    CGFloat rowHeight = [self tableView:tableView heightForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
-    NSInteger rowForOffset = ((self.contentView.height-rowHeight)/2 + tableView.contentOffset.y)/rowHeight + 0.5;
-    return rowForOffset;
-}
-
-- (CGFloat)offsetForRow:(NSInteger)row inTableView:(UITableView *)tableView {
+    NSInteger rowForOffset = [self selectedRowInComponent:tableView.tag];
     
-    CGFloat rowHeight = [self tableView:tableView heightForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
-    CGFloat offsetForRow = row*rowHeight - (self.contentView.height-rowHeight)/2;
-    return offsetForRow;
+    [self scrollComponent:tableView.tag toRow:rowForOffset animated:YES];
 }
-
 
 @end
