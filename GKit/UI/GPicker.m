@@ -17,33 +17,40 @@
 @property (nonatomic, weak) UIImageView * backgroundImageView;
 @property (nonatomic, weak) UIImageView * indicatorImageView;
 @property (nonatomic, weak) UIView * contentView;
+
+@property (nonatomic, strong) NSMutableDictionary * textFontInfo;
+@property (nonatomic, strong) NSMutableDictionary * textColorInfo;
+
 @end
 
 @implementation GPicker
 
-#pragma mark - Setter
-- (void)setBackgroundImage:(UIImage *)backgroundImage
-{
+#pragma mark - Setter / Getter
+- (void)setBackgroundImage:(UIImage *)backgroundImage {
+    
     _backgroundImage = backgroundImage;
     self.backgroundImageView.image = backgroundImage;
 }
-- (void)setIndicatorImage:(UIImage *)indicatorImage
-{
+
+- (void)setIndicatorImage:(UIImage *)indicatorImage {
+    
     _indicatorImage = indicatorImage;
     self.indicatorImageView.image = indicatorImage;
     [_indicatorImageView sizeToFit];
     _indicatorImageView.center = self.innerCenter;
 }
-- (void)setContentEdgeInsets:(UIEdgeInsets)contentEdgeInsets
-{
+
+- (void)setContentEdgeInsets:(UIEdgeInsets)contentEdgeInsets {
+    
     _contentEdgeInsets = contentEdgeInsets;
     self.contentView.frame = CGRectMake(contentEdgeInsets.left,
                                         contentEdgeInsets.top,
                                         self.width-contentEdgeInsets.left-contentEdgeInsets.right,
                                         self.height-contentEdgeInsets.top-contentEdgeInsets.bottom);
 }
-- (void)setSeparatorLineImage:(UIImage *)separatorLineImage
-{
+
+- (void)setSeparatorLineImage:(UIImage *)separatorLineImage {
+    
     _separatorLineImage = separatorLineImage;
     for (UIView * view in self.contentView.subviews) {
         if ([view isKindOfClass:[UIImageView class]]) {
@@ -51,6 +58,27 @@
         }
     }
 }
+
+- (void)setTextFont:(UIFont *)textFont forControlState:(UIControlState)controlState {
+    
+    [_textFontInfo setObject:textFont forKey:GNumberWithInteger(controlState)];
+}
+
+- (void)setTextColor:(UIColor *)textColor forControlState:(UIControlState)controlState {
+    
+    [_textColorInfo setObject:textColor forKey:GNumberWithInteger(controlState)];
+}
+
+- (UIFont *)textFontForControlState:(UIControlState)controlState {
+    
+    return [_textFontInfo objectForKey:GNumberWithInteger(controlState)];
+}
+
+- (UIColor *)textColorForControlState:(UIControlState)controlState {
+    
+    return [_textColorInfo objectForKey:GNumberWithInteger(controlState)];
+}
+
 #pragma mark -
 - (id)initWithFrame:(CGRect)frame
 {
@@ -77,6 +105,14 @@
     _contentEdgeInsets = UIEdgeInsetsZero;
     _separatorLineSize = CGSizeMake(1, self.height);
     
+    _textFontInfo = [NSMutableDictionary dictionary];
+    [_textFontInfo setObject:[UIFont systemFontOfSize:15.0] forKey:GNumberWithInteger(UIControlStateNormal)];
+    
+    _textColorInfo = [NSMutableDictionary dictionary];
+    [_textColorInfo setObject:[UIColor blackColor] forKey:GNumberWithInteger(UIControlStateNormal)];
+    [_textColorInfo setObject:[UIColor whiteColor] forKey:GNumberWithInteger(UIControlStateSelected)];
+    [_textColorInfo setObject:[UIColor grayColor] forKey:GNumberWithInteger(UIControlStateDisabled)];
+    
     // background image view
     UIImageView * backgroundImageView = [[UIImageView alloc] init];
     [self addSubviewToFill:backgroundImageView];
@@ -90,6 +126,7 @@
     // indicator image view
     UIImageView * indicatorImageView = [[UIImageView alloc] init];
     indicatorImageView.autoresizingMask = GViewAutoresizingFlexibleMargins;
+    indicatorImageView.clipsToBounds = YES;
     [self addSubview:indicatorImageView];
     self.indicatorImageView = indicatorImageView;
 }
@@ -106,7 +143,6 @@
     CGFloat componentWidth = 0;
     CGFloat componentHeight = self.contentView.height;
     for (NSInteger i=0; i<numberOfComponents; i++) {
-        
         
         if (_delegate &&
             [_delegate respondsToSelector:@selector(picker:widthForComponent:)]) {
@@ -138,6 +174,8 @@
             [self.contentView addSubview:separatorLineImageView];
         }
         
+        [tableView reloadData];
+        
         componentX += componentWidth;
     }
     
@@ -150,20 +188,33 @@
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    GLabelCell * cell = [self cellForTableView:tableView atIndexPath:indexPath];
+    
+    [self configureCell:cell inTableView:tableView atIndexPath:indexPath];
+    
+    return cell;
+}
+- (GLabelCell *)cellForTableView:(UITableView *)tableView atIndexPath:(NSIndexPath *)indexPath
+{
     static NSString * CellIdentifier = @"GPickerCell";
     GLabelCell * cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
         cell = [[GLabelCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.label.textAlignmentG = GTextAlignmentCenter;
+        cell.label.textColor = [self textColorForControlState:UIControlStateNormal];
+        cell.label.font = [self textFontForControlState:UIControlStateNormal];
     }
+    return cell;
+}
+- (void)configureCell:(GLabelCell *)cell inTableView:(UITableView *)tableView atIndexPath:(NSIndexPath *)indexPath
+{
     if (_delegate &&
         [_delegate respondsToSelector:@selector(picker:titleForRow:forComponent:)]) {
         cell.label.text = [_delegate picker:self titleForRow:indexPath.row forComponent:tableView.tag];
     } else {
         cell.label.text = [NSString stringWithFormat:@"%d",indexPath.row];
     }
-    return cell;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -177,6 +228,49 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [self tableView:tableView scrollToRow:indexPath.row];
+}
+
+- (void)scrollViewDidScroll:(UITableView *)tableView
+{
+    BOOL isIndicatorImageViewHasCells = NO;
+    for (GLabelCell * cell in self.indicatorImageView.subviews) {
+        if (cell.tag == tableView.tag) {
+            isIndicatorImageViewHasCells = YES;
+            break;
+        }
+    }
+    
+    CGFloat rowHeight = [self tableView:tableView heightForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
+    NSInteger numberOfIndicatorImageViewCells = (NSInteger)(self.indicatorImageView.height/rowHeight) + 2;
+    if (!isIndicatorImageViewHasCells) {
+        for (NSInteger i=0; i<numberOfIndicatorImageViewCells; i++) {
+            GLabelCell * cell = [self cellForTableView:nil atIndexPath:nil];
+            cell.tag = tableView.tag;
+            [self.indicatorImageView addSubview:cell];
+        }
+    }
+    
+    NSArray * indexPaths =
+    [tableView indexPathsForRowsInRect:[tableView convertRect:self.indicatorImageView.frame
+                                                     fromView:self.indicatorImageView.superview]];
+    NSInteger i = 0;
+    for (GLabelCell * cell in self.indicatorImageView.subviews) {
+        if (cell.tag == tableView.tag) {
+            if (i<[indexPaths count]) {
+                NSIndexPath * indexPath = [indexPaths objectAtPosition:i];
+                GLabelCell * cellForIndexPath = (GLabelCell *)[tableView cellForRowAtIndexPath:indexPath];
+                CGRect rectForCell =
+                [self.indicatorImageView convertRect:cellForIndexPath.frame fromView:cellForIndexPath.superview];
+                cell.frame = rectForCell;
+                cell.label.textColor = [self textColorForControlState:UIControlStateSelected];
+                [self configureCell:cell inTableView:tableView atIndexPath:indexPath];
+                cell.hidden = NO;
+            } else {
+                cell.hidden = YES;
+            }
+            i++;
+        }
+    }
 }
 
 - (void)scrollViewDidEndDecelerating:(UITableView *)tableView

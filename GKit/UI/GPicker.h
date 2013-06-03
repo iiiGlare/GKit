@@ -24,6 +24,9 @@
 
 - (void)reloadData;
 
+- (void)setTextFont:(UIFont *)textFont forControlState:(UIControlState)controlState;
+- (void)setTextColor:(UIColor *)textColor forControlState:(UIControlState)controlState;
+
 @end
 
 //////////// GPickerDataSource
