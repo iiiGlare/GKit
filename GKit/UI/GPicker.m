@@ -204,12 +204,18 @@
 - (void)reloadComponent:(NSInteger)component {
     
     [[_componentTableViews objectAtPosition:component] reloadData];
-    [self scrollComponent:component toRow:0 animated:NO];
+    
 }
 
 - (void)selectRow:(NSInteger)row inComponent:(NSInteger)component animated:(BOOL)animated {
     
     [self scrollComponent:component toRow:row animated:animated];
+
+    if (_delegate &&
+        [_delegate respondsToSelector:@selector(picker:didSelectRow:inComponent:)]) {
+        [_delegate picker:self didSelectRow:row inComponent:component];
+    }
+
 }
 
 - (NSInteger)selectedRowInComponent:(NSInteger)component {
@@ -242,11 +248,6 @@
     
     if (row==0) {
         [self scrollViewDidScroll:tableView];
-    }
-    
-    if (_delegate &&
-        [_delegate respondsToSelector:@selector(picker:didSelectRow:inComponent:)]) {
-        [_delegate picker:self didSelectRow:row inComponent:tableView.tag];
     }
 }
 
@@ -309,7 +310,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    [self scrollComponent:tableView.tag toRow:indexPath.row animated:YES];
+    [self selectRow:indexPath.row inComponent:tableView.tag animated:YES];
 }
 
 - (void)scrollViewDidScroll:(UITableView *)tableView {
@@ -365,7 +366,7 @@
     
     NSInteger rowForOffset = [self selectedRowInComponent:tableView.tag];
     
-    [self scrollComponent:tableView.tag toRow:rowForOffset animated:YES];
+    [self selectRow:rowForOffset inComponent:tableView.tag animated:YES];
 }
 
 @end

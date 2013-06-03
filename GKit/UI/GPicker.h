@@ -27,6 +27,8 @@
 - (void)reloadAllComponents;
 - (void)reloadComponent:(NSInteger)component;
 
+- (void)scrollComponent:(NSInteger)component toRow:(NSInteger)row animated:(BOOL)animated;
+
 - (void)selectRow:(NSInteger)row inComponent:(NSInteger)component animated:(BOOL)animated;
 - (NSInteger)selectedRowInComponent:(NSInteger)component;
 
