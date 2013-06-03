@@ -211,11 +211,16 @@
     
     [self scrollComponent:component toRow:row animated:animated];
 
+    [self performSelector:@selector(reportPickerDidSelectRowInComponent:) withObject:GNumberWithInteger(component) afterDelay:0.3];
+}
+
+- (void)reportPickerDidSelectRowInComponent:(NSNumber *)component {
+    
     if (_delegate &&
         [_delegate respondsToSelector:@selector(picker:didSelectRow:inComponent:)]) {
-        [_delegate picker:self didSelectRow:row inComponent:component];
+        NSInteger c = component.integerValue;
+        [_delegate picker:self didSelectRow:[self selectedRowInComponent:c] inComponent:c];
     }
-
 }
 
 - (NSInteger)selectedRowInComponent:(NSInteger)component {
