@@ -31,25 +31,25 @@
  */
 
 //
-//  GPickerView.h
+//  GSinglePicker.h
 //
 
 #import <UIKit/UIKit.h>
 #import <QuartzCore/QuartzCore.h>
 
 
-@protocol GPickerViewDataSource;
-@protocol GPickerViewDelegate;
+@protocol GSinglePickerDataSource;
+@protocol GSinglePickerDelegate;
 
-@interface GPickerItem : UIView
+@interface GSinglePickerItem : UIView
 @property (nonatomic, unsafe_unretained) UILabel *titleLabel;
 @end
 
 
-@interface GPickerView : UIView <UIScrollViewDelegate>
+@interface GSinglePicker : UIView <UIScrollViewDelegate>
 {
-    __unsafe_unretained id <GPickerViewDataSource> dataSource;
-    __unsafe_unretained id <GPickerViewDelegate> delegate;
+    __unsafe_unretained id <GSinglePickerDataSource> dataSource;
+    __unsafe_unretained id <GSinglePickerDelegate> delegate;
     UIScrollView *contentView;
     UIImageView *glassView;
     
@@ -62,8 +62,8 @@
 }
 
 // Datasource and delegate
-@property (nonatomic, unsafe_unretained) IBOutlet id <GPickerViewDataSource> dataSource;
-@property (nonatomic, unsafe_unretained) IBOutlet id <GPickerViewDelegate> delegate;
+@property (nonatomic, unsafe_unretained) IBOutlet id <GSinglePickerDataSource> dataSource;
+@property (nonatomic, unsafe_unretained) IBOutlet id <GSinglePickerDelegate> delegate;
 // Views
 @property (nonatomic, strong) UIScrollView *contentView;
 @property (nonatomic, strong) UIImage *backgroundImage;
@@ -87,7 +87,7 @@
 - (void)selectItemAtIndex:(NSInteger)index animated:(BOOL)animated;
 
 // recycle queue
-- (GPickerItem *)dequeueRecycledView;
+- (GSinglePickerItem *)dequeueRecycledView;
 - (BOOL)isDisplayingViewForIndex:(NSUInteger)index;
 - (void)titleViews;
 - (void)configureView:(UIView *)view atIndex:(NSUInteger)index;
@@ -96,17 +96,17 @@
 
 
 
-@protocol GPickerViewDataSource <NSObject>
+@protocol GSinglePickerDataSource <NSObject>
 
-- (NSInteger)numberOfItemsInPickerView:(GPickerView *)pickerView;
-- (NSString *)pickerView:(GPickerView *)pickerView titleForItem:(NSInteger)item;
+- (NSInteger)numberOfItemsInPickerView:(GSinglePicker *)pickerView;
+- (NSString *)pickerView:(GSinglePicker *)pickerView titleForItem:(NSInteger)item;
 
 @end
 
 
 
-@protocol GPickerViewDelegate <NSObject>
+@protocol GSinglePickerDelegate <NSObject>
 
-- (void)pickerView:(GPickerView *)pickerView didSelectItem:(NSInteger)item;
+- (void)pickerView:(GSinglePicker *)pickerView didSelectItem:(NSInteger)item;
 
 @end

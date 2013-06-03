@@ -9,7 +9,11 @@
 #import "CustomUIViewController.h"
 #import "GCore.h"
 #import "GScrollSlider.h"
+#import "GPicker.h"
 @interface CustomUIViewController ()
+<
+ GPickerDataSource, GPickerDelegate
+>
 
 @end
 
@@ -39,6 +43,7 @@
     
     [self showScrollSlider];
 
+    [self showPicker];
 }
 
 
@@ -61,4 +66,52 @@
     GPRINT(@"%.1f",slider.value);
 }
 
+#pragma mark - Picker 
+- (void)showPicker
+{
+    GPicker * picker = [[GPicker alloc] initWithFrame:CGRectMake(10, 80, 283, 197)];
+    picker.dataSource = self;
+    picker.delegate = self;
+    picker.contentEdgeInsets = UIEdgeInsetsMake(2, 0, 2, 0);
+    picker.backgroundImage = [GImageNamed(@"picker_background.png") resizableImageWithCapInsets:UIEdgeInsetsMake(10, 10, 10, 10)];
+    picker.separatorLineImage = GImageNamed(@"picker_separator.png");
+    picker.separatorLineSize = CGSizeMake(1, 191);
+    picker.indicatorImage = GImageNamed(@"picker_indicator.png");
+    [self.view addSubview:picker];
+    [picker reloadData];
+}
+- (NSInteger)numberOfComponentsInPicker:(GPicker *)picker
+{
+    return 3;
+}
+- (NSInteger)picker:(GPicker *)picker numberOfRowsInComponent:(NSInteger)component
+{
+    switch (component) {
+        case 0:
+            return 12;
+        case 1:
+            return 31;
+        default:
+            return 2;
+    }
+}
+- (CGFloat)picker:(GPicker *)picker rowHeightForComponent:(NSInteger)component
+{
+    return 42;
+}
+- (CGFloat)picker:(GPicker *)picker widthForComponent:(NSInteger)component
+{
+    switch (component) {
+        case 0:
+            return 108;
+        case 1:
+            return 76.5;
+        default:
+            return picker.width-108-76.5;
+    }
+}
+- (void)picker:(GPicker *)picker didSelectRow:(NSInteger)row inComponent:(NSInteger)component
+{
+    GPRINT(@"component:%d row:%d",component,row);
+}
 @end

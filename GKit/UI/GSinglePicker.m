@@ -31,12 +31,12 @@
  */
 
 //
-//  GPickerView.m
+//  GSinglePicker.m
 //
 
-#import "GPickerView.h"
+#import "GSinglePicker.h"
 
-@implementation GPickerItem
+@implementation GSinglePickerItem
 @synthesize titleLabel;
 - (id)initWithFrame:(CGRect)frame
 {
@@ -51,14 +51,14 @@
 }
 @end
 
-@interface GPickerView ()
+@interface GSinglePicker ()
 {
 	BOOL _ignoreTap;
 }
 
 @end
 
-@implementation GPickerView
+@implementation GSinglePicker
 
 @synthesize dataSource;
 @synthesize delegate;
@@ -89,12 +89,12 @@
 {
     _itemFont = itemFont;
     
-    for (GPickerItem *aItem in visibleViews)
+    for (GSinglePickerItem *aItem in visibleViews)
     {
         aItem.titleLabel.font = _itemFont;
     }
     
-	for (GPickerItem *aItem in recycledViews)
+	for (GSinglePickerItem *aItem in recycledViews)
     {
         aItem.titleLabel.font = _itemFont;
     }
@@ -104,12 +104,12 @@
 {
     _itemColor = itemColor;
     
-	for (GPickerItem *aItem in visibleViews)
+	for (GSinglePickerItem *aItem in visibleViews)
     {
         aItem.titleLabel.textColor = _itemColor;
     }
     
-	for (GPickerItem *aItem in recycledViews)
+	for (GSinglePickerItem *aItem in recycledViews)
     {
         aItem.titleLabel.textColor = _itemColor;
     }
@@ -290,10 +290,10 @@
     currentIndex = 0;
     itemCount = 0;
     
-    for (GPickerItem *aItem in visibleViews)
+    for (GSinglePickerItem *aItem in visibleViews)
         [aItem removeFromSuperview];
     
-    for (GPickerItem *aItem in recycledViews)
+    for (GSinglePickerItem *aItem in recycledViews)
         [aItem removeFromSuperview];
     
     visibleViews = [[NSMutableSet alloc] init];
@@ -353,9 +353,9 @@
 
 #pragma mark - recycle queue
 
-- (GPickerItem *)dequeueRecycledView
+- (GSinglePickerItem *)dequeueRecycledView
 {
-	GPickerItem *aView = [recycledViews anyObject];
+	GSinglePickerItem *aView = [recycledViews anyObject];
 	
     if (aView)
         [recycledViews removeObject:aView];
@@ -367,7 +367,7 @@
 - (BOOL)isDisplayingViewForIndex:(NSUInteger)index
 {
 	BOOL foundPage = NO;
-    for (GPickerItem *aView in visibleViews)
+    for (GSinglePickerItem *aView in visibleViews)
 	{
         int viewIndex;
 		if (!_scrollVertical) {
@@ -402,7 +402,7 @@
     lastNeededViewIndex  = MIN(lastNeededViewIndex, itemCount - 1);
 	
     // Recycle no-longer-visible pages
-	for (GPickerItem *aView in visibleViews)
+	for (GSinglePickerItem *aView in visibleViews)
     {
         int viewIndex;
 		if (!_scrollVertical) {
@@ -424,10 +424,10 @@
 	{
         if (![self isDisplayingViewForIndex:index])
 		{
-            GPickerItem *itemView = [self dequeueRecycledView];
+            GSinglePickerItem *itemView = [self dequeueRecycledView];
 			if (itemView == nil)
             {
-				itemView = [[GPickerItem alloc] initWithFrame:CGRectMake(0.0, 0.0, self.contentView.frame.size.width, self.contentView.frame.size.height)];
+				itemView = [[GSinglePickerItem alloc] initWithFrame:CGRectMake(0.0, 0.0, self.contentView.frame.size.width, self.contentView.frame.size.height)];
 				itemView.backgroundColor = [UIColor clearColor];
                 itemView.titleLabel.backgroundColor = [UIColor clearColor];
                 itemView.titleLabel.font = self.itemFont;
@@ -442,7 +442,7 @@
     }
 	
 	//support flow
-	for (GPickerItem *aItem in visibleViews) {
+	for (GSinglePickerItem *aItem in visibleViews) {
 		CGFloat scale = 1.0;
 		if (_supportFlow)
 		{
@@ -462,9 +462,9 @@
 
 
 
-- (void)configureView:(GPickerItem *)view atIndex:(NSUInteger)index
+- (void)configureView:(GSinglePickerItem *)view atIndex:(NSUInteger)index
 {
-    GPickerItem *item = view;
+    GSinglePickerItem *item = view;
     
     if ([dataSource respondsToSelector:@selector(pickerView:titleForItem:)]) {
         item.titleLabel.text = [dataSource pickerView:self titleForItem:index];

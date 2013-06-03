@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AF523A92175B871400FBAA0C /* picker_indicator@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AF523A91175B871400FBAA0C /* picker_indicator@2x.png */; };
+		AF826929175A415600F82AE3 /* picker_background@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AF826927175A415600F82AE3 /* picker_background@2x.png */; };
+		AF82692A175A415600F82AE3 /* picker_separator@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AF826928175A415600F82AE3 /* picker_separator@2x.png */; };
+		AF98EB761758320D0004FBF4 /* GPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = AF98EB751758320D0004FBF4 /* GPicker.m */; };
 		F80B212E173AD1AC00DDA0D6 /* AudioViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F80B212D173AD1AC00DDA0D6 /* AudioViewController.m */; };
 		F80B4740172831AF00F4FBEB /* GMoveSnapshot+GCalendar.m in Sources */ = {isa = PBXBuildFile; fileRef = F80B473F172831AF00F4FBEB /* GMoveSnapshot+GCalendar.m */; };
 		F82369BD1727B53C00868E8B /* GPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = FD07BDD41727605100D8E26A /* GPoint.m */; };
@@ -105,7 +109,7 @@
 		FD4BF0581751277E00400F47 /* GImageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FD4BF0571751277E00400F47 /* GImageManager.m */; };
 		FD4BF05E1751282500400F47 /* GApp.m in Sources */ = {isa = PBXBuildFile; fileRef = FD4BF05B1751282500400F47 /* GApp.m */; };
 		FD4BF05F1751282500400F47 /* GPayment.m in Sources */ = {isa = PBXBuildFile; fileRef = FD4BF05D1751282500400F47 /* GPayment.m */; };
-		FD4BF064175128A000400F47 /* GPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = FD4BF061175128A000400F47 /* GPickerView.m */; };
+		FD4BF064175128A000400F47 /* GSinglePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = FD4BF061175128A000400F47 /* GSinglePicker.m */; };
 		FD4BF065175128A000400F47 /* GSwitch.m in Sources */ = {isa = PBXBuildFile; fileRef = FD4BF063175128A000400F47 /* GSwitch.m */; };
 		FD4BF068175128CD00400F47 /* GDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = FD4BF067175128CD00400F47 /* GDownloader.m */; };
 		FDA02EE1173FB09400AA3D8D /* max_track@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FDA02EDE173FB09400AA3D8D /* max_track@2x.png */; };
@@ -127,6 +131,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		AF523A91175B871400FBAA0C /* picker_indicator@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "picker_indicator@2x.png"; sourceTree = "<group>"; };
+		AF826927175A415600F82AE3 /* picker_background@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "picker_background@2x.png"; sourceTree = "<group>"; };
+		AF826928175A415600F82AE3 /* picker_separator@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "picker_separator@2x.png"; sourceTree = "<group>"; };
+		AF98EB741758320D0004FBF4 /* GPicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GPicker.h; sourceTree = "<group>"; };
+		AF98EB751758320D0004FBF4 /* GPicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GPicker.m; sourceTree = "<group>"; };
 		F80B212C173AD1AC00DDA0D6 /* AudioViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioViewController.h; sourceTree = "<group>"; };
 		F80B212D173AD1AC00DDA0D6 /* AudioViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioViewController.m; sourceTree = "<group>"; };
 		F80B473E172831AE00F4FBEB /* GMoveSnapshot+GCalendar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GMoveSnapshot+GCalendar.h"; sourceTree = "<group>"; };
@@ -297,8 +306,8 @@
 		FD4BF05B1751282500400F47 /* GApp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GApp.m; sourceTree = "<group>"; };
 		FD4BF05C1751282500400F47 /* GPayment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GPayment.h; sourceTree = "<group>"; };
 		FD4BF05D1751282500400F47 /* GPayment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GPayment.m; sourceTree = "<group>"; };
-		FD4BF060175128A000400F47 /* GPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GPickerView.h; sourceTree = "<group>"; };
-		FD4BF061175128A000400F47 /* GPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GPickerView.m; sourceTree = "<group>"; };
+		FD4BF060175128A000400F47 /* GSinglePicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GSinglePicker.h; sourceTree = "<group>"; };
+		FD4BF061175128A000400F47 /* GSinglePicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GSinglePicker.m; sourceTree = "<group>"; };
 		FD4BF062175128A000400F47 /* GSwitch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GSwitch.h; sourceTree = "<group>"; };
 		FD4BF063175128A000400F47 /* GSwitch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GSwitch.m; sourceTree = "<group>"; };
 		FD4BF066175128CD00400F47 /* GDownloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GDownloader.h; sourceTree = "<group>"; };
@@ -494,6 +503,9 @@
 				FDA02EDE173FB09400AA3D8D /* max_track@2x.png */,
 				FDA02EDF173FB09400AA3D8D /* min_track@2x.png */,
 				FDA02EE0173FB09400AA3D8D /* thumb@2x.png */,
+				AF826927175A415600F82AE3 /* picker_background@2x.png */,
+				AF826928175A415600F82AE3 /* picker_separator@2x.png */,
+				AF523A91175B871400FBAA0C /* picker_indicator@2x.png */,
 			);
 			name = CustomUI;
 			sourceTree = "<group>";
@@ -656,45 +668,47 @@
 		F8B6C03F1726C54000214182 /* UI */ = {
 			isa = PBXGroup;
 			children = (
-				FD4BF060175128A000400F47 /* GPickerView.h */,
-				FD4BF061175128A000400F47 /* GPickerView.m */,
-				FD4BF062175128A000400F47 /* GSwitch.h */,
-				FD4BF063175128A000400F47 /* GSwitch.m */,
-				F885B54D174B569F0059E609 /* GSegmentedControl.h */,
-				F885B54E174B569F0059E609 /* GSegmentedControl.m */,
 				F8B6C07F1726C7ED00214182 /* CoreGraphics.framework */,
 				F8B6C0401726C54000214182 /* GAlertView.h */,
 				F8B6C0411726C54000214182 /* GAlertView.m */,
-				F86D68561737CE03003EFE6C /* GScrollSlider.h */,
-				F86D68571737CE03003EFE6C /* GScrollSlider.m */,
-				FD07BDD6172761DF00D8E26A /* GSlider.h */,
-				FD07BDD7172761DF00D8E26A /* GSlider.m */,
-				F888D8D9174789E60026C1A4 /* GLabel.h */,
-				F888D8DA174789E70026C1A4 /* GLabel.m */,
-				F86D68531737C1DF003EFE6C /* GTextField.h */,
-				F86D68541737C1DF003EFE6C /* GTextField.m */,
-				F888D8D6174771840026C1A4 /* GTextView.h */,
-				F888D8D7174771850026C1A4 /* GTextView.m */,
 				F8B6C0421726C54000214182 /* GBlockTableViewController.h */,
 				F8B6C0431726C54000214182 /* GBlockTableViewController.m */,
 				F8B6C0441726C54000214182 /* GEfficientTableViewController.h */,
 				F8B6C0451726C54000214182 /* GEfficientTableViewController.m */,
+				F888D8D9174789E60026C1A4 /* GLabel.h */,
+				F888D8DA174789E70026C1A4 /* GLabel.m */,
+				F888D8DC17478A4E0026C1A4 /* GLabelCell.h */,
+				F888D8DD17478A4F0026C1A4 /* GLabelCell.m */,
 				F8B6C0461726C54000214182 /* GNavigationViewController.h */,
 				F8B6C0471726C54000214182 /* GNavigationViewController.m */,
+				AF98EB741758320D0004FBF4 /* GPicker.h */,
+				AF98EB751758320D0004FBF4 /* GPicker.m */,
+				F86D68561737CE03003EFE6C /* GScrollSlider.h */,
+				F86D68571737CE03003EFE6C /* GScrollSlider.m */,
+				F885B54D174B569F0059E609 /* GSegmentedControl.h */,
+				F885B54E174B569F0059E609 /* GSegmentedControl.m */,
 				F8B6C04A1726C54000214182 /* GSelectionViewController.h */,
 				F8B6C04B1726C54000214182 /* GSelectionViewController.m */,
+				FD4BF060175128A000400F47 /* GSinglePicker.h */,
+				FD4BF061175128A000400F47 /* GSinglePicker.m */,
+				FD07BDD6172761DF00D8E26A /* GSlider.h */,
+				FD07BDD7172761DF00D8E26A /* GSlider.m */,
+				FD4BF062175128A000400F47 /* GSwitch.h */,
+				FD4BF063175128A000400F47 /* GSwitch.m */,
 				F8B6C04C1726C54000214182 /* GTabBarController.h */,
 				F8B6C04D1726C54000214182 /* GTabBarController.m */,
 				F8B6C04E1726C54000214182 /* GTableViewController.h */,
 				F8B6C04F1726C54000214182 /* GTableViewController.m */,
-				F8B6C0501726C54000214182 /* GViewController.h */,
-				F8B6C0511726C54000214182 /* GViewController.m */,
-				F888D8DC17478A4E0026C1A4 /* GLabelCell.h */,
-				F888D8DD17478A4F0026C1A4 /* GLabelCell.m */,
+				F86D68531737C1DF003EFE6C /* GTextField.h */,
+				F86D68541737C1DF003EFE6C /* GTextField.m */,
 				F888D8DF1747A55F0026C1A4 /* GTextFieldCell.h */,
 				F888D8E01747A5600026C1A4 /* GTextFieldCell.m */,
+				F888D8D6174771840026C1A4 /* GTextView.h */,
+				F888D8D7174771850026C1A4 /* GTextView.m */,
 				F888D8E21747A6830026C1A4 /* GTextViewCell.h */,
 				F888D8E31747A6840026C1A4 /* GTextViewCell.m */,
+				F8B6C0501726C54000214182 /* GViewController.h */,
+				F8B6C0511726C54000214182 /* GViewController.m */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -820,6 +834,9 @@
 				FDA02EE1173FB09400AA3D8D /* max_track@2x.png in Resources */,
 				FDA02EE2173FB09400AA3D8D /* min_track@2x.png in Resources */,
 				FDA02EE3173FB09400AA3D8D /* thumb@2x.png in Resources */,
+				AF826929175A415600F82AE3 /* picker_background@2x.png in Resources */,
+				AF82692A175A415600F82AE3 /* picker_separator@2x.png in Resources */,
+				AF523A92175B871400FBAA0C /* picker_indicator@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -921,9 +938,10 @@
 				FD4BF0581751277E00400F47 /* GImageManager.m in Sources */,
 				FD4BF05E1751282500400F47 /* GApp.m in Sources */,
 				FD4BF05F1751282500400F47 /* GPayment.m in Sources */,
-				FD4BF064175128A000400F47 /* GPickerView.m in Sources */,
+				FD4BF064175128A000400F47 /* GSinglePicker.m in Sources */,
 				FD4BF065175128A000400F47 /* GSwitch.m in Sources */,
 				FD4BF068175128CD00400F47 /* GDownloader.m in Sources */,
+				AF98EB761758320D0004FBF4 /* GPicker.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
