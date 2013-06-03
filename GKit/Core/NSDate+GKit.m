@@ -109,4 +109,32 @@ NSString * GTimerStringFromTimeInterval(NSTimeInterval timeInterval)
     return [beginningOfDay dateByAddingTimeInterval:-GTimeIntervalFromDays(daysToSubtract)];
 }
 
+////////////////////////////////////////////////////////////////////////
++ (NSInteger)numberOfDaysForMonth:(NSInteger)month inYear:(NSInteger)year {
+
+    switch (month) {
+        //1 3 5 7 8 10 12
+        case 1:
+        case 3:
+        case 5:
+        case 7:
+        case 8:
+        case 10:
+        case 12:
+            return 31;
+        // 2
+        case 2:
+            if((year%100!=0 && year%4==0) ||
+               year%400==0) {
+                // leap month
+                return 29;
+            } else {
+                return 28;
+            }
+        // others
+        default:
+            return 30;
+    }
+}
+
 @end

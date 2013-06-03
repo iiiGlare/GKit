@@ -58,4 +58,7 @@ typedef NSInteger GWeekdayType;
 - (NSDate *)beginningOfDay;
 - (NSDate *)beginningOfWeekWithFirstWeekday:(GWeekdayType)firstWeekday;
 
+////
++ (NSInteger)numberOfDaysForMonth:(NSInteger)month inYear:(NSInteger)year;
+
 @end
