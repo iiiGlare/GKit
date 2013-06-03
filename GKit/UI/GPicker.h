@@ -22,7 +22,11 @@
 
 @property (nonatomic, assign) UIEdgeInsets contentEdgeInsets; //default zero
 
-- (void)reloadData;
+- (void)reloadAllComponents;
+- (void)reloadComponent:(NSInteger)component;
+
+- (void)selectRow:(NSInteger)row inComponent:(NSInteger)component animated:(BOOL)animated;
+- (NSInteger)selectedRowInComponent:(NSInteger)component;
 
 - (void)setTextFont:(UIFont *)textFont forControlState:(UIControlState)controlState;
 - (void)setTextColor:(UIColor *)textColor forControlState:(UIControlState)controlState;

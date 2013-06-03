@@ -78,7 +78,15 @@
     picker.separatorLineSize = CGSizeMake(1, 191);
     picker.indicatorImage = GImageNamed(@"picker_indicator.png");
     [self.view addSubview:picker];
-    [picker reloadData];
+    [picker reloadAllComponents];
+    
+    [picker selectRow:1 inComponent:0 animated:NO];
+    [picker selectRow:2 inComponent:1 animated:NO];
+    [picker selectRow:3 inComponent:2 animated:NO];
+    
+    GPRINT(@"component %d: selected row %d", 0, [picker selectedRowInComponent:0]);
+    GPRINT(@"component %d: selected row %d", 1, [picker selectedRowInComponent:1]);
+    GPRINT(@"component %d: selected row %d", 2, [picker selectedRowInComponent:2]);
 }
 - (NSInteger)numberOfComponentsInPicker:(GPicker *)picker
 {
@@ -92,7 +100,7 @@
         case 1:
             return 31;
         default:
-            return 2;
+            return 5;
     }
 }
 - (CGFloat)picker:(GPicker *)picker rowHeightForComponent:(NSInteger)component
