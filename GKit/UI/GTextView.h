@@ -12,6 +12,8 @@
 
 @property (nonatomic, copy) NSString *placeHolder;
 @property (nonatomic, strong) UIColor *placeHolderColor;
+@property (nonatomic, strong) UIFont *placeHolderFont;
+@property (nonatomic, assign) UIEdgeInsets placeHolderEdgeInsets;
 
 - (void)showOrHidePlaceHolderTextView;
 

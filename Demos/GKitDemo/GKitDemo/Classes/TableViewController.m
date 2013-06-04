@@ -97,6 +97,7 @@
         GTextViewCell *textViewCell = (GTextViewCell *)cell;
         textViewCell.textView.text = @"text view cell";
 		textViewCell.textView.placeHolder = @"placeholder";
+        textViewCell.textView.placeHolderFont = [UIFont systemFontOfSize:12];
     }
 
 }

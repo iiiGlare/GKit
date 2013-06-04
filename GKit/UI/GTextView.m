@@ -23,6 +23,8 @@
 	if (self)
 	{
 		_placeHolderColor = [UIColor grayColor];
+        _placeHolderFont = self.font;
+        _placeHolderEdgeInsets = UIEdgeInsetsZero;
 	}
 	return self;
 }
@@ -32,11 +34,11 @@
 	_placeHolder = [placeHolder copy];
 	
 	if (_placeHolderTextView==nil) {
-		_placeHolderTextView = [[GTextView alloc] initWithFrame:self.bounds];
+		_placeHolderTextView = [[GTextView alloc] initWithFrame:CGRectMake(_placeHolderEdgeInsets.left, _placeHolderEdgeInsets.top, self.width-_placeHolderEdgeInsets.left-_placeHolderEdgeInsets.right, self.height-_placeHolderEdgeInsets.top-_placeHolderEdgeInsets.bottom)];
 		_placeHolderTextView.backgroundColor = [UIColor clearColor];
 		_placeHolderTextView.userInteractionEnabled = NO;
 		_placeHolderTextView.editable = NO;
-		_placeHolderTextView.font = self.font;
+		_placeHolderTextView.font = self.placeHolderFont;
 		_placeHolderTextView.textColor = self.placeHolderColor;
 		_placeHolderTextView.textAlignment = self.textAlignment;
 		
@@ -58,11 +60,29 @@
 	}
 }
 
+- (void)setPlaceHolderFont:(UIFont *)placeHolderFont {
+    
+    _placeHolderFont = placeHolderFont;
+    
+    if (_placeHolderTextView) {
+        _placeHolderTextView.font = _placeHolderFont;
+    }
+}
+
+- (void)setPlaceHolderEdgeInsets:(UIEdgeInsets)placeHolderEdgeInsets {
+    
+    _placeHolderEdgeInsets = placeHolderEdgeInsets;
+    
+    if (_placeHolderTextView) {
+        _placeHolderTextView.frame = CGRectMake(_placeHolderEdgeInsets.left, _placeHolderEdgeInsets.top, self.width-_placeHolderEdgeInsets.left-_placeHolderEdgeInsets.right, self.height-_placeHolderEdgeInsets.top-_placeHolderEdgeInsets.bottom);
+    }
+}
+
 - (void)setFont:(UIFont *)font
 {
 	super.font = font;
 	
-	if (_placeHolderTextView)
+	if (_placeHolderTextView && _placeHolderFont==nil)
 	{
 		_placeHolderTextView.font =font;
 	}
