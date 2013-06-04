@@ -7,15 +7,18 @@
 //
 
 #import "TableViewController.h"
+
 #import "GCore.h"
 
 #import "GLabelCell.h"
 #import "GTextFieldCell.h"
 #import "GTextViewCell.h"
+#import "GGestureCell.h"
 
 @interface TableViewController ()
 <
- GTextFieldCellDelegate, GTextViewCellDelegate
+ GTextFieldCellDelegate, GTextViewCellDelegate,
+ GGestureCellDelegate
 >
 
 @end
@@ -34,7 +37,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 50;
+    return 4;
 }
 
 - (UITableViewCell *)cellForTableView:(UITableView *)tableView atIndexPath:(NSIndexPath *)indexPath
@@ -46,7 +49,6 @@
         GLabelCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
         if (cell == nil) {
             cell = [[GLabelCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-//            cell.selectionStyle = UITableViewCellSelectionStyleNone;
         }
         return cell;
 
@@ -57,21 +59,30 @@
         GTextFieldCell * cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
         if (cell == nil) {
             cell = [[GTextFieldCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-//            cell.selectionStyle = UITableViewCellSelectionStyleNone;
             cell.textField.returnKeyType = UIReturnKeyDone;
             cell.delegate = self;
         }
         return cell;
         
-    } else {
+    } else if (indexPath.row==2){
         //Text View Cell
         static NSString * CellIdentifier = @"TextViewCell";
         
         GTextViewCell * cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
         if (cell == nil) {
             cell = [[GTextViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-//            cell.selectionStyle = UITableViewCellSelectionStyleNone;
             cell.textView.returnKeyType = UIReturnKeyDone;
+            cell.delegate = self;
+        }
+        return cell;
+        
+    } else if (indexPath.row == 3) {
+        // Gesture Cell
+        static NSString * CellIdentifier = @"GestureCell";
+        
+        GGestureCell * cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        if (cell == nil) {
+            cell = [[GGestureCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
             cell.delegate = self;
         }
         return cell;
@@ -84,20 +95,24 @@
 {
     if (indexPath.row == 0) {
         //Label Cell
-        GLabelCell *labelCell = (GLabelCell *)cell;
+        GLabelCell * labelCell = (GLabelCell *)cell;
         labelCell.label.text = @"label cell";
         
     } else if (indexPath.row == 1) {
         //Text Field Cell
-        GTextFieldCell *textFieldCell = (GTextFieldCell *)cell;
+        GTextFieldCell * textFieldCell = (GTextFieldCell *)cell;
         textFieldCell.textField.text = @"text field cell";
         
-    } else {
+    } else if (indexPath.row == 2) {
         //Text View Cell
-        GTextViewCell *textViewCell = (GTextViewCell *)cell;
+        GTextViewCell * textViewCell = (GTextViewCell *)cell;
         textViewCell.textView.text = @"text view cell";
 		textViewCell.textView.placeHolder = @"placeholder";
         textViewCell.textView.placeHolderFont = [UIFont systemFontOfSize:12];
+    } else if (indexPath.row == 3) {
+        //Gesture Cell
+        GGestureCell * gestureCell = (GGestureCell *)cell;
+        gestureCell.textLabel.text = @"gesture cell";
     }
 
 }
@@ -133,5 +148,27 @@
 {
 	GPRINT(@"willPop");
 }
+
+#pragma mark - Gesture Cell
+- (void)gestureCellDidBeginPan:(GGestureCell *)gestureCell {
+    
+    UILabel * label = [[UILabel alloc] initWithFrame:gestureCell.leftBottomView.bounds];
+    label.textAlignmentG = GTextAlignmentRight;
+    label.text = GLocalizedString(@"右拉完成");
+    [gestureCell.leftBottomView addSubview:label];
+    
+    label = [[UILabel alloc] initWithFrame:gestureCell.rightBottomView.bounds];
+    label.textAlignmentG = GTextAlignmentLeft;
+    label.text = GLocalizedString(@"左拉存档");
+    [gestureCell.rightBottomView addSubview:label];
+
+}
+- (void)gestureCellIsPanning:(GGestureCell *)gestureCell {
+    
+}
+- (void)gestureCellDidEndPan:(GGestureCell *)gestureCell {
+    
+}
+
 
 @end
