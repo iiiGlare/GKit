@@ -11,6 +11,9 @@
 		AF6FB473175DEB860098225C /* GGestureCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AF6FB472175DEB860098225C /* GGestureCell.m */; };
 		AF826929175A415600F82AE3 /* picker_background@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AF826927175A415600F82AE3 /* picker_background@2x.png */; };
 		AF82692A175A415600F82AE3 /* picker_separator@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AF826928175A415600F82AE3 /* picker_separator@2x.png */; };
+		AF8E0B0D175EF113006153E0 /* switch_off_background@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AF8E0B0A175EF113006153E0 /* switch_off_background@2x.png */; };
+		AF8E0B0E175EF113006153E0 /* switch_on_background@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AF8E0B0B175EF113006153E0 /* switch_on_background@2x.png */; };
+		AF8E0B0F175EF113006153E0 /* switch_knob@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AF8E0B0C175EF113006153E0 /* switch_knob@2x.png */; };
 		AF98EB761758320D0004FBF4 /* GPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = AF98EB751758320D0004FBF4 /* GPicker.m */; };
 		F80B212E173AD1AC00DDA0D6 /* AudioViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F80B212D173AD1AC00DDA0D6 /* AudioViewController.m */; };
 		F80B4740172831AF00F4FBEB /* GMoveSnapshot+GCalendar.m in Sources */ = {isa = PBXBuildFile; fileRef = F80B473F172831AF00F4FBEB /* GMoveSnapshot+GCalendar.m */; };
@@ -137,6 +140,9 @@
 		AF6FB472175DEB860098225C /* GGestureCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGestureCell.m; sourceTree = "<group>"; };
 		AF826927175A415600F82AE3 /* picker_background@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "picker_background@2x.png"; sourceTree = "<group>"; };
 		AF826928175A415600F82AE3 /* picker_separator@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "picker_separator@2x.png"; sourceTree = "<group>"; };
+		AF8E0B0A175EF113006153E0 /* switch_off_background@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "switch_off_background@2x.png"; sourceTree = "<group>"; };
+		AF8E0B0B175EF113006153E0 /* switch_on_background@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "switch_on_background@2x.png"; sourceTree = "<group>"; };
+		AF8E0B0C175EF113006153E0 /* switch_knob@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "switch_knob@2x.png"; sourceTree = "<group>"; };
 		AF98EB741758320D0004FBF4 /* GPicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GPicker.h; sourceTree = "<group>"; };
 		AF98EB751758320D0004FBF4 /* GPicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GPicker.m; sourceTree = "<group>"; };
 		F80B212C173AD1AC00DDA0D6 /* AudioViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioViewController.h; sourceTree = "<group>"; };
@@ -424,6 +430,16 @@
 			name = Other;
 			sourceTree = "<group>";
 		};
+		AF8E0B09175EF106006153E0 /* Switch */ = {
+			isa = PBXGroup;
+			children = (
+				AF8E0B0A175EF113006153E0 /* switch_off_background@2x.png */,
+				AF8E0B0B175EF113006153E0 /* switch_on_background@2x.png */,
+				AF8E0B0C175EF113006153E0 /* switch_knob@2x.png */,
+			);
+			name = Switch;
+			sourceTree = "<group>";
+		};
 		F80B212B173AD19500DDA0D6 /* Audio */ = {
 			isa = PBXGroup;
 			children = (
@@ -538,6 +554,7 @@
 		F8B6BFBF172671D100214182 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				AF8E0B09175EF106006153E0 /* Switch */,
 				F8B6BFC0172671D100214182 /* CenterTabBarItemImage.png */,
 				F8B6BFC1172671D100214182 /* CenterTabBarItemImage@2x.png */,
 				F8B6BFC2172671D100214182 /* Default-568h@2x.png */,
@@ -874,6 +891,9 @@
 				AF826929175A415600F82AE3 /* picker_background@2x.png in Resources */,
 				AF82692A175A415600F82AE3 /* picker_separator@2x.png in Resources */,
 				AF523A92175B871400FBAA0C /* picker_indicator@2x.png in Resources */,
+				AF8E0B0D175EF113006153E0 /* switch_off_background@2x.png in Resources */,
+				AF8E0B0E175EF113006153E0 /* switch_on_background@2x.png in Resources */,
+				AF8E0B0F175EF113006153E0 /* switch_knob@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

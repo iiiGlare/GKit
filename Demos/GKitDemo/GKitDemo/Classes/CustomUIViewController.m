@@ -8,6 +8,7 @@
 
 #import "CustomUIViewController.h"
 #import "GCore.h"
+#import "GSwitch.h"
 #import "GScrollSlider.h"
 #import "GPicker.h"
 @interface CustomUIViewController ()
@@ -40,17 +41,27 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
 	
+    [self showSwitch];
     
     [self showScrollSlider];
 
     [self showPicker];
 }
 
-
 #pragma mark - 
+- (void)showSwitch {
+    
+    GSwitch *gSwitch = [[GSwitch alloc] initWithFrame: CGRectMake(10, 10, 80, 27)
+                                            knobImage: GImageNamed(@"switch_knob.png")
+                                        onToggleImage: [GImageNamed(@"switch_on_background.png") resizableImageWithCapInsets:UIEdgeInsetsMake(27, 27, 27, 27)]
+                                       offToggleImage: [GImageNamed(@"switch_off_background.png") resizableImageWithCapInsets:UIEdgeInsetsMake(27, 27, 27, 27)]];
+    [self.view addSubview:gSwitch];
+}
+
+#pragma mark -
 - (void)showScrollSlider
 {
-    GScrollSlider *scrollSlider = [[GScrollSlider alloc] initWithFrame:CGRectMake(10, 10, 300, 50)];
+    GScrollSlider *scrollSlider = [[GScrollSlider alloc] initWithFrame:CGRectMake(10, 60, 300, 50)];
 	scrollSlider.thumbImage = [UIImage imageNamed:@"thumb.png"];
 	scrollSlider.minTrackImage = [[UIImage imageNamed:@"min_track.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 10, 0, 10)];
 	scrollSlider.maxTrackImage = [[UIImage imageNamed:@"max_track.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 10, 0, 10)];
