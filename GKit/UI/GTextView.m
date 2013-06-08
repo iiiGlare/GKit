@@ -86,9 +86,11 @@
 {
 	super.font = font;
 	
-    if (_isCustomPlaceHolderFont==NO && _placeHolderTextView) {
+    if (_isCustomPlaceHolderFont==NO) {
         _placeHolderFont = font;
-        _placeHolderTextView.font =font;
+        if (_placeHolderTextView) {
+            _placeHolderTextView.font =font;
+        }
     }    
 }
 
@@ -96,8 +98,7 @@
 {
 	super.textAlignment = textAlignment;
 	
-	if (_placeHolderTextView)
-	{
+	if (_placeHolderTextView) {
 		_placeHolderTextView.textAlignment = textAlignment;
 	}
 }
