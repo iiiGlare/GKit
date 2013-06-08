@@ -10,7 +10,9 @@
 #import "GCore.h"
 
 @interface GTextView ()
-
+{
+    BOOL _isCustomPlaceHolderFont;
+}
 @property (nonatomic, strong) GTextView *placeHolderTextView;
 
 @end
@@ -24,6 +26,7 @@
 	{
 		_placeHolderColor = [UIColor grayColor];
         _placeHolderFont = self.font;
+        _isCustomPlaceHolderFont = NO;
         _placeHolderEdgeInsets = UIEdgeInsetsZero;
 	}
 	return self;
@@ -63,6 +66,7 @@
 - (void)setPlaceHolderFont:(UIFont *)placeHolderFont {
     
     _placeHolderFont = placeHolderFont;
+    _isCustomPlaceHolderFont = YES;
     
     if (_placeHolderTextView) {
         _placeHolderTextView.font = _placeHolderFont;
@@ -82,10 +86,10 @@
 {
 	super.font = font;
 	
-	if (_placeHolderTextView && _placeHolderFont==nil)
-	{
-		_placeHolderTextView.font =font;
-	}
+    if (_isCustomPlaceHolderFont==NO && _placeHolderTextView) {
+        _placeHolderFont = font;
+        _placeHolderTextView.font =font;
+    }    
 }
 
 - (void)setTextAlignment:(NSTextAlignment)textAlignment
