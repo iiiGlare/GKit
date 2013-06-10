@@ -22,6 +22,7 @@ typedef NSInteger GNavigationAnimationType;
 + (void)setBackItemWithImage: (UIImage *)image
 					   title: (NSString *)title
 				  titleColor: (UIColor *)color
+        titleHightlightColor: (UIColor *)hColor
 				   titleFont: (UIFont *)font
 		   contentEdgeInsets: (UIEdgeInsets)contentEdgeInsets
 			 backgroundImage: (UIImage *)backgroundImage;

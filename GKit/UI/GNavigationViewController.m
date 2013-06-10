@@ -21,6 +21,7 @@
 @property (nonatomic, strong) UIImage *backImage;
 @property (nonatomic, strong) NSString *backTitle;
 @property (nonatomic, strong) UIColor *backTitleColor;
+@property (nonatomic, strong) UIColor *backTitleHightlightColor;
 @property (nonatomic, strong) UIFont *backTitleFont;
 @property (nonatomic) UIEdgeInsets contentEdgeInsets;
 @property (nonatomic, strong) UIImage *backBackgroundImage;
@@ -43,6 +44,7 @@
 + (void)setBackItemWithImage: (UIImage *)image
 					   title: (NSString *)title
 				  titleColor: (UIColor *)color
+        titleHightlightColor: (UIColor *)hColor
 				   titleFont: (UIFont *)font
 		   contentEdgeInsets: (UIEdgeInsets)contentEdgeInsets
 			 backgroundImage: (UIImage *)backgroundImage;
@@ -52,6 +54,7 @@
 	configurator.backImage = image;
 	configurator.backTitle = title;
 	configurator.backTitleColor = color;
+    configurator.backTitleHightlightColor = hColor;
 	configurator.backTitleFont = font;
 	configurator.contentEdgeInsets = contentEdgeInsets;
 	configurator.backBackgroundImage = backgroundImage;
@@ -202,6 +205,10 @@
 				[backButton setTitleColor:configurator.backTitleColor forState:UIControlStateNormal];
 			}
 			
+            if (configurator.backTitleHightlightColor) {
+                [backButton setTitleColor:configurator.backTitleHightlightColor forState:UIControlStateHighlighted];
+            }
+            
 			if (configurator.backTitleFont) {
 				[backButton.titleLabel setFont:configurator.backTitleFont];
 			}else {
