@@ -10,6 +10,10 @@
 
 @interface GScrollSlider : UIControl
 
+@property (nonatomic, strong, readonly) UIView *minTrackView;
+@property (nonatomic, strong, readonly) UIView *maxTrackView;
+@property (nonatomic, strong, readonly) UIView *thumbView;
+
 @property (nonatomic, strong, readonly) UIView *scalesView;   //刻度视图
 @property (nonatomic, assign) CGFloat scalesViewTopMargin; // default 0
 @property (nonatomic, assign) CGFloat scalesViewBottomMargin; // default 0

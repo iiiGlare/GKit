@@ -22,11 +22,6 @@
 @property (nonatomic, assign) CGFloat scalesViewWidth;
 @property (nonatomic, assign) CGFloat visibleValueWidth;
 
-@property (nonatomic, strong) UIView *minTrackView;
-@property (nonatomic, strong) UIView *maxTrackView;
-@property (nonatomic, strong) UIView *thumbView;
-//@property (nonatomic, strong) UILabel *indicator;
-
 @property (nonatomic, strong) GPoint *gPoint;
 
 //auto scroll
@@ -103,15 +98,6 @@
     _thumbView.backgroundColor = GRandomColor();
     [contentView addSubview:_thumbView];
     
-    
-    //indicator
-//    _indicator = [[UILabel alloc] initWithFrame:CGRectZero];
-//    _indicator.backgroundColor = [UIColor clearColor];
-//    _indicator.textColor = [UIColor whiteColor];
-//    _indicator.textAlignmentG = GTextAlignmentCenter;
-//    _indicator.font = [UIFont systemFontOfSize:14.0];
-//    [_thumbView addSubview:_indicator];
-    
     //pan gesture
     UIPanGestureRecognizer *panGR = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handlePan:)];
     [contentView addGestureRecognizer:panGR];
@@ -137,7 +123,6 @@
     self.minTrackView.frame = CGRectMake(0, 0, 0, _trackViewHeight);
     self.maxTrackView.frame = CGRectMake(0, 0, 0, _trackViewHeight);
     self.thumbView.frame = CGRectMake(0, 0, _thumbViewSize.width, _thumbViewSize.height);
-//    self.indicator.frame = self.thumbView.bounds;
     
 	//thumb image
 	[self.thumbImageView removeFromSuperview];
@@ -182,7 +167,6 @@
 - (void)setValue:(CGFloat)value
 {
     _value = value;
-//    self.indicator.text = [NSString stringWithFormat:@"%.1f",value];
 }
 
 #pragma mark - Action
