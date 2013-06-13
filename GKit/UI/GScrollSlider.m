@@ -101,16 +101,9 @@
     //pan gesture
     UIPanGestureRecognizer *panGR = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handlePan:)];
     [contentView addGestureRecognizer:panGR];
-    
-    [self reloadSlider];
 }
 
 #pragma mark - Layout
-- (void)layoutSubviews
-{
-    GPRINT(@"layout");
-    [self reloadSlider];
-}
 - (void)reloadSlider
 {
     _contentLeftMargin = 5 + _thumbViewSize.width/2;
