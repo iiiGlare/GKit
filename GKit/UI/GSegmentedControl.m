@@ -68,7 +68,9 @@
 	if (_target &&
         [_target respondsToSelector:_action]) {
         
-		[_target performSelector:_action withObject:self];
+        GSuppressPerformSelectorLeakWarning (
+         [_target performSelector:_action withObject:self];
+        );
 	}
 	
 }

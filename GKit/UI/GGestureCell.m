@@ -75,7 +75,7 @@
             
         case UIGestureRecognizerStateEnded:
         case UIGestureRecognizerStateCancelled:
-        case UIGestureRecognizerStateFailed:
+        case UIGestureRecognizerStateFailed: {
             [UIView animateWithDuration: 0.25
                              animations: ^{
                                  self.contentView.x = 0;
@@ -95,6 +95,9 @@
                                      [_delegate gestureCellDidEndPan:self];
                                  }
                              }];
+        }
+            break;
+        default:
             break;
     }
 }
