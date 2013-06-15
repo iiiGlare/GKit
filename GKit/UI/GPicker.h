@@ -53,5 +53,6 @@
 - (NSString *)picker:(GPicker *)picker titleForRow:(NSInteger)row forComponent:(NSInteger)component;
 - (BOOL)picker:(GPicker *)picker selectableForRow:(NSInteger)row forComponent:(NSInteger)component;
 - (void)picker:(GPicker *)picker didSelectRow:(NSInteger)row inComponent:(NSInteger)component;
+- (void)picker:(GPicker *)picker didScrollCell:(UIView *)cell inComponent:(NSInteger)component atOffset:(CGFloat)offset; // offset, 0 is middle, negative value means top, positive value means bottom;
 
 @end

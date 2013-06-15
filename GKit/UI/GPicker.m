@@ -326,6 +326,19 @@
 
 - (void)scrollViewDidScroll:(UITableView *)tableView {
     
+    // Visible Cells in TableView
+    NSArray * indexPathsForVisibleCells = [tableView indexPathsForVisibleRows];
+    for (NSIndexPath * indexPath in indexPathsForVisibleCells) {
+        CGRect cellRect = [tableView rectForRowAtIndexPath:indexPath];
+        CGFloat centerY = CGRectGetMidY(cellRect);
+        CGFloat offset = (centerY-(tableView.contentOffset.y+tableView.height/2))/_rowHeight;
+        if (_delegate &&
+            [_delegate respondsToSelector:@selector(picker:didScrollCell:inComponent:atOffset:)]) {
+            [_delegate picker:self didScrollCell:[tableView cellForRowAtIndexPath:indexPath] inComponent:tableView.tag atOffset:offset];
+        }
+    }
+    
+    // Cells In Indicator
     BOOL isIndicatorImageViewHasCells = NO;
     for (GLabelCell * cell in self.indicatorImageView.subviews) {
         if (cell.tag == tableView.tag) {
@@ -339,6 +352,8 @@
         for (NSInteger i=0; i<numberOfIndicatorImageViewCells; i++) {
             GLabelCell * cell = [self cellForTableView:nil atIndexPath:nil];
             cell.tag = tableView.tag;
+            cell.label.textColor = [self textColorForControlState:UIControlStateSelected];
+            cell.label.font = [self textFontForControlState:UIControlStateSelected];
             [self.indicatorImageView addSubview:cell];
         }
     }
@@ -351,12 +366,20 @@
         if (cell.tag == tableView.tag) {
             if (i<[indexPaths count]) {
                 NSIndexPath * indexPath = [indexPaths objectAtPosition:i];
-                GLabelCell * cellForIndexPath = (GLabelCell *)[tableView cellForRowAtIndexPath:indexPath];
+                CGRect cellRect = [tableView rectForRowAtIndexPath:indexPath];
                 CGRect rectForCell =
-                [self.indicatorImageView convertRect:cellForIndexPath.frame fromView:cellForIndexPath.superview];
+                [self.indicatorImageView convertRect:cellRect fromView:tableView];
                 cell.frame = rectForCell;
-                cell.label.textColor = [self textColorForControlState:UIControlStateSelected];
                 [self configureCell:cell inTableView:tableView atIndexPath:indexPath];
+                
+                //
+                CGFloat centerY = CGRectGetMidY(cellRect);
+                CGFloat offset = (centerY-(tableView.contentOffset.y+tableView.height/2))/_rowHeight;
+                if (_delegate &&
+                    [_delegate respondsToSelector:@selector(picker:didScrollCell:inComponent:atOffset:)]) {
+                    [_delegate picker:self didScrollCell:cell inComponent:tableView.tag atOffset:offset];
+                }
+                
                 cell.hidden = NO;
             } else {
                 cell.hidden = YES;

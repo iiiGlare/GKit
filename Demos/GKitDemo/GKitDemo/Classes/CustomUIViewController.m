@@ -132,6 +132,11 @@
     GPRINT(@"component:%d row:%d",component,row);
 }
 
+- (void)picker:(GPicker *)picker didScrollCell:(UIView *)cell inComponent:(NSInteger)component atOffset:(CGFloat)offset {
+    CGFloat scale = 1.0 - (ABS(offset)/4);
+    cell.transform = CGAffineTransformMakeScale(scale, scale);
+}
+
 - (BOOL)picker:(GPicker *)picker selectableForRow:(NSInteger)row forComponent:(NSInteger)component
 {
     if (row<5) {
