@@ -300,7 +300,7 @@
     
     
     [_backgroundScene addSubviewToFill:[_snapshots lastObject]];
-    [[_snapshots lastObject] setTransform:CGAffineTransformMakeScale(0.95, 0.95)];
+    [(UIView *)[_snapshots lastObject] setTransform:CGAffineTransformMakeScale(0.95, 0.95)];
     
     _snapshotCover = [[UIView alloc] initWithFrame:self.container.view.frame];
     _snapshotCover.backgroundColor = [UIColor blackColor];
@@ -363,7 +363,7 @@
                          [self moveViewToOrigin:_backgroundScene.origin];
                      }
                      completion:^(BOOL finished){
-                         [[_snapshots lastObject] setTransform:CGAffineTransformIdentity];
+                         [(UIView *)[_snapshots lastObject] setTransform:CGAffineTransformIdentity];
                          [self cleanTemporaryData];
                      }];
 
@@ -397,7 +397,7 @@
                          [self moveViewToOrigin:_backgroundScene.origin];
                      }
                      completion:^(BOOL finished){
-                         [[_snapshots lastObject] setTransform:CGAffineTransformIdentity];
+                         [(UIView *)[_snapshots lastObject] setTransform:CGAffineTransformIdentity];
                          [self cleanTemporaryData];
                      }];
 }
@@ -417,7 +417,7 @@
     
     CGFloat factor = MIN(1.0, MAX(0, (origin.x-_backgroundScene.x)/[_backgroundScene width]));
     CGFloat scale = 0.95 + 0.05 * factor;
-    [[_snapshots lastObject] setTransform:CGAffineTransformMakeScale(scale, scale)];
+    [(UIView *)[_snapshots lastObject] setTransform:CGAffineTransformMakeScale(scale, scale)];
     _snapshotCover.alpha = 0.5 * (1.0-factor);
 }
 

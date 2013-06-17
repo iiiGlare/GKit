@@ -322,10 +322,10 @@ AVCaptureConnection *_VideoConnectionFromOutput(AVCaptureOutput *output, NSStrin
 		}
 		
 		if ([_captureDevice isExposurePointOfInterestSupported] &&
-			[_captureDevice isExposureModeSupported:AVCaptureFocusModeContinuousAutoFocus])
+			[_captureDevice isExposureModeSupported:AVCaptureExposureModeContinuousAutoExposure])
 		{
 			[_captureDevice setExposurePointOfInterest:point];
-			[_captureDevice setExposureMode:AVCaptureFocusModeContinuousAutoFocus];
+			[_captureDevice setExposureMode:AVCaptureExposureModeContinuousAutoExposure];
 		}
 		
 		[_captureDevice unlockForConfiguration];
