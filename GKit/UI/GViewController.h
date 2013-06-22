@@ -45,4 +45,10 @@ typedef NSInteger GPresentAnimationType;
 // Navigation Control
 - (void)willPop;
 
+// Keyboard
+- (void)registerForKeyboardNotifications;
+- (void)unregisterForKeyboardNotifications;
+- (void)keyboardWillBeShown:(NSNotification*)aNotification;
+- (void)keyboardWillBeHidden:(NSNotification*)aNotification;
+
 @end

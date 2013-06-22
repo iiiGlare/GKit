@@ -48,14 +48,6 @@
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath;
 
 
-#pragma mark - Keyboard
-
-- (void)registerForKeyboardNotifications;
-- (void)unregisterForKeyboardNotifications;
-- (void)keyboardWillBeShown:(NSNotification*)aNotification;
-- (void)keyboardWillBeHidden:(NSNotification*)aNotification;
-
-
 #pragma mark - Expand and Collapse Cell
 
 @property (nonatomic, strong) NSIndexPath *expandedCellIndexPath;

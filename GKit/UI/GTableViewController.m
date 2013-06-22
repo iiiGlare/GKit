@@ -153,31 +153,6 @@
 
 #pragma mark - KeyboardNotification
 
-// Call this method somewhere in your view controller setup code.
-- (void)registerForKeyboardNotifications
-{
-    [[NSNotificationCenter defaultCenter] addObserver:self
-											 selector:@selector(keyboardWillBeShown:)
-												 name:UIKeyboardWillShowNotification
-											   object:nil];
-	
-	[[NSNotificationCenter defaultCenter] addObserver:self
-											 selector:@selector(keyboardWillBeHidden:)
-												 name:UIKeyboardWillHideNotification
-											   object:nil];
-	
-}
-
-- (void)unregisterForKeyboardNotifications
-{
-	[[NSNotificationCenter defaultCenter] removeObserver:self
-                                                    name:UIKeyboardWillShowNotification
-                                                  object:nil];
-    [[NSNotificationCenter defaultCenter] removeObserver:self
-                                                    name:UIKeyboardWillHideNotification
-                                                  object:nil];
-}
-
 // Called when the UIKeyboardWillShowNotification is sent.
 - (void)keyboardWillBeShown:(NSNotification*)aNotification
 {
