@@ -209,7 +209,7 @@
 
 - (void)selectRow:(NSInteger)row inComponent:(NSInteger)component animated:(BOOL)animated {
     
-    [self scrollComponent:component toRow:row animated:animated];
+    [self scrollComponent:component toRow:row considerSelectable:NO animated:animated];
 
     [self performSelector:@selector(reportPickerDidSelectRowInComponent:) withObject:GNumberWithInteger(component) afterDelay:0.3];
 }
@@ -231,11 +231,6 @@
 }
 
 #pragma mark - Scroll
-
-- (void)scrollComponent:(NSInteger)component toRow:(NSInteger)row animated:(BOOL)animated {
-    
-    [self scrollComponent:component toRow:row considerSelectable:YES animated:animated];
-}
 
 - (void)scrollComponent:(NSInteger)component toRow:(NSInteger)row considerSelectable:(BOOL)considerSelectable animated:(BOOL)animated {
     
