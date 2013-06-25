@@ -34,6 +34,8 @@
 
 - (void)setTextFont:(UIFont *)textFont forControlState:(UIControlState)controlState;
 - (void)setTextColor:(UIColor *)textColor forControlState:(UIControlState)controlState;
+- (void)setTextShadowColor:(UIColor *)textShadowColor forControlState:(UIControlState)controlState;
+- (void)setTextShadowOffset:(CGSize)textShadowOffset forControlState:(UIControlState)controlState;
 
 @end
 

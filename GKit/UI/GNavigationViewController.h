@@ -23,6 +23,8 @@ typedef NSInteger GNavigationAnimationType;
 					   title: (NSString *)title
 				  titleColor: (UIColor *)color
         titleHightlightColor: (UIColor *)hColor
+            titleShadowColor: (UIColor *)shadowColor
+           titleShadowOffset: (CGSize)shadowOffset
 				   titleFont: (UIFont *)font
 		   contentEdgeInsets: (UIEdgeInsets)contentEdgeInsets
 			 backgroundImage: (UIImage *)backgroundImage;

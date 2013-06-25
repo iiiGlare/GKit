@@ -22,6 +22,8 @@
 
 @property (nonatomic, strong) NSMutableDictionary * textFontInfo;
 @property (nonatomic, strong) NSMutableDictionary * textColorInfo;
+@property (nonatomic, strong) NSMutableDictionary * textShadowColorInfo;
+@property (nonatomic, strong) NSMutableDictionary * textShadowOffsetInfo;
 
 @property (nonatomic, strong) NSMutableDictionary * selectedRowInfo;
 
@@ -73,6 +75,13 @@
     [_textColorInfo setObject:textColor forKey:GNumberWithInteger(controlState)];
 }
 
+- (void)setTextShadowColor:(UIColor *)textShadowColor forControlState:(UIControlState)controlState {
+    [_textShadowColorInfo setObject:textShadowColor forKey:GNumberWithInteger(controlState)];
+}
+- (void)setTextShadowOffset:(CGSize)textShadowOffset forControlState:(UIControlState)controlState {
+    [_textShadowOffsetInfo setObject:NSStringFromCGSize(textShadowOffset) forKey:GNumberWithInteger(controlState)];
+}
+
 - (UIFont *)textFontForControlState:(UIControlState)controlState {
 
     UIFont * font = [_textFontInfo objectForKey:GNumberWithInteger(controlState)];
@@ -88,6 +97,23 @@
     
     return color;
 }
+
+- (UIColor *)textShadowColorForControlState:(UIControlState)controlState {
+    
+    UIColor * color = [_textShadowColorInfo objectForKey:GNumberWithInteger(controlState)];
+    if (color==nil) color = [_textShadowColorInfo objectForKey:GNumberWithInteger(UIControlStateNormal)];
+    
+    return color;
+}
+
+- (CGSize)textShadowOffsetForControlState:(UIControlState)controlState {
+    
+    NSString * size = [_textShadowOffsetInfo objectForKey:GNumberWithInteger(controlState)];
+    if (size==nil) size = [_textShadowOffsetInfo objectForKey:GNumberWithInteger(UIControlStateNormal)];
+    
+    return CGSizeFromString(size);
+}
+
 
 #pragma mark -
 - (id)initWithFrame:(CGRect)frame
@@ -126,6 +152,12 @@
     [_textColorInfo setObject:[UIColor blackColor] forKey:GNumberWithInteger(UIControlStateNormal)];
     [_textColorInfo setObject:[UIColor whiteColor] forKey:GNumberWithInteger(UIControlStateSelected)];
     [_textColorInfo setObject:[UIColor grayColor] forKey:GNumberWithInteger(UIControlStateDisabled)];
+    
+    _textShadowColorInfo = [NSMutableDictionary dictionary];
+    [_textShadowColorInfo setObject:[UIColor clearColor] forKey:GNumberWithInteger(UIControlStateNormal)];
+    
+    _textShadowOffsetInfo = [NSMutableDictionary dictionary];
+    [_textShadowOffsetInfo setObject:NSStringFromCGSize(CGSizeZero) forKey:GNumberWithInteger(UIControlStateNormal)];
     
     _selectedRowInfo = [NSMutableDictionary dictionary];
     
@@ -296,9 +328,13 @@
     if (isSelectable) {
         cell.label.font = [self textFontForControlState:UIControlStateNormal];
         cell.label.textColor = [self textColorForControlState:UIControlStateNormal];
+        cell.label.shadowColor = [self textShadowColorForControlState:UIControlStateNormal];
+        cell.label.shadowOffset = [self textShadowOffsetForControlState:UIControlStateNormal];
     } else {
         cell.label.font = [self textFontForControlState:UIControlStateDisabled];
         cell.label.textColor = [self textColorForControlState:UIControlStateDisabled];
+        cell.label.shadowColor = [self textShadowColorForControlState:UIControlStateDisabled];
+        cell.label.shadowOffset = [self textShadowOffsetForControlState:UIControlStateDisabled];
     }
     
     return cell;

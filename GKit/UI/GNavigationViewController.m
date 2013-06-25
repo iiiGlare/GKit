@@ -22,6 +22,8 @@
 @property (nonatomic, strong) NSString *backTitle;
 @property (nonatomic, strong) UIColor *backTitleColor;
 @property (nonatomic, strong) UIColor *backTitleHightlightColor;
+@property (nonatomic, strong) UIColor *backTitleShadowColor;
+@property (nonatomic, assign) CGSize backTitleShadowOffset;
 @property (nonatomic, strong) UIFont *backTitleFont;
 @property (nonatomic) UIEdgeInsets contentEdgeInsets;
 @property (nonatomic, strong) UIImage *backBackgroundImage;
@@ -45,6 +47,8 @@
 					   title: (NSString *)title
 				  titleColor: (UIColor *)color
         titleHightlightColor: (UIColor *)hColor
+            titleShadowColor: (UIColor *)shadowColor
+           titleShadowOffset: (CGSize)shadowOffset
 				   titleFont: (UIFont *)font
 		   contentEdgeInsets: (UIEdgeInsets)contentEdgeInsets
 			 backgroundImage: (UIImage *)backgroundImage;
@@ -55,6 +59,8 @@
 	configurator.backTitle = title;
 	configurator.backTitleColor = color;
     configurator.backTitleHightlightColor = hColor;
+    configurator.backTitleShadowColor = shadowColor;
+    configurator.backTitleShadowOffset = shadowOffset;
 	configurator.backTitleFont = font;
 	configurator.contentEdgeInsets = contentEdgeInsets;
 	configurator.backBackgroundImage = backgroundImage;
@@ -208,6 +214,12 @@
             if (configurator.backTitleHightlightColor) {
                 [backButton setTitleColor:configurator.backTitleHightlightColor forState:UIControlStateHighlighted];
             }
+            
+            if (configurator.backTitleShadowColor) {
+                [backButton setTitleShadowColor:configurator.backTitleShadowColor forState:UIControlStateNormal];
+            }
+            
+            [backButton.titleLabel setShadowOffset:configurator.backTitleShadowOffset];
             
 			if (configurator.backTitleFont) {
 				[backButton.titleLabel setFont:configurator.backTitleFont];
