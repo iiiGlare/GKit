@@ -137,7 +137,9 @@
 		_minTrackView.backgroundColor = [UIColor clearColor];
 		
 		UIImageView *imageView = [[UIImageView alloc] initWithImage:_minTrackImage];
-		[_minTrackView addSubviewToFill:imageView];
+		[_minTrackView addSubview:imageView];
+        imageView.height = _minTrackView.height;
+        
 		self.minTrackImageView = imageView;
 	}
 	
@@ -148,7 +150,9 @@
 		_maxTrackView.backgroundColor = [UIColor clearColor];
 		
 		UIImageView *imageView = [[UIImageView alloc] initWithImage:_maxTrackImage];
-		[_maxTrackView addSubviewToFill:imageView];
+		[_maxTrackView addSubview:imageView];
+        imageView.height = _maxTrackView.height;
+        
 		self.maxTrackImageView = imageView;
 	}
 
@@ -202,18 +206,31 @@
 
 
 - (void)trackThumbView
-{    
-    CGFloat minTrackViewWidth = _visibleValueWidth * (self.value-_minValue) / _visibleValueLength;
-    CGFloat maxTrackViewWidth = _scalesViewWidth - minTrackViewWidth;
-    self.minTrackView.width = minTrackViewWidth;
-    self.maxTrackView.width = gceil(maxTrackViewWidth);
-
+{
     CGFloat thumbCenterX = self.thumbView.center.x;
     CGFloat thumbCenterY = self.thumbView.center.y;
-    self.minTrackView.center = CGPointMake(thumbCenterX-_minTrackView.width/2, thumbCenterY);
-    self.maxTrackView.center = CGPointMake(thumbCenterX+_maxTrackView.width/2, thumbCenterY);
     
-    self.scalesView.x = self.minTrackView.x;
+    // track view
+    self.minTrackView.width = thumbCenterX;
+    self.minTrackView.x = 0;
+    self.minTrackView.y = thumbCenterY - _minTrackView.height/2;
+
+    self.maxTrackView.width = self.width - thumbCenterX;
+    self.maxTrackView.x = thumbCenterX;
+    self.maxTrackView.y = thumbCenterY - _maxTrackView.height/2;
+    
+    // track image view
+    CGFloat minTrackImageViewWidth = _visibleValueWidth * (self.value-_minValue) / _visibleValueLength;
+    CGFloat maxTrackImageViewWidth = _scalesViewWidth - minTrackImageViewWidth;
+    self.minTrackImageView.width = minTrackImageViewWidth;
+    self.maxTrackImageView.width = maxTrackImageViewWidth;
+
+    self.minTrackImageView.center = CGPointMake(_minTrackView.width-_minTrackImageView.width/2,
+                                                _minTrackView.height/2);
+    self.maxTrackImageView.center = CGPointMake(_maxTrackImageView.width/2,
+                                                _maxTrackView.height/2);
+    
+    self.scalesView.x = self.minTrackImageView.x;
 }
 
 

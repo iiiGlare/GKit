@@ -11,6 +11,8 @@
 #import "GSwitch.h"
 #import "GScrollSlider.h"
 #import "GPicker.h"
+#import <QuartzCore/QuartzCore.h>
+
 @interface CustomUIViewController ()
 <
  GPickerDataSource, GPickerDelegate
@@ -66,10 +68,16 @@
 	scrollSlider.minTrackImage = [[UIImage imageNamed:@"min_track.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 10, 0, 10)];
 	scrollSlider.maxTrackImage = [[UIImage imageNamed:@"max_track.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 10, 0, 10)];
 	scrollSlider.trackViewHeight = 8;
-	scrollSlider.backgroundColor = [UIColor clearColor];
+	scrollSlider.backgroundColor = [UIColor redColor];
 	scrollSlider.scalesView.backgroundColor = [UIColor clearColor];
+    
+    scrollSlider.minTrackView.layer.cornerRadius = 4;
+    scrollSlider.minTrackView.clipsToBounds = YES;
+    
     [scrollSlider addTarget:self action:@selector(sliderValueChanged:) forControlEvents:UIControlEventValueChanged];
     [self.view addSubview:scrollSlider];
+    
+    [scrollSlider reloadSlider];
 }
 
 - (void)sliderValueChanged:(GScrollSlider *)slider
@@ -80,7 +88,7 @@
 #pragma mark - Picker 
 - (void)showPicker
 {
-    GPicker * picker = [[GPicker alloc] initWithFrame:CGRectMake(10, 80, 283, 197)];
+    GPicker * picker = [[GPicker alloc] initWithFrame:CGRectMake(10, 120, 283, 197)];
     picker.dataSource = self;
     picker.delegate = self;
     picker.contentEdgeInsets = UIEdgeInsetsMake(2, 0, 2, 0);
