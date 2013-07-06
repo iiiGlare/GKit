@@ -58,8 +58,9 @@
 + (UIImage *) imageNamed: (NSString *)name
 			 inDirectory: (NSString *)directoryName
 {
-	return [[UIImage alloc] initWithContentsOfFile: [self pathForImageNamed: name
-																inDirectory: directoryName]];
+    NSString * path = [self pathForImageNamed:name inDirectory:directoryName];
+    UIImage * image = [[UIImage alloc] initWithContentsOfFile:path];
+    return image;
 }
 
 //Local Library
