@@ -22,7 +22,7 @@
  * Only writes to the log when DEBUG is defined.
  */
 #ifdef DEBUG
-#define GPRINT(xx, ...)  NSLog(@"%s(%d): " xx, __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__)
+#define GPRINT(xx, ...)  NSLog(@" [GKit]\n    %s(%d):\n    " xx, __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__)
 #else
 #define GPRINT(xx, ...)  ((void)0)
 #endif // #ifdef DEBUG
