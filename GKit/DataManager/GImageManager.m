@@ -52,7 +52,7 @@
 					 inDirectory: (NSString *)directoryName
 {
 	return [[NSFileManager URLForItemNamed: name
-							   inDirectory: directoryName] absoluteString];
+							   inDirectory: directoryName] path];
 }
 
 + (UIImage *) imageNamed: (NSString *)name

@@ -114,9 +114,9 @@
 	if (itemURL==nil) return NO;
 	
 	//Save Item
-	if (![[self defaultManager] createFileAtPath:[itemURL absoluteString]
-									   contents:contents
-									 attributes:nil])
+	if (![[self defaultManager] createFileAtPath: [itemURL path]
+                                        contents: contents
+                                      attributes: nil])
 	{
 		return NO;
 	}
