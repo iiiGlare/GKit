@@ -54,8 +54,22 @@
     [self.bottomView setBackgroundColor:GRandomColor()];
     
     self.dayView = [[GDayView alloc] initWithFrame:self.contentView.bounds];
+    _dayView.gridLineColor = [UIColor redColor];
+    _dayView.isGridHalfLineDashed = NO;
+    _dayView.showHalfHours = YES;
+    _dayView.centerHours = YES;
+    _dayView.hourHeight = 72.0f;
+    
     self.weekView = [[GWeekView alloc] initWithFrame:self.contentView.bounds];
-    self.weekView.firstWeekday = GWeekdayTypeMonday;
+    _weekView.firstWeekday = GWeekdayTypeMonday;
+    _weekView.gridLineColor = [UIColor redColor];
+    _weekView.isGridHalfLineDashed = NO;
+    _weekView.showHalfHours = YES;
+    _weekView.centerHours = YES;
+    _weekView.hourHeight = 72.0f;
+    _weekView.dayViewHeight = 20;
+    _weekView.dayTitleBottomMargin = 2;
+    
     self.monthView = [[GMonthView alloc] initWithFrame:self.contentView.bounds];
     
     UISegmentedControl *segmentedControl = [[UISegmentedControl alloc] initWithItems:@[@"日",@"周",@"月"]];

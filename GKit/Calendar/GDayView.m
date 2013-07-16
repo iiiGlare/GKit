@@ -17,6 +17,9 @@
 @interface GDayGridView : UIView
 @property (nonatomic, assign) CGFloat gridLineTopMargin;
 @property (nonatomic, assign) CGFloat gridLineBottomMargin;
+
+@property (nonatomic, strong) UIColor * gridLineColor;      // default gray color
+@property (nonatomic, assign) BOOL isGridHalfLineDashed;    // default YES
 @end
 @implementation GDayGridView
 - (void)drawRect:(CGRect)rect
@@ -30,7 +33,7 @@
     
     //hour lines
     CGContextSetLineWidth(c, 0.4);
-    CGContextSetStrokeColorWithColor(c, [[UIColor grayColor] CGColor]);
+    CGContextSetStrokeColorWithColor(c, [_gridLineColor CGColor]);
     CGContextBeginPath(c);
     for (NSInteger i=0; i<GHoursInDay+1; i++) {
         CGFloat y = i*hourHeight+_gridLineTopMargin;
@@ -41,9 +44,11 @@
     
     //half hour lines
     CGContextSetLineWidth(c, 0.4);
-    CGContextSetStrokeColorWithColor(c, [[UIColor grayColor] CGColor]);
-    CGFloat lengths[] = {3,2};
-    CGContextSetLineDash(c, 0, lengths, 2);
+    CGContextSetStrokeColorWithColor(c, [_gridLineColor CGColor]);
+    if (_isGridHalfLineDashed) {
+        CGFloat lengths[] = {3,2};
+        CGContextSetLineDash(c, 0, lengths, 2);        
+    }
     CGContextBeginPath(c);
     for (NSInteger i=0; i<GHoursInDay+1; i++) {
         CGFloat y = (i+0.5)*hourHeight+_gridLineTopMargin;
@@ -59,14 +64,27 @@
 @property (nonatomic, strong) NSMutableArray *hourLabels;
 @property (nonatomic, assign) CGFloat startCenterY;
 @property (nonatomic, assign) CGFloat endCenterY;
+
+@property (nonatomic, assign) BOOL showHalfHours;    // default NO
+@property (nonatomic, assign) BOOL centerHours;      // default NO
 @end
 @implementation GDayHourView
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
     if (self) {
-        _hourLabels = [NSMutableArray arrayWithCapacity:GHoursInDay+1];
-        for (int i=0; i<GHoursInDay+1; i++) {
+    }
+    return self;
+}
+- (void)layoutSubviews
+{
+    NSInteger numberOfLabels = GHoursInDay+1;
+    if (_showHalfHours) numberOfLabels += GHoursInDay;
+    if (_centerHours) numberOfLabels -= 1;
+    
+    if (_hourLabels==nil) {
+        _hourLabels = [NSMutableArray arrayWithCapacity:numberOfLabels];
+        for (int i=0; i<numberOfLabels; i++) {
             UILabel *label = [[UILabel alloc] initWithFrame:CGRectZero];
             label.autoresizingMask = UIViewAutoresizingFlexibleWidth;
             label.textAlignmentG = GTextAlignmentRight;
@@ -77,18 +95,25 @@
             [_hourLabels addObject:label];
         }
     }
-    return self;
-}
-- (void)layoutSubviews
-{
-    CGFloat labelSpace = (_endCenterY-_startCenterY)/GHoursInDay;
-    for (int i=0; i<[_hourLabels count]; i++) {
-        UILabel  *label = [_hourLabels objectAtPosition:i];
+    
+    CGFloat labelSpace = (_endCenterY-_startCenterY)/(numberOfLabels-1);
+    for (int i=0; i<numberOfLabels; i++) {
+        UILabel * label = [_hourLabels objectAtPosition:i];
         label.frame = CGRectMake(0, 0, [self width]-10, 21);
         CGPoint center = [self innerCenter];
         center.y = _startCenterY + labelSpace*i;
         [label setCenter:center];
-        label.text = [NSString stringWithFormat:@"%d:00",i];
+        if (_showHalfHours) {
+            if (i%2==0) {
+                label.text = [NSString stringWithFormat:@"%d:00",i/2];
+            }
+            else {
+                label.text = [NSString stringWithFormat:@"%d:30",i/2];
+            }
+        }
+        else {
+            label.text = [NSString stringWithFormat:@"%d:00",i];
+        }
     }
 }
 @end
@@ -104,7 +129,6 @@
 @property (nonatomic, assign) CGFloat gridLineBottomMargin;
 
 @property (nonatomic, assign) CGFloat hourViewWidth;
-@property (nonatomic, assign) CGFloat hourHeight;
 
 //
 @property (nonatomic, assign) CGFloat dayEventViewWidth;
@@ -155,12 +179,18 @@
     _gridBottomMargin = 15.0;
     _gridLineTopMargin = 1.0;
     _gridLineBottomMargin = 1.0;
-    _gridHeight = GHoursInDay * _hourHeight + _gridLineTopMargin + _gridLineBottomMargin;
     
-    //time indicator
-    _timeIndicatorOffset = _hourHeight;
+    // time indicator
     _timeIndicator = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.width, 1)];
     _timeIndicator.backgroundColor = [UIColor greenColor];
+    
+    // grid view
+    _gridLineColor = [UIColor grayColor];
+    _isGridHalfLineDashed = YES;
+    
+    // hour
+    _showHalfHours = NO;
+    _centerHours = NO;
     
     //Tap Gesture
     UITapGestureRecognizer *tapGR = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTap:)];
@@ -171,6 +201,9 @@
 {
     if (_scrollView==nil)
     {
+        _gridHeight = GHoursInDay * _hourHeight + _gridLineTopMargin + _gridLineBottomMargin;
+        _timeIndicatorOffset = _hourHeight;
+        
         [self.scrollView addSubview:self.dayGridView];
         [self.scrollView addSubview:self.dayHourView];
         [self addSubview:self.scrollView];
@@ -196,6 +229,9 @@
         _dayGridView.backgroundColor = [UIColor whiteColor];
         _dayGridView.gridLineTopMargin = _gridLineTopMargin;
         _dayGridView.gridLineBottomMargin = _gridLineBottomMargin;
+        
+        _dayGridView.gridLineColor = _gridLineColor;
+        _dayGridView.isGridHalfLineDashed = _isGridHalfLineDashed;
     }
     return _dayGridView;
 }
@@ -205,8 +241,11 @@
     if (_dayHourView==nil) {
         _dayHourView = [[GDayHourView alloc] initWithFrame:CGRectMake(0, 0, _hourViewWidth, _scrollView.contentSize.height)];
         _dayHourView.backgroundColor = [UIColor whiteColor];
-        _dayHourView.startCenterY = _gridTopMargin + _gridLineTopMargin;
-        _dayHourView.endCenterY = _gridTopMargin + _gridHeight - _gridLineBottomMargin;
+        _dayHourView.startCenterY = _gridTopMargin + _gridLineTopMargin + (_centerHours?_hourHeight*0.25:0);
+        _dayHourView.endCenterY = _gridTopMargin + _gridHeight - _gridLineBottomMargin - (_centerHours?_hourHeight*0.25:0);
+        
+        _dayHourView.showHalfHours = _showHalfHours;
+        _dayHourView.centerHours = _centerHours;
     }
     return _dayHourView;
 }
