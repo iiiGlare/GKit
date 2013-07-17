@@ -33,8 +33,10 @@ BOOL GStringIsNil(NSString *string)
 
 - (NSUInteger)hexStringIntegerValue {
     NSUInteger result = 0;
-    for (NSUInteger i=0; i<self.length; i++) {
-        unichar hex = [self characterAtIndex:i];
+    NSString * usedString = [self stringByReplacingOccurrencesOfString:@"0x" withString:@""];
+    usedString = [usedString stringByReplacingOccurrencesOfString:@"#" withString:@""];
+    for (NSUInteger i=0; i<usedString.length; i++) {
+        unichar hex = [usedString characterAtIndex:i];
         result = result*16 + Char16ToInt(hex);
     }
     return result;
