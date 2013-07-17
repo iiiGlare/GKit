@@ -19,6 +19,6 @@
 @property (nonatomic, copy) NSString *title;
 
 @property (nonatomic, copy) UIColor * backgroundColor;
-@property (nonatomic, copy) UIColor * forgroundColor;
+@property (nonatomic, copy) UIColor * foregroundColor;
 
 @end

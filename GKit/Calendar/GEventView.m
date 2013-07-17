@@ -45,7 +45,7 @@
     self.backgroundColor = event.backgroundColor;
     
     _titleLabel.text = event.title;
-    _titleLabel.textColor = event.forgroundColor;
+    _titleLabel.textColor = event.foregroundColor;
 	_titleLabel.frame = self.bounds;
 	[_titleLabel sizeToFit];
 }
