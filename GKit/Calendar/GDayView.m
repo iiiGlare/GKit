@@ -67,6 +67,8 @@
 
 @property (nonatomic, assign) BOOL showHalfHours;    // default NO
 @property (nonatomic, assign) BOOL centerHours;      // default NO
+@property (nonatomic, weak) UIFont * hourTextFont;    // default systemfont 12.0f
+@property (nonatomic, weak) UIColor * hourTextColor;  // default gray color
 @end
 @implementation GDayHourView
 - (id)initWithFrame:(CGRect)frame
@@ -88,8 +90,8 @@
             UILabel *label = [[UILabel alloc] initWithFrame:CGRectZero];
             label.autoresizingMask = UIViewAutoresizingFlexibleWidth;
             label.textAlignmentG = GTextAlignmentRight;
-            label.font = [UIFont systemFontOfSize:12];
-            label.textColor = [UIColor blackColor];
+            label.font = _hourTextFont;
+            label.textColor = _hourTextColor;
             label.backgroundColor = [UIColor clearColor];
             [self addSubview:label];
             [_hourLabels addObject:label];
@@ -191,6 +193,8 @@
     // hour
     _showHalfHours = NO;
     _centerHours = NO;
+    _hourTextFont = [UIFont systemFontOfSize:12.0f];
+    _hourTextColor = [UIColor grayColor];
     
     //Tap Gesture
     UITapGestureRecognizer *tapGR = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTap:)];
@@ -246,6 +250,8 @@
         
         _dayHourView.showHalfHours = _showHalfHours;
         _dayHourView.centerHours = _centerHours;
+        _dayHourView.hourTextFont = _hourTextFont;
+        _dayHourView.hourTextColor = _hourTextColor;
     }
     return _dayHourView;
 }

@@ -59,6 +59,7 @@
     _dayView.showHalfHours = YES;
     _dayView.centerHours = YES;
     _dayView.hourHeight = 72.0f;
+    _dayView.hourTextColor = GRandomColor();
     
     self.weekView = [[GWeekView alloc] initWithFrame:self.contentView.bounds];
     _weekView.firstWeekday = GWeekdayTypeMonday;
@@ -67,8 +68,11 @@
     _weekView.showHalfHours = YES;
     _weekView.centerHours = YES;
     _weekView.hourHeight = 72.0f;
+    _weekView.hourTextColor = GRandomColor();
     _weekView.dayViewHeight = 20;
     _weekView.dayTitleBottomMargin = 2;
+    _weekView.weekdayColor = GRandomColor();
+    _weekView.todayColor = GRandomColor();
     
     self.monthView = [[GMonthView alloc] initWithFrame:self.contentView.bounds];
     

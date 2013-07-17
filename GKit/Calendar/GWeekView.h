@@ -13,29 +13,14 @@
 @class GEventView, GEvent;
 @protocol GWeekViewDataSource, GWeekViewDelegate;
 
-#pragma mark - GWeekdayView
-@interface GWeekdayView : UIView
-@property (nonatomic, strong, readonly) NSArray *weekdayLabels;
-
-@property (nonatomic, copy) UIFont *weekdayFont;
-@property (nonatomic, copy) UIColor *weekdayColor;
-
-@property (nonatomic, copy) UIFont *todayFont;
-@property (nonatomic, copy) UIColor *todayColor;
-
-@end
-
-
 #pragma mark - GWeekView
 @interface GWeekView : UIView
 <GMoveSpriteCatcherProtocol>
 
-@property (nonatomic, strong) GWeekdayView *weekdayView;
-
 @property (nonatomic, assign) GWeekdayType firstWeekday;   //defalut GWeekdayTypeSunday
-@property (nonatomic, copy) NSDate *day;    // time always is 00:00:00
-@property (nonatomic, copy, readonly) NSDate *beginningOfWeek;  // time always is 00:00:00
-@property (nonatomic, copy, readonly) NSDate *endingOfWeek; // time always is 00:00:00
+@property (nonatomic, copy) NSDate * day;    // time always is 00:00:00
+@property (nonatomic, copy, readonly) NSDate * beginningOfWeek;  // time always is 00:00:00
+@property (nonatomic, copy, readonly) NSDate * endingOfWeek; // time always is 00:00:00
 
 - (void)jumpToToday;
 - (void)goToNextWeek;
@@ -58,10 +43,16 @@
 @property (nonatomic, assign) BOOL showHalfHours;    // default NO
 @property (nonatomic, assign) BOOL centerHours;      // default NO
 @property (nonatomic, assign) CGFloat hourHeight;    // default 60.0f
+@property (nonatomic, strong) UIFont * hourTextFont;    // default systemfont 12.0f
+@property (nonatomic, strong) UIColor * hourTextColor;  // default gray color
 
 // day
 @property (nonatomic, assign) CGFloat dayViewHeight;            // default 30
 @property (nonatomic, assign) CGFloat dayTitleBottomMargin;     // default 5
+@property (nonatomic, strong) UIFont * weekdayFont;               // default systemfont 12.0f
+@property (nonatomic, strong) UIColor * weekdayColor;             // default gray color
+@property (nonatomic, strong) UIFont * todayFont;                 // default systemfont 12.0f
+@property (nonatomic, strong) UIColor * todayColor;               // default blue color
 
 @end
 

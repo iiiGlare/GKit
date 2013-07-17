@@ -77,11 +77,20 @@
 @end
 
 #pragma mark - GWeekdayView
-@interface GWeekdayView ()
+@interface GWeekdayView : UIView
+
+@property (nonatomic, strong) NSArray * weekdayLabels;
+
+@property (nonatomic, weak) UIFont * weekdayFont;
+@property (nonatomic, weak) UIColor * weekdayColor;
+
+@property (nonatomic, weak) UIFont * todayFont;
+@property (nonatomic, weak) UIColor * todayColor;
+
 @property (nonatomic, assign) GWeekdayType firstWeekday;
 @property (nonatomic, assign) CGFloat hourViewWidth;
 @property (nonatomic, assign) CGFloat dayTitleBottomMargin;
-@property (nonatomic, strong) NSDate *beginningOfWeek;
+@property (nonatomic, weak) NSDate * beginningOfWeek;
 @end
 
 @implementation GWeekdayView
@@ -89,13 +98,12 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        
-        _weekdayFont = [UIFont systemFontOfSize:12.0];
-        _weekdayColor = [UIColor blackColor];
-        
-        _todayFont = [UIFont systemFontOfSize:12.0];
-        _todayColor = [UIColor blueColor];
-        
+    }
+    return self;
+}
+- (void)layoutSubviews
+{
+    if (_weekdayLabels == nil) {
         NSMutableArray *weekdayLabels = [NSMutableArray arrayWithCapacity:GDaysInWeek];
         for (int i=0; i<GDaysInWeek; i++) {
             UILabel *label = [[UILabel alloc] initWithFrame:CGRectZero];
@@ -109,10 +117,7 @@
         }
         _weekdayLabels = weekdayLabels;
     }
-    return self;
-}
-- (void)layoutSubviews
-{
+    
     CGFloat labelWidth = gfloor((self.width-_hourViewWidth)/GDaysInWeek);
     NSArray *weekdaySymbols = [[[NSDateFormatter alloc] init] shortWeekdaySymbols];
     for (int i=0; i<[_weekdayLabels count]; i++) {
@@ -130,25 +135,25 @@
 #pragma mark Setter
 - (void)setWeekdayFont:(UIFont *)weekdayFont
 {
-    _weekdayFont = [weekdayFont copy];
+    _weekdayFont = weekdayFont;
     
     [self hightlightToday];
 }
 - (void)setWeekdayColor:(UIColor *)weekdayColor
 {
-    _weekdayColor = [weekdayColor copy];
+    _weekdayColor = weekdayColor;
     
     [self hightlightToday];
 }
 - (void)setTodayFont:(UIFont *)todayFont
 {
-    _todayFont = [todayFont copy];
+    _todayFont = todayFont;
     
     [self hightlightToday];
 }
 - (void)setTodayColor:(UIColor *)todayColor
 {
-    _todayColor = [todayColor copy];
+    _todayColor = todayColor;
     
     [self hightlightToday];
 }
@@ -191,6 +196,8 @@
 
 @property (nonatomic, assign) BOOL showHalfHours;    // default NO
 @property (nonatomic, assign) BOOL centerHours;      // default NO
+@property (nonatomic, weak) UIFont * hourTextFont;    // default systemfont 12.0f
+@property (nonatomic, weak) UIColor * hourTextColor;  // default gray color
 @end
 @implementation GWeekHourView
 - (id)initWithFrame:(CGRect)frame
@@ -212,8 +219,8 @@
             UILabel *label = [[UILabel alloc] initWithFrame:CGRectZero];
             label.autoresizingMask = UIViewAutoresizingFlexibleWidth;
             label.textAlignmentG = GTextAlignmentRight;
-            label.font = [UIFont systemFontOfSize:12];
-            label.textColor = [UIColor blackColor];
+            label.font = _hourTextFont;
+            label.textColor = _hourTextColor;
             label.backgroundColor = [UIColor clearColor];
             [self addSubview:label];
             [_hourLabels addObject:label];
@@ -262,6 +269,7 @@
 
 //subviews
 @property (nonatomic, strong) UIScrollView *scrollView;
+@property (nonatomic, strong) GWeekdayView *weekdayView;
 @property (nonatomic, strong) GWeekGridView *weekGridView;
 @property (nonatomic, strong) GWeekHourView *weekHourView;
 
@@ -297,31 +305,37 @@
     return self;
 }
 - (void)customInitialize
-{    
-    _hourHeight = 60.0;
-    _hourViewWidth = 50.0;
-    
-    _dayViewHeight = 30.0;
-    _dayTitleBottomMargin = 5.0;
-
-    _gridTopMargin = 5.0;
-    _gridBottomMargin = 15.0;
-    _gridLineBottomMargin = 1.0;
-
-    _firstWeekday = GWeekdayTypeSunday;
-    
+{        
     //time indicator
     _timeIndicator = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.width, 1)];
     _timeIndicator.backgroundColor = [UIColor greenColor];
     
     // grid view
+    _gridTopMargin = 5.0;
+    _gridBottomMargin = 15.0;
+    _gridLineBottomMargin = 1.0;
+
     _gridLineColor = [UIColor grayColor];
     _isGridHalfLineDashed = YES;
     
     // hour
+    _hourHeight = 60.0;
+    _hourViewWidth = 50.0;
+
     _showHalfHours = NO;
     _centerHours = NO;
+    _hourTextFont = [UIFont systemFontOfSize:12.0f];
+    _hourTextColor = [UIColor grayColor];
     
+    // day
+    _firstWeekday = GWeekdayTypeSunday;
+    _dayViewHeight = 30.0;
+    _dayTitleBottomMargin = 5.0;
+    _weekdayFont = [UIFont systemFontOfSize:12.0f];
+    _weekdayColor = [UIColor grayColor];
+    _todayFont = [UIFont systemFontOfSize:12.0f];
+    _todayColor = [UIColor blueColor];
+
     //Tap Gesture
     UITapGestureRecognizer *tapGR = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTap:)];
     [self addGestureRecognizer:tapGR];
@@ -384,6 +398,8 @@
         
         _weekHourView.showHalfHours = _showHalfHours;
         _weekHourView.centerHours = _centerHours;
+        _weekHourView.hourTextFont = _hourTextFont;
+        _weekHourView.hourTextColor = _hourTextColor;
     }
     return _weekHourView;
 }
@@ -394,6 +410,12 @@
         _weekdayView = [[GWeekdayView alloc] initWithFrame:
                         CGRectMake(0, 0, _scrollView.width, _dayViewHeight)];
         _weekdayView.backgroundColor = [UIColor whiteColor];
+        
+        _weekdayView.weekdayFont = _weekdayFont;
+        _weekdayView.weekdayColor = _weekdayColor;
+        _weekdayView.todayFont = _todayFont;
+        _weekdayView.todayColor = _todayColor;
+        
         _weekdayView.hourViewWidth = _hourViewWidth;
         _weekdayView.dayTitleBottomMargin = _dayTitleBottomMargin;
         _weekdayView.firstWeekday = _firstWeekday;
