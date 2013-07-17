@@ -1,15 +1,15 @@
 //
-//  GNavigationViewController.m
+//  GNavigationController.m
 //  GKitDemo
 //
 //  Created by Glare on 13-4-23.
 //  Copyright (c) 2013年 Hoewo. All rights reserved.
 //
 
-#import "GNavigationViewController.h"
+#import "GNavigationController.h"
 #import "GCore.h"
 
-#pragma mark - GNavigationViewControllerInfo
+#pragma mark - GNavigationControllerInfo
 @interface GNavigationGlobalConfigurator ()
 
 + (GNavigationGlobalConfigurator *)sharedConfigurator;
@@ -93,8 +93,8 @@
 
 @end
 
-#pragma mark - GNavigationViewController
-@interface GNavigationViewController ()
+#pragma mark - GNavigationController
+@interface GNavigationController ()
 {
     BOOL _shouldPopItem;
 }
@@ -113,7 +113,7 @@
 
 @end
 
-@implementation GNavigationViewController
+@implementation GNavigationController
 
 #pragma mark - Init
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -470,5 +470,22 @@
     }
 }
 
+#pragma mark - Custom Present/Dismiss Animation
+
+- (void)presentViewController: (UIViewController *)viewControllerToPresent
+					 animated: (BOOL)flag
+				   completion: (void (^)(void))completion
+{
+	[[self visibleViewController] presentViewController: viewControllerToPresent
+											   animated: flag
+											 completion: completion];
+}
+
+- (void)dismissViewControllerAnimated: (BOOL)flag
+						   completion: (void (^)(void))completion
+{
+	[[self visibleViewController] dismissViewControllerAnimated: flag
+													 completion: completion];
+}
 
 @end

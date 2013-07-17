@@ -10,7 +10,7 @@
 #import "GCore.h"
 #import "GMove.h"
 #import "GCalendar.h"
-#import "GNavigationViewController.h"
+#import "GNavigationController.h"
 
 @interface CalendarViewController ()
 <GDayViewDataSource, GDayViewDelegate,

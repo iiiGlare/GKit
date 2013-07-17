@@ -8,7 +8,7 @@
 
 #import "DemosViewController.h"
 #import "GCore.h"
-#import "GNavigationViewController.h"
+#import "GNavigationController.h"
 
 #define kNumberOfSections @"NumberOfSections"
 

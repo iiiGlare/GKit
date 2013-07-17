@@ -96,7 +96,7 @@
 		F8B6C0741726C54000214182 /* GAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = F8B6C0411726C54000214182 /* GAlertView.m */; };
 		F8B6C0751726C54000214182 /* GBlockTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F8B6C0431726C54000214182 /* GBlockTableViewController.m */; };
 		F8B6C0761726C54000214182 /* GEfficientTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F8B6C0451726C54000214182 /* GEfficientTableViewController.m */; };
-		F8B6C0771726C54000214182 /* GNavigationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F8B6C0471726C54000214182 /* GNavigationViewController.m */; };
+		F8B6C0771726C54000214182 /* GNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = F8B6C0471726C54000214182 /* GNavigationController.m */; };
 		F8B6C0791726C54000214182 /* GSelectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F8B6C04B1726C54000214182 /* GSelectionViewController.m */; };
 		F8B6C07A1726C54000214182 /* GTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = F8B6C04D1726C54000214182 /* GTabBarController.m */; };
 		F8B6C07B1726C54000214182 /* GTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F8B6C04F1726C54000214182 /* GTableViewController.m */; };
@@ -286,8 +286,8 @@
 		F8B6C0431726C54000214182 /* GBlockTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GBlockTableViewController.m; sourceTree = "<group>"; };
 		F8B6C0441726C54000214182 /* GEfficientTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GEfficientTableViewController.h; sourceTree = "<group>"; };
 		F8B6C0451726C54000214182 /* GEfficientTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GEfficientTableViewController.m; sourceTree = "<group>"; };
-		F8B6C0461726C54000214182 /* GNavigationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GNavigationViewController.h; sourceTree = "<group>"; };
-		F8B6C0471726C54000214182 /* GNavigationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GNavigationViewController.m; sourceTree = "<group>"; };
+		F8B6C0461726C54000214182 /* GNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GNavigationController.h; sourceTree = "<group>"; };
+		F8B6C0471726C54000214182 /* GNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GNavigationController.m; sourceTree = "<group>"; };
 		F8B6C04A1726C54000214182 /* GSelectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GSelectionViewController.h; sourceTree = "<group>"; };
 		F8B6C04B1726C54000214182 /* GSelectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GSelectionViewController.m; sourceTree = "<group>"; };
 		F8B6C04C1726C54000214182 /* GTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTabBarController.h; sourceTree = "<group>"; };
@@ -324,6 +324,7 @@
 		FDA02EDE173FB09400AA3D8D /* max_track@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "max_track@2x.png"; sourceTree = "<group>"; };
 		FDA02EDF173FB09400AA3D8D /* min_track@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "min_track@2x.png"; sourceTree = "<group>"; };
 		FDA02EE0173FB09400AA3D8D /* thumb@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "thumb@2x.png"; sourceTree = "<group>"; };
+		FDE404571796E75D00FD4970 /* GConfigurator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GConfigurator.h; sourceTree = "<group>"; };
 		FDF1EF7B16F1BD6400FCDC64 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		FDF1EF7D16F1BD6900FCDC64 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		FDF566E7172E1A8C00B79E81 /* back_item_backgournd@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "back_item_backgournd@2x.png"; sourceTree = "<group>"; };
@@ -388,8 +389,8 @@
 		AF6FB475175DEBA80098225C /* Navigation */ = {
 			isa = PBXGroup;
 			children = (
-				F8B6C0461726C54000214182 /* GNavigationViewController.h */,
-				F8B6C0471726C54000214182 /* GNavigationViewController.m */,
+				F8B6C0461726C54000214182 /* GNavigationController.h */,
+				F8B6C0471726C54000214182 /* GNavigationController.m */,
 			);
 			name = Navigation;
 			sourceTree = "<group>";
@@ -759,6 +760,7 @@
 				F8B6C07F1726C7ED00214182 /* CoreGraphics.framework */,
 				F8B6C0501726C54000214182 /* GViewController.h */,
 				F8B6C0511726C54000214182 /* GViewController.m */,
+				FDE404571796E75D00FD4970 /* GConfigurator.h */,
 				AF6FB477175DEBCD0098225C /* Other */,
 				AF6FB476175DEBB40098225C /* Tab */,
 				AF6FB475175DEBA80098225C /* Navigation */,
@@ -970,7 +972,7 @@
 				F8B6C0741726C54000214182 /* GAlertView.m in Sources */,
 				F8B6C0751726C54000214182 /* GBlockTableViewController.m in Sources */,
 				F8B6C0761726C54000214182 /* GEfficientTableViewController.m in Sources */,
-				F8B6C0771726C54000214182 /* GNavigationViewController.m in Sources */,
+				F8B6C0771726C54000214182 /* GNavigationController.m in Sources */,
 				F8B6C0791726C54000214182 /* GSelectionViewController.m in Sources */,
 				F8B6C07A1726C54000214182 /* GTabBarController.m in Sources */,
 				F8B6C07B1726C54000214182 /* GTableViewController.m in Sources */,

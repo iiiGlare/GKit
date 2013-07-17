@@ -17,6 +17,13 @@
 #import "GViewController.h"
 #import "GCore.h"
 
+@interface GViewControllerConfigurator : NSObject
+@property (nonatomic) BOOL canDragDismiss; // default NO
+@property (nonatomic, assign) GPresentAnimationType presentAnimationType;  // default GPresentAnimationTypNormal
+@end
+@implementation GViewControllerConfigurator
+@end
+
 @interface GViewController ()
 
 //for present / dismiss animation
@@ -30,6 +37,18 @@
 
 @implementation GViewController
 
+#pragma mark - GConfigurator
++ (id)configurator {
+	static dispatch_once_t onceToken;
+	static GViewControllerConfigurator * configurator;
+	dispatch_once(&onceToken, ^{
+		configurator = [GViewControllerConfigurator new];
+		configurator.canDragDismiss = NO;
+		configurator.presentAnimationType = GPresentAnimationTypNormal;
+	});
+	return configurator;
+}
+
 #pragma mark - Init
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -42,8 +61,8 @@
 
 - (void)customInitialize
 {
-    _canDragDismiss = YES;
-    _presentAnimationType = GPresentAnimationTypeHide;
+    _canDragDismiss = [[GViewController configurator] canDragDismiss];
+    _presentAnimationType = [[GViewController configurator] presentAnimationType];
 };
 
 #pragma mark - View Life Cycle
@@ -142,62 +161,76 @@
     return _container;
 }
 
-- (void)presentViewController:(UIViewController *)viewControllerToPresent animated:(BOOL)flag completion:(void (^)(void))completion
+- (void)presentViewController: (UIViewController *)viewControllerToPresent
+					 animated: (BOOL)flag
+				   completion: (void (^)(void))completion
 {
-    
-    self.snapshot = [self.container.view snapshot];
-    
-    [super presentViewController: viewControllerToPresent
-                        animated: NO
-                      completion: nil];
-    
-    self.presentedView = viewControllerToPresent.view;
-    [self prepareSceneAndSnapshot];
-
-    CGPoint beginOrigin = viewControllerToPresent.view.origin;
-    CGPoint endOrigin = beginOrigin;
-    endOrigin.y += viewControllerToPresent.view.height;
-    [self moveViewToOrigin:endOrigin];
-    [UIView animateWithDuration: 0.25
-                     animations: ^{
-                         [self moveViewToOrigin:beginOrigin];
-                     }
-                     completion:^(BOOL finished){
-                         [self.snapshot setTransform:CGAffineTransformIdentity];
-                         [self cleanTemporaryData];
-                         if (completion) {
-                             completion();
-                         }
-                     }];
+	if (_presentAnimationType==GPresentAnimationTypeHide) {
+		self.snapshot = [self.container.view snapshot];
+		
+		[super presentViewController: viewControllerToPresent
+							animated: NO
+						  completion: nil];
+		
+		self.presentedView = viewControllerToPresent.view;
+		[self prepareSceneAndSnapshot];
+		
+		CGPoint beginOrigin = viewControllerToPresent.view.origin;
+		CGPoint endOrigin = beginOrigin;
+		endOrigin.y += viewControllerToPresent.view.height;
+		[self moveViewToOrigin:endOrigin];
+		[UIView animateWithDuration: 0.25
+						 animations: ^{
+							 [self moveViewToOrigin:beginOrigin];
+						 }
+						 completion:^(BOOL finished){
+							 [self.snapshot setTransform:CGAffineTransformIdentity];
+							 [self cleanTemporaryData];
+							 if (completion) {
+								 completion();
+							 }
+						 }];
+	}
+	else {
+		[super presentViewController: viewControllerToPresent
+							animated: flag
+						  completion: completion];
+	}
 }
 
-- (void)dismissViewControllerAnimated:(BOOL)flag completion:(void (^)(void))completion
+- (void)dismissViewControllerAnimated: (BOOL)flag
+						   completion: (void (^)(void))completion
 {
-
-    if (self.snapshot==nil) {
-        self.presentedView = [[self.presentingViewController presentedViewController] view];
-        self.snapshot = [[self.presentingViewController view] snapshot];
-    }
-    
-    [self prepareSceneAndSnapshot];
-    
-    CGPoint beginOrigin = self.presentedView.origin;
-    CGPoint endOrigin = beginOrigin;
-    endOrigin.y += self.presentedView.height;
-    
-    [UIView animateWithDuration: 0.25
-                     animations: ^{
-                         [self moveViewToOrigin:endOrigin];
-                     }
-                     completion: ^(BOOL finished){
-                         [super dismissViewControllerAnimated:NO completion:nil];
-                         [self.snapshot removeFromSuperview];
-                         self.snapshot = nil;
-                         [self cleanTemporaryData];
-                         if (completion) {
-                             completion();
-                         }
-                     }];
+	if (_presentAnimationType==GPresentAnimationTypeHide) {
+		if (self.snapshot==nil) {
+			self.presentedView = [[self.presentingViewController presentedViewController] view];
+			self.snapshot = [[self.presentingViewController view] snapshot];
+		}
+		
+		[self prepareSceneAndSnapshot];
+		
+		CGPoint beginOrigin = self.presentedView.origin;
+		CGPoint endOrigin = beginOrigin;
+		endOrigin.y += self.presentedView.height;
+		
+		[UIView animateWithDuration: 0.25
+						 animations: ^{
+							 [self moveViewToOrigin:endOrigin];
+						 }
+						 completion: ^(BOOL finished){
+							 [super dismissViewControllerAnimated:NO completion:nil];
+							 [self.snapshot removeFromSuperview];
+							 self.snapshot = nil;
+							 [self cleanTemporaryData];
+							 if (completion) {
+								 completion();
+							 }
+						 }];
+	}
+	else {
+		[super dismissViewControllerAnimated: flag
+								  completion: completion];
+	}
 }
 - (void)prepareSceneAndSnapshot
 {

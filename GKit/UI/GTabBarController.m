@@ -17,7 +17,7 @@
 
 #import "GTabBarController.h"
 #import "GCore.h"
-#import "GNavigationViewController.h"
+#import "GNavigationController.h"
 
 @implementation GTabBarController
 
@@ -43,7 +43,7 @@
 		[viewController setTitle:NSLocalizedString(title,@"")];
 		[viewController.tabBarItem setImage:[UIImage imageNamed:image]];
 
-		[controllers addObject:[[GNavigationViewController alloc] initWithRootViewController:viewController]];
+		[controllers addObject:[[GNavigationController alloc] initWithRootViewController:viewController]];
 	}
 	
 	GTabBarController *tabBarController = [[GTabBarController alloc] init];
@@ -100,5 +100,23 @@
         [self _layoutActionButton];
     }
 }
+
+#pragma mark - Custom Present/Dismiss Animation
+
+- (void)presentViewController: (UIViewController *)viewControllerToPresent
+					 animated: (BOOL)flag
+				   completion: (void (^)(void))completion
+{
+	[[self selectedViewController] presentViewController: viewControllerToPresent
+												animated: flag
+											  completion: completion];
+}
+
+- (void)dismissViewControllerAnimated: (BOOL)flag
+						   completion: (void (^)(void))completion
+{
+	[[self selectedViewController] dismissViewControllerAnimated: flag
+													  completion: completion];
+}	
 
 @end

@@ -16,6 +16,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "GConfigurator.h"
 
 enum {
     GPresentAnimationTypNormal,
@@ -25,6 +26,7 @@ typedef NSInteger GPresentAnimationType;
 
 
 @interface GViewController : UIViewController
+<GConfigurator>
 
 - (void)customInitialize;
 
@@ -39,8 +41,8 @@ typedef NSInteger GPresentAnimationType;
 - (void)setBottomViewHeight:(CGFloat)bottomViewHeight;
 
 // Present / Dismiss Animation
-@property (nonatomic) BOOL canDragDismiss;  //default YES
-@property (nonatomic, assign) GPresentAnimationType presentAnimationType;
+@property (nonatomic) BOOL canDragDismiss; G_CONFIGURATOR_SELECTOR  // default NO
+@property (nonatomic, assign) GPresentAnimationType presentAnimationType; G_CONFIGURATOR_SELECTOR // default GPresentAnimationTypNormal
 
 // Navigation Control
 - (void)willPop;

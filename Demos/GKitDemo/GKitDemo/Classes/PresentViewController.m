@@ -8,7 +8,7 @@
 
 #import "PresentViewController.h"
 #import "GCore.h"
-#import "GNavigationViewController.h"
+#import "GNavigationController.h"
 
 @interface PresentViewController ()
 @property (nonatomic, strong) UIViewController *superController;
@@ -53,13 +53,13 @@
 {
     if ([[button titleForState:UIControlStateNormal] isEqualToString:@"Present"]) {
         PresentViewController *vc = [PresentViewController new];
-        [self presentViewController: [[GNavigationViewController alloc] initWithRootViewController:vc]
+        [GApplicationRootViewController() presentViewController: [[GNavigationController alloc] initWithRootViewController:vc]
                            animated: YES
                          completion: ^{
                              GPRINT(@"present completion");
                          }];
     }else {
-        [self dismissViewControllerAnimated: YES
+        [GApplicationRootViewController() dismissViewControllerAnimated: YES
                                  completion: ^{
                                      GPRINT(@"dismiss completion");
                                  }];

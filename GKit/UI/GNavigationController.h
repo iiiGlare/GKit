@@ -1,5 +1,5 @@
 //
-//  GNavigationViewController.h
+//  GNavigationController.h
 //  GKitDemo
 //
 //  Created by Glare on 13-4-23.
@@ -14,7 +14,7 @@ enum {
 };
 typedef NSInteger GNavigationAnimationType;
 
-#pragma mark - GNavigationViewControllerInfo
+#pragma mark - GNavigationControllerInfo
 @interface GNavigationGlobalConfigurator : NSObject
 
 + (void)setCanDragBack:(BOOL)canDragBack;
@@ -31,8 +31,8 @@ typedef NSInteger GNavigationAnimationType;
 
 @end
 
-#pragma mark - GNavigationViewController
-@interface GNavigationViewController : UINavigationController
+#pragma mark - GNavigationController
+@interface GNavigationController : UINavigationController
 
 @property (nonatomic) BOOL canDragBack;  //default YES
 @property (nonatomic) GNavigationAnimationType navigationAnimationType; //default hide

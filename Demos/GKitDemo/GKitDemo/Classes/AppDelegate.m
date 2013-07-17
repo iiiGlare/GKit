@@ -8,7 +8,7 @@
 
 #import "AppDelegate.h"
 #import "GCore.h"
-#import "GNavigationViewController.h"
+#import "GNavigationController.h"
 #import "GTabBarController.h"
 #import "DemosViewController.h"
 
@@ -35,6 +35,8 @@
 //			}
 //		}
 //	}
+	
+	[[GViewController configurator] setPresentAnimationType:GPresentAnimationTypeHide];
 	
 	[GNavigationGlobalConfigurator setNavigationAnimationType:GNavigationAnimationTypNormal];
 	[GNavigationGlobalConfigurator setCanDragBack:NO];
