@@ -33,7 +33,7 @@ BOOL GStringIsNil(NSString *string)
 
 - (NSUInteger)hexStringIntegerValue {
     NSUInteger result = 0;
-    if (self.length==0) {
+    if (self.length==1) {
         result = [@[
                   @"0",@"1",@"2",@"3",@"4",
                   @"5",@"6",@"7",@"8",@"9",
