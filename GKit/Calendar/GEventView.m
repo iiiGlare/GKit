@@ -41,7 +41,11 @@
 - (void)setEvent:(GEvent *)event
 {
     _event = event;
+    
+    self.backgroundColor = event.backgroundColor;
+    
     _titleLabel.text = event.title;
+    _titleLabel.textColor = event.forgroundColor;
 	_titleLabel.frame = self.bounds;
 	[_titleLabel sizeToFit];
 }

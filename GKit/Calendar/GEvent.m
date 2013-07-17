@@ -22,6 +22,9 @@
         self.beginTime = MIN(date, [[date beginningOfDay] dateByAddingTimeInterval:GTimeIntervalFromHours(23)]);
         self.endTime = [_beginTime dateByAddingTimeInterval:GTimeIntervalFromHours(1)];
         self.title = GLocalizedString(@"New Event");
+        
+        self.backgroundColor = [UIColor whiteColor];
+        self.forgroundColor = [UIColor blackColor];
     }
     return self;
 }

@@ -608,9 +608,7 @@
 
     NSDate *eventViewBeginTime = beginTime;
     NSDate *eventViewEndTime;
-    
-	UIColor *color = GRandomColorWithAlpha(0.5);
-	
+    	
     do {
         
         eventViewEndTime = [[eventViewBeginTime beginningOfDay] dateByAddingTimeInterval:GTimeIntervalFromHours(GHoursInDay)];
@@ -621,7 +619,6 @@
                                  atDayPosition: [self dayPositionForDate:eventViewBeginTime]];
         
         GEventView *eventView = [[GEventView alloc] initWithFrame:frame];
-		eventView.backgroundColor = color;
         eventView.event = event;
         eventView.beginTime = eventViewBeginTime;
         eventView.endTime = eventViewEndTime;

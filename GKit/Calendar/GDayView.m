@@ -416,7 +416,6 @@
     if (eventView==nil)
     {
         eventView = [[GEventView alloc] init];
-		eventView.backgroundColor = GRandomColorWithAlpha(0.5);
     }
     
     eventView.event = event;
