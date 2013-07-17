@@ -38,9 +38,9 @@
 	
 	[[GViewController configurator] setPresentAnimationType:GPresentAnimationTypeHide];
 	
-	[GNavigationGlobalConfigurator setNavigationAnimationType:GNavigationAnimationTypNormal];
-	[GNavigationGlobalConfigurator setCanDragBack:NO];
-	[GNavigationGlobalConfigurator setBackItemWithImage: nil
+	[[GNavigationController configurator] setNavigationAnimationType:GNavigationAnimationTypeHide];
+	[[GNavigationController configurator] setCanDragBack:NO];
+	[[GNavigationController configurator] setBackItemWithImage: nil
 												  title: @"Back"
 											 titleColor: [UIColor whiteColor]
                                    titleHightlightColor: [UIColor grayColor]

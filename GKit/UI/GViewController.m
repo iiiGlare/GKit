@@ -17,6 +17,7 @@
 #import "GViewController.h"
 #import "GCore.h"
 
+#pragma mark - GViewControllerConfigurator
 @interface GViewControllerConfigurator : NSObject
 @property (nonatomic) BOOL canDragDismiss; // default NO
 @property (nonatomic, assign) GPresentAnimationType presentAnimationType;  // default GPresentAnimationTypNormal
@@ -24,6 +25,7 @@
 @implementation GViewControllerConfigurator
 @end
 
+#pragma mark - GViewController
 @interface GViewController ()
 
 //for present / dismiss animation

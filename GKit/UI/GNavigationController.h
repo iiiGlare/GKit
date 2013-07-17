@@ -7,19 +7,22 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "GConfigurator.h"
 
 enum {
-    GNavigationAnimationTypNormal,
+    GNavigationAnimationTypeNormal,
     GNavigationAnimationTypeHide
 };
 typedef NSInteger GNavigationAnimationType;
 
-#pragma mark - GNavigationControllerInfo
-@interface GNavigationGlobalConfigurator : NSObject
+#pragma mark - GNavigationController
+@interface GNavigationController : UINavigationController
+<GConfigurator>
 
-+ (void)setCanDragBack:(BOOL)canDragBack;
-+ (void)setNavigationAnimationType:(GNavigationAnimationType)navigationAnimationType;
-+ (void)setBackItemWithImage: (UIImage *)image
+@property (nonatomic) BOOL canDragBack;  G_CONFIGURATOR_SELECTOR //default NO
+@property (nonatomic) GNavigationAnimationType navigationAnimationType; G_CONFIGURATOR_SELECTOR //default GNavigationAnimationTypeNormal
+
+- (void)setBackItemWithImage: (UIImage *)image
 					   title: (NSString *)title
 				  titleColor: (UIColor *)color
         titleHightlightColor: (UIColor *)hColor
@@ -27,14 +30,7 @@ typedef NSInteger GNavigationAnimationType;
            titleShadowOffset: (CGSize)shadowOffset
 				   titleFont: (UIFont *)font
 		   contentEdgeInsets: (UIEdgeInsets)contentEdgeInsets
-			 backgroundImage: (UIImage *)backgroundImage;
+			 backgroundImage: (UIImage *)backgroundImage;	G_CONFIGURATOR_SELECTOR
 
-@end
-
-#pragma mark - GNavigationController
-@interface GNavigationController : UINavigationController
-
-@property (nonatomic) BOOL canDragBack;  //default YES
-@property (nonatomic) GNavigationAnimationType navigationAnimationType; //default hide
 
 @end

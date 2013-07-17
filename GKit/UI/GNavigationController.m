@@ -9,14 +9,20 @@
 #import "GNavigationController.h"
 #import "GCore.h"
 
-#pragma mark - GNavigationControllerInfo
-@interface GNavigationGlobalConfigurator ()
+#pragma mark - GNavigationControllerConfigurator
+@interface GNavigationControllerConfigurator : NSObject
+@property (nonatomic) BOOL canDragBack;  //default NO
+@property (nonatomic) GNavigationAnimationType navigationAnimationType; //default GNavigationAnimationTypNormal
 
-+ (GNavigationGlobalConfigurator *)sharedConfigurator;
-
-@property (nonatomic) BOOL canDragBack;  //default YES
-@property (nonatomic) GNavigationAnimationType navigationAnimationType; //default hide
-
+- (void)setBackItemWithImage: (UIImage *)image
+					   title: (NSString *)title
+				  titleColor: (UIColor *)color
+        titleHightlightColor: (UIColor *)hColor
+            titleShadowColor: (UIColor *)shadowColor
+           titleShadowOffset: (CGSize)shadowOffset
+				   titleFont: (UIFont *)font
+		   contentEdgeInsets: (UIEdgeInsets)contentEdgeInsets
+			 backgroundImage: (UIImage *)backgroundImage;
 @property (nonatomic) BOOL useCustomBackItem;
 @property (nonatomic, strong) UIImage *backImage;
 @property (nonatomic, strong) NSString *backTitle;
@@ -28,22 +34,9 @@
 @property (nonatomic) UIEdgeInsets contentEdgeInsets;
 @property (nonatomic, strong) UIImage *backBackgroundImage;
 
-
-
 @end
-@implementation GNavigationGlobalConfigurator
-
-+ (void)setCanDragBack:(BOOL)canDragBack
-{
-	GNavigationGlobalConfigurator *configurator = [GNavigationGlobalConfigurator sharedConfigurator];
-	configurator.canDragBack = canDragBack;
-}
-+ (void)setNavigationAnimationType:(GNavigationAnimationType)navigationAnimationType
-{
-	GNavigationGlobalConfigurator *configurator = [GNavigationGlobalConfigurator sharedConfigurator];
-	configurator.navigationAnimationType = navigationAnimationType;
-}
-+ (void)setBackItemWithImage: (UIImage *)image
+@implementation GNavigationControllerConfigurator
+- (void)setBackItemWithImage: (UIImage *)image
 					   title: (NSString *)title
 				  titleColor: (UIColor *)color
         titleHightlightColor: (UIColor *)hColor
@@ -53,43 +46,17 @@
 		   contentEdgeInsets: (UIEdgeInsets)contentEdgeInsets
 			 backgroundImage: (UIImage *)backgroundImage;
 {
-	GNavigationGlobalConfigurator *configurator = [GNavigationGlobalConfigurator sharedConfigurator];
-	configurator.useCustomBackItem = YES;
-	configurator.backImage = image;
-	configurator.backTitle = title;
-	configurator.backTitleColor = color;
-    configurator.backTitleHightlightColor = hColor;
-    configurator.backTitleShadowColor = shadowColor;
-    configurator.backTitleShadowOffset = shadowOffset;
-	configurator.backTitleFont = font;
-	configurator.contentEdgeInsets = contentEdgeInsets;
-	configurator.backBackgroundImage = backgroundImage;
+	self.useCustomBackItem = YES;
+	self.backImage = image;
+	self.backTitle = title;
+	self.backTitleColor = color;
+    self.backTitleHightlightColor = hColor;
+    self.backTitleShadowColor = shadowColor;
+    self.backTitleShadowOffset = shadowOffset;
+	self.backTitleFont = font;
+	self.contentEdgeInsets = contentEdgeInsets;
+	self.backBackgroundImage = backgroundImage;
 }
-
-//////
-+ (GNavigationGlobalConfigurator *)sharedConfigurator
-{
-	static GNavigationGlobalConfigurator *_sharedConfigurator;
-	static dispatch_once_t onceToken;
-	dispatch_once(&onceToken, ^{
-		_sharedConfigurator = [[GNavigationGlobalConfigurator alloc] init];
-	});
-	return _sharedConfigurator;
-}
-
-- (id)init
-{
-	self = [super init];
-	if (self) {
-		_canDragBack = YES;
-		_navigationAnimationType = GNavigationAnimationTypeHide;
-		
-		_useCustomBackItem = NO;
-	}
-	return self;
-}
-
-
 
 @end
 
@@ -114,6 +81,29 @@
 @end
 
 @implementation GNavigationController
+#pragma mark - GConfigurator
++ (id)configurator {
+	static dispatch_once_t onceToken;
+	static GNavigationControllerConfigurator * configurator;
+	dispatch_once(&onceToken, ^{
+		configurator = [GNavigationControllerConfigurator new];
+		configurator.canDragBack = NO;
+		configurator.navigationAnimationType = GNavigationAnimationTypeNormal;
+		configurator.useCustomBackItem = NO;
+	});
+	return configurator;
+}
+
+- (void)setBackItemWithImage: (UIImage *)image
+					   title: (NSString *)title
+				  titleColor: (UIColor *)color
+        titleHightlightColor: (UIColor *)hColor
+            titleShadowColor: (UIColor *)shadowColor
+           titleShadowOffset: (CGSize)shadowOffset
+				   titleFont: (UIFont *)font
+		   contentEdgeInsets: (UIEdgeInsets)contentEdgeInsets
+			 backgroundImage: (UIImage *)backgroundImage;	G_CONFIGURATOR_SELECTOR
+{}
 
 #pragma mark - Init
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -128,8 +118,8 @@
 }
 - (void)customInitialize
 {
-    _canDragBack = [[GNavigationGlobalConfigurator sharedConfigurator] canDragBack];
-    _navigationAnimationType = [[GNavigationGlobalConfigurator sharedConfigurator] navigationAnimationType];
+    _canDragBack = [[GNavigationController configurator] canDragBack];
+    _navigationAnimationType = [[GNavigationController configurator] navigationAnimationType];
     
     _shouldPopItem = NO;
     _snapshots = [NSMutableArray array];
@@ -194,7 +184,7 @@
 		[_snapshots addObject:[self.container.view snapshot]];
 		
 		//Custom Back Item
-		GNavigationGlobalConfigurator *configurator = [GNavigationGlobalConfigurator sharedConfigurator];
+		GNavigationControllerConfigurator * configurator = [GNavigationController configurator];
 		if (configurator.useCustomBackItem)
 		{
 			UIButton *backButton = [UIButton buttonWithType:UIButtonTypeCustom];
