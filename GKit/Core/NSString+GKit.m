@@ -31,6 +31,15 @@ BOOL GStringIsNil(NSString *string)
 
 @implementation NSString (GKit)
 
+- (NSUInteger)hexStringIntegerValue {
+    NSUInteger result = 0;
+    for (NSUInteger i=0; i<self.length; i++) {
+        unichar hex = [self characterAtIndex:i];
+        result = result*16 + Char16ToInt(hex);
+    }
+    return result;
+}
+
 - (BOOL)containsString:(NSString *)string {
 	return !NSEqualRanges([self rangeOfString:string], NSMakeRange(NSNotFound, 0));
 }
