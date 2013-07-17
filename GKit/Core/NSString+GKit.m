@@ -33,12 +33,23 @@ BOOL GStringIsNil(NSString *string)
 
 - (NSUInteger)hexStringIntegerValue {
     NSUInteger result = 0;
-    NSString * usedString = [self stringByReplacingOccurrencesOfString:@"0x" withString:@""];
-    usedString = [usedString stringByReplacingOccurrencesOfString:@"#" withString:@""];
-    for (NSUInteger i=0; i<usedString.length; i++) {
-        unichar hex = [usedString characterAtIndex:i];
-        result = result*16 + Char16ToInt(hex);
+    if (self.length==0) {
+        result = [@[
+                  @"0",@"1",@"2",@"3",@"4",
+                  @"5",@"6",@"7",@"8",@"9",
+                  @"A",@"B",@"C",@"D",@"E",
+                  @"F"] indexOfObject:[self uppercaseString]];
     }
+    else {
+        NSString * hexString = [self stringByReplacingOccurrencesOfString:@"0x" withString:@""];
+        hexString = [hexString stringByReplacingOccurrencesOfString:@"#" withString:@""];
+        
+        for (NSUInteger i=0; i<hexString.length; i++) {
+            NSString * singleHex = [hexString substringWithRange:NSMakeRange(i, 1)];
+            result = result*16 + [singleHex hexStringIntegerValue];
+        }
+    }
+    
     return result;
 }
 
