@@ -11,6 +11,7 @@
 #import "GSwitch.h"
 #import "GScrollSlider.h"
 #import "GPicker.h"
+#import "GDatePicker.h"
 #import <QuartzCore/QuartzCore.h>
 
 @interface CustomUIViewController ()
@@ -88,26 +89,35 @@
 #pragma mark - Picker 
 - (void)showPicker
 {
-    GPicker * picker = [[GPicker alloc] initWithFrame:CGRectMake(10, 120, 283, 197)];
-    picker.dataSource = self;
-    picker.delegate = self;
-    picker.contentEdgeInsets = UIEdgeInsetsMake(2, 0, 2, 0);
-    picker.backgroundImage = [GImageNamed(@"picker_background.png") resizableImageWithCapInsets:UIEdgeInsetsMake(10, 10, 10, 10)];
-    picker.separatorLineImage = GImageNamed(@"picker_separator.png");
-    picker.separatorLineSize = CGSizeMake(1, 191);
-    picker.indicatorImage = GImageNamed(@"picker_indicator.png");
-    picker.rowHeight = 42;
-    [self.view addSubview:picker];
-    [picker reloadAllComponents];
-    
-    [picker selectRow:0 inComponent:0 animated:NO];
-    [picker selectRow:2 inComponent:1 animated:NO];
-    [picker selectRow:3 inComponent:2 animated:NO];
-    
-    GPRINT(@"component %d: selected row %d", 0, [picker selectedRowInComponent:0]);
-    GPRINT(@"component %d: selected row %d", 1, [picker selectedRowInComponent:1]);
-    GPRINT(@"component %d: selected row %d", 2, [picker selectedRowInComponent:2]);
+    GDatePicker * datePicker = [[GDatePicker alloc] initWithFrame:CGRectMake(27, 120, 266, 106)];
+    datePicker.datePickerStyle = GDatePickerStyleDateTime;
+    [datePicker addTarget:self action:@selector(datePickerValueChanged:) forControlEvents:UIControlEventValueChanged];
+    [self.view addSubview:datePicker];
+//    GPicker * picker = [[GPicker alloc] initWithFrame:CGRectMake(10, 120, 283, 197)];
+//    picker.dataSource = self;
+//    picker.delegate = self;
+//    picker.contentEdgeInsets = UIEdgeInsetsMake(2, 0, 2, 0);
+//    picker.backgroundImage = [GImageNamed(@"picker_background.png") resizableImageWithCapInsets:UIEdgeInsetsMake(10, 10, 10, 10)];
+//    picker.separatorLineImage = GImageNamed(@"picker_separator.png");
+//    picker.separatorLineSize = CGSizeMake(1, 191);
+//    picker.indicatorImage = GImageNamed(@"picker_indicator.png");
+//    picker.rowHeight = 42;
+//    [self.view addSubview:picker];
+//    [picker reloadAllComponents];
+//    
+//    [picker selectRow:0 inComponent:0 animated:NO];
+//    [picker selectRow:2 inComponent:1 animated:NO];
+//    [picker selectRow:3 inComponent:2 animated:NO];
+//    
+//    GPRINT(@"component %d: selected row %d", 0, [picker selectedRowInComponent:0]);
+//    GPRINT(@"component %d: selected row %d", 1, [picker selectedRowInComponent:1]);
+//    GPRINT(@"component %d: selected row %d", 2, [picker selectedRowInComponent:2]);
 }
+
+- (void)datePickerValueChanged:(GDatePicker *)datePicker {
+    GPRINT(@"%@", datePicker.selectedDate);
+}
+
 - (NSInteger)numberOfComponentsInPicker:(GPicker *)picker
 {
     return 3;

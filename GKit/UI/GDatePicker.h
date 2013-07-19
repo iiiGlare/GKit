@@ -20,7 +20,8 @@
 
 enum {
     GDatePickerStyleDate,
-    GDatePickerStyleTime
+    GDatePickerStyleTime,
+    GDatePickerStyleDateTime
 };
 typedef NSInteger GDatePickerStyle;
 
