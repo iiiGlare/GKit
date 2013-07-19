@@ -15,6 +15,8 @@
 		AF8E0B0E175EF113006153E0 /* switch_on_background@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AF8E0B0B175EF113006153E0 /* switch_on_background@2x.png */; };
 		AF8E0B0F175EF113006153E0 /* switch_knob@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AF8E0B0C175EF113006153E0 /* switch_knob@2x.png */; };
 		AF98EB761758320D0004FBF4 /* GPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = AF98EB751758320D0004FBF4 /* GPicker.m */; };
+		AFBB5F5C1799071F00AC38B0 /* GDatePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = AFBB5F591799071F00AC38B0 /* GDatePicker.m */; };
+		AFBB5F5D1799071F00AC38B0 /* GWeightPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = AFBB5F5B1799071F00AC38B0 /* GWeightPicker.m */; };
 		F80B212E173AD1AC00DDA0D6 /* AudioViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F80B212D173AD1AC00DDA0D6 /* AudioViewController.m */; };
 		F80B4740172831AF00F4FBEB /* GMoveSnapshot+GCalendar.m in Sources */ = {isa = PBXBuildFile; fileRef = F80B473F172831AF00F4FBEB /* GMoveSnapshot+GCalendar.m */; };
 		F82369BD1727B53C00868E8B /* GPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = FD07BDD41727605100D8E26A /* GPoint.m */; };
@@ -145,6 +147,10 @@
 		AF8E0B0C175EF113006153E0 /* switch_knob@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "switch_knob@2x.png"; sourceTree = "<group>"; };
 		AF98EB741758320D0004FBF4 /* GPicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GPicker.h; sourceTree = "<group>"; };
 		AF98EB751758320D0004FBF4 /* GPicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GPicker.m; sourceTree = "<group>"; };
+		AFBB5F581799071F00AC38B0 /* GDatePicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GDatePicker.h; sourceTree = "<group>"; };
+		AFBB5F591799071F00AC38B0 /* GDatePicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GDatePicker.m; sourceTree = "<group>"; };
+		AFBB5F5A1799071F00AC38B0 /* GWeightPicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GWeightPicker.h; sourceTree = "<group>"; };
+		AFBB5F5B1799071F00AC38B0 /* GWeightPicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GWeightPicker.m; sourceTree = "<group>"; };
 		F80B212C173AD1AC00DDA0D6 /* AudioViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioViewController.h; sourceTree = "<group>"; };
 		F80B212D173AD1AC00DDA0D6 /* AudioViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioViewController.m; sourceTree = "<group>"; };
 		F80B473E172831AE00F4FBEB /* GMoveSnapshot+GCalendar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GMoveSnapshot+GCalendar.h"; sourceTree = "<group>"; };
@@ -413,6 +419,10 @@
 				F888D8DA174789E70026C1A4 /* GLabel.m */,
 				AF98EB741758320D0004FBF4 /* GPicker.h */,
 				AF98EB751758320D0004FBF4 /* GPicker.m */,
+				AFBB5F581799071F00AC38B0 /* GDatePicker.h */,
+				AFBB5F591799071F00AC38B0 /* GDatePicker.m */,
+				AFBB5F5A1799071F00AC38B0 /* GWeightPicker.h */,
+				AFBB5F5B1799071F00AC38B0 /* GWeightPicker.m */,
 				F86D68561737CE03003EFE6C /* GScrollSlider.h */,
 				F86D68571737CE03003EFE6C /* GScrollSlider.m */,
 				F885B54D174B569F0059E609 /* GSegmentedControl.h */,
@@ -1002,6 +1012,8 @@
 				FD4BF068175128CD00400F47 /* GDownloader.m in Sources */,
 				AF98EB761758320D0004FBF4 /* GPicker.m in Sources */,
 				AF6FB473175DEB860098225C /* GGestureCell.m in Sources */,
+				AFBB5F5C1799071F00AC38B0 /* GDatePicker.m in Sources */,
+				AFBB5F5D1799071F00AC38B0 /* GWeightPicker.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
