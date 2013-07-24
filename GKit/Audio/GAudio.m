@@ -24,11 +24,11 @@
 //
 @property (nonatomic, copy) void (^blockAudioPlayingCallback)(GAudio *audio, GAudioInterruptionType type, NSError *error);
 @property (nonatomic, copy) void (^blockAudioFinishCallback)(GAudio *audio, BOOL successfully);
-@property (nonatomic, strong) NSTimer *audioPlayingTimer;
+@property (nonatomic, strong) CADisplayLink * audioPlayingTimer;
 
 //
-@property (nonatomic, strong) NSURL *audioRecordingFileURL;
-@property (nonatomic, strong) NSTimer *audioRecordingTimer;
+@property (nonatomic, strong) NSURL * audioRecordingFileURL;
+@property (nonatomic, strong) CADisplayLink * audioRecordingTimer;
 @property (nonatomic, copy) void (^blockAudioRecordingCallback)(GAudio *audio, GAudioInterruptionType type, NSError *error);
 
 //
@@ -322,12 +322,8 @@ next:
         //播放成功并创建反馈
         if (_blockAudioPlayingCallback) {
             self.audioPlayingTimer =
-            [NSTimer scheduledTimerWithTimeInterval: 1
-                                             target: self
-                                           selector: @selector(audioPlayingTimerDidFire)
-                                           userInfo: nil
-                                            repeats: YES];
-            [self.audioPlayingTimer fire];
+            [CADisplayLink displayLinkWithTarget:self selector:@selector(audioPlayingTimerDidFire)];
+            [_audioPlayingTimer addToRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
         }
     }else {
         //播放失败
@@ -496,14 +492,10 @@ NSURL * GAudioRecordingFileURL(void)
     if ([_recorder record]) {
         //开始录音并创建反馈
         if (_blockAudioRecordingCallback) {
-            self.audioRecordingTimer = [NSTimer scheduledTimerWithTimeInterval: 1.0
-                                                                        target: self
-                                                                      selector: @selector(audioRecordingTimerDidFire)
-                                                                      userInfo: nil
-                                                                       repeats: YES];
-            [self.audioRecordingTimer fire];
+            self.audioRecordingTimer =
+            [CADisplayLink displayLinkWithTarget:self selector:@selector(audioRecordingTimerDidFire)];
+            [_audioRecordingTimer addToRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
         }
-
     }else {
         //无法录音
     
