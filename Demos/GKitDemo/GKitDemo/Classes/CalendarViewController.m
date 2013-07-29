@@ -207,6 +207,14 @@
     event.beginTime = [weekView.beginningOfWeek dateByAddingTimeInterval:GTimeIntervalFromHours(21)];
     event.endTime = [weekView.beginningOfWeek dateByAddingTimeInterval:GTimeIntervalFromHours(5+GHoursInDay)];
     [events addObject:event];
+
+    
+    event = [[GEvent alloc] init];
+    event.title = @"1 02:00 to 1 06:00";
+    event.beginTime = [weekView.beginningOfWeek dateByAddingTimeInterval:GTimeIntervalFromHours(2+GHoursInDay)];
+    event.endTime = [weekView.beginningOfWeek dateByAddingTimeInterval:GTimeIntervalFromHours(6+GHoursInDay)];
+    [events addObject:event];
+
     
     event = [[GEvent alloc] init];
     event.title = @"3 08:00 to 3 11:30";
@@ -235,6 +243,14 @@
     GViewController *eventVC = [GViewController new];
     eventVC.title = event.title;
     [self.navigationController pushViewController:eventVC animated:YES];
+}
+
+- (void)weekView:(GWeekView *)weekView didSelectGEvents:(NSArray *)gEvents {
+    [[[UIAlertView alloc] initWithTitle:@"GWeekView"
+                                message:[NSString stringWithFormat:@"Count of tapped events is %d", gEvents.count]
+                               delegate:nil
+                      cancelButtonTitle:@"OK"
+                      otherButtonTitles:nil] show];
 }
 
 - (void)weekView:(GWeekView *)weekView requireGEventAtDate:(NSDate *)date

@@ -74,6 +74,7 @@
 - (void)weekView:(GWeekView *)weekView didRemoveGEvent:(GEvent *)event;
 - (void)weekView:(GWeekView *)weekView didUpdateGEvent:(GEvent *)event;
 - (void)weekView:(GWeekView *)weekView didSelectGEvent:(GEvent *)event;
+- (void)weekView:(GWeekView *)weekView didSelectGEvents:(NSArray *)gEvents;
 
 - (void)weekView:(GWeekView *)weekView requireGEventAtDate:(NSDate *)date;
 

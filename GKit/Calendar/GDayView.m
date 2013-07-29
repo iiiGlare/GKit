@@ -471,15 +471,39 @@
 - (void)handleTap:(UITapGestureRecognizer *)tapGR
 {
     CGPoint location = [tapGR locationInView:self];
-    UIView *view = [self hitTest:[tapGR locationInView:self] withEvent:nil];
-    if (view && [view isKindOfClass:[GEventView class]])
-    {
-        if (_delegate &&
-            [_delegate respondsToSelector:@selector(dayView:didSelectGEvent:)])
-        {
-            [_delegate dayView:self didSelectGEvent:[(GEventView *)view event]];
+    
+    // find all event views at location
+    NSMutableArray * tappedEventViews = [NSMutableArray array];
+    for (UIView * view in [_scrollView subviews]) {
+        if ([view isKindOfClass:[GEventView class]]) {
+            CGRect viewFrame = [self convertRect:view.frame fromView:view.superview];
+            if (CGRectContainsPoint(viewFrame, location)) {
+                [tappedEventViews addObject:view];
+            }
         }
-    }else {
+    }
+    
+    if (tappedEventViews.count>0) {
+        if (tappedEventViews.count==1) {
+            if (_delegate &&
+                [_delegate respondsToSelector:@selector(dayView:didSelectGEvent:)])
+            {
+                [_delegate dayView:self didSelectGEvent:[(GEventView *)[tappedEventViews firstObject] event]];
+            }
+        }
+        else {
+            if (_delegate &&
+                [_delegate respondsToSelector:@selector(dayView:didSelectGEvents:)])
+            {
+                NSMutableArray * tappedEvents = [NSMutableArray arrayWithCapacity:tappedEventViews.count];
+                for (GEventView * eventView in tappedEventViews) {
+                    [tappedEvents addObject:eventView.event];
+                }
+                [_delegate dayView:self didSelectGEvents:tappedEvents];
+            }
+        }
+    }
+    else {
         
         if (_delegate &&
             [_delegate respondsToSelector:@selector(dayView:requireGEventAtDate:)])
@@ -487,7 +511,6 @@
             CGFloat offset = [self.scrollView convertPoint:location fromView:self].y;
             [_delegate dayView:self requireGEventAtDate:[self dateForOffset:offset]];
         }
-        
     }
 }
 

@@ -683,16 +683,39 @@
 - (void)handleTap:(UITapGestureRecognizer *)tapGR
 {
     CGPoint location = [tapGR locationInView:self];
-    UIView *view = [self hitTest:location withEvent:nil];
-    if (view && [view isKindOfClass:[GEventView class]])
-    {
-        if (_delegate &&
-            [_delegate respondsToSelector:@selector(weekView:didSelectGEvent:)])
-        {
-            [_delegate weekView:self didSelectGEvent:[(GEventView *)view event]];
+    
+    // find all event views at location
+    NSMutableArray * tappedEventViews = [NSMutableArray array];
+    for (UIView * view in [_scrollView subviews]) {
+        if ([view isKindOfClass:[GEventView class]]) {
+            CGRect viewFrame = [self convertRect:view.frame fromView:view.superview];
+            if (CGRectContainsPoint(viewFrame, location)) {
+                [tappedEventViews addObject:view];
+            }
         }
-    }else {
-        
+    }
+    
+    if (tappedEventViews.count>0) {
+        if (tappedEventViews.count==1) {
+            if (_delegate &&
+                [_delegate respondsToSelector:@selector(weekView:didSelectGEvent:)])
+            {
+                [_delegate weekView:self didSelectGEvent:[(GEventView *)[tappedEventViews firstObject] event]];
+            }
+        }
+        else {
+            if (_delegate &&
+                [_delegate respondsToSelector:@selector(weekView:didSelectGEvents:)])
+            {
+                NSMutableArray * tappedEvents = [NSMutableArray arrayWithCapacity:tappedEventViews.count];
+                for (GEventView * eventView in tappedEventViews) {
+                    [tappedEvents addObject:eventView.event];
+                }
+                [_delegate weekView:self didSelectGEvents:tappedEvents];
+            }
+        }
+    }
+    else {
         if (_delegate &&
             [_delegate respondsToSelector:@selector(weekView:requireGEventAtDate:)])
         {
