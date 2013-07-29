@@ -35,6 +35,7 @@
 //
 
 #import "GSinglePicker.h"
+#import "UILabel+GKit.h"
 
 @implementation GSinglePickerItem
 @synthesize titleLabel;
@@ -424,7 +425,7 @@
 	{
         if (![self isDisplayingViewForIndex:index])
 		{
-            GSinglePickerItem *itemView = [self dequeueRecycledView];
+            GSinglePickerItem * itemView = [self dequeueRecycledView];
 			if (itemView == nil)
             {
 				itemView = [[GSinglePickerItem alloc] initWithFrame:CGRectMake(0.0, 0.0, self.contentView.frame.size.width, self.contentView.frame.size.height)];
@@ -432,7 +433,7 @@
                 itemView.titleLabel.backgroundColor = [UIColor clearColor];
                 itemView.titleLabel.font = self.itemFont;
                 itemView.titleLabel.textColor = self.itemColor;
-                itemView.titleLabel.textAlignment = UITextAlignmentCenter;
+                itemView.titleLabel.textAlignmentG = GTextAlignmentCenter;
             }
             
             [self configureView:itemView atIndex:index];

@@ -21,9 +21,6 @@
     self = [super initWithFrame:frame];
     if (self) {
         // Initialization code
-        [self drawBorderWithColor:[UIColor blackColor]
-                                 width:1.0
-                          cornerRadius:3.0];
         self.shouldMove = YES;
         
         _titleLabel = [[UILabel alloc] init];
@@ -31,7 +28,7 @@
         _titleLabel.textColor = [UIColor whiteColor];
 		_titleLabel.font = [UIFont systemFontOfSize:12.0];
 		_titleLabel.numberOfLines = 0;
-		_titleLabel.lineBreakMode = UILineBreakModeCharacterWrap;
+		_titleLabel.lineBreakModeG = GLineBreakByCharWrapping;
         [self addSubview:_titleLabel];
         
     }
@@ -42,7 +39,10 @@
 {
     _event = event;
     
-    self.backgroundColor = event.backgroundColor;
+    [self setBackgroundColor:event.backgroundColor];
+    [self drawBorderWithColor: event.borderColor
+                        width: 1.0
+                 cornerRadius: 3.0];
     
     _titleLabel.text = event.title;
     _titleLabel.textColor = event.foregroundColor;

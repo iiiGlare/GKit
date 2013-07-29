@@ -20,20 +20,39 @@
 
 @implementation UILabel (GKit)
 @dynamic textAlignmentG;
+@dynamic lineBreakModeG;
 
 #pragma mark - Getter/Setter
-- (GTextAlignment) textAlignmentG
-{
-    return [self textAlignment];
+
+// textAlignmentG
+- (GTextAlignment)textAlignmentG {
+    return (NSInteger)[self textAlignment];
 }
-- (void) setTextAlignmentG:(GTextAlignment)textAlignment
-{
+
+- (void)setTextAlignmentG:(GTextAlignment)textAlignment {
     if ([UIDevice isOSVersionHigherThanVersion:@"6.0" includeEqual:YES]) {
-        [self setTextAlignment:textAlignment];
-    }else{
+        [self setTextAlignment:(NSInteger)textAlignment];
+    }
+    else {
         if (textAlignment<=GTextAlignmentRight) {
-            [self setTextAlignment:textAlignment];
+            [self setTextAlignment:(NSInteger)textAlignment];
         }
     }
 }
+
+// lineBreakModeG
+- (GLineBreakMode)lineBreakModeG {
+    return (NSInteger)[self lineBreakMode];
+}
+
+- (void)setLineBreakModeG:(GLineBreakMode)lineBreakModeG {
+    if ([UIDevice isOSVersionHigherThanVersion:@"6.0" includeEqual:YES]) {
+        [self setLineBreakMode:(NSInteger)lineBreakModeG];
+    }
+    else {
+        [self setLineBreakMode:(NSInteger)lineBreakModeG];
+    }
+}
+
+
 @end

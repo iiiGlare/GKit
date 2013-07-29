@@ -16,17 +16,36 @@
 //
 
 #import <UIKit/UIKit.h>
-enum {
+
+typedef NS_ENUM(NSInteger, GTextAlignment){
     GTextAlignmentLeft      = 0,
     GTextAlignmentCenter    = 1,
     GTextAlignmentRight     = 2,
     GTextAlignmentJustified = 3,
     GTextAlignmentNatural   = 4,
 };
-typedef NSInteger GTextAlignment;
+
+typedef NS_ENUM(NSInteger, GLineBreakMode) {		/* What to do with long lines */
+    GLineBreakByWordWrapping = 0,     	/* Wrap at word boundaries, default */
+    GLineBreakByCharWrapping,		/* Wrap at character boundaries */
+    GLineBreakByClipping,		/* Simply clip */
+    GLineBreakByTruncatingHead,	/* Truncate at head of line: "...wxyz" */
+    GLineBreakByTruncatingTail,	/* Truncate at tail of line: "abcd..." */
+    GLineBreakByTruncatingMiddle	/* Truncate middle of line:  "ab...yz" */
+};
+
+//typedef enum {
+//    UILineBreakModeWordWrap = 0,
+//    UILineBreakModeCharacterWrap,
+//    UILineBreakModeClip,
+//    UILineBreakModeHeadTruncation,
+//    UILineBreakModeTailTruncation,
+//    UILineBreakModeMiddleTruncation,
+//} UILineBreakMode;
 
 @interface UILabel (GKit)
 
 @property (nonatomic, assign) GTextAlignment textAlignmentG;
+@property (nonatomic, assign) GLineBreakMode lineBreakModeG;
 
 @end

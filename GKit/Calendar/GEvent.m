@@ -24,6 +24,7 @@
         self.title = GLocalizedString(@"New Event");
         
         self.backgroundColor = [UIColor whiteColor];
+        self.borderColor = [UIColor blackColor];
         self.foregroundColor = [UIColor blackColor];
     }
     return self;

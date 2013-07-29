@@ -18,6 +18,7 @@
 @property (nonatomic, copy) NSDate *endTime;
 @property (nonatomic, copy) NSString *title;
 
+@property (nonatomic, copy) UIColor * borderColor;
 @property (nonatomic, copy) UIColor * backgroundColor;
 @property (nonatomic, copy) UIColor * foregroundColor;
 
