@@ -24,6 +24,8 @@
  * @return YES if device is ipad
  */
 + (BOOL) isPad;
++ (BOOL) isPhone;
++ (BOOL) isPhone5;
 
 /**
  */

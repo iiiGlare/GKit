@@ -21,9 +21,16 @@
 @implementation UIDevice (GKit)
 
 //////////////////////////////////////////////////////////////////////////////////
-+ (BOOL) isPad
-{
-    return UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad;
++ (BOOL) isPad {
+    return (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad);
+}
+
++ (BOOL) isPhone {
+    return (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone);
+}
+
++ (BOOL) isPhone5 {
+    return ([UIDevice isPhone] && [[UIScreen mainScreen] bounds].size.height == 568.0f);
 }
 
 //////////////////////////////////////////////////////////////////////////////////
