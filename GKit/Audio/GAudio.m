@@ -32,21 +32,20 @@
 @property (nonatomic, copy) void (^blockAudioRecordingCallback)(GAudio *audio, GAudioInterruptionType type, NSError *error);
 
 //
-@property (nonatomic, strong) AVAudioSession *audioSession;
+@property (nonatomic, strong) AVAudioSession * audioSession;
 
 @end
 
 @implementation GAudio
 
 #pragma mark - Vibrate && SystemSound
-+ (void)vibrate
-{
++ (void)vibrate {
 	AudioServicesPlaySystemSound (kSystemSoundID_Vibrate);
 }
 
 + (void)playSystemSoundForResource:(NSString *)resource
-					 withExtension:(NSString *)extension
-{
+					 withExtension:(NSString *)extension {
+	
 	CFURLRef		soundFileURLRef;
 	SystemSoundID	soundFileObject;
 	NSURL *tapSound   = [[NSBundle mainBundle] URLForResource: resource
@@ -66,22 +65,19 @@
 
 #pragma mark - AVAudioSession
 
-+ (void)activeAudioSession
-{
++ (void)activeAudioSession {
 	//activating
 	NSError *activationError = nil;
 	[[[GAudio sharedAudio] audioSession] setActive:YES error:&activationError];
 }
 
-+ (void)deactiveAudioSession
-{
++ (void)deactiveAudioSession {
 	//activating
 	NSError *activationError = nil;
 	[[[GAudio sharedAudio] audioSession] setActive:NO error:&activationError];
 }
 
-+ (void)setSessionProperty:(GAudioSessionCategory)category
-{
++ (void)setSessionProperty:(GAudioSessionCategory)category {
 	NSString *theCategory = nil;
 	//3.0 and later
 	if ([UIDevice isOSVersionHigherThanVersion:@"3.0" includeEqual:YES]) {
@@ -126,47 +122,55 @@ next:
 			return;
 		}
 		
-		[GAudio deactiveAudioSession];
 		//setting the category
 		NSError *setCategoryError = nil;
 		[[[GAudio sharedAudio] audioSession] setCategory:theCategory error:&setCategoryError];
-		[GAudio activeAudioSession];
 	}
 }
-+ (void)overrideCategoryDefaultToSpeaker:(BOOL)isOverride
-{
-    //
+
+
++ (void)overrideCategoryProperty:(UInt32)audioSessionPropertyID isOverride:(BOOL)isOverride {
+	//
 	OSStatus propertySetError = 0;
 	UInt32 allowOverride = true;
 	if (isOverride==NO) {
-		[GAudio setSessionProperty:GAudioSessionCategoryPlayAndRecord];
 		allowOverride = false;
 	}
     
 	//get property to detect whether need to set it
 	UInt32 currentOverride;
 	UInt32 size = sizeof(currentOverride);
-	AudioSessionGetProperty(kAudioSessionProperty_OverrideCategoryDefaultToSpeaker,
+	AudioSessionGetProperty(audioSessionPropertyID,
 							&size,
 							&currentOverride);
 	if (allowOverride==currentOverride)
 		return;
 	
-	[GAudio deactiveAudioSession];
-	propertySetError = AudioSessionSetProperty(kAudioSessionProperty_OverrideCategoryDefaultToSpeaker,
+	propertySetError = AudioSessionSetProperty(audioSessionPropertyID,
 											   sizeof(allowOverride),
 											   &allowOverride);
-	
-	[GAudio activeAudioSession];
-	
 }
-+ (void)overrideAudioRouteToSpeaker:(BOOL)isOverride
-{
+
++ (void)overrideCategoryMixWithOthers:(BOOL)isOverride {
+    [GAudio overrideCategoryProperty: kAudioSessionProperty_OverrideCategoryMixWithOthers
+						  isOverride: isOverride];
+}
+
++ (void)overrideOtherMixableAudioShouldDuck:(BOOL)isOverride {
+    [GAudio overrideCategoryProperty: kAudioSessionProperty_OtherMixableAudioShouldDuck
+						  isOverride: isOverride];
+}
+
++ (void)overrideCategoryDefaultToSpeaker:(BOOL)isOverride {
+	[GAudio overrideCategoryProperty: kAudioSessionProperty_OverrideCategoryDefaultToSpeaker
+						  isOverride: isOverride];
+}
+
++ (void)overrideAudioRouteToSpeaker:(BOOL)isOverride {
 	//
 	OSStatus propertySetError = 0;
 	UInt32 allowOverride = kAudioSessionOverrideAudioRoute_None;
 	if (isOverride==YES) {
-        //		[GAudio setSessionProperty:AudioSessionCategoryPlayAndRecord];
 		allowOverride = kAudioSessionOverrideAudioRoute_Speaker;
 	}
 	
@@ -179,14 +183,11 @@ next:
 	if (allowOverride==currentOverride)
 		return;
 	
-	[GAudio deactiveAudioSession];
 	propertySetError = AudioSessionSetProperty(kAudioSessionProperty_OverrideAudioRoute,
 											   sizeof(allowOverride),
 											   &allowOverride);
-	
-	[GAudio activeAudioSession];
-	
 }
+
 + (BOOL)isSilenced {
 #if TARGET_IPHONE_SIMULATOR
 	// return NO in simulator. Code causes crashes for some reason.
@@ -233,8 +234,7 @@ next:
 
 #pragma mark - Init
 
-+ (GAudio *)sharedAudio
-{
++ (GAudio *)sharedAudio {
     static GAudio *_sharedAudio;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
@@ -243,20 +243,15 @@ next:
     return _sharedAudio;    
 }
 
-+ (GAudio *)newAudio
-{
++ (GAudio *)newAudio {
     return [[GAudio alloc] init];
 }
 
-- (id)init
-{
+- (id)init {
     self = [super init];
     if (self) {
-        
         self.audioSession = [AVAudioSession sharedInstance];
-        
         self.audioRecordingFileURL = [GCachesDirectoryURL() URLByAppendingPathComponent:@"AudioRecording.caf"];
-        
     }
     return self;
 }
@@ -265,8 +260,8 @@ next:
 
 - (void)preparePlayingWithContents:(id)audioContents
                           callback:(void (^)(GAudio *audio, GAudioInterruptionType type, NSError *error))callback
-                            finish:(void (^)(GAudio *audio, BOOL successfully))finish;
-{
+                            finish:(void (^)(GAudio *audio, BOOL successfully))finish {
+	
     self.blockAudioPlayingCallback = callback;
     self.blockAudioFinishCallback = finish;
     
@@ -312,8 +307,9 @@ next:
     }
 
 }
-- (void)startPlayingWithCurrentTime:(NSTimeInterval)currentTime
-{
+
+- (void)startPlayingWithCurrentTime:(NSTimeInterval)currentTime {
+	
     _player.delegate = self;
     _player.currentTime = currentTime;
     
@@ -325,7 +321,8 @@ next:
             [CADisplayLink displayLinkWithTarget:self selector:@selector(audioPlayingTimerDidFire)];
             [_audioPlayingTimer addToRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
         }
-    }else {
+    }
+	else {
         //播放失败
         
         GPRINT(@"AVAudioPlayer failed play");
@@ -340,22 +337,19 @@ next:
     }
 }
 
-- (void)audioPlayingTimerDidFire
-{
+- (void)audioPlayingTimerDidFire {
     if (_blockAudioPlayingCallback) {
         _blockAudioPlayingCallback(self, GAudioInterruptionNone, nil);
     }
 }
 
-- (void)pausePlaying
-{
+- (void)pausePlaying {
     [_player pause];
     
     [self.audioPlayingTimer invalidate];
     self.audioPlayingTimer = nil;
 }
-- (void)stopPlaying
-{
+- (void)stopPlaying {
     [_player stop];
     _player.delegate = nil;
     
@@ -363,15 +357,13 @@ next:
     self.audioPlayingTimer = nil;
 }
 
-- (void)stopAndPreparePlaying
-{
+- (void)stopAndPreparePlaying {
     [self stopPlaying];
     
     [_player prepareToPlay];
 }
 
-- (void)deletePlaying
-{
+- (void)deletePlaying {
     [self stopPlaying];
     
     _blockAudioPlayingCallback = nil;
@@ -382,42 +374,36 @@ next:
 
 
 #pragma mark AVAudioPlayerDelegate
-- (void)audioPlayerDidFinishPlaying:(AVAudioPlayer *)player successfully:(BOOL)flag
-{
-    if (_blockAudioFinishCallback)
-    {
+- (void)audioPlayerDidFinishPlaying:(AVAudioPlayer *)player successfully:(BOOL)flag {
+    if (_blockAudioFinishCallback) {
         _blockAudioFinishCallback(self, flag);
     }
 }
-- (void)audioPlayerBeginInterruption:(AVAudioPlayer *)player
-{
+
+- (void)audioPlayerBeginInterruption:(AVAudioPlayer *)player {
     if (_blockAudioPlayingCallback) {
         _blockAudioPlayingCallback(self, GAudioInterruptionBegin, nil);
     }
 }
 
-- (void)audioPlayerEndInterruption:(AVAudioPlayer *)player withOptions:(NSUInteger)flags
-{
+- (void)audioPlayerEndInterruption:(AVAudioPlayer *)player withOptions:(NSUInteger)flags {
     if (_blockAudioPlayingCallback) {
         _blockAudioPlayingCallback(self, GAudioInterruptionEnd, nil);
     }
 }
 
-- (void)audioPlayerEndInterruption:(AVAudioPlayer *)player withFlags:(NSUInteger)flags
-{
+- (void)audioPlayerEndInterruption:(AVAudioPlayer *)player withFlags:(NSUInteger)flags {
     if (_blockAudioPlayingCallback) {
         _blockAudioPlayingCallback(self, GAudioInterruptionEnd, nil);
     }
 }
 
 #pragma mark - Record
-NSURL * GAudioRecordingFileURL(void)
-{
+NSURL * GAudioRecordingFileURL(void) {
     return [[GAudio sharedAudio] audioRecordingFileURL];
 }
 
-- (void)prepareRecordingWithCallback:(void (^)(GAudio *audio, GAudioInterruptionType type, NSError *error))callback
-{
+- (void)prepareRecordingWithCallback:(void (^)(GAudio *audio, GAudioInterruptionType type, NSError *error))callback {
     self.blockAudioRecordingCallback = callback;
     
     NSError *error;
@@ -441,7 +427,8 @@ NSURL * GAudioRecordingFileURL(void)
         }
         
         [self deleteRecording];
-    }else {
+    }
+	else {
         //创建录音成功
         
         BOOL inputAvailable;
@@ -468,7 +455,8 @@ NSURL * GAudioRecordingFileURL(void)
             
             [self deleteRecording];
             
-        }else {
+        }
+		else {
             
             //有录音源
             
@@ -489,8 +477,7 @@ NSURL * GAudioRecordingFileURL(void)
     }
 }
 
-- (void)startRecording
-{
+- (void)startRecording {
     _recorder.delegate = self;
     
     if ([_recorder record]) {
@@ -500,7 +487,8 @@ NSURL * GAudioRecordingFileURL(void)
             [CADisplayLink displayLinkWithTarget:self selector:@selector(audioRecordingTimerDidFire)];
             [_audioRecordingTimer addToRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
         }
-    }else {
+    }
+	else {
         //无法录音
     
         NSError *error = [[NSError alloc] initWithDomain: @"GAudioRecordingError"
@@ -515,37 +503,34 @@ NSURL * GAudioRecordingFileURL(void)
     
 }
 
-- (void)audioRecordingTimerDidFire
-{
+- (void)audioRecordingTimerDidFire {
     if (_blockAudioRecordingCallback) {
         _blockAudioRecordingCallback(self, GAudioInterruptionNone, nil);
     }
 }
 
-- (void)pauseRecording
-{
+- (void)pauseRecording {
     [_recorder pause];
     
     [self.audioRecordingTimer invalidate];
     self.audioRecordingTimer = nil;
 }
-- (void)stopRecording
-{
+
+- (void)stopRecording {
     [_recorder stop];
     _recorder.delegate = nil;
     
     [self.audioRecordingTimer invalidate];
     self.audioRecordingTimer = nil;
 }
-- (void)stopAndPrepareRecording
-{
+
+- (void)stopAndPrepareRecording {
     [self stopRecording];
     
     [_recorder prepareToRecord];
 }
 
-- (BOOL)copyRecordedAudioFileToURL:(NSURL *)url
-{
+- (BOOL)copyRecordedAudioFileToURL:(NSURL *)url {
     
     if ([[NSFileManager defaultManager] fileExistsAtPath:url.path]) {
         NSError *error = nil;
@@ -568,8 +553,7 @@ NSURL * GAudioRecordingFileURL(void)
     return YES;
 }
 
-- (void)deleteRecording
-{
+- (void)deleteRecording {
     [self stopRecording];
     
     [_recorder deleteRecording];
@@ -579,22 +563,19 @@ NSURL * GAudioRecordingFileURL(void)
 }
 
 //AVAudioRecorderDelegate
-- (void)audioRecorderBeginInterruption:(AVAudioRecorder *)recorder
-{
+- (void)audioRecorderBeginInterruption:(AVAudioRecorder *)recorder {
     if (_blockAudioRecordingCallback) {
         _blockAudioRecordingCallback(self, GAudioInterruptionBegin, nil);
     }
 }
 
-- (void)audioRecorderEndInterruption:(AVAudioRecorder *)recorder withOptions:(NSUInteger)flags
-{
+- (void)audioRecorderEndInterruption:(AVAudioRecorder *)recorder withOptions:(NSUInteger)flags {
     if (_blockAudioRecordingCallback) {
         _blockAudioRecordingCallback(self, GAudioInterruptionEnd, nil);
     }
 }
 
-- (void)audioRecorderEndInterruption:(AVAudioRecorder *)recorder withFlags:(NSUInteger)flags
-{
+- (void)audioRecorderEndInterruption:(AVAudioRecorder *)recorder withFlags:(NSUInteger)flags {
     if (_blockAudioRecordingCallback) {
         _blockAudioRecordingCallback(self, GAudioInterruptionEnd, nil);
     }

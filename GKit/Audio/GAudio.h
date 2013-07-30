@@ -47,9 +47,13 @@ typedef NSInteger GAudioInterruptionType;
 //Audio Session
 + (void)activeAudioSession;
 + (void)deactiveAudioSession;
+
 + (void)setSessionProperty:(GAudioSessionCategory)category;
++ (void)overrideCategoryMixWithOthers:(BOOL)isOverride;
++ (void)overrideOtherMixableAudioShouldDuck:(BOOL)isOverride;
 + (void)overrideCategoryDefaultToSpeaker:(BOOL)isOverride;
 + (void)overrideAudioRouteToSpeaker:(BOOL)isOverride;
+
 //+ (BOOL)isSilenced;
 
 //Init
