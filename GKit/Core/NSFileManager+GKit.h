@@ -12,7 +12,7 @@
 
 #pragma mark - Directory
 //create diretory
-+ (BOOL) createDiretoryWithName: (NSString *)directoryName;
++ (NSURL *) createDiretoryWithName: (NSString *)directoryName;
 //remove directory
 + (BOOL) removeDiretoryWithName: (NSString *)directoryName;
 //show directory infomation

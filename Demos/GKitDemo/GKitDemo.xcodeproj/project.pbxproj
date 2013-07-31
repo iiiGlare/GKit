@@ -114,10 +114,8 @@
 		FD47A80A16F83D4200CEA15A /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = FD47A80916F83D4200CEA15A /* Localizable.strings */; };
 		FD4BF0581751277E00400F47 /* GImageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FD4BF0571751277E00400F47 /* GImageManager.m */; };
 		FD4BF05E1751282500400F47 /* GApp.m in Sources */ = {isa = PBXBuildFile; fileRef = FD4BF05B1751282500400F47 /* GApp.m */; };
-		FD4BF05F1751282500400F47 /* GPayment.m in Sources */ = {isa = PBXBuildFile; fileRef = FD4BF05D1751282500400F47 /* GPayment.m */; };
 		FD4BF064175128A000400F47 /* GSinglePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = FD4BF061175128A000400F47 /* GSinglePicker.m */; };
 		FD4BF065175128A000400F47 /* GSwitch.m in Sources */ = {isa = PBXBuildFile; fileRef = FD4BF063175128A000400F47 /* GSwitch.m */; };
-		FD4BF068175128CD00400F47 /* GDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = FD4BF067175128CD00400F47 /* GDownloader.m */; };
 		FDA02EE1173FB09400AA3D8D /* max_track@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FDA02EDE173FB09400AA3D8D /* max_track@2x.png */; };
 		FDA02EE2173FB09400AA3D8D /* min_track@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FDA02EDF173FB09400AA3D8D /* min_track@2x.png */; };
 		FDA02EE3173FB09400AA3D8D /* thumb@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FDA02EE0173FB09400AA3D8D /* thumb@2x.png */; };
@@ -319,14 +317,10 @@
 		FD4BF0571751277E00400F47 /* GImageManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GImageManager.m; sourceTree = "<group>"; };
 		FD4BF05A1751282500400F47 /* GApp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GApp.h; sourceTree = "<group>"; };
 		FD4BF05B1751282500400F47 /* GApp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GApp.m; sourceTree = "<group>"; };
-		FD4BF05C1751282500400F47 /* GPayment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GPayment.h; sourceTree = "<group>"; };
-		FD4BF05D1751282500400F47 /* GPayment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GPayment.m; sourceTree = "<group>"; };
 		FD4BF060175128A000400F47 /* GSinglePicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GSinglePicker.h; sourceTree = "<group>"; };
 		FD4BF061175128A000400F47 /* GSinglePicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GSinglePicker.m; sourceTree = "<group>"; };
 		FD4BF062175128A000400F47 /* GSwitch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GSwitch.h; sourceTree = "<group>"; };
 		FD4BF063175128A000400F47 /* GSwitch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GSwitch.m; sourceTree = "<group>"; };
-		FD4BF066175128CD00400F47 /* GDownloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GDownloader.h; sourceTree = "<group>"; };
-		FD4BF067175128CD00400F47 /* GDownloader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GDownloader.m; sourceTree = "<group>"; };
 		FDA02EDE173FB09400AA3D8D /* max_track@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "max_track@2x.png"; sourceTree = "<group>"; };
 		FDA02EDF173FB09400AA3D8D /* min_track@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "min_track@2x.png"; sourceTree = "<group>"; };
 		FDA02EE0173FB09400AA3D8D /* thumb@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "thumb@2x.png"; sourceTree = "<group>"; };
@@ -794,8 +788,6 @@
 				FD0BC5DA17043C60000CC973 /* AssetsLibrary.framework */,
 				FD4BF0561751277E00400F47 /* GImageManager.h */,
 				FD4BF0571751277E00400F47 /* GImageManager.m */,
-				FD4BF066175128CD00400F47 /* GDownloader.h */,
-				FD4BF067175128CD00400F47 /* GDownloader.m */,
 			);
 			path = DataManager;
 			sourceTree = "<group>";
@@ -807,8 +799,6 @@
 				FD4BF05A1751282500400F47 /* GApp.h */,
 				FD4BF05B1751282500400F47 /* GApp.m */,
 				F885B569174B5CA20059E609 /* StoreKit.framework */,
-				FD4BF05C1751282500400F47 /* GPayment.h */,
-				FD4BF05D1751282500400F47 /* GPayment.m */,
 			);
 			path = AppStore;
 			sourceTree = "<group>";
@@ -1006,10 +996,8 @@
 				F87191C9174B5DF600E5BEF9 /* UIImage+GKit.m in Sources */,
 				FD4BF0581751277E00400F47 /* GImageManager.m in Sources */,
 				FD4BF05E1751282500400F47 /* GApp.m in Sources */,
-				FD4BF05F1751282500400F47 /* GPayment.m in Sources */,
 				FD4BF064175128A000400F47 /* GSinglePicker.m in Sources */,
 				FD4BF065175128A000400F47 /* GSwitch.m in Sources */,
-				FD4BF068175128CD00400F47 /* GDownloader.m in Sources */,
 				AF98EB761758320D0004FBF4 /* GPicker.m in Sources */,
 				AF6FB473175DEB860098225C /* GGestureCell.m in Sources */,
 				AFBB5F5C1799071F00AC38B0 /* GDatePicker.m in Sources */,

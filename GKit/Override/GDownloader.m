@@ -8,12 +8,17 @@
 
 #import "GDownloader.h"
 #import "GCore.h"
-//#import "MBProgressHUD.h"
+
+#if MB_INSTANCETYPE
+#import "MBProgressHUD.h"
+#endif
 
 static NSMutableArray *_cacheDownloaders = nil;
 
 @interface GDownloader ()
-//<MBProgressHUDDelegate>
+#if MB_INSTANCETYPE
+<MBProgressHUDDelegate>
+#endif
 {
 	long long _expectedLength;
 	long long _currentLength;
@@ -22,7 +27,9 @@ static NSMutableArray *_cacheDownloaders = nil;
 @property (nonatomic, strong) NSURLConnection *connection;
 @property (nonatomic, strong) NSMutableData *receivedData;
 
-//@property (nonatomic, strong) MBProgressHUD *HUD;
+#if MB_INSTANCETYPE
+@property (nonatomic, strong) MBProgressHUD *HUD;
+#endif
 
 - (void)start;
 @end
@@ -55,9 +62,11 @@ static NSMutableArray *_cacheDownloaders = nil;
 }
 - (void)start
 {
-//	self.HUD = [MBProgressHUD showHUDAddedTo:[[UIApplication sharedApplication] keyWindow] animated:YES];
-//	_HUD.labelText = NSLocalizedString(@"Downloading...", @"");
-//	_HUD.delegate = self;
+#if MB_INSTANCETYPE
+	self.HUD = [MBProgressHUD showHUDAddedTo:[[UIApplication sharedApplication] keyWindow] animated:YES];
+	_HUD.labelText = NSLocalizedString(@"Downloading...", @"");
+	_HUD.delegate = self;
+#endif
 	NSURLRequest *theRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:[self.urlString stringByReplacingOccurrencesOfString:@" " withString:@"%20"]]
 												cachePolicy:NSURLRequestReloadIgnoringLocalCacheData
 											timeoutInterval:60];
@@ -67,8 +76,10 @@ static NSMutableArray *_cacheDownloaders = nil;
 - (void)cancelDownload
 {
 	[self.connection cancel];
-//	_HUD.labelText = NSLocalizedString(@"Download Cancelled", @"");
-//	[_HUD hide:YES afterDelay:2];
+#if MB_INSTANCETYPE
+	_HUD.labelText = NSLocalizedString(@"Download Cancelled", @"");
+	[_HUD hide:YES afterDelay:2];
+#endif
 }
 
 #pragma mark -
@@ -91,7 +102,9 @@ static NSMutableArray *_cacheDownloaders = nil;
 	
 	_expectedLength = contentLength;
 	_currentLength = 0;
-//	_HUD.mode = MBProgressHUDModeAnnularDeterminate;
+#if MB_INSTANCETYPE
+	_HUD.mode = MBProgressHUDModeAnnularDeterminate;
+#endif
 }
 
 
@@ -101,47 +114,49 @@ static NSMutableArray *_cacheDownloaders = nil;
     [self.receivedData appendData:data];
 	
 	_currentLength += [data length];
-//	_HUD.progress = _currentLength / (float)_expectedLength;
+#if MB_INSTANCETYPE
+	_HUD.progress = _currentLength / (float)_expectedLength;
+#endif
 }
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection
 {
 	if (_expectedLength==_currentLength) {
-//		[NSFileManager createFileAtPath:self.filePath
-//							   contents:self.receivedData];
-		//	HUD.customView = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"37x-Checkmark.png"]] autorelease];
-		//	HUD.mode = MBProgressHUDModeCustomView;
-//		[_HUD hide:YES];
+		[NSFileManager createFileAtPath:self.filePath
+							   contents:self.receivedData];
+#if MB_INSTANCETYPE
+		[_HUD hide:YES];
+#endif
 	}else{
 		if (_isShowError) {
-//			_HUD.labelText = NSLocalizedString(@"Download Failed.", @"");
-//			[_HUD hide:YES afterDelay:2];
+			_HUD.labelText = NSLocalizedString(@"Download Failed.", @"");
+			[_HUD hide:YES afterDelay:2];
 		}else{
-//			[_HUD hide:YES];
+			[_HUD hide:YES];
 		}
 	}
 }
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
 	if (_isShowError) {
-//		_HUD.labelText = error.localizedDescription;
-//		[_HUD hide:YES afterDelay:2];
+		_HUD.labelText = error.localizedDescription;
+		[_HUD hide:YES afterDelay:2];
 	}else{
-//		[_HUD hide:YES];
+		[_HUD hide:YES];
 	}
 }
 
 #pragma mark - MBProgressHUDDelegate methods
-//- (void)hudWasHidden:(MBProgressHUD *)hud {
-//	// Remove HUD from screen when the HUD was hidded
-//	[_HUD removeFromSuperview];
-//	self.HUD = nil;
-//	
-//	if ([[NSFileManager defaultManager] fileExistsAtPath:self.filePath]) {
-//		[[NSNotificationCenter defaultCenter] postNotificationName:kGDownloaderDidFinishNotification object:nil];
-//	}
-//	
-//	[_cacheDownloaders removeObject:self];
-//}
+- (void)hudWasHidden:(MBProgressHUD *)hud {
+	// Remove HUD from screen when the HUD was hidded
+	[_HUD removeFromSuperview];
+	self.HUD = nil;
+	
+	if ([[NSFileManager defaultManager] fileExistsAtPath:self.filePath]) {
+		[[NSNotificationCenter defaultCenter] postNotificationName:kGDownloaderDidFinishNotification object:nil];
+	}
+	
+	[_cacheDownloaders removeObject:self];
+}
 
 @end

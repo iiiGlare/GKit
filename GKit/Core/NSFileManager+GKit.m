@@ -15,10 +15,10 @@
 @implementation NSFileManager (GKit)
 
 ///////////
-+ (BOOL) createDiretoryWithName: (NSString *)directoryName
++ (NSURL *) createDiretoryWithName: (NSString *)directoryName
 {
-	NSURL *url = _GURLForDirectroyNamed(directoryName);
-	if (url==nil) return NO;
+	NSURL * url = _GURLForDirectroyNamed(directoryName);
+	if (url==nil) return nil;
 	
 	//Create directory
 	NSError *error = nil;
@@ -28,10 +28,10 @@
 											   error: &error])
 	{
 		GPRINTError(error);
-		return NO;
+		return nil;
 	}
 	
-	return YES;
+	return url;
 }
 
 ///////////
