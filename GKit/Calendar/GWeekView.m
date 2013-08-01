@@ -715,19 +715,29 @@
             }
         }
     }
-    else {
-        if (_delegate &&
-            [_delegate respondsToSelector:@selector(weekView:requireGEventAtDate:)])
-        {
-            CGPoint offsetPoint = [self.scrollView convertPoint:location fromView:self];
-            NSInteger dayPosition = [self dayPositionForPoint:offsetPoint];
-            NSDate *date = [self dateForOffset:offsetPoint.y atDayPosition:dayPosition];
-            [_delegate weekView:self requireGEventAtDate:date];
-        }
-    }
 }
 
 #pragma mark GMoveSpriteCatcherProtocol
+//
+- (UIView<GMoveSpriteProtocol> *)requireSpriteAtPoint:(CGPoint)point inScene:(GMoveScene *)scene {
+	CGPoint locationInSelf = [self convertPoint:point fromView:scene];
+	
+	if (_delegate &&
+		[_delegate respondsToSelector:@selector(weekView:requireGEventAtDate:)])
+	{
+		CGPoint offsetPoint = [self.scrollView convertPoint:locationInSelf fromView:self];
+		NSInteger dayPosition = [self dayPositionForPoint:offsetPoint];
+		NSDate * date = [self dateForOffset:offsetPoint.y atDayPosition:dayPosition];
+		GEvent * gEvent = [_delegate weekView:self requireGEventAtDate:date];
+		if (gEvent) {
+			[self layoutGEvent:gEvent];
+			return (UIView<GMoveSpriteProtocol> *)[self findSpriteAtPoint:locationInSelf];
+		}
+	}
+	
+	return nil;
+}
+
 //preprare
 - (GMoveSnapshot *)prepareSnapshotForOwnSprite:(UIView *)sprite
 {

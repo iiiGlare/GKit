@@ -7,23 +7,28 @@
 //
 
 @class GMoveSnapshot;
+@class GMoveScene;
+@protocol GMoveSpriteProtocol;
 
 #define GMoveSpriteCatcherProtocol() NSProtocolFromString(@"GMoveSpriteCatcherProtocol")
 
 @protocol GMoveSpriteCatcherProtocol <NSObject>
 
 @optional
-//prepare
+// find sprite
+- (UIView<GMoveSpriteProtocol> *)requireSpriteAtPoint:(CGPoint)point inScene:(GMoveScene *)scene;
+
+// prepare
 - (GMoveSnapshot *)prepareSnapshotForOwnSprite:(UIView *)sprite;
 - (CGRect)prepareFrameForSnapshot:(GMoveSnapshot *)snapshot;
 - (void)didPrepareSnapshot:(GMoveSnapshot *)snapshot;
 
-//moving snapshot
+// moving snapshot
 - (void)beginCatchingSnapshot:(GMoveSnapshot *)snapshot;
 - (void)isCatchingSnapshot:(GMoveSnapshot *)snapshot;
 - (void)endCatchingSnapshot:(GMoveSnapshot *)snapshot;
 
-//did finish
+// did finish
 - (void)didCatchSnapshot:(GMoveSnapshot *)snapshot;
 - (void)removeOwnSprite:(UIView *)sprite;
 

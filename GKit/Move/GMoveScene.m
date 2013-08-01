@@ -45,7 +45,15 @@
         {
             CGPoint touchPoint = [gestureRecognizer locationInView:self];
             
-            UIView *sprite = [self findSpriteAtPoint:touchPoint];
+            UIView * sprite = [self findSpriteAtPoint:touchPoint];
+			if (sprite==nil) {
+				UIView *topestView = [self hitTest:touchPoint withEvent:nil];
+				id<GMoveSpriteCatcherProtocol> catcher = [topestView findCatcher];
+				if ([catcher respondsToSelector:@selector(requireSpriteAtPoint:inScene:)]) {
+					sprite = [catcher requireSpriteAtPoint:touchPoint inScene:self];
+				}
+			}
+			
             if (sprite) {
                 
                 CGRect spriteFrameInSelf = [self convertRect:sprite.frame fromView:sprite.superview];

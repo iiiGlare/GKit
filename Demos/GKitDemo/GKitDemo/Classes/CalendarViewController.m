@@ -182,13 +182,19 @@
     [self.navigationController pushViewController:eventVC animated:YES];
 }
 
-- (void)dayView:(GDayView *)dayView requireGEventAtDate:(NSDate *)date
+- (GEvent *)dayView:(GDayView *)dayView requireGEventAtDate:(NSDate *)date
 {
-    [[[UIAlertView alloc] initWithTitle:@"GDayView"
-                                message:[date dateStringWithFormat:@"yyyy-MM-dd HH:mm:SS"]
-                               delegate:nil
-                      cancelButtonTitle:@"OK"
-                      otherButtonTitles:nil] show];
+	GEvent *event = [[GEvent alloc] init];
+    event.title = @"long press added event";
+    event.beginTime = [date dateByAddingTimeInterval:GTimeIntervalFromMinitues(-30)];
+    event.endTime = [date dateByAddingTimeInterval:GTimeIntervalFromMinitues(30)];
+	return event;
+
+//    [[[UIAlertView alloc] initWithTitle:@"GDayView"
+//                                message:[date dateStringWithFormat:@"yyyy-MM-dd HH:mm:SS"]
+//                               delegate:nil
+//                      cancelButtonTitle:@"OK"
+//                      otherButtonTitles:nil] show];
 }
 
 #pragma mark - GWeekView
@@ -253,13 +259,19 @@
                       otherButtonTitles:nil] show];
 }
 
-- (void)weekView:(GWeekView *)weekView requireGEventAtDate:(NSDate *)date
+- (GEvent *)weekView:(GWeekView *)weekView requireGEventAtDate:(NSDate *)date
 {
-    [[[UIAlertView alloc] initWithTitle:@"GWeekView"
-                                message:[date dateStringWithFormat:@"yyyy-MM-dd HH:mm:SS"]
-                               delegate:nil
-                      cancelButtonTitle:@"OK"
-                      otherButtonTitles:nil] show];
+	GEvent *event = [[GEvent alloc] init];
+    event.title = @"long press added event";
+    event.beginTime = [date dateByAddingTimeInterval:GTimeIntervalFromMinitues(-30)];
+    event.endTime = [date dateByAddingTimeInterval:GTimeIntervalFromMinitues(30)];
+	return event;
+
+//    [[[UIAlertView alloc] initWithTitle:@"GWeekView"
+//                                message:[date dateStringWithFormat:@"yyyy-MM-dd HH:mm:SS"]
+//                               delegate:nil
+//                      cancelButtonTitle:@"OK"
+//                      otherButtonTitles:nil] show];
 }
 
 #pragma mark - GMove

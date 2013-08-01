@@ -521,6 +521,25 @@
 }
 
 #pragma mark GMoveSpriteCatcherProtocol
+//
+- (UIView<GMoveSpriteProtocol> *)requireSpriteAtPoint:(CGPoint)point inScene:(GMoveScene *)scene {
+	CGPoint locationInSelf = [self convertPoint:point fromView:scene];
+	
+	if (_delegate &&
+		[_delegate respondsToSelector:@selector(dayView:requireGEventAtDate:)])
+	{
+		CGFloat offset = [self.scrollView convertPoint:locationInSelf fromView:self].y;
+		NSDate * date = [self dateForOffset:offset];
+		GEvent * gEvent = [_delegate dayView:self requireGEventAtDate:date];
+		if (gEvent) {
+			[self layoutGEvent:gEvent];
+			return (UIView<GMoveSpriteProtocol> *)[self findSpriteAtPoint:locationInSelf];
+		}
+	}
+	
+	return nil;
+}
+
 //preprare
 - (GMoveSnapshot *)prepareSnapshotForOwnSprite:(UIView *)sprite
 {
