@@ -188,48 +188,48 @@ next:
 											   &allowOverride);
 }
 
-+ (BOOL)isSilenced {
-#if TARGET_IPHONE_SIMULATOR
-	// return NO in simulator. Code causes crashes for some reason.
-	return NO;
-#endif
-	
-	if ([UIDevice isOSVersionLowerThanVersion:@"5.0" includeEqual:NO]) {
-		CFStringRef state;
-		UInt32 propertySize = sizeof(CFStringRef);
-		AudioSessionGetProperty(kAudioSessionProperty_AudioRoute,
-								&propertySize,
-								&state);
-		
-		if(CFStringGetLength(state) > 0)
-			return NO;
-		else
-			return YES;
-	}else{
-		
-		CFDictionaryRef asCFType = nil;
-		UInt32 dataSize = sizeof(asCFType);
-		AudioSessionGetProperty(kAudioSessionProperty_AudioRouteDescription, &dataSize, &asCFType);
-		NSDictionary *easyPeasy = (__bridge NSDictionary *)asCFType;
-		NSArray *outputs = [easyPeasy valueForKey:(__bridge NSString *)kAudioSession_AudioRouteKey_Outputs];
-        //		NSDictionary *firstOutput = (NSDictionary *)[ objectAtIndex:0];
-        //		NSString *portType = (NSString *)[firstOutput valueForKey:@"RouteDetailedDescription_PortType"];
-        //		NSLog(@"first output port type is: %@!", portType);
-		NSLog(@"%@",outputs);
-		
-        //		CFDictionaryRef dic;
-        //		UInt32 propertySize = sizeof(CFDictionaryRef);
-        //		AudioSessionGetProperty(kAudioSessionProperty_AudioRouteDescription,
-        //								&propertySize,
-        //								&dic);
-        //
-        //		if(CFDictionaryGetValue(<#CFDictionaryRef theDict#>, <#const void *key#>)(state) > 0)
-        //			return NO;
-        //		else
-        //			return YES;
-		return NO;
-	}
-}
+//+ (BOOL)isSilenced {
+//#if TARGET_IPHONE_SIMULATOR
+//	// return NO in simulator. Code causes crashes for some reason.
+//	return NO;
+//#endif
+//	
+//	if ([UIDevice isOSVersionLowerThanVersion:@"5.0" includeEqual:NO]) {
+//		CFStringRef state;
+//		UInt32 propertySize = sizeof(CFStringRef);
+//		AudioSessionGetProperty(kAudioSessionProperty_AudioRoute,
+//								&propertySize,
+//								&state);
+//		
+//		if(CFStringGetLength(state) > 0)
+//			return NO;
+//		else
+//			return YES;
+//	}else{
+//		
+//		CFDictionaryRef asCFType = nil;
+//		UInt32 dataSize = sizeof(asCFType);
+//		AudioSessionGetProperty(kAudioSessionProperty_AudioRouteDescription, &dataSize, &asCFType);
+//		NSDictionary *easyPeasy = (__bridge NSDictionary *)asCFType;
+//		NSArray *outputs = [easyPeasy valueForKey:(__bridge NSString *)kAudioSession_AudioRouteKey_Outputs];
+//        //		NSDictionary *firstOutput = (NSDictionary *)[ objectAtIndex:0];
+//        //		NSString *portType = (NSString *)[firstOutput valueForKey:@"RouteDetailedDescription_PortType"];
+//        //		NSLog(@"first output port type is: %@!", portType);
+//		NSLog(@"%@",outputs);
+//		
+//        //		CFDictionaryRef dic;
+//        //		UInt32 propertySize = sizeof(CFDictionaryRef);
+//        //		AudioSessionGetProperty(kAudioSessionProperty_AudioRouteDescription,
+//        //								&propertySize,
+//        //								&dic);
+//        //
+//        //		if(CFDictionaryGetValue(<#CFDictionaryRef theDict#>, <#const void *key#>)(state) > 0)
+//        //			return NO;
+//        //		else
+//        //			return YES;
+//		return NO;
+//	}
+//}
 
 
 #pragma mark - Init

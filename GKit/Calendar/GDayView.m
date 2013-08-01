@@ -532,6 +532,7 @@
 		NSDate * date = [self dateForOffset:offset];
 		GEvent * gEvent = [_delegate dayView:self requireGEventAtDate:date];
 		if (gEvent) {
+			gEvent.isLongPresAdded = YES;
 			[self layoutGEvent:gEvent];
 			return (UIView<GMoveSpriteProtocol> *)[self findSpriteAtPoint:locationInSelf];
 		}

@@ -22,4 +22,6 @@
 @property (nonatomic, copy) UIColor * backgroundColor;
 @property (nonatomic, copy) UIColor * foregroundColor;
 
+@property (nonatomic) BOOL isLongPresAdded;
+
 @end

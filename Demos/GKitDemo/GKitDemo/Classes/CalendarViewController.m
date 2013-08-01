@@ -197,6 +197,12 @@
 //                      otherButtonTitles:nil] show];
 }
 
+- (void)dayView:(GDayView *)dayView didUpdateGEvent:(GEvent *)gEvent {
+	if (gEvent.isLongPresAdded) {
+		[self dayView:dayView didSelectGEvent:gEvent];
+	}
+}
+
 #pragma mark - GWeekView
 - (NSArray *)eventsForWeekView:(GWeekView *)weekView
 {
@@ -272,6 +278,12 @@
 //                               delegate:nil
 //                      cancelButtonTitle:@"OK"
 //                      otherButtonTitles:nil] show];
+}
+
+- (void)weekView:(GWeekView *)weekView didUpdateGEvent:(GEvent *)event {
+	if (event.isLongPresAdded) {
+		[self weekView:weekView didSelectGEvent:event];
+	}
 }
 
 #pragma mark - GMove

@@ -26,6 +26,8 @@
         self.backgroundColor = [UIColor whiteColor];
         self.borderColor = [UIColor blackColor];
         self.foregroundColor = [UIColor blackColor];
+		
+		self.isLongPresAdded = NO;
     }
     return self;
 }

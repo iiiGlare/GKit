@@ -730,6 +730,7 @@
 		NSDate * date = [self dateForOffset:offsetPoint.y atDayPosition:dayPosition];
 		GEvent * gEvent = [_delegate weekView:self requireGEventAtDate:date];
 		if (gEvent) {
+			gEvent.isLongPresAdded = YES;
 			[self layoutGEvent:gEvent];
 			return (UIView<GMoveSpriteProtocol> *)[self findSpriteAtPoint:locationInSelf];
 		}
