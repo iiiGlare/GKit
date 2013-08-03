@@ -343,6 +343,7 @@
             [self.scrollView addSubview:_timeIndicator];
         }
         
+        [self.scrollView bringSubviewToFront:_timeIndicator];
         
         return YES;
     } else {
