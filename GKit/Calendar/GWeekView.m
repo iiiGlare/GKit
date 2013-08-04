@@ -361,7 +361,7 @@
 {
     if (_scrollView==nil) {
         _scrollView = [[UIScrollView alloc] initWithFrame:self.bounds];
-        _scrollView.backgroundColor = [UIColor whiteColor];
+        _scrollView.backgroundColor = [UIColor clearColor];
         _scrollView.autoresizingMask = GViewAutoresizingFlexibleSize;
     }
     return _scrollView;
@@ -372,7 +372,7 @@
     if (_weekGridView==nil) {
         _weekGridView = [[GWeekGridView alloc] initWithFrame:
                          CGRectMake(0, _gridTopMargin, _scrollView.width, _gridHeight)];
-        _weekGridView.backgroundColor = [UIColor whiteColor];
+        _weekGridView.backgroundColor = [UIColor clearColor];
         _weekGridView.hourViewWidth = _hourViewWidth;
         _weekGridView.gridLineTopMargin = _gridLineTopMargin;
         _weekGridView.gridLineBottomMargin = _gridLineBottomMargin;
@@ -407,7 +407,7 @@
     if (_weekdayView==nil) {
         _weekdayView = [[GWeekdayView alloc] initWithFrame:
                         CGRectMake(0, 0, _scrollView.width, _dayViewHeight)];
-        _weekdayView.backgroundColor = [UIColor whiteColor];
+        _weekdayView.backgroundColor = [UIColor clearColor];
         
         _weekdayView.weekdayFont = _weekdayFont;
         _weekdayView.weekdayColor = _weekdayColor;
