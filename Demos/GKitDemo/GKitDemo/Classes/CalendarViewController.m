@@ -55,18 +55,22 @@
     
     self.dayView = [[GDayView alloc] initWithFrame:self.contentView.bounds];
     _dayView.gridLineColor = [UIColor redColor];
+    _dayView.showGirdHalfHourLines = NO;
     _dayView.isGridHalfLineDashed = NO;
-    _dayView.showHalfHours = YES;
-    _dayView.centerHours = YES;
+    _dayView.hourViewBackgroundColor = [UIColor redColor];
+    _dayView.showHalfHours = NO;
+    _dayView.centerHours = NO;
     _dayView.hourHeight = 72.0f;
     _dayView.hourTextColor = GRandomColor();
     
     self.weekView = [[GWeekView alloc] initWithFrame:self.contentView.bounds];
     _weekView.firstWeekday = GWeekdayTypeMonday;
     _weekView.gridLineColor = [UIColor redColor];
+    _weekView.showGirdHalfHourLines = NO;
     _weekView.isGridHalfLineDashed = NO;
-    _weekView.showHalfHours = YES;
-    _weekView.centerHours = YES;
+    _weekView.hourViewBackgroundColor = [UIColor redColor];
+    _weekView.showHalfHours = NO;
+    _weekView.centerHours = NO;
     _weekView.hourHeight = 72.0f;
     _weekView.hourTextColor = GRandomColor();
     _weekView.dayViewHeight = 20;

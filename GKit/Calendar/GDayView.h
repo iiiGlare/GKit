@@ -33,16 +33,18 @@
 
 // time line
 @property (nonatomic, strong, readonly) UIView * timeIndicator;
-@property (nonatomic, assign) CGFloat timeIndicatorOffset; // default 1 hour height
+@property (nonatomic) CGFloat timeIndicatorOffset; // default 1 hour height
 
 // grid view
-@property (nonatomic, strong) UIColor * gridLineColor;      // default gray color
-@property (nonatomic, assign) BOOL isGridHalfLineDashed;    // default YES
+@property (nonatomic, strong) UIColor * gridLineColor;                // default gray color
+@property (nonatomic) BOOL showGirdHalfHourLines;       // default YES
+@property (nonatomic) BOOL isGridHalfLineDashed;        // default YES
 
 // hour
-@property (nonatomic, assign) BOOL showHalfHours;       // default NO
-@property (nonatomic, assign) BOOL centerHours;         // default NO
-@property (nonatomic, assign) CGFloat hourHeight;       // default 60.0f
+@property (nonatomic, strong) UIColor * hourViewBackgroundColor;      // default clear color
+@property (nonatomic) BOOL showHalfHours;       // default NO
+@property (nonatomic) BOOL centerHours;         // default NO
+@property (nonatomic) CGFloat hourHeight;       // default 60.0f
 @property (nonatomic, strong) UIFont * hourTextFont;    // default systemfont 12.0f
 @property (nonatomic, strong) UIColor * hourTextColor;  // default gray color
 

@@ -18,7 +18,8 @@
 @property (nonatomic, assign) CGFloat gridLineBottomMargin;
 
 @property (nonatomic, strong) UIColor * gridLineColor;      // default gray color
-@property (nonatomic, assign) BOOL isGridHalfLineDashed;    // default YES
+@property (nonatomic) BOOL showGirdHalfHourLines;       // default YES
+@property (nonatomic) BOOL isGridHalfLineDashed;        // default YES
 @end
 
 @implementation GWeekGridView
@@ -58,20 +59,21 @@
     CGContextStrokePath(c);
     
     //half hour lines
-    CGContextSetLineWidth(c, 0.4);
-    CGContextSetStrokeColorWithColor(c, [_gridLineColor CGColor]);
-    if (_isGridHalfLineDashed) {
-        CGFloat lengths[] = {3,2};
-        CGContextSetLineDash(c, 0, lengths, 2);
+    if (_showGirdHalfHourLines) {
+        CGContextSetLineWidth(c, 0.4);
+        CGContextSetStrokeColorWithColor(c, [_gridLineColor CGColor]);
+        if (_isGridHalfLineDashed) {
+            CGFloat lengths[] = {3,2};
+            CGContextSetLineDash(c, 0, lengths, 2);
+        }
+        CGContextBeginPath(c);
+        for (NSInteger i=0; i<GHoursInDay; i++) {
+            CGFloat y = (i+0.5)*hourHeight+_gridLineTopMargin;
+            CGContextMoveToPoint(c, 0, y);
+            CGContextAddLineToPoint(c, width, y);
+        }
+        CGContextStrokePath(c);
     }
-    CGContextBeginPath(c);
-    for (NSInteger i=0; i<GHoursInDay; i++) {
-        CGFloat y = (i+0.5)*hourHeight+_gridLineTopMargin;
-        CGContextMoveToPoint(c, 0, y);
-        CGContextAddLineToPoint(c, width, y);
-    }
-    CGContextStrokePath(c);
-
 }
 
 @end
@@ -94,13 +96,6 @@
 @end
 
 @implementation GWeekdayView
-- (id)initWithFrame:(CGRect)frame
-{
-    self = [super initWithFrame:frame];
-    if (self) {
-    }
-    return self;
-}
 - (void)layoutSubviews
 {
     if (_weekdayLabels == nil) {
@@ -316,9 +311,11 @@
     _gridLineBottomMargin = 1.0;
 
     _gridLineColor = [UIColor grayColor];
+    _showGirdHalfHourLines = YES;
     _isGridHalfLineDashed = YES;
     
     // hour
+    _hourViewBackgroundColor = [UIColor clearColor];
     _hourHeight = 60.0;
     _hourViewWidth = 50.0;
 
@@ -381,6 +378,7 @@
         _weekGridView.gridLineBottomMargin = _gridLineBottomMargin;
         
         _weekGridView.gridLineColor = _gridLineColor;
+        _weekGridView.showGirdHalfHourLines = _showGirdHalfHourLines;
         _weekGridView.isGridHalfLineDashed = _isGridHalfLineDashed;
     }
     return _weekGridView;
@@ -390,8 +388,8 @@
 {
     if (_weekHourView==nil) {
         _weekHourView = [[GWeekHourView alloc] initWithFrame:
-                         CGRectMake(0, 0, _hourViewWidth, _scrollView.contentSize.height)];
-        _weekHourView.backgroundColor = [UIColor whiteColor];
+                         CGRectMake(0, 0, _hourViewWidth,  _gridTopMargin+_gridHeight+_gridBottomMargin)];
+        _weekHourView.backgroundColor = _hourViewBackgroundColor;
         
         _weekHourView.startCenterY = _gridTopMargin + _gridLineTopMargin + (_centerHours?_hourHeight*0.25:0);
         _weekHourView.endCenterY = _gridTopMargin + _gridHeight - _gridLineBottomMargin - (_centerHours?_hourHeight*0.25:0);

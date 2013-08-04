@@ -15,11 +15,12 @@
 
 #pragma mark - GDayGridView
 @interface GDayGridView : UIView
-@property (nonatomic, assign) CGFloat gridLineTopMargin;
-@property (nonatomic, assign) CGFloat gridLineBottomMargin;
+@property (nonatomic) CGFloat gridLineTopMargin;
+@property (nonatomic) CGFloat gridLineBottomMargin;
 
 @property (nonatomic, strong) UIColor * gridLineColor;      // default gray color
-@property (nonatomic, assign) BOOL isGridHalfLineDashed;    // default YES
+@property (nonatomic) BOOL showGirdHalfHourLines;       // default YES
+@property (nonatomic) BOOL isGridHalfLineDashed;        // default YES
 @end
 @implementation GDayGridView
 - (void)drawRect:(CGRect)rect
@@ -43,19 +44,21 @@
     CGContextStrokePath(c);
     
     //half hour lines
-    CGContextSetLineWidth(c, 0.4);
-    CGContextSetStrokeColorWithColor(c, [_gridLineColor CGColor]);
-    if (_isGridHalfLineDashed) {
-        CGFloat lengths[] = {3,2};
-        CGContextSetLineDash(c, 0, lengths, 2);        
+    if (_showGirdHalfHourLines) {
+        CGContextSetLineWidth(c, 0.4);
+        CGContextSetStrokeColorWithColor(c, [_gridLineColor CGColor]);
+        if (_isGridHalfLineDashed) {
+            CGFloat lengths[] = {3,2};
+            CGContextSetLineDash(c, 0, lengths, 2);
+        }
+        CGContextBeginPath(c);
+        for (NSInteger i=0; i<GHoursInDay+1; i++) {
+            CGFloat y = (i+0.5)*hourHeight+_gridLineTopMargin;
+            CGContextMoveToPoint(c, 0, y);
+            CGContextAddLineToPoint(c, width, y);
+        }
+        CGContextStrokePath(c);
     }
-    CGContextBeginPath(c);
-    for (NSInteger i=0; i<GHoursInDay+1; i++) {
-        CGFloat y = (i+0.5)*hourHeight+_gridLineTopMargin;
-        CGContextMoveToPoint(c, 0, y);
-        CGContextAddLineToPoint(c, width, y);
-    }
-    CGContextStrokePath(c);
 }
 @end
 
@@ -71,13 +74,7 @@
 @property (nonatomic, weak) UIColor * hourTextColor;  // default gray color
 @end
 @implementation GDayHourView
-- (id)initWithFrame:(CGRect)frame
-{
-    self = [super initWithFrame:frame];
-    if (self) {
-    }
-    return self;
-}
+
 - (void)layoutSubviews
 {
     NSInteger numberOfLabels = GHoursInDay+1;
@@ -175,22 +172,25 @@
 }
 - (void)customInitialize
 {
-    _hourHeight = 60.0;
-    _hourViewWidth = 50.0;
-    _gridTopMargin = 15.0;
-    _gridBottomMargin = 15.0;
-    _gridLineTopMargin = 1.0;
-    _gridLineBottomMargin = 1.0;
-    
     // time indicator
     _timeIndicator = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.width, 1)];
     _timeIndicator.backgroundColor = [UIColor greenColor];
     
     // grid view
+    _gridTopMargin = 15.0;
+    _gridBottomMargin = 15.0;
+    _gridLineTopMargin = 1.0;
+    _gridLineBottomMargin = 1.0;
+
     _gridLineColor = [UIColor grayColor];
+    _showGirdHalfHourLines = YES;
     _isGridHalfLineDashed = YES;
     
     // hour
+    _hourViewBackgroundColor = [UIColor clearColor];
+    _hourHeight = 60.0;
+    _hourViewWidth = 50.0;
+    
     _showHalfHours = NO;
     _centerHours = NO;
     _hourTextFont = [UIFont systemFontOfSize:12.0f];
@@ -235,6 +235,7 @@
         _dayGridView.gridLineBottomMargin = _gridLineBottomMargin;
         
         _dayGridView.gridLineColor = _gridLineColor;
+        _dayGridView.showGirdHalfHourLines = _showGirdHalfHourLines;
         _dayGridView.isGridHalfLineDashed = _isGridHalfLineDashed;
     }
     return _dayGridView;
@@ -243,8 +244,8 @@
 - (GDayHourView *)dayHourView
 {
     if (_dayHourView==nil) {
-        _dayHourView = [[GDayHourView alloc] initWithFrame:CGRectMake(0, 0, _hourViewWidth, _scrollView.contentSize.height)];
-        _dayHourView.backgroundColor = [UIColor whiteColor];
+        _dayHourView = [[GDayHourView alloc] initWithFrame:CGRectMake(0, 0, _hourViewWidth, _gridTopMargin+_gridHeight+_gridBottomMargin)];
+        _dayHourView.backgroundColor = _hourViewBackgroundColor;
         _dayHourView.startCenterY = _gridTopMargin + _gridLineTopMargin + (_centerHours?_hourHeight*0.25:0);
         _dayHourView.endCenterY = _gridTopMargin + _gridHeight - _gridLineBottomMargin - (_centerHours?_hourHeight*0.25:0);
         
