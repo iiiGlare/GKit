@@ -220,7 +220,7 @@
     if (_scrollView==nil) {
         _scrollView = [[UIScrollView alloc] initWithFrame:self.bounds];
         _scrollView.autoresizingMask = GViewAutoresizingFlexibleSize;
-        _scrollView.backgroundColor = [UIColor whiteColor];
+        _scrollView.backgroundColor = [UIColor clearColor];
         _scrollView.delegate = self;
     }
     return _scrollView;
@@ -230,7 +230,7 @@
 {
     if (_dayGridView==nil) {
         _dayGridView = [[GDayGridView alloc] initWithFrame:CGRectMake(0, _gridTopMargin, _scrollView.width, _gridHeight)];
-        _dayGridView.backgroundColor = [UIColor whiteColor];
+        _dayGridView.backgroundColor = [UIColor clearColor];
         _dayGridView.gridLineTopMargin = _gridLineTopMargin;
         _dayGridView.gridLineBottomMargin = _gridLineBottomMargin;
         
