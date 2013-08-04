@@ -65,7 +65,7 @@
 {
     _canDragDismiss = [[GViewController configurator] canDragDismiss];
     _presentAnimationType = [[GViewController configurator] presentAnimationType];
-};
+}
 
 #pragma mark - View Life Cycle
 
