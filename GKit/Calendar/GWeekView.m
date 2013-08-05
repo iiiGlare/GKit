@@ -439,7 +439,12 @@
     _endingOfWeek = [_beginningOfWeek dateByAddingTimeInterval:GTimeIntervalFromDays(7)];
     
     //WeekdayView
-    _weekdayView.beginningOfWeek = _beginningOfWeek;
+    if (_weekdayView) {
+        _weekdayView.firstWeekday = _firstWeekday;
+        _weekdayView.beginningOfWeek = _beginningOfWeek;
+        [_weekdayView setNeedsLayout];
+        [self reloadData];
+    }
 }
 
 #pragma mark - Action

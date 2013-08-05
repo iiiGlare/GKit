@@ -87,7 +87,28 @@
     [self.topView addSubview:segmentedControl];
     [segmentedControl setSelectedSegmentIndex:1];
     
+    
+    UIButton * firstWeekdayButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    [firstWeekdayButton setFrame:CGRectMake(0, 0, 60, 40)];
+    [firstWeekdayButton setTitle:GLocalizedString(@"Monday") forState:UIControlStateNormal];
+    [firstWeekdayButton addTarget:self action:@selector(firstWeekdayButtonDidPress:) forControlEvents:UIControlEventTouchUpInside];
+    [self.topView addSubview:firstWeekdayButton];
+    
 }
+
+- (void)firstWeekdayButtonDidPress:(UIButton *)firstWeekdayButton {
+    if ([[firstWeekdayButton titleForState:UIControlStateNormal] isEqualToString:GLocalizedString(@"Monday")]) {
+        [firstWeekdayButton setTitle:GLocalizedString(@"Sunday") forState:UIControlStateNormal];
+        
+        self.weekView.firstWeekday = GWeekdayTypeSunday;
+    }
+    else {
+        [firstWeekdayButton setTitle:GLocalizedString(@"Monday") forState:UIControlStateNormal];
+        
+        self.weekView.firstWeekday = GWeekdayTypeMonday;
+    }
+}
+
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
