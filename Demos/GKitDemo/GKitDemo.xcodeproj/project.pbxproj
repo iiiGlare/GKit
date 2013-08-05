@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AF2B769F17AF4720009CA0F1 /* GDetailLabelCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AF2B769E17AF4720009CA0F1 /* GDetailLabelCell.m */; };
 		AF523A92175B871400FBAA0C /* picker_indicator@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AF523A91175B871400FBAA0C /* picker_indicator@2x.png */; };
 		AF6FB473175DEB860098225C /* GGestureCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AF6FB472175DEB860098225C /* GGestureCell.m */; };
 		AF826929175A415600F82AE3 /* picker_background@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AF826927175A415600F82AE3 /* picker_background@2x.png */; };
@@ -135,6 +136,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		AF2B769D17AF4720009CA0F1 /* GDetailLabelCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GDetailLabelCell.h; sourceTree = "<group>"; };
+		AF2B769E17AF4720009CA0F1 /* GDetailLabelCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GDetailLabelCell.m; sourceTree = "<group>"; };
 		AF523A91175B871400FBAA0C /* picker_indicator@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "picker_indicator@2x.png"; sourceTree = "<group>"; };
 		AF6FB471175DEB860098225C /* GGestureCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGestureCell.h; sourceTree = "<group>"; };
 		AF6FB472175DEB860098225C /* GGestureCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGestureCell.m; sourceTree = "<group>"; };
@@ -374,6 +377,8 @@
 				AF6FB472175DEB860098225C /* GGestureCell.m */,
 				F888D8DC17478A4E0026C1A4 /* GLabelCell.h */,
 				F888D8DD17478A4F0026C1A4 /* GLabelCell.m */,
+				AF2B769D17AF4720009CA0F1 /* GDetailLabelCell.h */,
+				AF2B769E17AF4720009CA0F1 /* GDetailLabelCell.m */,
 				F8B6C04A1726C54000214182 /* GSelectionViewController.h */,
 				F8B6C04B1726C54000214182 /* GSelectionViewController.m */,
 				F8B6C04E1726C54000214182 /* GTableViewController.h */,
@@ -1002,6 +1007,7 @@
 				AF6FB473175DEB860098225C /* GGestureCell.m in Sources */,
 				AFBB5F5C1799071F00AC38B0 /* GDatePicker.m in Sources */,
 				AFBB5F5D1799071F00AC38B0 /* GWeightPicker.m in Sources */,
+				AF2B769F17AF4720009CA0F1 /* GDetailLabelCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

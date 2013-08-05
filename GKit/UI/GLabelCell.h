@@ -11,6 +11,6 @@
 
 @interface GLabelCell : UITableViewCell
 
-@property (nonatomic, strong, readonly) GLabel * label;
+@property (nonatomic, weak, readonly) GLabel * label;
 
 @end

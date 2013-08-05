@@ -17,20 +17,14 @@
     if (self) {
         // Initialization code
         
-        _label = [[GLabel alloc] init];
-        _label.backgroundColor = [UIColor clearColor];
-        _label.font = [UIFont systemFontOfSize:15.0];
-        [self.contentView addSubviewToFill:_label];
-        
+        // label
+        GLabel * label = [[GLabel alloc] init];
+        label.backgroundColor = [UIColor clearColor];
+        label.font = [UIFont systemFontOfSize:15.0];
+        [self.contentView addSubviewToFill:label];
+        _label = label;
     }
     return self;
-}
-
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated
-{
-    [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
 }
 
 @end
