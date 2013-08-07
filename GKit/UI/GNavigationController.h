@@ -23,6 +23,7 @@ typedef NSInteger GNavigationAnimationType;
 @property (nonatomic) GNavigationAnimationType navigationAnimationType; G_CONFIGURATOR_SELECTOR //default GNavigationAnimationTypeNormal
 
 - (void)setBackItemWithImage: (UIImage *)image
+           hightlightedImage: (UIImage *)hightlightedImage
 					   title: (NSString *)title
 				  titleColor: (UIColor *)color
         titleHightlightColor: (UIColor *)hColor
@@ -30,7 +31,8 @@ typedef NSInteger GNavigationAnimationType;
            titleShadowOffset: (CGSize)shadowOffset
 				   titleFont: (UIFont *)font
 		   contentEdgeInsets: (UIEdgeInsets)contentEdgeInsets
-			 backgroundImage: (UIImage *)backgroundImage;	G_CONFIGURATOR_SELECTOR
+			 backgroundImage: (UIImage *)backgroundImage
+ backgroundHightlightedImage: (UIImage *)backgroundHightlightedImage;	G_CONFIGURATOR_SELECTOR
 
 
 @end

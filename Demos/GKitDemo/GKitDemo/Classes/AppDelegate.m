@@ -41,14 +41,16 @@
 	[[GNavigationController configurator] setNavigationAnimationType:GNavigationAnimationTypeHide];
 	[[GNavigationController configurator] setCanDragBack:NO];
 	[[GNavigationController configurator] setBackItemWithImage: nil
-												  title: @"Back"
-											 titleColor: [UIColor whiteColor]
-                                   titleHightlightColor: [UIColor grayColor]
-                                       titleShadowColor: [UIColor whiteColor]
-                                      titleShadowOffset: CGSizeMake(0, 1)
-											  titleFont: [UIFont systemFontOfSize:12.0]
-									  contentEdgeInsets: UIEdgeInsetsMake(0, 8, 0, 2)
-										backgroundImage: [[UIImage imageNamed:@"back_item_backgournd"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 16, 0, 10)]];
+                                             hightlightedImage: nil
+                                                         title: @"Back"
+                                                    titleColor: [UIColor whiteColor]
+                                          titleHightlightColor: [UIColor grayColor]
+                                              titleShadowColor: [UIColor whiteColor]
+                                             titleShadowOffset: CGSizeMake(0, 1)
+                                                     titleFont: [UIFont systemFontOfSize:12.0]
+                                             contentEdgeInsets: UIEdgeInsetsMake(0, 8, 0, 2)
+                                               backgroundImage: [[UIImage imageNamed:@"back_item_backgournd"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 16, 0, 10)]
+                                   backgroundHightlightedImage: nil];
 	
     self.window = [[UIWindow alloc] initWithFrame:GScreenBounds()];
     // Override point for customization after application launch.

@@ -15,6 +15,7 @@
 @property (nonatomic) GNavigationAnimationType navigationAnimationType; //default GNavigationAnimationTypNormal
 
 - (void)setBackItemWithImage: (UIImage *)image
+           hightlightedImage: (UIImage *)hightlightedImage
 					   title: (NSString *)title
 				  titleColor: (UIColor *)color
         titleHightlightColor: (UIColor *)hColor
@@ -22,21 +23,26 @@
            titleShadowOffset: (CGSize)shadowOffset
 				   titleFont: (UIFont *)font
 		   contentEdgeInsets: (UIEdgeInsets)contentEdgeInsets
-			 backgroundImage: (UIImage *)backgroundImage;
-@property (nonatomic) BOOL useCustomBackItem;
-@property (nonatomic, strong) UIImage *backImage;
-@property (nonatomic, strong) NSString *backTitle;
-@property (nonatomic, strong) UIColor *backTitleColor;
-@property (nonatomic, strong) UIColor *backTitleHightlightColor;
-@property (nonatomic, strong) UIColor *backTitleShadowColor;
-@property (nonatomic, assign) CGSize backTitleShadowOffset;
-@property (nonatomic, strong) UIFont *backTitleFont;
-@property (nonatomic) UIEdgeInsets contentEdgeInsets;
-@property (nonatomic, strong) UIImage *backBackgroundImage;
+			 backgroundImage: (UIImage *)backgroundImage
+ backgroundHightlightedImage: (UIImage *)backgroundHightlightedImage;
+
+@property (nonatomic)         BOOL useCustomBackItem;
+@property (nonatomic, strong) UIImage   * backImage;
+@property (nonatomic, strong) UIImage   * backHightlightedImage;
+@property (nonatomic, strong) NSString  * backTitle;
+@property (nonatomic, strong) UIColor   * backTitleColor;
+@property (nonatomic, strong) UIColor   * backTitleHightlightColor;
+@property (nonatomic, strong) UIColor   * backTitleShadowColor;
+@property (nonatomic)         CGSize    backTitleShadowOffset;
+@property (nonatomic, strong) UIFont    * backTitleFont;
+@property (nonatomic)         UIEdgeInsets  contentEdgeInsets;
+@property (nonatomic, strong) UIImage       * backBackgroundImage;
+@property (nonatomic, strong) UIImage       * backBackgroundHightlightedImage;
 
 @end
 @implementation GNavigationControllerConfigurator
 - (void)setBackItemWithImage: (UIImage *)image
+           hightlightedImage: (UIImage *)hightlightedImage
 					   title: (NSString *)title
 				  titleColor: (UIColor *)color
         titleHightlightColor: (UIColor *)hColor
@@ -44,10 +50,12 @@
            titleShadowOffset: (CGSize)shadowOffset
 				   titleFont: (UIFont *)font
 		   contentEdgeInsets: (UIEdgeInsets)contentEdgeInsets
-			 backgroundImage: (UIImage *)backgroundImage;
+			 backgroundImage: (UIImage *)backgroundImage
+ backgroundHightlightedImage: (UIImage *)backgroundHightlightedImage
 {
 	self.useCustomBackItem = YES;
 	self.backImage = image;
+    self.backHightlightedImage = hightlightedImage;
 	self.backTitle = title;
 	self.backTitleColor = color;
     self.backTitleHightlightColor = hColor;
@@ -56,6 +64,7 @@
 	self.backTitleFont = font;
 	self.contentEdgeInsets = contentEdgeInsets;
 	self.backBackgroundImage = backgroundImage;
+    self.backBackgroundHightlightedImage = backgroundHightlightedImage;
 }
 
 @end
@@ -78,6 +87,8 @@
 
 @property (nonatomic, strong) GPoint *location;
 
+@property (nonatomic, strong) GNavigationControllerConfigurator * privateConfigurator;
+
 @end
 
 @implementation GNavigationController
@@ -95,15 +106,19 @@
 }
 
 - (void)setBackItemWithImage: (UIImage *)image
+           hightlightedImage: (UIImage *)hightlightedImage
 					   title: (NSString *)title
 				  titleColor: (UIColor *)color
-        titleHightlightColor: (UIColor *)hColor
+        titleHightlightColor: (UIColor *)hightlightedColor
             titleShadowColor: (UIColor *)shadowColor
            titleShadowOffset: (CGSize)shadowOffset
 				   titleFont: (UIFont *)font
 		   contentEdgeInsets: (UIEdgeInsets)contentEdgeInsets
-			 backgroundImage: (UIImage *)backgroundImage;	G_CONFIGURATOR_SELECTOR
-{}
+			 backgroundImage: (UIImage *)backgroundImage
+ backgroundHightlightedImage: (UIImage *)backgroundHightlightedImage {
+    self.privateConfigurator = [GNavigationControllerConfigurator new];
+    [self.privateConfigurator setBackItemWithImage:image hightlightedImage:hightlightedImage title:title titleColor:color titleHightlightColor:hightlightedColor titleShadowColor:shadowColor titleShadowOffset:shadowOffset titleFont:font contentEdgeInsets:contentEdgeInsets backgroundImage:backgroundImage backgroundHightlightedImage:backgroundHightlightedImage];
+}
 
 #pragma mark - Init
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -184,16 +199,21 @@
 		[_snapshots addObject:[self.container.view snapshot]];
 		
 		//Custom Back Item
-		GNavigationControllerConfigurator * configurator = [GNavigationController configurator];
+		GNavigationControllerConfigurator * configurator = self.privateConfigurator;
+        if (configurator==nil) {
+            configurator = [GNavigationController configurator];
+        }
 		if (configurator.useCustomBackItem)
 		{
 			UIButton *backButton = [UIButton buttonWithType:UIButtonTypeCustom];
 			
 			[backButton setImage:configurator.backImage forState:UIControlStateNormal];
-			
+			[backButton setImage:configurator.backHightlightedImage forState:UIControlStateHighlighted];
+            
 			if (configurator.backTitle) {
 				[backButton setTitle:configurator.backTitle forState:UIControlStateNormal];
-			}else{
+			}
+            else{
 				[backButton setTitle:viewController.title forState:UIControlStateNormal];
 			}
 			
@@ -213,16 +233,18 @@
             
 			if (configurator.backTitleFont) {
 				[backButton.titleLabel setFont:configurator.backTitleFont];
-			}else {
+			}
+            else {
 				[backButton.titleLabel setFont:[UIFont systemFontOfSize:12.0]];
 			}
 			
 			[backButton setContentEdgeInsets:configurator.contentEdgeInsets];
 			[backButton setBackgroundImage:configurator.backBackgroundImage forState:UIControlStateNormal];
+            [backButton setBackgroundImage:configurator.backBackgroundHightlightedImage forState:UIControlStateHighlighted];
 			[backButton sizeToFit];
 			[backButton setWidth:MIN(backButton.width, 70)];
 			[backButton addTarget:self action:@selector(goBack) forControlEvents:UIControlEventTouchUpInside];
-			UIBarButtonItem *backItem = [[UIBarButtonItem alloc] initWithCustomView:backButton];
+			UIBarButtonItem * backItem = [[UIBarButtonItem alloc] initWithCustomView:backButton];
 			viewController.navigationItem.leftBarButtonItem = backItem;
 		}
 	}
