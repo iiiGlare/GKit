@@ -596,6 +596,22 @@
     }
 }
 
+- (GEventView *)eventViewForGEvent:(GEvent *)event
+{
+    GEventView *eventView = nil;
+    if (_dataSource &&
+        [_dataSource respondsToSelector:@selector(dayView:eventViewForGEvent:)])
+    {
+        eventView = [_dataSource weekView:self eventViewForGEvent:event];
+    }
+    if (eventView==nil)
+    {
+        eventView = [[GEventView alloc] init];
+    }
+    
+    return eventView;
+}
+
 - (NSArray *)eventViewsForGEvent:(GEvent *)event
 {
     NSMutableArray *eventViews = [NSMutableArray array];
@@ -623,7 +639,8 @@
                                        endTime: eventViewEndTime
                                  atDayPosition: [self dayPositionForDate:eventViewBeginTime]];
         
-        GEventView *eventView = [[GEventView alloc] initWithFrame:frame];
+        GEventView *eventView = [self eventViewForGEvent:event];
+        eventView.frame = frame;
         eventView.event = event;
         eventView.beginTime = eventViewBeginTime;
         eventView.endTime = eventViewEndTime;
@@ -866,7 +883,8 @@
     CGRect eventViewFrame = [self frameForBeginTime: tempEvent.beginTime
                                             endTime: tempEvent.endTime
                                       atDayPosition: 0];
-    GEventView *movingEventView = [[GEventView alloc] initWithFrame:eventViewFrame];
+    GEventView *movingEventView = [self eventViewForGEvent:event];
+    movingEventView.frame = eventViewFrame;
 	movingEventView.backgroundColor = [UIColor orangeColor];
 	movingEventView.event = tempEvent;
     if (movingEventView) {
