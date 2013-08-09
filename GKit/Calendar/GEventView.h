@@ -19,4 +19,6 @@
 @property (nonatomic, strong) NSDate *endTime;
 @property (nonatomic, assign) BOOL shouldMove;
 
+@property (nonatomic, strong) UILabel *titleLabel;
+
 @end

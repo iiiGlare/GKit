@@ -10,10 +10,6 @@
 #import "GCore.h"
 #import "GEvent.h"
 
-@interface GEventView ()
-@property (nonatomic, strong) UILabel *titleLabel;
-@end
-
 @implementation GEventView
 
 - (id)initWithFrame:(CGRect)frame
