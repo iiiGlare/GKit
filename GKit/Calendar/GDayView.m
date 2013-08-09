@@ -420,8 +420,8 @@
         eventView = [[GEventView alloc] init];
     }
     
-    eventView.event = event;
     eventView.frame = frame;
+    eventView.event = event;
     
     return eventView;
 }
