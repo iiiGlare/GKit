@@ -35,15 +35,19 @@
 {
     _event = event;
     
-    [self setBackgroundColor:event.backgroundColor];
-    [self drawBorderWithColor: event.borderColor
+    [self layoutEvent];
+}
+
+- (void)layoutEvent {
+    [self setBackgroundColor: _event.backgroundColor];
+    [self drawBorderWithColor: _event.borderColor
                         width: 1.0
                  cornerRadius: 3.0];
     
-    _titleLabel.text = event.title;
-    _titleLabel.textColor = event.foregroundColor;
+    _titleLabel.text = _event.title;
+    _titleLabel.textColor = _event.foregroundColor;
 	_titleLabel.frame = self.bounds;
-	[_titleLabel sizeToFit];
+	[_titleLabel sizeToFit];    
 }
 
 #pragma mark - GMoveSpriteProtocol
