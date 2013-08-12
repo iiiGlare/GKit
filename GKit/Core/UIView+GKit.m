@@ -17,7 +17,6 @@
 
 #import "UIView+GKit.h"
 #import "GMacros.h"
-#import <QuartzCore/QuartzCore.h>
 
 CGRect GRectSetX(CGRect rect, CGFloat x) {
 	return CGRectMake(x, rect.origin.y, rect.size.width, rect.size.height);
