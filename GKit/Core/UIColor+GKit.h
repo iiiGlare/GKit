@@ -44,6 +44,9 @@ UIColor * GRandomColor(void);
 //random alpha
 UIColor * GRandomColorWithAlpha(CGFloat alpha);
 
+//clear
+UIColor * GClearColor(void);
+
 @interface UIColor (GKit)
 
 @end

@@ -71,6 +71,11 @@ UIColor * GRandomColorWithAlpha(CGFloat alpha)
 						  alpha);
 }
 
+//clear
+UIColor * GClearColor(void) {
+    return [UIColor clearColor];
+}
+
 @implementation UIColor (GKit)
 
 @end
