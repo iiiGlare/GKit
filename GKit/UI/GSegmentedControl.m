@@ -65,6 +65,12 @@
     
 	_selectedIndex = button.tag;
 	
+    // call back
+    if (_eventHandler) {
+        _eventHandler(self);
+    }
+    
+    // call back
 	if (_target &&
         [_target respondsToSelector:_action]) {
         
@@ -112,6 +118,10 @@
     
 	self.target = theTarget;
 	self.action = theAction;
+}
+
+- (void)addEventHandler:(void (^)(id sender))eventHandler {
+    self.eventHandler = eventHandler;
 }
 
 @end

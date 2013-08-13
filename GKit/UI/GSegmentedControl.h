@@ -23,4 +23,7 @@
 - (void)setBackgroundImage:(UIImage *)backgroundImage forControlSate:(UIControlState)controlState;
 - (void)addTarget:(id)theTarget action:(SEL)theAction;
 
+@property (nonatomic, copy) void (^eventHandler)(id sender);
+- (void)addEventHandler:(void (^)(id sender))eventHandler;
+
 @end
