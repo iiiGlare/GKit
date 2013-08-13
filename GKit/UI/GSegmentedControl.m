@@ -51,34 +51,34 @@
     return self;
 }
 
+- (void)setSelectedIndex:(NSInteger)selectedIndex {
+    [self _segmentedButtonPressed:(UIButton *)[self viewWithTag:selectedIndex] andTriggerCallback:NO];
+}
+
 - (void)_segmentedButtonPressed:(UIButton *)button
 {
-	if (button.tag == _selectedIndex) {
+    [self _segmentedButtonPressed:button andTriggerCallback:YES];
+}
+
+- (void)_segmentedButtonPressed:(UIButton *)button andTriggerCallback:(BOOL)willTrigger {
+    
+    if (button.tag == _selectedIndex) {
 		return;
 	}
-	
-	[button setBackgroundImage:self.selectedBackgroundImage forState:UIControlStateNormal];
-	[button setSelected:YES];
     
-	[(UIButton *)[self viewWithTag:_selectedIndex] setBackgroundImage:self.normalBackgroundImage forState:UIControlStateNormal];
-	[(UIButton *)[self viewWithTag:_selectedIndex] setSelected:NO];
+    _selectedIndex = button.tag;
+	[self.subviews enumerateObjectsUsingBlock:^(UIButton * obj, NSUInteger idx, BOOL *stop) {
+        if ([obj isKindOfClass:[UIButton class]]) {
+            [obj setSelected:(_selectedIndex==obj.tag?YES:NO)];
+        }
+    }];
     
-	_selectedIndex = button.tag;
-	
-    // call back
-    if (_eventHandler) {
-        _eventHandler(self);
+    if (willTrigger) {
+        // call back
+        if (_eventHandler) {
+            _eventHandler(self);
+        }        
     }
-    
-    // call back
-	if (_target &&
-        [_target respondsToSelector:_action]) {
-        
-        GSuppressPerformSelectorLeakWarning (
-         [_target performSelector:_action withObject:self];
-        );
-	}
-	
 }
 
 - (void)setFont:(UIFont *)font {
@@ -101,23 +101,11 @@
 
 - (void)setBackgroundImage:(UIImage *)backgroundImage forControlSate:(UIControlState)controlState {
     
-	if (UIControlStateNormal==controlState) {
-		self.normalBackgroundImage = backgroundImage;
-		for (UIButton *button in self.subviews) {
-			if ([button isKindOfClass:[UIButton class]]) {
-				[button setBackgroundImage:backgroundImage forState:UIControlStateNormal];
-			}
-		}
-	}else if (UIControlStateSelected==controlState){
-		self.selectedBackgroundImage = backgroundImage;
-		[(UIButton *)[self viewWithTag:_selectedIndex] setBackgroundImage:backgroundImage forState:UIControlStateNormal];
-	}
-}
-
-- (void)addTarget:(id)theTarget action:(SEL)theAction {
-    
-	self.target = theTarget;
-	self.action = theAction;
+    for (UIButton *button in self.subviews) {
+        if ([button isKindOfClass:[UIButton class]]) {
+            [button setBackgroundImage:backgroundImage forState:controlState];
+        }
+    }
 }
 
 - (void)addEventHandler:(void (^)(id sender))eventHandler {
