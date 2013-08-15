@@ -16,6 +16,7 @@
 //
 
 #import "UIApplication+GKit.h"
+#import "NSArray+GKit.h"
 
 //////////////////////////////////////////////////////////////////////////////////
 NSURL* GDocumentsDirectoryURL(void)
@@ -50,13 +51,13 @@ NSURL* GApplicationSupportDirectoryURL(void)
 //////////////////////////////////////////////////////////////////////////////////
 UIViewController * GApplicationRootViewController(void)
 {
-    return [[[UIApplication sharedApplication] keyWindow] rootViewController];
+    return [GApplicationMainWindow() rootViewController];
 }
 
 //////////////////////////////////////////////////////////////////////////////////
-UIWindow * GApplicationKeyWindow(void) {
+UIWindow * GApplicationMainWindow(void) {
 	
-	return [[UIApplication sharedApplication] keyWindow];
+	return [[[UIApplication sharedApplication] windows] firstObject];
 }
 
 
