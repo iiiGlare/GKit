@@ -368,6 +368,8 @@
                                   toEndY: eventView.y + eventView.height
                                 animated: NO];
     }
+    
+    [self.scrollView bringSubviewToFront:_timeIndicator];
 }
 
 - (void)layoutEventViewsFromBeginY:(CGFloat)beginY toEndY:(CGFloat)endY animated:(BOOL)animated

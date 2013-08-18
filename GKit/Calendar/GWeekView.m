@@ -550,6 +550,8 @@
 //                           atDayPosition: [self dayPositionForDate:eventView.beginTime]
 //                                animated: NO];
     }
+    
+    [self.scrollView bringSubviewToFront:_timeIndicator];
 }
 
 - (void)layoutEventViewsFromBeginY: (CGFloat)beginY
