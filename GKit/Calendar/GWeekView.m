@@ -893,8 +893,9 @@
                                       atDayPosition: 0];
     GEventView *movingEventView = [self eventViewForGEvent:event];
     movingEventView.frame = eventViewFrame;
-	movingEventView.backgroundColor = _eventViewMovingBackgroundColor;
 	movingEventView.event = tempEvent;
+    // set backgroundColor must after set event
+    movingEventView.backgroundColor = _eventViewMovingBackgroundColor;
     if (movingEventView) {
         
         _snapshotAlpha = snapshot.alpha;
