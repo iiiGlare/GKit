@@ -48,6 +48,10 @@
 @property (nonatomic, strong) UIFont * hourTextFont;    // default systemfont 12.0f
 @property (nonatomic, strong) UIColor * hourTextColor;  // default gray color
 
+// moving
+@property (nonatomic, strong) UIColor * eventViewMovingBackgroundColor;
+
+
 @end
 
 #pragma mark - Called By Catcher

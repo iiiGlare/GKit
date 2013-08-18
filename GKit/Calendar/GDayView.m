@@ -195,6 +195,9 @@
     _centerHours = NO;
     _hourTextFont = [UIFont systemFontOfSize:12.0f];
     _hourTextColor = [UIColor grayColor];
+
+    // event view
+    _eventViewMovingBackgroundColor = [UIColor orangeColor];
     
     //Tap Gesture
     UITapGestureRecognizer *tapGR = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTap:)];
@@ -616,7 +619,7 @@
 - (GMoveSnapshot *)dayViewPrepareSnapshotForOwnEventView:(GEventView *)eventView
 {
     GMoveSnapshot *snapshot = [[GMoveSnapshot alloc] initWithFrame:eventView.frame];
-	eventView.backgroundColor = [UIColor orangeColor];
+	eventView.backgroundColor = _eventViewMovingBackgroundColor;
     [snapshot addSubviewToFill:eventView];
     [snapshot becomeCatchableInCalendarWithGEvent:eventView.event];
     snapshot.alpha = 0.7;
@@ -646,7 +649,7 @@
         _snapshotAlpha = snapshot.alpha;
         snapshot.alpha = 0.0;
         
-		movingEventView.backgroundColor = [UIColor orangeColor];
+		movingEventView.backgroundColor = _eventViewMovingBackgroundColor;
         movingEventView.alpha = 0.7;
         movingEventView.center = [self.scrollView convertPoint: snapshot.center
                                                       fromView: snapshot.superview];

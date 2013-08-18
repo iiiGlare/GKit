@@ -333,6 +333,9 @@
     _todayFont = [UIFont systemFontOfSize:12.0f];
     _todayColor = [UIColor blueColor];
 
+    // event view
+    _eventViewMovingBackgroundColor = [UIColor orangeColor];
+    
     //Tap Gesture
     UITapGestureRecognizer *tapGR = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTap:)];
     [self addGestureRecognizer:tapGR];
@@ -834,7 +837,7 @@
 - (GMoveSnapshot *)weekViewPrepareSnapshotForOwnEventView:(GEventView *)eventView
 {
     GMoveSnapshot *snapshot = [[GMoveSnapshot alloc] initWithFrame:eventView.frame];
-	eventView.backgroundColor = [UIColor orangeColor];
+	eventView.backgroundColor = _eventViewMovingBackgroundColor;
     [snapshot addSubviewToFill:eventView];
     [snapshot becomeCatchableInCalendarWithGEvent:eventView.event];
     snapshot.alpha = 0.7;
@@ -885,7 +888,7 @@
                                       atDayPosition: 0];
     GEventView *movingEventView = [self eventViewForGEvent:event];
     movingEventView.frame = eventViewFrame;
-	movingEventView.backgroundColor = [UIColor orangeColor];
+	movingEventView.backgroundColor = _eventViewMovingBackgroundColor;
 	movingEventView.event = tempEvent;
     if (movingEventView) {
         
