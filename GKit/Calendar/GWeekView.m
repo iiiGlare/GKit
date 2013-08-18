@@ -883,6 +883,11 @@
     tempEvent.title = event.title;
     tempEvent.beginTime = [self dateForOffset:0 atDayPosition:0];
     tempEvent.endTime = [tempEvent.beginTime dateByAddingTimeInterval:[event.endTime timeIntervalSinceDate:event.beginTime]];
+    
+    tempEvent.backgroundColor = event.backgroundColor;
+    tempEvent.borderColor = event.borderColor;
+    tempEvent.foregroundColor = event.foregroundColor;
+    
     CGRect eventViewFrame = [self frameForBeginTime: tempEvent.beginTime
                                             endTime: tempEvent.endTime
                                       atDayPosition: 0];
