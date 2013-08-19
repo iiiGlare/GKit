@@ -481,19 +481,7 @@
     _dayBeginTimeOffset = _gridTopMargin + _gridLineTopMargin;
     _dayEndTimeOffset = _hourHeight*GHoursInDay + _dayBeginTimeOffset;
     
-    //show events
-    if (_dataSource &&
-        [_dataSource respondsToSelector:@selector(eventsForWeekView:)])
-    {
-        NSArray *events = [_dataSource eventsForWeekView:self];
-        
-        for (GEvent *event in events) {
-            [self layoutGEvent:event];
-        }        
-    }
-    
-    //show time indicator
-    
+    //show time indicator    
     [self.timeIndicatorTimer invalidate];
     self.timeIndicatorTimer = nil;
     
@@ -507,7 +495,17 @@
         CGFloat offsetY = MAX(0, self.timeIndicator.center.y-_dayViewHeight-_timeIndicatorOffset);
         offsetY = MIN(offsetY, self.scrollView.contentSize.height-self.scrollView.height);
         [self.scrollView setContentOffset:CGPointMake(0, offsetY) animated:YES];
+    }
+    
+    //show events
+    if (_dataSource &&
+        [_dataSource respondsToSelector:@selector(eventsForWeekView:)])
+    {
+        NSArray *events = [_dataSource eventsForWeekView:self];
         
+        for (GEvent *event in events) {
+            [self layoutGEvent:event];
+        }
     }
 }
 
@@ -525,9 +523,6 @@
             _timeIndicator.width = self.scrollView.width;
             [self.scrollView addSubview:_timeIndicator];
         }
-        
-        [self.scrollView insertSubview:_timeIndicator aboveSubview:self.weekHourView];
-        
         return YES;
     } else {
         
@@ -550,8 +545,6 @@
 //                           atDayPosition: [self dayPositionForDate:eventView.beginTime]
 //                                animated: NO];
     }
-    
-    [self.scrollView insertSubview:_timeIndicator aboveSubview:self.weekHourView];
 }
 
 - (void)layoutEventViewsFromBeginY: (CGFloat)beginY
