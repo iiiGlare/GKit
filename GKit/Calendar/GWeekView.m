@@ -526,7 +526,7 @@
             [self.scrollView addSubview:_timeIndicator];
         }
         
-        [self.scrollView bringSubviewToFront:_timeIndicator];
+        [self.scrollView insertSubview:_timeIndicator aboveSubview:self.weekHourView];
         
         return YES;
     } else {
@@ -551,7 +551,7 @@
 //                                animated: NO];
     }
     
-    [self.scrollView bringSubviewToFront:_timeIndicator];
+    [self.scrollView insertSubview:_timeIndicator aboveSubview:self.weekHourView];
 }
 
 - (void)layoutEventViewsFromBeginY: (CGFloat)beginY

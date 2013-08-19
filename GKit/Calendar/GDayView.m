@@ -347,7 +347,7 @@
             [self.scrollView addSubview:_timeIndicator];
         }
         
-        [self.scrollView bringSubviewToFront:_timeIndicator];
+        [self.scrollView insertSubview:_timeIndicator aboveSubview:self.dayHourView];
         
         return YES;
     } else {
@@ -369,7 +369,7 @@
                                 animated: NO];
     }
     
-    [self.scrollView bringSubviewToFront:_timeIndicator];
+    [self.scrollView insertSubview:_timeIndicator aboveSubview:self.dayHourView];
 }
 
 - (void)layoutEventViewsFromBeginY:(CGFloat)beginY toEndY:(CGFloat)endY animated:(BOOL)animated
