@@ -505,15 +505,6 @@
             }
         }
     }
-    else {
-        
-        if (_delegate &&
-            [_delegate respondsToSelector:@selector(dayView:requireGEventAtDate:)])
-        {
-            CGFloat offset = [self.scrollView convertPoint:location fromView:self].y;
-            [_delegate dayView:self requireGEventAtDate:[self dateForOffset:offset]];
-        }
-    }
 }
 
 #pragma mark UIScrollViewDelegate
