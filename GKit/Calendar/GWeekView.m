@@ -598,7 +598,7 @@
 {
     GEventView *eventView = nil;
     if (_dataSource &&
-        [_dataSource respondsToSelector:@selector(dayView:eventViewForGEvent:)])
+        [_dataSource respondsToSelector:@selector(weekView:eventViewForGEvent:)])
     {
         eventView = [_dataSource weekView:self eventViewForGEvent:event];
     }
