@@ -90,6 +90,7 @@
 - (void)dayView:(GDayView *)dayView didSelectGEvent:(GEvent *)gEvent;
 - (void)dayView:(GDayView *)dayView didSelectGEvents:(NSArray *)gEvents;
 
+- (void)dayView:(GDayView *)dayView didTapAtDate:(NSDate *)date;
 - (GEvent *)dayView:(GDayView *)dayView requireGEventAtDate:(NSDate *)date;
 
 @end

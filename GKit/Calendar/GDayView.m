@@ -488,21 +488,27 @@
     if (tappedEventViews.count>0) {
         if (tappedEventViews.count==1) {
             if (_delegate &&
-                [_delegate respondsToSelector:@selector(dayView:didSelectGEvent:)])
-            {
+                [_delegate respondsToSelector:@selector(dayView:didSelectGEvent:)]) {
                 [_delegate dayView:self didSelectGEvent:[(GEventView *)[tappedEventViews firstObject] event]];
             }
         }
         else {
             if (_delegate &&
-                [_delegate respondsToSelector:@selector(dayView:didSelectGEvents:)])
-            {
+                [_delegate respondsToSelector:@selector(dayView:didSelectGEvents:)]) {
                 NSMutableArray * tappedEvents = [NSMutableArray arrayWithCapacity:tappedEventViews.count];
                 for (GEventView * eventView in tappedEventViews) {
                     [tappedEvents addObject:eventView.event];
                 }
                 [_delegate dayView:self didSelectGEvents:tappedEvents];
             }
+        }
+    }
+    else {
+        if (_delegate &&
+            [_delegate respondsToSelector:@selector(dayView:didTapAtDate:)]) {
+            CGFloat offset = [self.scrollView convertPoint:location fromView:self].y;
+            NSDate * date = [self dateForOffset:offset];
+            [_delegate dayView:self didTapAtDate:date];
         }
     }
 }

@@ -207,6 +207,14 @@
     [self.navigationController pushViewController:eventVC animated:YES];
 }
 
+- (void)dayView:(GDayView *)dayView didTapAtDate:(NSDate *)date {
+    [[[UIAlertView alloc] initWithTitle:@"GDayView"
+                                message:[NSString stringWithFormat:@"Did tap %@", date]
+                               delegate:nil
+                      cancelButtonTitle:@"OK"
+                      otherButtonTitles:nil] show];
+}
+
 - (GEvent *)dayView:(GDayView *)dayView requireGEventAtDate:(NSDate *)date
 {
 	GEvent *event = [[GEvent alloc] init];
@@ -214,12 +222,6 @@
     event.beginTime = [date dateByAddingTimeInterval:GTimeIntervalFromMinitues(-30)];
     event.endTime = [date dateByAddingTimeInterval:GTimeIntervalFromMinitues(30)];
 	return event;
-
-//    [[[UIAlertView alloc] initWithTitle:@"GDayView"
-//                                message:[date dateStringWithFormat:@"yyyy-MM-dd HH:mm:SS"]
-//                               delegate:nil
-//                      cancelButtonTitle:@"OK"
-//                      otherButtonTitles:nil] show];
 }
 
 - (void)dayView:(GDayView *)dayView didUpdateGEvent:(GEvent *)gEvent {
@@ -285,6 +287,14 @@
 - (void)weekView:(GWeekView *)weekView didSelectGEvents:(NSArray *)gEvents {
     [[[UIAlertView alloc] initWithTitle:@"GWeekView"
                                 message:[NSString stringWithFormat:@"Count of tapped events is %d", gEvents.count]
+                               delegate:nil
+                      cancelButtonTitle:@"OK"
+                      otherButtonTitles:nil] show];
+}
+
+- (void)weekView:(GWeekView *)weekView didTapAtDate:(NSDate *)date {
+    [[[UIAlertView alloc] initWithTitle:@"GWeekView"
+                                message:[NSString stringWithFormat:@"Did tap %@", date]
                                delegate:nil
                       cancelButtonTitle:@"OK"
                       otherButtonTitles:nil] show];
