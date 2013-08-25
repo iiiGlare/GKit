@@ -406,7 +406,7 @@
 #pragma mark Utils
 - (GEventView *)eventViewForGEvent:(GEvent *)event
 {
-    CGRect frame = [self frameForGEvent:event];
+    CGRect frame = [self frameForBeginTime:event.beginTime endTime:event.endTime];
     if (CGRectEqualToRect(frame, CGRectZero)) return nil;
     
     GEventView *eventView = nil;
@@ -427,13 +427,13 @@
 }
 
 
-- (CGRect)frameForGEvent:(GEvent *)event
+- (CGRect)frameForBeginTime:(NSDate *)beginTime endTime:(NSDate *)endTime
 {
-    if (![self canShowGEvent:event]) return CGRectZero;
+    if (![self canShowGEventWithBeginTime:beginTime endTime:endTime]) return CGRectZero;
     
     //
-    NSTimeInterval beginTimeInterval = [event.beginTime timeIntervalSinceDate:self.day];
-    NSTimeInterval endTimeInterval = [event.endTime timeIntervalSinceDate:self.day];
+    NSTimeInterval beginTimeInterval = [beginTime timeIntervalSinceDate:self.day];
+    NSTimeInterval endTimeInterval = [endTime timeIntervalSinceDate:self.day];
 
     CGFloat beginY = _hourHeight * beginTimeInterval/GTimeIntervalFromHours(1) + _gridTopMargin + _gridLineTopMargin;
     CGFloat endY = _hourHeight * endTimeInterval/GTimeIntervalFromHours(1) + _gridTopMargin + _gridLineTopMargin;
@@ -441,11 +441,8 @@
     return CGRectMake(_hourViewWidth, beginY, _dayEventViewWidth, endY-beginY);
 }
 
-- (BOOL)canShowGEvent:(GEvent *)event
+- (BOOL)canShowGEventWithBeginTime:(NSDate *)beginTime endTime:(NSDate *)endTime
 {
-    NSDate *beginTime = event.beginTime;
-    NSDate *endTime = event.endTime;
-        
     if ([beginTime compare:self.nextDay]!=NSOrderedAscending ||
         [endTime compare:self.day]!=NSOrderedDescending)
     {
@@ -621,7 +618,8 @@
 }
 - (CGRect)dayViewPrepareFrameForSnapshot:(GMoveSnapshot *)snapshot
 {
-    CGRect eventFrame = [self frameForGEvent: [snapshot.userInfo valueForKey:kGEvent]];
+    GEvent * event = [snapshot.userInfo valueForKey:kGEvent];
+    CGRect eventFrame = [self frameForBeginTime:event.beginTime endTime:event.endTime];
     return [snapshot.superview convertRect:eventFrame fromView:self.scrollView];
 }
 - (void)dayViewDidPrepareSnapshot:(GMoveSnapshot *)snapshot

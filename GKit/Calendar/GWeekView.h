@@ -59,6 +59,13 @@
 // moving
 @property (nonatomic, strong) UIColor * eventViewMovingBackgroundColor;
 
+//
+- (CGFloat)offsetForDate:(NSDate *)date;
+- (CGRect)frameForBeginTime:(NSDate *)beginTime endTime:(NSDate *)endTime atDayPosition:(NSInteger)dayPosition;
+- (NSDate *)dateForOffset:(CGFloat)offset atDayPosition:(NSInteger)dayPosition;
+- (NSInteger)dayPositionForPoint:(CGPoint)point;
+- (NSInteger)dayPositionForDate:(NSDate *)date;
+
 @end
 
 

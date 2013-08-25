@@ -27,9 +27,6 @@
 @property (nonatomic, weak) id<GDayViewDelegate> delegate;
 
 - (void)reloadData;
-- (BOOL)canShowGEvent:(GEvent *)gEvent;
-
-- (CGFloat)offsetForDate:(NSDate *)date;
 
 // time line
 @property (nonatomic, strong, readonly) UIView * timeIndicator;
@@ -50,6 +47,12 @@
 
 // moving
 @property (nonatomic, strong) UIColor * eventViewMovingBackgroundColor;
+
+//
+- (CGRect)frameForBeginTime:(NSDate *)beginTime endTime:(NSDate *)endTime;
+- (BOOL)canShowGEventWithBeginTime:(NSDate *)beginTime endTime:(NSDate *)endTime;
+- (NSDate *)dateForOffset:(CGFloat)offset;
+- (CGFloat)offsetForDate:(NSDate *)date;
 
 
 @end
