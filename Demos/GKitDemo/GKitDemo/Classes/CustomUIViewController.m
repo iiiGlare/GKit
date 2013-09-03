@@ -12,6 +12,7 @@
 #import "GScrollSlider.h"
 #import "GPicker.h"
 #import "GDatePicker.h"
+#import "GBorderView.h"
 #import <QuartzCore/QuartzCore.h>
 
 @interface CustomUIViewController ()
@@ -49,6 +50,8 @@
     [self showScrollSlider];
 
     [self showPicker];
+    
+    [self showBorderView];
 }
 
 #pragma mark - 
@@ -163,6 +166,17 @@
         return NO;
     }
     
+}
+
+#pragma mark - 
+- (void)showBorderView {
+    GBorderView * borderView = [[GBorderView alloc] initWithFrame:CGRectMake(10, 236, 300, 50)];
+    borderView.fillColor = [UIColor whiteColor];
+    borderView.borderColor = [UIColor blackColor];
+    borderView.shadowColor = [UIColor redColor];
+    borderView.shadowOffset = CGSizeMake(1, 1);
+    borderView.borderWidth = 1;
+    [self.contentView addSubview:borderView];
 }
 
 @end

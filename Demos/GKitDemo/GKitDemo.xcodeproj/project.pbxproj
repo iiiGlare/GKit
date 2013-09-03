@@ -10,6 +10,7 @@
 		AF2B769F17AF4720009CA0F1 /* GDetailLabelCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AF2B769E17AF4720009CA0F1 /* GDetailLabelCell.m */; };
 		AF523A92175B871400FBAA0C /* picker_indicator@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AF523A91175B871400FBAA0C /* picker_indicator@2x.png */; };
 		AF6FB473175DEB860098225C /* GGestureCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AF6FB472175DEB860098225C /* GGestureCell.m */; };
+		AF797F9317D617C000E6F7EE /* GBorderView.m in Sources */ = {isa = PBXBuildFile; fileRef = AF797F9217D617BF00E6F7EE /* GBorderView.m */; };
 		AF826929175A415600F82AE3 /* picker_background@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AF826927175A415600F82AE3 /* picker_background@2x.png */; };
 		AF82692A175A415600F82AE3 /* picker_separator@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AF826928175A415600F82AE3 /* picker_separator@2x.png */; };
 		AF8E0B0D175EF113006153E0 /* switch_off_background@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AF8E0B0A175EF113006153E0 /* switch_off_background@2x.png */; };
@@ -141,6 +142,8 @@
 		AF523A91175B871400FBAA0C /* picker_indicator@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "picker_indicator@2x.png"; sourceTree = "<group>"; };
 		AF6FB471175DEB860098225C /* GGestureCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGestureCell.h; sourceTree = "<group>"; };
 		AF6FB472175DEB860098225C /* GGestureCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGestureCell.m; sourceTree = "<group>"; };
+		AF797F9117D617BE00E6F7EE /* GBorderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GBorderView.h; sourceTree = "<group>"; };
+		AF797F9217D617BF00E6F7EE /* GBorderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GBorderView.m; sourceTree = "<group>"; };
 		AF826927175A415600F82AE3 /* picker_background@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "picker_background@2x.png"; sourceTree = "<group>"; };
 		AF826928175A415600F82AE3 /* picker_separator@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "picker_separator@2x.png"; sourceTree = "<group>"; };
 		AF8E0B0A175EF113006153E0 /* switch_off_background@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "switch_off_background@2x.png"; sourceTree = "<group>"; };
@@ -436,6 +439,8 @@
 				F86D68541737C1DF003EFE6C /* GTextField.m */,
 				F888D8D6174771840026C1A4 /* GTextView.h */,
 				F888D8D7174771850026C1A4 /* GTextView.m */,
+				AF797F9117D617BE00E6F7EE /* GBorderView.h */,
+				AF797F9217D617BF00E6F7EE /* GBorderView.m */,
 			);
 			name = Other;
 			sourceTree = "<group>";
@@ -1008,6 +1013,7 @@
 				AFBB5F5C1799071F00AC38B0 /* GDatePicker.m in Sources */,
 				AFBB5F5D1799071F00AC38B0 /* GWeightPicker.m in Sources */,
 				AF2B769F17AF4720009CA0F1 /* GDetailLabelCell.m in Sources */,
+				AF797F9317D617C000E6F7EE /* GBorderView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
