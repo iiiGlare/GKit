@@ -168,7 +168,7 @@
 				   completion: (void (^)(void))completion
 {
 	if (_presentAnimationType==GPresentAnimationTypeHide) {
-		self.snapshot = [self.container.view snapshot];
+		self.snapshot = [self.container.view snapshotView];
 		
 		[super presentViewController: viewControllerToPresent
 							animated: NO
@@ -206,7 +206,7 @@
 	if (_presentAnimationType==GPresentAnimationTypeHide) {
 		if (self.snapshot==nil) {
 			self.presentedView = [[self.presentingViewController presentedViewController] view];
-			self.snapshot = [[self.presentingViewController view] snapshot];
+			self.snapshot = [[self.presentingViewController view] snapshotView];
 		}
 		
 		[self prepareSceneAndSnapshot];

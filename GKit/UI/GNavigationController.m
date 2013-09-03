@@ -312,7 +312,7 @@
 {
     [self prepareSceneAndSnapshot];
     
-    self.tempSnapshot = [self.container.view snapshot];
+    self.tempSnapshot = [self.container.view snapshotView];
     [self.container.view addSubviewToFill:self.tempSnapshot];
     [self goBackToPreViewController];
 }

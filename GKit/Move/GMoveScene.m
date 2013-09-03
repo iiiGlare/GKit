@@ -72,7 +72,7 @@
                 if (snapshot == nil)
                 {
                     snapshot = [[GMoveSnapshot alloc] initWithFrame:spriteFrameInSelf];
-                    [snapshot addSubviewToFill:[sprite snapshot]];
+                    [snapshot addSubviewToFill:[sprite snapshotView]];
                     [snapshot setTransform:CGAffineTransformMakeScale(1.1, 1.1)];
                 }
                 
