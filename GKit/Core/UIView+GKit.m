@@ -244,15 +244,18 @@ CGRect GRectAddSize(CGRect rect, CGSize size)
 #pragma mark - UIView+GAnimationUtil
 @implementation UIView (GAnimationUtil)
 
-- (UIImageView *)snapshot
-{
+- (UIImage *)snapshot {
     UIGraphicsBeginImageContextWithOptions(self.frame.size, NO, GScreenScale);
     [[self layer] renderInContext:UIGraphicsGetCurrentContext()];
-    UIImage *snapshotImage = UIGraphicsGetImageFromCurrentImageContext();
-    UIImageView *snapshotImageView = [[UIImageView alloc] initWithImage:snapshotImage];
+    UIImage * snapshot = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     
-    return snapshotImageView;
+    return snapshot;
+}
+
+- (UIImageView *)snapshotView {
+    UIImageView * snapshotView = [[UIImageView alloc] initWithImage:[self snapshot]];
+    return snapshotView;
 }
 
 @end

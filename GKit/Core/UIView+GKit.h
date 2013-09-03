@@ -92,6 +92,7 @@ extern CGRect GRectAddSize(CGRect rect, CGSize size);
 
 @interface UIView (GAnimationUtil)
 
-- (UIImageView *)snapshot;
+- (UIImage *)snapshot;
+- (UIImageView *)snapshotView;
 
 @end
