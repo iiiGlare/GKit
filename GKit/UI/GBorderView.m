@@ -7,7 +7,7 @@
 //
 
 #import "GBorderView.h"
-#import "UIView+GKit.h"
+#import "GCore.h"
 
 @implementation GBorderView
 
@@ -28,18 +28,36 @@
 // Only override drawRect: if you perform custom drawing.
 // An empty implementation adversely affects performance during animation.
 - (void)drawRect:(CGRect)rect {
-    // shadow
-    [self.shadowColor setFill];
+    
+    CGFloat selfWidth = self.width;
+    CGFloat selfHeight = self.height;
     CGFloat shadowOffsetWidth = self.shadowOffset.width;
     CGFloat shadowOffsetHeight = self.shadowOffset.height;
-    CGRect shadowRect = CGRectMake(shadowOffsetWidth>=0?shadowOffsetWidth:0,
-                                   shadowOffsetHeight>=0?shadowOffsetHeight:0,
-                                   self.width-ABS(shadowOffsetWidth),
-                                   self.height-ABS(shadowOffsetHeight));
-    UIBezierPath * shadowPath = [UIBezierPath bezierPathWithRoundedRect:shadowRect cornerRadius:self.cornerRadius];
+    
+    // shadow
+    [self.shadowColor setFill];
+    
+    UIBezierPath * shadowPath = [[UIBezierPath alloc] init];
+    if (shadowOffsetWidth==0 && shadowOffsetHeight>0) {
+        CGFloat beginY = selfHeight-shadowOffsetHeight-_cornerRadius;
+        [shadowPath moveToPoint:CGPointMake(0, beginY)];
+        [shadowPath addArcWithCenter:CGPointMake(_cornerRadius, beginY) radius:_cornerRadius startAngle:GRadiansFromDegrees(180) endAngle:GRadiansFromDegrees(90) clockwise:NO];
+        [shadowPath addLineToPoint:CGPointMake(selfWidth-_cornerRadius, beginY+_cornerRadius)];
+        [shadowPath addArcWithCenter:CGPointMake(selfWidth-_cornerRadius, beginY) radius:_cornerRadius startAngle:GRadiansFromDegrees(90) endAngle:GRadiansFromDegrees(0) clockwise:NO];
+        [shadowPath addLineToPoint:CGPointMake(selfWidth, beginY+shadowOffsetHeight)];
+        [shadowPath addArcWithCenter:CGPointMake(selfWidth-_cornerRadius, beginY+shadowOffsetHeight) radius:_cornerRadius startAngle:GRadiansFromDegrees(0) endAngle:GRadiansFromDegrees(90) clockwise:YES];
+        [shadowPath addLineToPoint:CGPointMake(_cornerRadius, beginY+shadowOffsetHeight+_cornerRadius)];
+        [shadowPath addArcWithCenter:CGPointMake(_cornerRadius, beginY+shadowOffsetHeight) radius:_cornerRadius startAngle:GRadiansFromDegrees(90) endAngle:GRadiansFromDegrees(180) clockwise:YES];
+        [shadowPath addLineToPoint:CGPointMake(0, beginY)];
+        [shadowPath closePath];
+    }
+    else {
+        goto drawBorder;
+    }
     [shadowPath fill];
     
     // border
+drawBorder:
     [self.borderColor setStroke];
     [self.fillColor setFill];
     CGRect borderRect = CGRectMake(shadowOffsetWidth>=0?_borderWidth*0.5:-shadowOffsetWidth,
