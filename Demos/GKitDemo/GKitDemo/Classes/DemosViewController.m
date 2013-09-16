@@ -41,8 +41,10 @@
     [_listInfo setValue:@[@"Camera"] forKey:@"1"];
     [_listInfo setValue:@[@"Calendar"] forKey:@"2"];
     [_listInfo setValue:@[@"Table"] forKey:@"3"];
-    [_listInfo setValue:@[@"CustomUI"] forKey:@"4"];
-    [_listInfo setValue:@[@"Present"] forKey:@"5"];
+    [_listInfo setValue:@[@"SelectionTable"] forKey:@"4"];
+    [_listInfo setValue:@[@"自动定位到“50”"] forKey:@"4-desc"];
+    [_listInfo setValue:@[@"CustomUI"] forKey:@"5"];
+    [_listInfo setValue:@[@"Present"] forKey:@"6"];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -62,10 +64,15 @@
 }
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath
 {
-    NSString *title = [[_listInfo valueForKey:[NSString stringWithFormat:@"%d",indexPath.section]] objectAtPosition:indexPath.row];
+    NSString * title = [[_listInfo valueForKey:[NSString stringWithFormat:@"%d",indexPath.section]] objectAtPosition:indexPath.row];
     if (title) {
         [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
         [cell.textLabel setText:title];
+    }
+    
+    NSString * desc = [_listInfo valueForKey:[NSString stringWithFormat:@"%d-desc",indexPath.section]];
+    if (desc) {
+        [cell.detailTextLabel setText:desc];
     }
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath

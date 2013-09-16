@@ -27,10 +27,14 @@
 
 @interface GSelectionViewController : GTableViewController
 
-//data
+// data source
 @property (nonatomic, strong) NSArray *itemsForSelection;
 
-//call back
+// scroll
+@property (nonatomic, strong) id scrollItem;
+@property (nonatomic, assign) UITableViewScrollPosition scrollPosition;
+
+// callback
 @property (nonatomic, copy) void (^blockDidSelect)(id selectedItem);
 
 @end

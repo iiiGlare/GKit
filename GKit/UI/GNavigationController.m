@@ -196,7 +196,7 @@
 - (void)pushViewController:(UIViewController *)viewController animated:(BOOL)animated
 {
     if ([self.viewControllers count]>=1) {
-		[_snapshots addObject:[self.container.view snapshot]];
+		[_snapshots addObject:[self.container.view snapshotView]];
 		
 		//Custom Back Item
 		GNavigationControllerConfigurator * configurator = self.privateConfigurator;

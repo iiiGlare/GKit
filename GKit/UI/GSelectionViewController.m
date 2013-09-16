@@ -28,6 +28,30 @@
 
 @implementation GSelectionViewController
 
+#pragma mark - Init 
+- (id)initWithStyle:(UITableViewStyle)style {
+    self = [super initWithStyle:style];
+    if (self) {
+        _scrollPosition = UITableViewScrollPositionMiddle;
+    }
+    return self;
+}
+
+#pragma mark - View Life Cycle
+- (void)viewDidLayoutSubviews {
+    [super viewDidLayoutSubviews];
+    
+    if (_scrollItem &&
+        [_itemsForSelection containsObject:_scrollItem]) {
+        NSIndexPath * scrollIndexPath = [NSIndexPath indexPathForRow:[_itemsForSelection indexOfObject:_scrollItem]
+                                                           inSection:0];
+        [self.tableView scrollToRowAtIndexPath:scrollIndexPath
+                              atScrollPosition:_scrollPosition
+                                      animated:NO];
+    }
+}
+
+#pragma mark -
 #pragma mark UITableViewDataSource
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
