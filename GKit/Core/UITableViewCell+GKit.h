@@ -10,7 +10,7 @@
 
 @interface UITableViewCell (GKit)
 
-@property (nonatomic, weak, readonly) UITableView *tableView;
-@property (nonatomic, weak, readonly) NSIndexPath *indexPath;
+@property (nonatomic, weak, readonly) UITableView * tableView;
+@property (nonatomic, weak, readonly) NSIndexPath * indexPath;
 
 @end

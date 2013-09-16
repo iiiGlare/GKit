@@ -10,12 +10,12 @@
 
 @interface UIScrollView (GKit)
 
-@property (nonatomic, strong) NSTimer *autoScrollTopTimer;
-@property (nonatomic, strong) NSTimer *autoScrollBottomTimer;
-- (void)startAutoScrollToTop;
-- (void)autoScrollToTop;
-- (void)startAutoScrollToBottom;
-- (void)autoScrollToBottom;
-- (void)stopAutoScroll;
+@property (nonatomic, strong) NSTimer * autoScrollTopTimer;
+@property (nonatomic, strong) NSTimer * autoScrollBottomTimer;
+- (void) startAutoScrollToTop;
+- (void) autoScrollToTop;
+- (void) startAutoScrollToBottom;
+- (void) autoScrollToBottom;
+- (void) stopAutoScroll;
 
 @end

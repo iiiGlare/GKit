@@ -10,8 +10,7 @@
 
 @implementation GMusicPlayer
 
-- (id)initWithMPMediaItemCollection:(MPMediaItemCollection *)mediaItemCollection
-{
+- (id)initWithMPMediaItemCollection:(MPMediaItemCollection *)mediaItemCollection {
 	self = [super init];
 	if (self) {
 		[self _setupMusicPlayerControllerWithCollection:mediaItemCollection];
@@ -19,8 +18,7 @@
 	return self;
 }
 
-- (void)_setupMusicPlayerControllerWithCollection:(MPMediaItemCollection *)mediaItemCollection
-{
+- (void)_setupMusicPlayerControllerWithCollection:(MPMediaItemCollection *)mediaItemCollection {
 	_musicPlayerController = [MPMusicPlayerController applicationMusicPlayer];
 	[_musicPlayerController setShuffleMode:MPMusicShuffleModeOff];
 	[_musicPlayerController setRepeatMode:MPMusicRepeatModeAll];
@@ -28,12 +26,10 @@
 }
 
 #pragma mark - Control
-- (void)play
-{
+- (void)play {
 	[_musicPlayerController play];
 }
-- (void)stop
-{
+- (void)stop {
 	[_musicPlayerController stop];
 }
 @end

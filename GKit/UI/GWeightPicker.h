@@ -27,10 +27,8 @@ enum  {
 typedef NSInteger GWeightPickerComponentType;
 
 
-@interface GWeightPicker : UIControl
-<
-    GPickerDataSource, GPickerDelegate
->
+@interface GWeightPicker : UIControl <
+GPickerDataSource, GPickerDelegate >
 
 // picker
 @property (nonatomic, weak, readonly) GPicker * picker;
@@ -41,6 +39,6 @@ typedef NSInteger GWeightPickerComponentType;
 @property (nonatomic, assign) CGFloat maximumWeight;    // default 100.0 kg
 
 // method
-- (void)setSelectedWeight:(CGFloat)selectedWeight animated:(BOOL)animated;
+- (void) setSelectedWeight:(CGFloat)selectedWeight animated:(BOOL)animated;
 
 @end

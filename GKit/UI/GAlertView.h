@@ -10,6 +10,6 @@
 
 @interface GAlertView : NSObject
 
-+ (void)showMessage:(NSString *)message;
++ (void) showMessage:(NSString *)message;
 
 @end

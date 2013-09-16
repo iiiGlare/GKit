@@ -16,6 +16,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "GMacros.h"
 
 @interface GTabBarController : UITabBarController
 
@@ -28,7 +29,7 @@
  * 对应的title为：CustomTitle MyTitle，需要在本地化文件中做对应的翻译
  * 对应的image为：CustomImage.png MyImage.png
  */
-+ (id) newWithControllerNames: (NSArray *)names;
++ (G_INSTANCETYPE) newWithControllerNames:(NSArray *)names;
 
 /**
  * Create a custom UIButton and add it to the center of our tab bar
@@ -37,7 +38,7 @@
  * Item highlight image :   CenterTabBarItemImage-Highlight.png
  */
 
-@property (nonatomic, strong, readonly) UIButton *actionButton;
+@property (nonatomic, strong, readonly) UIButton * actionButton;
 - (void) addActionButtonWithTarget: (id)target
                             action: (SEL)action;
 

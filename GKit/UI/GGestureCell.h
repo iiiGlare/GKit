@@ -21,7 +21,7 @@
 
 @protocol GGestureCellDelegate <NSObject>
 @optional
-- (void)gestureCellDidBeginPan:(GGestureCell *)gestureCell;
-- (void)gestureCellIsPanning:(GGestureCell *)gestureCell;
-- (void)gestureCellDidEndPan:(GGestureCell *)gestureCell;
+- (void) gestureCellDidBeginPan:(GGestureCell *)gestureCell;
+- (void) gestureCellIsPanning:(GGestureCell *)gestureCell;
+- (void) gestureCellDidEndPan:(GGestureCell *)gestureCell;
 @end

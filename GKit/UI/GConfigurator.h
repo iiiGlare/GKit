@@ -10,6 +10,6 @@
 
 @protocol GConfigurator <NSObject>
 
-+ (id)configurator;
++ (id) configurator;
 
 @end

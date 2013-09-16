@@ -40,48 +40,48 @@ typedef NSInteger GAudioInterruptionType;
 @interface GAudio : NSObject
 
 //Vibrate && SystemSound
-+ (void)vibrate;
-+ (void)playSystemSoundForResource:(NSString *)resource
-					 withExtension:(NSString *)extension;
++ (void) vibrate;
++ (void) playSystemSoundForResource: (NSString *)resource
+                      withExtension: (NSString *)extension;
 
 //Audio Session
-+ (void)activeAudioSession;
-+ (void)deactiveAudioSession;
++ (void) activeAudioSession;
++ (void) deactiveAudioSession;
 
-+ (void)setSessionProperty:(GAudioSessionCategory)category;
-+ (void)overrideCategoryMixWithOthers:(BOOL)isOverride;
-+ (void)overrideOtherMixableAudioShouldDuck:(BOOL)isOverride;
-+ (void)overrideCategoryDefaultToSpeaker:(BOOL)isOverride;
-+ (void)overrideAudioRouteToSpeaker:(BOOL)isOverride;
++ (void) setSessionProperty: (GAudioSessionCategory)category;
++ (void) overrideCategoryMixWithOthers: (BOOL)isOverride;
++ (void) overrideOtherMixableAudioShouldDuck: (BOOL)isOverride;
++ (void) overrideCategoryDefaultToSpeaker: (BOOL)isOverride;
++ (void) overrideAudioRouteToSpeaker: (BOOL)isOverride;
 
 //+ (BOOL)isSilenced;
 
 //Init
-+ (GAudio *)sharedAudio;
-+ (GAudio *)newAudio;
++ (GAudio *) sharedAudio;
++ (GAudio *) newAudio;
 
 //Play
-@property (nonatomic, strong, readonly) AVAudioPlayer *player;
+@property (nonatomic, strong, readonly) AVAudioPlayer * player;
 
-- (void)preparePlayingWithContents:(id)audioContents
-                          callback:(void (^)(GAudio *audio, GAudioInterruptionType type, NSError *error))callback
-                            finish:(void (^)(GAudio *audio, BOOL successfully))finish;
-- (void)startPlayingWithCurrentTime:(NSTimeInterval)currentTime;
-- (void)pausePlaying;
-- (void)stopPlaying;
-- (void)stopAndPreparePlaying;
-- (void)deletePlaying;
+- (void) preparePlayingWithContents: (id)audioContents
+                           callback: (void (^)(GAudio *audio, GAudioInterruptionType type, NSError *error))callback
+                             finish: (void (^)(GAudio *audio, BOOL successfully))finish;
+- (void) startPlayingWithCurrentTime: (NSTimeInterval)currentTime;
+- (void) pausePlaying;
+- (void) stopPlaying;
+- (void) stopAndPreparePlaying;
+- (void) deletePlaying;
 
 //Record
-@property (nonatomic, strong, readonly) AVAudioRecorder *recorder;
+@property (nonatomic, strong, readonly) AVAudioRecorder * recorder;
 
 NSURL * GAudioRecordingFileURL(void);
-- (void)prepareRecordingWithCallback:(void (^)(GAudio *audio, GAudioInterruptionType type, NSError *error))callback;
-- (void)startRecording;
-- (void)pauseRecording;
-- (void)stopRecording;
-- (void)stopAndPrepareRecording;
-- (BOOL)copyRecordedAudioFileToURL:(NSURL *)url;
-- (void)deleteRecording;
+- (void) prepareRecordingWithCallback: (void (^)(GAudio *audio, GAudioInterruptionType type, NSError *error))callback;
+- (void) startRecording;
+- (void) pauseRecording;
+- (void) stopRecording;
+- (void) stopAndPrepareRecording;
+- (BOOL) copyRecordedAudioFileToURL: (NSURL *)url;
+- (void) deleteRecording;
 
 @end

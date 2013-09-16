@@ -42,14 +42,14 @@
 @protocol GSinglePickerDelegate;
 
 @interface GSinglePickerItem : UIView
-@property (nonatomic, unsafe_unretained) UILabel *titleLabel;
+@property (nonatomic, weak) UILabel *titleLabel;
 @end
 
 
 @interface GSinglePicker : UIView <UIScrollViewDelegate>
 {
-    __unsafe_unretained id <GSinglePickerDataSource> dataSource;
-    __unsafe_unretained id <GSinglePickerDelegate> delegate;
+    __weak id <GSinglePickerDataSource> dataSource;
+    __weak id <GSinglePickerDelegate> delegate;
     UIScrollView *contentView;
     UIImageView *glassView;
     
@@ -62,35 +62,35 @@
 }
 
 // Datasource and delegate
-@property (nonatomic, unsafe_unretained) IBOutlet id <GSinglePickerDataSource> dataSource;
-@property (nonatomic, unsafe_unretained) IBOutlet id <GSinglePickerDelegate> delegate;
+@property (nonatomic, weak) IBOutlet id <GSinglePickerDataSource> dataSource;
+@property (nonatomic, weak) IBOutlet id <GSinglePickerDelegate> delegate;
 // Views
-@property (nonatomic, strong) UIScrollView *contentView;
-@property (nonatomic, strong) UIImage *backgroundImage;
-@property (nonatomic, strong) UIImage *glassImage;
-@property (nonatomic, strong) UIImage *shadowImage;
+@property (nonatomic, strong) UIScrollView * contentView;
+@property (nonatomic, strong) UIImage * backgroundImage;
+@property (nonatomic, strong) UIImage * glassImage;
+@property (nonatomic, strong) UIImage * shadowImage;
 // Current status
-@property (nonatomic, unsafe_unretained) int selectedItem;
+@property (nonatomic, assign) int selectedItem;
 // Configuration
-@property (nonatomic) BOOL supportFlow;
-@property (nonatomic) BOOL scrollVertical;
-@property (nonatomic, strong) UIFont *itemFont;
-@property (nonatomic, strong) UIColor *itemColor;
-@property (nonatomic) BOOL showGlass;
-@property (nonatomic) CGSize glassSize;
-@property (nonatomic) UIEdgeInsets peekInset;
+@property (nonatomic, assign) BOOL supportFlow;
+@property (nonatomic, assign) BOOL scrollVertical;
+@property (nonatomic, strong) UIFont * itemFont;
+@property (nonatomic, strong) UIColor * itemColor;
+@property (nonatomic, assign) BOOL showGlass;
+@property (nonatomic, assign) CGSize glassSize;
+@property (nonatomic, assign) UIEdgeInsets peekInset;
 
 
-- (void)setup;
-- (void)reloadData;
+- (void) setup;
+- (void) reloadData;
 //- (void)determineCurrentItem;
-- (void)selectItemAtIndex:(NSInteger)index animated:(BOOL)animated;
+- (void) selectItemAtIndex:(NSInteger)index animated:(BOOL)animated;
 
 // recycle queue
-- (GSinglePickerItem *)dequeueRecycledView;
-- (BOOL)isDisplayingViewForIndex:(NSUInteger)index;
-- (void)titleViews;
-- (void)configureView:(UIView *)view atIndex:(NSUInteger)index;
+- (GSinglePickerItem *) dequeueRecycledView;
+- (BOOL) isDisplayingViewForIndex:(NSUInteger)index;
+- (void) titleViews;
+- (void) configureView:(UIView *)view atIndex:(NSUInteger)index;
 
 @end
 
@@ -98,8 +98,8 @@
 
 @protocol GSinglePickerDataSource <NSObject>
 
-- (NSInteger)numberOfItemsInPickerView:(GSinglePicker *)pickerView;
-- (NSString *)pickerView:(GSinglePicker *)pickerView titleForItem:(NSInteger)item;
+- (NSInteger) numberOfItemsInPickerView:(GSinglePicker *)pickerView;
+- (NSString *) pickerView:(GSinglePicker *)pickerView titleForItem:(NSInteger)item;
 
 @end
 
@@ -107,6 +107,6 @@
 
 @protocol GSinglePickerDelegate <NSObject>
 
-- (void)pickerView:(GSinglePicker *)pickerView didSelectItem:(NSInteger)item;
+- (void) pickerView:(GSinglePicker *)pickerView didSelectItem:(NSInteger)item;
 
 @end

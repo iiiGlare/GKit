@@ -24,50 +24,44 @@
 @implementation GImageManager
 
 /////
-+ (NSString *) uniqueImageName
-{
++ (NSString *)uniqueImageName {
 	return [NSFileManager uniqueItemName];
 }
 
 //////
-+ (BOOL) saveImage: (UIImage *)image
-		  withName: (NSString *)name
-	   inDirectory: (NSString *)directoryName
-{
-	return [NSFileManager createItem: UIImageJPEGRepresentation(image, 1.0)
-							withName: name
-						 inDirectory: directoryName];
++ (BOOL)saveImage:(UIImage *)image
+         withName:(NSString *)name
+      inDirectory:(NSString *)directoryName {
+	return [NSFileManager createItem:UIImageJPEGRepresentation(image, 1.0)
+							withName:name
+						 inDirectory:directoryName];
 }
 
 //////
-+ (BOOL) deleteImageNamed: (NSString *)name
-			  inDirectory: (NSString *)directoryName
-{
-	return [NSFileManager removeItemNamed: name
-							  inDirectory: directoryName];
++ (BOOL)deleteImageNamed:(NSString *)name
+             inDirectory:(NSString *)directoryName {
+	return [NSFileManager removeItemNamed:name
+							  inDirectory:directoryName];
 }
 
 //Find
-+ (NSString *) pathForImageNamed: (NSString *)name
-					 inDirectory: (NSString *)directoryName
-{
-	return [[NSFileManager URLForItemNamed: name
-							   inDirectory: directoryName] path];
++ (NSString *)pathForImageNamed:(NSString *)name
+                    inDirectory:(NSString *)directoryName {
+	return [[NSFileManager URLForItemNamed:name
+							   inDirectory:directoryName] path];
 }
 
-+ (UIImage *) imageNamed: (NSString *)name
-			 inDirectory: (NSString *)directoryName
-{
++ (UIImage *)imageNamed:(NSString *)name
+            inDirectory:(NSString *)directoryName {
     NSString * path = [self pathForImageNamed:name inDirectory:directoryName];
     UIImage * image = [[UIImage alloc] initWithContentsOfFile:path];
     return image;
 }
 
 //Local Library
-+ (void)saveImageIntoLocalLibrary: (UIImage *)image
-					 blockSucceed: (void (^)(void))blockSucceed
-					  blockFailed: (void (^)(void))blockFailed
-{
++ (void)saveImageIntoLocalLibrary:(UIImage *)image
+					 blockSucceed:(void (^)(void))blockSucceed
+					  blockFailed:(void (^)(void))blockFailed {
 	if (image==nil) return;
 	
 	dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{

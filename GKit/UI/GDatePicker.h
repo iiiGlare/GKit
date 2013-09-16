@@ -54,10 +54,10 @@ typedef NSInteger GDatePickerComponentType;
 @property (nonatomic, assign) NSInteger numberOfYears;           // default is 100
 
 // method
-- (void)setSelectedDate:(NSDate *)selectedDate animated:(BOOL)animated;
+- (void) setSelectedDate:(NSDate *)selectedDate animated:(BOOL)animated;
 
 // init & memory management
-- (void)customInitialize;
-- (void)prepareToRemove;
+- (void) customInitialize;
+- (void) prepareToRemove;
 
 @end

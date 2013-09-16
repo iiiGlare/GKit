@@ -11,33 +11,33 @@
 @interface GSwitch : UIControl
 
 //图片
-@property (nonatomic, strong) UIImage *knobImage;
-@property (nonatomic, strong) UIImage *onToggleImage;
-@property (nonatomic, strong) UIImage *offToggleImage;
+@property (nonatomic, strong) UIImage * knobImage;
+@property (nonatomic, strong) UIImage * onToggleImage;
+@property (nonatomic, strong) UIImage * offToggleImage;
 
-@property (nonatomic, strong) UIImage *onBackgroundImage;
-@property (nonatomic, strong) UIImage *offBackgroundImage;
+@property (nonatomic, strong) UIImage * onBackgroundImage;
+@property (nonatomic, strong) UIImage * offBackgroundImage;
 
 
 //尺寸
-@property (nonatomic) CGSize knobSize;
-@property (nonatomic) CGFloat toggleHeight;
-@property (nonatomic, getter = isStretchable) BOOL stretchable;
+@property (nonatomic, assign) CGSize knobSize;
+@property (nonatomic, assign) CGFloat toggleHeight;
+@property (nonatomic, assign, getter = isStretchable) BOOL stretchable;
 
 //边距 位移
-@property (nonatomic) UIEdgeInsets knobInsets;
-@property (nonatomic) UIEdgeInsets toggleInsets;
+@property (nonatomic, assign) UIEdgeInsets knobInsets;
+@property (nonatomic, assign) UIEdgeInsets toggleInsets;
 
-@property (nonatomic, getter = isOn) BOOL on;
-
-
-- (id)initWithFrame:(CGRect)frame
-		  knobImage:(UIImage *)knobImage
-	  onToggleImage:(UIImage *)onToggleImage
-	 offToggleImage:(UIImage *)offToggleImage;
+@property (nonatomic, assign, getter = isOn) BOOL on;
 
 
-- (void)setOn:(BOOL)newOn animated:(BOOL)animated;
-- (void)setOn:(BOOL)newOn animated:(BOOL)animated ignoreControlEvents:(BOOL)ignoreControlEvents;
+- (id) initWithFrame: (CGRect)frame
+		   knobImage: (UIImage *)knobImage
+       onToggleImage: (UIImage *)onToggleImage
+      offToggleImage: (UIImage *)offToggleImage;
+
+
+- (void) setOn:(BOOL)newOn animated:(BOOL)animated;
+- (void) setOn:(BOOL)newOn animated:(BOOL)animated ignoreControlEvents:(BOOL)ignoreControlEvents;
 
 @end

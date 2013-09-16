@@ -16,6 +16,7 @@
 //
 
 #import <CoreData/CoreData.h>
+#import "GMacros.h"
 #import "NSArray+GCoreData.h"
 #import "NSSet+GCoreData.h"
 #import "NSManagedObject+GCoreData.h"
@@ -27,14 +28,14 @@
 /**
  setup
  */
-+ (BOOL) setupWithName:(NSString *)name;
-+ (BOOL) setupWithModelName:(NSString *)modelName
-                  storeName:(NSString *)storeName;
++ (BOOL) setupWithName: (NSString *)name;
++ (BOOL) setupWithModelName: (NSString *)modelName
+                  storeName: (NSString *)storeName;
 
 
 /**
  */
-+ (id) sharedInstance;
++ (G_INSTANCETYPE) sharedInstance;
 
 @property (nonatomic, copy) NSString * modelName;
 @property (nonatomic, copy) NSString * storeName;
@@ -88,11 +89,11 @@ typedef NSUInteger GConcurrencyType;
 + (NSArray *) findAllForEntityName: (NSString *)entityName
 						 inContext: (NSManagedObjectContext *)context;
 //fetch all : predicate
-+ (NSArray *) findAllForEntityName:(NSString *)entityName
-					 withPredicate:(NSPredicate *)predicate;
-+ (NSArray *) findAllForEntityName:(NSString *)entityName
-					 withPredicate:(NSPredicate *)predicate
-						 inContext:(NSManagedObjectContext *)context;
++ (NSArray *) findAllForEntityName: (NSString *)entityName
+					 withPredicate: (NSPredicate *)predicate;
++ (NSArray *) findAllForEntityName: (NSString *)entityName
+					 withPredicate: (NSPredicate *)predicate
+						 inContext: (NSManagedObjectContext *)context;
 
 //fetch all : predicate 、sort
 + (NSArray *) findAllForEntityName: (NSString *)entityName

@@ -11,10 +11,8 @@
 
 @protocol GTextViewCellDelegate;
 
-@interface GTextViewCell : UITableViewCell
-<
- UITextViewDelegate
->
+@interface GTextViewCell : UITableViewCell <
+ UITextViewDelegate >
 
 @property (nonatomic, strong, readonly) GTextView * textView;
 @property (nonatomic, weak) id<GTextViewCellDelegate> delegate;
@@ -28,16 +26,16 @@
 
 @optional
 
-- (BOOL)textViewCellShouldBeginEditing:(GTextViewCell *)textViewCell;
-- (BOOL)textViewCellShouldEndEditing:(GTextViewCell *)textViewCell;
+- (BOOL) textViewCellShouldBeginEditing:(GTextViewCell *)textViewCell;
+- (BOOL) textViewCellShouldEndEditing:(GTextViewCell *)textViewCell;
 
-- (void)textViewCellDidBeginEditing:(GTextViewCell *)textViewCell;
-- (void)textViewCellDidEndEditing:(GTextViewCell *)textViewCell;
+- (void) textViewCellDidBeginEditing:(GTextViewCell *)textViewCell;
+- (void) textViewCellDidEndEditing:(GTextViewCell *)textViewCell;
 
-- (BOOL)textViewCell:(GTextViewCell *)textViewCell shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text;
-- (void)textViewCellDidChange:(GTextViewCell *)textViewCell;
+- (BOOL) textViewCell:(GTextViewCell *)textViewCell shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text;
+- (void) textViewCellDidChange:(GTextViewCell *)textViewCell;
 
-- (void)textViewCellDidChangeSelection:(GTextViewCell *)textViewCell;
+- (void) textViewCellDidChangeSelection:(GTextViewCell *)textViewCell;
 
 
 @end

@@ -38,8 +38,8 @@
 			 inDirectory: (NSString *)directoryName;
 
 //Local Library
-+ (void)saveImageIntoLocalLibrary: (UIImage *)image
-					 blockSucceed: (void (^)(void))blockSucceed
-					  blockFailed: (void (^)(void))blockFailed;
++ (void) saveImageIntoLocalLibrary: (UIImage *)image
+                      blockSucceed: (void (^)(void))blockSucceed
+                       blockFailed: (void (^)(void))blockFailed;
 
 @end

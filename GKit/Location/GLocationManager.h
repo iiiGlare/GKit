@@ -17,11 +17,12 @@
 
 #import <Foundation/Foundation.h>
 #import <CoreLocation/CoreLocation.h>
+#import "GMacros.h"
 
 @interface GLocationManager : NSObject
 <CLLocationManagerDelegate>
 
-+ (id)sharedManager;
++ (G_INSTANCETYPE)sharedManager;
 
 //LocationManager
 @property (nonatomic, strong) CLLocationManager *locationManager;
@@ -47,7 +48,7 @@ typedef NSInteger GActivityType;
 @property (nonatomic, copy) void (^blockDidFail)(CLLocationManager *locationManager, NSError *error);
 
 //Actions
-- (void)startUpdatingLocation;
-- (void)stopUpdatingLocation;
+- (void) startUpdatingLocation;
+- (void) stopUpdatingLocation;
 
 @end

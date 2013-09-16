@@ -18,27 +18,27 @@
 /**
  * Returns the url to the application's Documents directory.
  */
-NSURL* GDocumentsDirectoryURL(void);
+NSURL * GDocumentsDirectoryURL(void);
 
 /**
  * Returns the url to the application's Caches directory.
  */
-NSURL* GCachesDirectoryURL(void);
+NSURL * GCachesDirectoryURL(void);
 
 /**
  * Returns the url to the application's Downloads directory.
  */
-NSURL* GDownloadsDirectoryURL(void);
+NSURL * GDownloadsDirectoryURL(void);
 
 /**
  * Returns the url to the application's Library directory.
  */
-NSURL* GLibraryDirectoryURL(void);
+NSURL * GLibraryDirectoryURL(void);
 
 /**
  * Returns the url to the application's Support directory.
  */
-NSURL* GApplicationSupportDirectoryURL(void);
+NSURL * GApplicationSupportDirectoryURL(void);
 
 /**
  *

@@ -22,7 +22,7 @@
 
 #pragma mark - Init
 
-+ (id)sharedManager
++ (G_INSTANCETYPE)sharedManager
 {
 	static GLocationManager *_sharedManager = nil;
 	static dispatch_once_t onceToken;

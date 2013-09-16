@@ -24,36 +24,41 @@
 
 @property (nonatomic, assign) UIEdgeInsets contentEdgeInsets; //default zero
 
-- (void)reloadAllComponents;
-- (void)reloadComponent:(NSInteger)component;
+- (void) reloadAllComponents;
+- (void) reloadComponent: (NSInteger)component;
 
-- (void)scrollComponent:(NSInteger)component toRow:(NSInteger)row considerSelectable:(BOOL)considerSelectable animated:(BOOL)animated;
+- (void) scrollComponent: (NSInteger)component
+                   toRow: (NSInteger)row
+      considerSelectable: (BOOL)considerSelectable
+                animated: (BOOL)animated;
 
-- (void)selectRow:(NSInteger)row inComponent:(NSInteger)component animated:(BOOL)animated;
-- (NSInteger)selectedRowInComponent:(NSInteger)component;
+- (void) selectRow: (NSInteger)row
+       inComponent: (NSInteger)component
+          animated: (BOOL)animated;
+- (NSInteger) selectedRowInComponent: (NSInteger)component;
 
-- (void)setTextFont:(UIFont *)textFont forControlState:(UIControlState)controlState;
-- (void)setTextColor:(UIColor *)textColor forControlState:(UIControlState)controlState;
-- (void)setTextShadowColor:(UIColor *)textShadowColor forControlState:(UIControlState)controlState;
-- (void)setTextShadowOffset:(CGSize)textShadowOffset forControlState:(UIControlState)controlState;
+- (void) setTextFont:(UIFont *)textFont forControlState:(UIControlState)controlState;
+- (void) setTextColor:(UIColor *)textColor forControlState:(UIControlState)controlState;
+- (void) setTextShadowColor:(UIColor *)textShadowColor forControlState:(UIControlState)controlState;
+- (void) setTextShadowOffset:(CGSize)textShadowOffset forControlState:(UIControlState)controlState;
 
 @end
 
 //////////// GPickerDataSource
 @protocol GPickerDataSource <NSObject>
 @required
-- (NSInteger)numberOfComponentsInPicker:(GPicker *)picker;
-- (NSInteger)picker:(GPicker *)picker numberOfRowsInComponent:(NSInteger)component;
+- (NSInteger) numberOfComponentsInPicker:(GPicker *)picker;
+- (NSInteger) picker:(GPicker *)picker numberOfRowsInComponent:(NSInteger)component;
 
 @end
 
 //////////// GPickerDelegate
 @protocol GPickerDelegate <NSObject>
 @optional
-- (CGFloat)picker:(GPicker *)picker widthForComponent:(NSInteger)component;
-- (NSString *)picker:(GPicker *)picker titleForRow:(NSInteger)row forComponent:(NSInteger)component;
-- (BOOL)picker:(GPicker *)picker selectableForRow:(NSInteger)row forComponent:(NSInteger)component;
-- (void)picker:(GPicker *)picker didSelectRow:(NSInteger)row inComponent:(NSInteger)component;
-- (void)picker:(GPicker *)picker didScrollCell:(UIView *)cell inComponent:(NSInteger)component atOffset:(CGFloat)offset; // offset, 0 is middle, negative value means top, positive value means bottom;
+- (CGFloat) picker:(GPicker *)picker widthForComponent:(NSInteger)component;
+- (NSString *) picker:(GPicker *)picker titleForRow:(NSInteger)row forComponent:(NSInteger)component;
+- (BOOL) picker:(GPicker *)picker selectableForRow:(NSInteger)row forComponent:(NSInteger)component;
+- (void) picker:(GPicker *)picker didSelectRow:(NSInteger)row inComponent:(NSInteger)component;
+- (void) picker:(GPicker *)picker didScrollCell:(UIView *)cell inComponent:(NSInteger)component atOffset:(CGFloat)offset; // offset, 0 is middle, negative value means top, positive value means bottom;
 
 @end

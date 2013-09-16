@@ -25,7 +25,7 @@
 /**
  Return the first object or nil if array is empty.
  */
-- (id)firstObject;
+- (id) firstObject;
 
 /**
  Replace objectAtIndex
@@ -34,10 +34,10 @@
  目的2：进行位置合法性检查，避免崩溃
 
  */
-- (id)objectAtPosition:(NSInteger)position;
+- (id) objectAtPosition: (NSInteger)position;
 /**
  循环访问数组内容
  */
-- (id)objectAtCirclePosition:(NSInteger)position;
+- (id) objectAtCirclePosition: (NSInteger)position;
 
 @end

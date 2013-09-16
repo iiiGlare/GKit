@@ -19,6 +19,6 @@
 
 @interface NSManagedObjectContext (GCoreData)
 
-- (void)save;
+- (void) save;
 
 @end

@@ -14,14 +14,14 @@
 
 @property (nonatomic, strong) id userObject;
 
-@property (nonatomic, copy) NSDate *beginTime;
-@property (nonatomic, copy) NSDate *endTime;
-@property (nonatomic, copy) NSString *title;
+@property (nonatomic, copy) NSDate * beginTime;
+@property (nonatomic, copy) NSDate * endTime;
+@property (nonatomic, copy) NSString * title;
 
 @property (nonatomic, copy) UIColor * borderColor;
 @property (nonatomic, copy) UIColor * backgroundColor;
 @property (nonatomic, copy) UIColor * foregroundColor;
 
-@property (nonatomic) BOOL isLongPresAdded;
+@property (nonatomic, assign) BOOL isLongPresAdded;
 
 @end

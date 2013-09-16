@@ -44,21 +44,22 @@ typedef NSInteger GWeekdayType;
 @interface NSDate (GKit)
 
 //string from date
-- (NSString *)dateStringWithFormat:(NSString *)dateFormat;
+- (NSString *) dateStringWithFormat: (NSString *)dateFormat;
 //date from date
-- (NSDate *)dateWithFormat:(NSString *)dateFormat;
+- (NSDate *) dateWithFormat: (NSString *)dateFormat;
 //hour string
-- (NSString *)hourString;
+- (NSString *) hourString;
 //min string
-- (NSString *)minuteString;
+- (NSString *) minuteString;
 
 
 ////
-- (GWeekdayType)weekday;
-- (NSDate *)beginningOfDay;
-- (NSDate *)beginningOfWeekWithFirstWeekday:(GWeekdayType)firstWeekday;
+- (GWeekdayType) weekday;
+- (NSDate *) beginningOfDay;
+- (NSDate *) beginningOfWeekWithFirstWeekday: (GWeekdayType)firstWeekday;
 
 ////
-+ (NSInteger)numberOfDaysForMonth:(NSInteger)month inYear:(NSInteger)year;
++ (NSInteger) numberOfDaysForMonth: (NSInteger)month
+                            inYear: (NSInteger)year;
 
 @end

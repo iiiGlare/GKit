@@ -19,8 +19,8 @@
 @interface GSelectionBasicItem : NSObject
 @property (nonatomic, copy) id type;
 @property (nonatomic, copy) id value;
-@property (nonatomic, copy) NSString *title;
-@property (nonatomic, copy) NSString *detail;
+@property (nonatomic, copy) NSString * title;
+@property (nonatomic, copy) NSString * detail;
 @end
 
 #import "GTableViewController.h"
@@ -28,7 +28,7 @@
 @interface GSelectionViewController : GTableViewController
 
 // data source
-@property (nonatomic, strong) NSArray *itemsForSelection;
+@property (nonatomic, strong) NSArray * itemsForSelection;
 
 // scroll
 @property (nonatomic, strong) id scrollItem;

@@ -15,6 +15,6 @@
 @property (nonatomic, strong) UIFont * placeHolderFont;
 @property (nonatomic, assign) UIEdgeInsets placeHolderEdgeInsets;
 
-- (void)showOrHidePlaceHolderTextView;
+- (void) showOrHidePlaceHolderTextView;
 
 @end

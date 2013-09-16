@@ -28,29 +28,29 @@ typedef NSInteger GPresentAnimationType;
 @interface GViewController : UIViewController
 <GConfigurator>
 
-- (void)customInitialize;
+- (void) customInitialize;
 
 @property (nonatomic, copy) void (^blockCallBack)(id);
 
 // View
-@property (nonatomic, strong) IBOutlet UIView *topView;
-@property (nonatomic, strong) IBOutlet UIView *contentView;
-@property (nonatomic, strong) IBOutlet UIView *bottomView;
-- (void)setTopViewHeight:(CGFloat)topViewHeight;
-- (void)setContentViewHeight:(CGFloat)contentViewHeight;
-- (void)setBottomViewHeight:(CGFloat)bottomViewHeight;
+@property (nonatomic, strong) IBOutlet UIView * topView;
+@property (nonatomic, strong) IBOutlet UIView * contentView;
+@property (nonatomic, strong) IBOutlet UIView * bottomView;
+- (void) setTopViewHeight:(CGFloat)topViewHeight;
+- (void) setContentViewHeight:(CGFloat)contentViewHeight;
+- (void) setBottomViewHeight:(CGFloat)bottomViewHeight;
 
 // Present / Dismiss Animation
-@property (nonatomic) BOOL canDragDismiss; G_CONFIGURATOR_SELECTOR  // default NO
+@property (nonatomic, assign) BOOL canDragDismiss; G_CONFIGURATOR_SELECTOR  // default NO
 @property (nonatomic, assign) GPresentAnimationType presentAnimationType; G_CONFIGURATOR_SELECTOR // default GPresentAnimationTypNormal
 
 // Navigation Control
-- (void)willPop;
+- (void) willPop;
 
 // Keyboard
-- (void)registerForKeyboardNotifications;
-- (void)unregisterForKeyboardNotifications;
-- (void)keyboardWillBeShown:(NSNotification*)aNotification;
-- (void)keyboardWillBeHidden:(NSNotification*)aNotification;
+- (void) registerForKeyboardNotifications;
+- (void) unregisterForKeyboardNotifications;
+- (void) keyboardWillBeShown:(NSNotification*)aNotification;
+- (void) keyboardWillBeHidden:(NSNotification*)aNotification;
 
 @end

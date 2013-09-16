@@ -12,7 +12,7 @@
 @interface GEfficientTableViewController : GTableViewController
 <NSFetchedResultsControllerDelegate>
 
-@property (nonatomic, strong) NSManagedObjectContext *fetchedResultsContext;
-@property (nonatomic, strong) NSFetchedResultsController *fetchedResultsController;
+@property (nonatomic, strong) NSManagedObjectContext * fetchedResultsContext;
+@property (nonatomic, strong) NSFetchedResultsController * fetchedResultsController;
 
 @end

@@ -21,7 +21,7 @@
 
 @implementation GTabBarController
 
-+ (id)newWithControllerNames:(NSArray *)names
++ (G_INSTANCETYPE)newWithControllerNames:(NSArray *)names
 {
 	if ([names count]==0) {
 		return nil;

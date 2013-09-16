@@ -48,18 +48,17 @@
 	
 	CFURLRef		soundFileURLRef;
 	SystemSoundID	soundFileObject;
-	NSURL *tapSound   = [[NSBundle mainBundle] URLForResource: resource
-                                                withExtension: extension];
+	NSURL *tapSound  = [[NSBundle mainBundle] URLForResource:resource withExtension:extension];
 	
     // Store the URL as a CFURLRef instance
 	soundFileURLRef = (CFURLRef) CFBridgingRetain(tapSound);
 	
     // Create a system sound object representing the sound file.
-    AudioServicesCreateSystemSoundID (
-									  soundFileURLRef,
-									  &soundFileObject
-									  );
-	AudioServicesPlaySystemSound (soundFileObject);
+    AudioServicesCreateSystemSoundID(
+                                     soundFileURLRef,
+                                     &soundFileObject
+                                     );
+	AudioServicesPlaySystemSound(soundFileObject);
 	CFBridgingRelease(soundFileURLRef);
 }
 

@@ -18,22 +18,18 @@
 #import <UIKit/UIKit.h>
 #import "GViewController.h"
 
-@interface GTableViewController : GViewController
-<
+@interface GTableViewController : GViewController <
  UITableViewDataSource, UITableViewDelegate,
- UITextFieldDelegate, UITextViewDelegate
->
-{
+ UITextFieldDelegate, UITextViewDelegate > {
 @private
 	UITableViewStyle _tableViewStyle;
-	
 }
 
 //table view
-@property (nonatomic, strong) IBOutlet UITableView *tableView;
-- (id)initWithStyle:(UITableViewStyle)style;
+@property (nonatomic, strong) IBOutlet UITableView * tableView;
+- (id) initWithStyle:(UITableViewStyle)style;
 
-- (void)reloadData;
+- (void) reloadData;
 
 /**
  * 子类不要直接重写DataSource方法---tableView:cellForRowAtIndexPath: ，替代的：
@@ -44,19 +40,19 @@
  * 子类重写以下方法，配置cell
  *		configureCell:atIndexPath:
  */
-- (UITableViewCell *)cellForTableView:(UITableView *)tableView atIndexPath:(NSIndexPath *)indexPath;
-- (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath;
+- (UITableViewCell *) cellForTableView:(UITableView *)tableView atIndexPath:(NSIndexPath *)indexPath;
+- (void) configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath;
 
 
 #pragma mark - Expand and Collapse Cell
 
-@property (nonatomic, strong) NSIndexPath *expandedCellIndexPath;
+@property (nonatomic, strong) NSIndexPath * expandedCellIndexPath;
 
-- (void)expandCellAtIndexPath:(NSIndexPath *)indexPath;
-- (void)collapseExpandedCell;
+- (void) expandCellAtIndexPath:(NSIndexPath *)indexPath;
+- (void) collapseExpandedCell;
 
-- (UITableViewCell *)expandedCellForTableView:(UITableView *)tableView atIndexPath:(NSIndexPath *)indexPath;
-- (void)configureExpandedCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath;
+- (UITableViewCell *) expandedCellForTableView:(UITableView *)tableView atIndexPath:(NSIndexPath *)indexPath;
+- (void) configureExpandedCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath;
 
 @end
 

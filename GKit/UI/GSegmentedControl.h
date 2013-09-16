@@ -12,13 +12,13 @@
 
 @property (nonatomic, assign) NSInteger selectedIndex;
 
-+ (GSegmentedControl *)segmentedControlWithTitles:(NSArray *)titles;
++ (GSegmentedControl *) segmentedControlWithTitles:(NSArray *)titles;
 
-- (void)setFont:(UIFont *)font;
-- (void)setTextColor:(UIColor *)color forControlSate:(UIControlState)controlState;
-- (void)setBackgroundImage:(UIImage *)backgroundImage forControlSate:(UIControlState)controlState;
+- (void) setFont:(UIFont *)font;
+- (void) setTextColor:(UIColor *)color forControlSate:(UIControlState)controlState;
+- (void) setBackgroundImage:(UIImage *)backgroundImage forControlSate:(UIControlState)controlState;
 
 @property (nonatomic, copy) void (^eventHandler)(id sender);
-- (void)addEventHandler:(void (^)(id sender))eventHandler;
+- (void) addEventHandler:(void (^)(id sender))eventHandler;
 
 @end

@@ -38,7 +38,7 @@
     return YES;
 }
 
-+ (id)sharedInstance
++ (G_INSTANCETYPE)sharedInstance
 {
     static GCoreData *_sharedInstance = nil;
     static dispatch_once_t onceToken;

@@ -25,9 +25,8 @@
 @interface AVCaptureVideoPreviewView : UIView
 @end
 
-@interface GCamera : NSObject
-<AVCaptureVideoDataOutputSampleBufferDelegate>
-{
+@interface GCamera : NSObject <
+AVCaptureVideoDataOutputSampleBufferDelegate > {
 	AVCaptureDevicePosition _currentPosition;
 }
 
@@ -57,27 +56,27 @@ enum {
 };
 typedef NSInteger GCaptureSessionPresetType;
 
-@property (nonatomic, strong) AVCaptureSession *session;
-@property (nonatomic, strong) AVCaptureDevice *captureDevice;
+@property (nonatomic, strong) AVCaptureSession * session;
+@property (nonatomic, strong) AVCaptureDevice * captureDevice;
 
-@property (nonatomic, strong) UIView *focusView;
-@property (nonatomic, strong) AVCaptureVideoPreviewView *previewView;
+@property (nonatomic, strong) UIView * focusView;
+@property (nonatomic, strong) AVCaptureVideoPreviewView * previewView;
 
 /**
  Create GCamera
  */
-- (GCamera *)initWithSessionPreset: (GCaptureSessionPresetType)presetType
-			 captureDevicePosition: (GCaptureDevicePosition)devicePosition;
+- (GCamera *) initWithSessionPreset: (GCaptureSessionPresetType)presetType
+			  captureDevicePosition: (GCaptureDevicePosition)devicePosition;
 
-- (void)startRunning;
-- (void)stopRunning;
+- (void) startRunning;
+- (void) stopRunning;
 
-- (void)capturePictureWithCallBack:(void (^)(UIImage *picture))blockCallBack;
+- (void) capturePictureWithCallBack: (void (^)(UIImage *picture))blockCallBack;
 
-- (void)switchCaptureDevicePosition;
+- (void) switchCaptureDevicePosition;
 
-- (void)autoFocusAtPoint:(CGPoint)point;
-- (void)continuousFocusAtPoint:(CGPoint)point;
+- (void) autoFocusAtPoint: (CGPoint)point;
+- (void) continuousFocusAtPoint: (CGPoint)point;
 
 @end
 
@@ -85,6 +84,6 @@ typedef NSInteger GCaptureSessionPresetType;
 @protocol GCameraDelegate <NSObject>
 
 @optional
-- (void)camera:(GCamera *)camera didCapturePicture:(UIImage *)picture;
+- (void) camera:(GCamera *)camera didCapturePicture:(UIImage *)picture;
 
 @end

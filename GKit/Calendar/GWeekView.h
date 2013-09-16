@@ -22,9 +22,9 @@
 @property (nonatomic, copy, readonly) NSDate * beginningOfWeek;  // time always is 00:00:00
 @property (nonatomic, copy, readonly) NSDate * endingOfWeek; // time always is 00:00:00
 
-- (void)jumpToToday;
-- (void)goToNextWeek;
-- (void)backToPreviousWeek;
+- (void) jumpToToday;
+- (void) goToNextWeek;
+- (void) backToPreviousWeek;
 
 @property (nonatomic, weak) id<GWeekViewDataSource> dataSource;
 @property (nonatomic, weak) id<GWeekViewDelegate> delegate;
@@ -60,11 +60,17 @@
 @property (nonatomic, strong) UIColor * eventViewMovingBackgroundColor;
 
 //
-- (CGFloat)offsetForDate:(NSDate *)date;
-- (CGRect)frameForBeginTime:(NSDate *)beginTime endTime:(NSDate *)endTime atDayPosition:(NSInteger)dayPosition;
-- (NSDate *)dateForOffset:(CGFloat)offset atDayPosition:(NSInteger)dayPosition;
-- (NSInteger)dayPositionForPoint:(CGPoint)point;
-- (NSInteger)dayPositionForDate:(NSDate *)date;
+- (CGFloat) offsetForDate: (NSDate *)date;
+
+- (CGRect) frameForBeginTime: (NSDate *)beginTime
+                     endTime: (NSDate *)endTime
+               atDayPosition: (NSInteger)dayPosition;
+
+- (NSDate *) dateForOffset: (CGFloat)offset
+             atDayPosition: (NSInteger)dayPosition;
+
+- (NSInteger) dayPositionForPoint: (CGPoint)point;
+- (NSInteger) dayPositionForDate: (NSDate *)date;
 
 @end
 
@@ -72,10 +78,10 @@
 #pragma mark - GWeekViewDataSource
 @protocol GWeekViewDataSource <NSObject>
 
-- (NSArray *)eventsForWeekView:(GWeekView *)weekView;
+- (NSArray *) eventsForWeekView:(GWeekView *)weekView;
 
 @optional
-- (GEventView *)weekView:(GWeekView *)weekView eventViewForGEvent:(GEvent *)event;
+- (GEventView *) weekView:(GWeekView *)weekView eventViewForGEvent:(GEvent *)event;
 
 @end
 
@@ -83,12 +89,12 @@
 @protocol GWeekViewDelegate <NSObject>
 
 @optional
-- (void)weekView:(GWeekView *)weekView didRemoveGEvent:(GEvent *)event;
-- (void)weekView:(GWeekView *)weekView didUpdateGEvent:(GEvent *)event;
-- (void)weekView:(GWeekView *)weekView didSelectGEvent:(GEvent *)event;
-- (void)weekView:(GWeekView *)weekView didSelectGEvents:(NSArray *)gEvents;
+- (void) weekView:(GWeekView *)weekView didRemoveGEvent:(GEvent *)event;
+- (void) weekView:(GWeekView *)weekView didUpdateGEvent:(GEvent *)event;
+- (void) weekView:(GWeekView *)weekView didSelectGEvent:(GEvent *)event;
+- (void) weekView:(GWeekView *)weekView didSelectGEvents:(NSArray *)gEvents;
 
-- (void)weekView:(GWeekView *)weekView didTapAtDate:(NSDate *)date;
-- (GEvent *)weekView:(GWeekView *)weekView requireGEventAtDate:(NSDate *)date;
+- (void) weekView:(GWeekView *)weekView didTapAtDate:(NSDate *)date;
+- (GEvent *) weekView:(GWeekView *)weekView requireGEventAtDate:(NSDate *)date;
 
 @end

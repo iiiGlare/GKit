@@ -23,19 +23,19 @@
  * Return value for a key,
  * if the value object is nil, return the given default value
  */
-+ (BOOL)boolForKey:(NSString *)key withDefault:(BOOL)defaultValue;
-+ (void)setBool:(BOOL)value forKey:(NSString *)key;
++ (BOOL) boolForKey:(NSString *)key withDefault:(BOOL)defaultValue;
++ (void) setBool:(BOOL)value forKey:(NSString *)key;
 
-+ (NSInteger)integerForKey:(NSString *)key withDefault:(NSInteger)defaultValue;
-+ (void)setInteger:(NSInteger)value forKey:(NSString *)key;
++ (NSInteger) integerForKey:(NSString *)key withDefault:(NSInteger)defaultValue;
++ (void) setInteger:(NSInteger)value forKey:(NSString *)key;
 
-+ (float)floatForKey:(NSString *)key withDefault:(float)defaultValue;
-+ (void)setFloat:(float)value forKey:(NSString *)key;
++ (float) floatForKey:(NSString *)key withDefault:(float)defaultValue;
++ (void) setFloat:(float)value forKey:(NSString *)key;
 
-+ (double)doubleForKey:(NSString *)key withDefault:(double)defaultValue;
-+ (void)setDouble:(double)value forKey:(NSString *)key;
++ (double) doubleForKey:(NSString *)key withDefault:(double)defaultValue;
++ (void) setDouble:(double)value forKey:(NSString *)key;
 
-+ (id)objectForKey:(NSString *)key withDefault:(id)defaultValue;
-+ (void)setObject:(id)value forKey:(NSString *)key;
++ (id) objectForKey:(NSString *)key withDefault:(id)defaultValue;
++ (void) setObject:(id)value forKey:(NSString *)key;
 
 @end

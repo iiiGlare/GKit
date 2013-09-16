@@ -19,6 +19,6 @@
 
 @interface NSFetchedResultsController (GCoreData)
 
-- (BOOL)isIndexPathValid:(NSIndexPath *)indexPath;
+- (BOOL) isIndexPathValid:(NSIndexPath *)indexPath;
 
 @end

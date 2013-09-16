@@ -11,10 +11,10 @@
 
 @interface GMusicPlayer : NSObject
 
-@property (nonatomic, strong) MPMusicPlayerController *musicPlayerController;
+@property (nonatomic, strong) MPMusicPlayerController * musicPlayerController;
 
-- (id)initWithMPMediaItemCollection:(MPMediaItemCollection *)mediaItemCollection;
-- (void)play;
-- (void)stop;
+- (id) initWithMPMediaItemCollection: (MPMediaItemCollection *)mediaItemCollection;
+- (void) play;
+- (void) stop;
 
 @end

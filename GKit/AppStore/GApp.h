@@ -22,8 +22,8 @@
 
 @interface GApp : NSObject
 
-+ (void)reviewApp:(NSString *)appID;
-+ (void)updateApp:(NSString *)appID;
++ (void) reviewApp: (NSString *)appID;
++ (void) updateApp: (NSString *)appID;
 
 //- (void)sendSMSWithRecipients:(NSArray *)recipients
 //						 body:(NSString *)body

@@ -62,37 +62,37 @@ extern CGRect GRectAddSize(CGRect rect, CGSize size);
 - (void) hide;
 
 //add a subview to fill self and autoresize it
-- (void)addSubviewToFill:(UIView *)aView;
+- (void) addSubviewToFill:(UIView *)aView;
 
 //
-- (void)removeAllSubviewOfClass:(Class)aClass;
-- (void)removeFromSuperviewWhenSelfIsKindOfClass:(Class)aClass;
-- (void)removeFromSuperviewWhenSelfIsKindOfClassWithString:(NSString *)aClassString;
+- (void) removeAllSubviewOfClass:(Class)aClass;
+- (void) removeFromSuperviewWhenSelfIsKindOfClass:(Class)aClass;
+- (void) removeFromSuperviewWhenSelfIsKindOfClassWithString:(NSString *)aClassString;
 
 //
-- (UIView *)superviewOfClass:(Class)aClass;
+- (UIView *) superviewOfClass:(Class)aClass;
 
 //find view's controller or superview's controller
-- (UIViewController *)viewController;
+- (UIViewController *) viewController;
 
 @end
 
 @interface UIView (GDrawUtil)
 
-- (void)drawBorderWithColor:(UIColor *)color
-                      width:(CGFloat)width
-               cornerRadius:(CGFloat)radius;
+- (void) drawBorderWithColor: (UIColor *)color
+                       width: (CGFloat)width
+                cornerRadius: (CGFloat)radius;
 
-- (void)drawShadowWithColor:(UIColor *)color
-                     offset:(CGSize)offset
-                    opacity:(CGFloat)opacity
-                     radius:(CGFloat)radius;
+- (void) drawShadowWithColor: (UIColor *)color
+                      offset: (CGSize)offset
+                     opacity: (CGFloat)opacity
+                      radius: (CGFloat)radius;
 
 @end
 
 @interface UIView (GAnimationUtil)
 
-- (UIImage *)snapshot;
-- (UIImageView *)snapshotView;
+- (UIImage *) snapshot;
+- (UIImageView *) snapshotView;
 
 @end

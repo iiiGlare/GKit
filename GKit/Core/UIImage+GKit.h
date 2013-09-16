@@ -13,8 +13,8 @@ UIImage * GImageNamed(NSString *imageName);
 @interface UIImage (GKit)
 
 //小尺寸图片
-- (UIImage *)smallImageWithSize:(CGSize)size;
-- (UIImage *)smallImageWithSize:(CGSize)size fitWidth:(BOOL)fitWidth;
+- (UIImage *) smallImageWithSize:(CGSize)size;
+- (UIImage *) smallImageWithSize:(CGSize)size fitWidth:(BOOL)fitWidth;
 
 
 @end

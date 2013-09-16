@@ -17,7 +17,7 @@
 
 @interface NSMutableArray (GKit)
 
-- (void)insertObjectAtCenter:(id)anObject;
-- (void)removeObjectAtPosition:(NSInteger)position;
+- (void) insertObjectAtCenter: (id)anObject;
+- (void) removeObjectAtPosition: (NSInteger)position;
 
 @end

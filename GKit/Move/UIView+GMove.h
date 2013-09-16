@@ -11,7 +11,7 @@
 
 @interface UIView (GMove)
 
-- (UIView *)findSpriteAtPoint:(CGPoint)point;
-- (id<GMoveSpriteCatcherProtocol>)findCatcher;
+- (UIView *) findSpriteAtPoint:(CGPoint)point;
+- (id<GMoveSpriteCatcherProtocol>) findCatcher;
 
 @end

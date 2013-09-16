@@ -20,9 +20,9 @@
 @interface NSManagedObject (GCoreData)
 
 //
--(void)saveToStore;
+-(void) saveToStore;
 
 //
-- (void)deleteFromStore;
+- (void) deleteFromStore;
 
 @end

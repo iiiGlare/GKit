@@ -16,21 +16,21 @@
 
 @optional
 // find sprite
-- (UIView<GMoveSpriteProtocol> *)requireSpriteAtPoint:(CGPoint)point inScene:(GMoveScene *)scene;
+- (UIView<GMoveSpriteProtocol> *) requireSpriteAtPoint:(CGPoint)point inScene:(GMoveScene *)scene;
 
 // prepare
-- (GMoveSnapshot *)prepareSnapshotForOwnSprite:(UIView *)sprite;
-- (CGRect)prepareFrameForSnapshot:(GMoveSnapshot *)snapshot;
-- (void)didPrepareSnapshot:(GMoveSnapshot *)snapshot;
+- (GMoveSnapshot *) prepareSnapshotForOwnSprite:(UIView *)sprite;
+- (CGRect) prepareFrameForSnapshot:(GMoveSnapshot *)snapshot;
+- (void) didPrepareSnapshot:(GMoveSnapshot *)snapshot;
 
 // moving snapshot
-- (void)beginCatchingSnapshot:(GMoveSnapshot *)snapshot;
-- (void)isCatchingSnapshot:(GMoveSnapshot *)snapshot;
-- (void)endCatchingSnapshot:(GMoveSnapshot *)snapshot;
+- (void) beginCatchingSnapshot:(GMoveSnapshot *)snapshot;
+- (void) isCatchingSnapshot:(GMoveSnapshot *)snapshot;
+- (void) endCatchingSnapshot:(GMoveSnapshot *)snapshot;
 
 // did finish
-- (void)didCatchSnapshot:(GMoveSnapshot *)snapshot;
-- (void)removeOwnSprite:(UIView *)sprite;
+- (void) didCatchSnapshot:(GMoveSnapshot *)snapshot;
+- (void) removeOwnSprite:(UIView *)sprite;
 
 @end
 
