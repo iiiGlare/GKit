@@ -25,17 +25,24 @@
 @synthesize persistentStoreCoordinator = _persistentStoreCoordinator;
 
 #pragma mark - Init
-+ (BOOL)setupWithName:(NSString *)name
-{
++ (BOOL)setupWithName:(NSString *)name {
     return [self setupWithModelName:name storeName:name];
 }
 
-+ (BOOL)setupWithModelName:(NSString *)modelName storeName:(NSString *)storeName
-{
++ (BOOL)setupWithModelName:(NSString *)modelName storeName:(NSString *)storeName {
+    return [self setupWithModelName: modelName
+                          storeName: storeName
+               lightweightMigration: NO];
+}
+
++ (BOOL) setupWithModelName: (NSString *)modelName
+                  storeName: (NSString *)storeName
+       lightweightMigration: (BOOL)lightweightMigration {
     GCoreData *coreData = [GCoreData sharedInstance];
     coreData.modelName = modelName;
     coreData.storeName = storeName;
-    return YES;
+    coreData.lightweightMigration = lightweightMigration;
+    return YES;    
 }
 
 + (G_INSTANCETYPE)sharedInstance
@@ -496,7 +503,13 @@ NSManagedObjectContext * MainContext(void)
     
     NSError *error = nil;
     _persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:[self managedObjectModel]];
-    if (![_persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL options:nil error:&error]) {
+    
+    NSDictionary * options = nil;
+    if (self.lightweightMigration) {
+        options = @{NSMigratePersistentStoresAutomaticallyOption:GNumberWithBOOL(YES),
+                    NSInferMappingModelAutomaticallyOption:GNumberWithBOOL(YES) };
+    }
+    if (![_persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL options:options error:&error]) {
         /*
          Replace this implementation with code to handle the error appropriately.
          

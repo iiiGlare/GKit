@@ -31,6 +31,9 @@
 + (BOOL) setupWithName: (NSString *)name;
 + (BOOL) setupWithModelName: (NSString *)modelName
                   storeName: (NSString *)storeName;
++ (BOOL) setupWithModelName: (NSString *)modelName
+                  storeName: (NSString *)storeName
+       lightweightMigration: (BOOL)lightweightMigration;
 
 
 /**
@@ -39,6 +42,7 @@
 
 @property (nonatomic, copy) NSString * modelName;
 @property (nonatomic, copy) NSString * storeName;
+@property (nonatomic, assign) BOOL lightweightMigration;
 
 /**
  */
