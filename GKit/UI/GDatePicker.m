@@ -520,13 +520,13 @@
 
         if (_maximumDate && ([selectedDate compare:_maximumDate]==NSOrderedDescending)) {
             // max
-            [self setSelectedDate:_maximumDate animated:NO];
+            [self setSelectedDate:_maximumDate animated:YES];
         } else if (_minimumDate && [selectedDate compare:_minimumDate]==NSOrderedAscending) {
             // min
-            [self setSelectedDate:_minimumDate animated:NO];
+            [self setSelectedDate:_minimumDate animated:YES];
         } else {
             // normal
-			[self setSelectedDate:selectedDate animated:NO];
+			[self setSelectedDate:selectedDate animated:YES];
         }
         
 		
@@ -551,7 +551,7 @@
         NSInteger minute = [_picker selectedRowInComponent:[self componentForType:GDatePickerComponentTypeMinute]]%60;
         NSDate * selectedDate  = [[_selectedDate beginningOfDay] dateByAddingTimeInterval:GTimeIntervalFromMinitues(hour*60+minute)];
         
-        [self setSelectedDate:selectedDate animated:NO];
+        [self setSelectedDate:selectedDate animated:YES];
     }
     else if (GDatePickerStyleDateTime == _datePickerStyle) {
         // date time
@@ -606,13 +606,13 @@
         
         if (_maximumDate && ([selectedDate compare:_maximumDate]==NSOrderedDescending)) {
             // max
-            [self setSelectedDate:_maximumDate animated:NO];
+            [self setSelectedDate:_maximumDate animated:YES];
         } else if (_minimumDate && [selectedDate compare:_minimumDate]==NSOrderedAscending) {
             // min
-            [self setSelectedDate:_minimumDate animated:NO];
+            [self setSelectedDate:_minimumDate animated:YES];
         } else {
             // normal
-			[self setSelectedDate:selectedDate animated:NO];
+			[self setSelectedDate:selectedDate animated:YES];
         }
         
 		
