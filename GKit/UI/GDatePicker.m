@@ -30,13 +30,7 @@
 @implementation GDatePicker
 
 #pragma mark - Init & Memory Management
-- (void)prepareToRemove {
-	NSMutableArray * tableViews = [_picker performSelector:@selector(componentTableViews)];
-	for (UITableView * tableView in tableViews) {
-		tableView.delegate = nil;
-		tableView.dataSource = nil;
-	}
-	[NSObject cancelPreviousPerformRequestsWithTarget:_picker];
+- (void)dealloc {
 	[NSObject cancelPreviousPerformRequestsWithTarget:self];
 }
 

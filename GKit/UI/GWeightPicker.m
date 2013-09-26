@@ -27,6 +27,10 @@
 @implementation GWeightPicker
 
 #pragma mark - Init & Memory Management
+- (void)dealloc {
+	[NSObject cancelPreviousPerformRequestsWithTarget:self];
+}
+
 - (id)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self) {

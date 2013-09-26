@@ -58,6 +58,5 @@ typedef NSInteger GDatePickerComponentType;
 
 // init & memory management
 - (void) customInitialize;
-- (void) prepareToRemove;
 
 @end

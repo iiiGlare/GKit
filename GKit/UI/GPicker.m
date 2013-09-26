@@ -116,6 +116,10 @@
 
 
 #pragma mark -
+- (void)dealloc {
+    [NSObject cancelPreviousPerformRequestsWithTarget:self];
+}
+
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
@@ -348,6 +352,10 @@
     } else {
         cell.label.text = [NSString stringWithFormat:@"%d",indexPath.row];
     }
+}
+
+- (void)tableView:(UITableView *)tableView willDisplayCell:(GLabelCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
+    cell.backgroundColor = [UIColor clearColor];
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {

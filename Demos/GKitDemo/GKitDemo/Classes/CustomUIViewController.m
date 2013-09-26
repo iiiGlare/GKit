@@ -93,6 +93,7 @@
 - (void)showPicker
 {
     GDatePicker * datePicker = [[GDatePicker alloc] initWithFrame:CGRectMake(27, 120, 266, 106)];
+    datePicker.backgroundColor = [UIColor redColor];
     datePicker.datePickerStyle = GDatePickerStyleDateTime;
     [datePicker addTarget:self action:@selector(datePickerValueChanged:) forControlEvents:UIControlEventValueChanged];
     [self.view addSubview:datePicker];
