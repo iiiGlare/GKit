@@ -66,7 +66,7 @@
 	sharedTextView.frame = CGRectMake(0, 0, width, 44);
 	sharedTextView.text = title;
 	[sharedTextView sizeToFit];
-	return sharedTextView.height;
+	return sharedTextView.contentSize.height;
 }
 
 #pragma mark - UITextViewDelegate
