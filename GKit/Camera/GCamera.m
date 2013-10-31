@@ -47,7 +47,9 @@ AVCaptureConnection *_VideoConnectionFromOutput(AVCaptureOutput *output, NSStrin
 
 - (void)dealloc
 {
-	[self removeObserver:self forKeyPath:@"self.captureDevice.focusMode"];
+    if (_captureDevice.observationInfo) {
+        [_captureDevice removeObserver:self forKeyPath:@"focusMode" context:AVCamFocusModeObserverContext];
+    }
 	[_session stopRunning];
 }
 
@@ -109,8 +111,8 @@ AVCaptureConnection *_VideoConnectionFromOutput(AVCaptureOutput *output, NSStrin
 		_focusView.layer.borderWidth = 2.0;
 		_focusView.hidden = YES;
 		[self.previewView addSubview:_focusView];
-		[self addObserver: self
-			   forKeyPath: @"self.captureDevice.focusMode"
+		[_captureDevice addObserver: self
+			   forKeyPath: @"focusMode"
 				  options: NSKeyValueObservingOptionNew
 				  context: AVCamFocusModeObserverContext];
 	}
