@@ -2,35 +2,37 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
 	<key>IDESourceControlProjectIdentifier</key>
-	<string>E39A5BF2-C94E-46DD-98E4-95F64C203A42</string>
+	<string>8C874765-F7A7-4574-8768-790848AE3BD5</string>
 	<key>IDESourceControlProjectName</key>
 	<string>GKitDemo</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
-		<key>F14FAC56-A2C8-4FF0-92C4-A37587249B45</key>
-		<string>https://github.com/GlareCH/GKit.git</string>
+		<key>876E3E32-F34C-4526-8550-155BF9A44D53</key>
+		<string>https://github.com/Sanyue/GKit.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
 	<string>Demos/GKitDemo/GKitDemo.xcodeproj/project.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>F14FAC56-A2C8-4FF0-92C4-A37587249B45</key>
+		<key>876E3E32-F34C-4526-8550-155BF9A44D53</key>
 		<string>../../../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
-	<string>https://github.com/GlareCH/GKit.git</string>
+	<string>https://github.com/Sanyue/GKit.git</string>
 	<key>IDESourceControlProjectVersion</key>
 	<integer>110</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>F14FAC56-A2C8-4FF0-92C4-A37587249B45</string>
+	<string>876E3E32-F34C-4526-8550-155BF9A44D53</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>F14FAC56-A2C8-4FF0-92C4-A37587249B45</string>
+			<string>876E3E32-F34C-4526-8550-155BF9A44D53</string>
 			<key>IDESourceControlWCCName</key>
 			<string>GKit</string>
 		</dict>
