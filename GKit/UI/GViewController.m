@@ -167,7 +167,12 @@
 					 animated: (BOOL)flag
 				   completion: (void (^)(void))completion
 {
-	if (_presentAnimationType==GPresentAnimationTypeHide) {
+    if (flag==NO) {
+		[super presentViewController: viewControllerToPresent
+							animated: NO
+						  completion: completion];
+    }
+	else if (_presentAnimationType==GPresentAnimationTypeHide) {
 		self.snapshot = [self.container.view snapshotView];
 		
 		[super presentViewController: viewControllerToPresent
@@ -203,7 +208,11 @@
 - (void)dismissViewControllerAnimated: (BOOL)flag
 						   completion: (void (^)(void))completion
 {
-	if (_presentAnimationType==GPresentAnimationTypeHide) {
+    if (flag==NO) {
+        [super dismissViewControllerAnimated: NO
+								  completion: completion];
+    }
+    else if (_presentAnimationType==GPresentAnimationTypeHide) {
 		if (self.snapshot==nil) {
 			self.presentedView = [[self.presentingViewController presentedViewController] view];
 			self.snapshot = [[self.presentingViewController view] snapshotView];
