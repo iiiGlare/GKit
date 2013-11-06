@@ -22,7 +22,7 @@ BOOL GStringIsNil(NSString *string);
 
 @interface NSString (GKit)
 
-- (NSUInteger) hexStringIntegerValue;
+- (NSUInteger)hexStringIntegerValue;
 
 ///------------------------
 /// @name Checking Contents
@@ -35,7 +35,7 @@ BOOL GStringIsNil(NSString *string);
  
  @return A Boolean if the receiver contains the given `string`
  */
-- (BOOL) containsString: (NSString *)string;
+- (BOOL)containsString:(NSString *)string;
 
 
 ///--------------
@@ -47,14 +47,14 @@ BOOL GStringIsNil(NSString *string);
  
  @return The string of the MD5 sum of the receiver.
  */
-- (NSString *) MD5Sum;
+- (NSString *)MD5Sum;
 
 /**
  Returns a string of the SHA1 sum of the receiver.
  
  @return The string of the SHA1 sum of the receiver.
  */
-- (NSString *) SHA1Sum;
+- (NSString *)SHA1Sum;
 
 
 ///-------------------------
@@ -74,7 +74,7 @@ BOOL GStringIsNil(NSString *string);
  
  @return A comparison result for the receiver and a given `version`
  */
-- (NSComparisonResult) compareToVersionString: (NSString *)version;
+- (NSComparisonResult)compareToVersionString:(NSString *)version;
 
 
 ///-----------------------------------
@@ -88,7 +88,7 @@ BOOL GStringIsNil(NSString *string);
  
  @see unescapeHTML
  */
-- (NSString *) escapeHTML;
+- (NSString *)escapeHTML;
 
 /**
  Returns a new string with any HTML unescaped.
@@ -97,7 +97,7 @@ BOOL GStringIsNil(NSString *string);
  
  @see escapeHTML
  */
-- (NSString *) unescapeHTML;
+- (NSString *)unescapeHTML;
 
 
 ///----------------------------------
@@ -114,7 +114,7 @@ BOOL GStringIsNil(NSString *string);
  
  @see stringByUnescapingFromURLQuery
  */
-- (NSString *) stringByEscapingForURLQuery;
+- (NSString *)stringByEscapingForURLQuery;
 
 /**
  Returns a new string unescaped from a URL query parameter.
@@ -125,7 +125,7 @@ BOOL GStringIsNil(NSString *string);
  
  @see stringByEscapingForURLQuery
  */
-- (NSString *) stringByUnescapingFromURLQuery;
+- (NSString *)stringByUnescapingFromURLQuery;
 
 
 ///-----------------------------------------------
@@ -139,7 +139,7 @@ BOOL GStringIsNil(NSString *string);
  
  @return A new string escaped for a URL.
  */
-- (NSString *) URLEncodedString;
+- (NSString *)URLEncodedString;
 
 /**
  Returns a new string encoded for a URL parameter. (Deprecated)
@@ -148,14 +148,14 @@ BOOL GStringIsNil(NSString *string);
  
  @return A new string escaped for a URL parameter.
  */
-- (NSString *) URLEncodedParameterString;
+- (NSString *)URLEncodedParameterString;
 
 /**
  Returns a new string decoded from a URL.
  
  @return A new string decoded from a URL.
  */
-- (NSString *) URLDecodedString;
+- (NSString *)URLDecodedString;
 
 
 ///----------------------
@@ -167,7 +167,7 @@ BOOL GStringIsNil(NSString *string);
  
  @return A Base64 encoded string
  */
-- (NSString *) base64EncodedString;
+- (NSString *)base64EncodedString;
 
 /**
  Returns a new string contained in the Base64 encoded string.
@@ -179,7 +179,7 @@ BOOL GStringIsNil(NSString *string);
  
  @return String contained in `base64String`
  */
-+ (NSString *) stringWithBase64String:(NSString *)base64String;
++ (NSString *)stringWithBase64String:(NSString *)base64String;
 
 
 ///------------------------
@@ -189,11 +189,17 @@ BOOL GStringIsNil(NSString *string);
 /**
  Returns a new string containing a Universally Unique Identifier.
  */
-+ (NSString *) stringWithUUID;
++ (NSString *)stringWithUUID;
 
 ///---------------
 /// @name Trimming
 ///---------------
+
+/**
+ */
+- (NSString *)stringByRemoveAllCharactersInSet:(NSCharacterSet *)characterSet;
+
+- (NSString *)stringByRemoveAllWhitespaceAndNewlineCharacters;
 
 /**
  Returns a new string by trimming leading and trailing characters in a given `NSCharacterSet`.
@@ -202,14 +208,14 @@ BOOL GStringIsNil(NSString *string);
  
  @return A new string by trimming leading and trailing characters in `characterSet`
  */
-- (NSString *) stringByTrimmingLeadingAndTrailingCharactersInSet: (NSCharacterSet *)characterSet;
+- (NSString *)stringByTrimmingLeadingAndTrailingCharactersInSet:(NSCharacterSet *)characterSet;
 
 /**
  Returns a new string by trimming leading and trailing whitespace and newline characters.
  
  @return A new string by trimming leading and trailing whitespace and newline characters
  */
-- (NSString *) stringByTrimmingLeadingAndTrailingWhitespaceAndNewlineCharacters;
+- (NSString *)stringByTrimmingLeadingAndTrailingWhitespaceAndNewlineCharacters;
 
 /**
  Returns a new string by trimming leading characters in a given `NSCharacterSet`.
@@ -218,14 +224,14 @@ BOOL GStringIsNil(NSString *string);
  
  @return A new string by trimming leading characters in `characterSet`
  */
-- (NSString *) stringByTrimmingLeadingCharactersInSet: (NSCharacterSet *)characterSet;
+- (NSString *)stringByTrimmingLeadingCharactersInSet:(NSCharacterSet *)characterSet;
 
 /**
  Returns a new string by trimming leading whitespace and newline characters.
  
  @return A new string by trimming leading whitespace and newline characters
  */
-- (NSString *) stringByTrimmingLeadingWhitespaceAndNewlineCharacters;
+- (NSString *)stringByTrimmingLeadingWhitespaceAndNewlineCharacters;
 
 /**
  Returns a new string by trimming trailing characters in a given `NSCharacterSet`.
@@ -234,13 +240,13 @@ BOOL GStringIsNil(NSString *string);
  
  @return A new string by trimming trailing characters in `characterSet`
  */
-- (NSString *) stringByTrimmingTrailingCharactersInSet: (NSCharacterSet *)characterSet;
+- (NSString *)stringByTrimmingTrailingCharactersInSet:(NSCharacterSet *)characterSet;
 
 /**
  Returns a new string by trimming trailing whitespace and newline characters.
  
  @return A new string by trimming trailing whitespace and newline characters
  */
-- (NSString *) stringByTrimmingTrailingWhitespaceAndNewlineCharacters;
+- (NSString *)stringByTrimmingTrailingWhitespaceAndNewlineCharacters;
 
 @end

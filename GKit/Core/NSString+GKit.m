@@ -274,6 +274,15 @@ BOOL GStringIsNil(NSString *string)
 	return (__bridge_transfer NSString *)string;
 }
 
+#pragma mark - Remove All
+
+- (NSString *)stringByRemoveAllCharactersInSet:(NSCharacterSet *)characterSet {
+    return [[self componentsSeparatedByCharactersInSet:characterSet] componentsJoinedByString:@""];
+}
+
+- (NSString *)stringByRemoveAllWhitespaceAndNewlineCharacters {
+    return [self stringByRemoveAllCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+}
 
 #pragma mark - Trimming
 

@@ -22,25 +22,54 @@
  * Only writes to the log when DEBUG is defined.
  */
 #ifdef DEBUG
-#define GPRINT(xx, ...)  NSLog(@" [GKit]\n    %s(%d):\n    " xx, __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__)
+#define GPRINT(xx, ...) NSLog(@"***%s(%d)*** " xx, __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__)
 #else
-#define GPRINT(xx, ...)  ((void)0)
+#define GPRINT(xx, ...) ((void)0)
+#endif // #ifdef DEBUG
+
+/**
+ * Log Separator
+ */
+#ifdef DEBUG
+#define GPRINTSeparator(name) \
+    NSLog(@"\n==================================================(%s(%d) %@)==================================================", \
+        __PRETTY_FUNCTION__, __LINE__, name)
+#else
+#define GPRINTSeparator(name) ((void)0)
+#endif // #ifdef DEBUG
+
+/**
+ * Log Method
+ */
+#ifdef DEBUG
+#define GPRINTMethodName() GPRINT(@"@selector(%@)", NSStringFromSelector(_cmd))
+#else
+#define GPRINTMethodName() ((void)0)
 #endif // #ifdef DEBUG
 
 /**
  * Log Error when DEBUG is defined.
  */
 #ifdef DEBUG
-#define GPRINTError(error) GPRINT(@"error : %@, %@",error, [error userInfo])
+#define GPRINTError(error) GPRINT(@"Error: \n    Domain = %@, \n    Code = %d, \n    UserInfo = {%@}\n    -Description: %@\n    -FailureReason: %@\n    -RecoverySuggestion: %@\n    -RecoveryOptions: %@", \
+    [error domain], \
+    [error code], \
+    [[[error userInfo] descriptionInStringsFileFormat] \
+        stringByRemoveAllWhitespaceAndNewlineCharacters], \
+    [error localizedDescription], \
+    [error localizedFailureReason], \
+    [error localizedRecoverySuggestion], \
+    [error localizedRecoveryOptions])
 #else
-#define GPRINTError(error)  ((void)0)
+#define GPRINTError(error) ((void)0)
 #endif // #ifdef DEBUG
 
 /**
  * Assertions that only fire when DEBUG is defined.
  */
 #ifdef DEBUG
-#define GASSERT(xx) { if (!(xx)) { GPRINT(@"GASSERT failed: %s", #xx); } } ((void)0)
+#define GASSERT(xx) { if (!(xx)) { GPRINT(@"Assert Failed: %s", #xx); } \
+                      else { GPRINT(@"Assert Succeed: %s", #xx); } } ((void)0)
 #else
 #define GASSERT(xx) ((void)0)
 #endif // #ifdef DEBUG
