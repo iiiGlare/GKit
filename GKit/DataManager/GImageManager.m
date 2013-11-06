@@ -16,10 +16,8 @@
 //
 
 #import "GImageManager.h"
-#import "NSFileManager+GKit.h"
-#import "GMacros.h"
-
 #import <AssetsLibrary/ALAssetsLibrary.h>
+#import "GCore.h"
 
 @implementation GImageManager
 
