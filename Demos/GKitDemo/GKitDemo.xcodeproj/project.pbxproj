@@ -20,6 +20,12 @@
 		AF98EB761758320D0004FBF4 /* GPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = AF98EB751758320D0004FBF4 /* GPicker.m */; };
 		AFBB5F5C1799071F00AC38B0 /* GDatePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = AFBB5F591799071F00AC38B0 /* GDatePicker.m */; };
 		AFBB5F5D1799071F00AC38B0 /* GWeightPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = AFBB5F5B1799071F00AC38B0 /* GWeightPicker.m */; };
+		AFEDFE3E1829FC7C004ECE77 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AFADC60C1829FB72002464FF /* MediaPlayer.framework */; };
+		AFEDFE6A182A0258004ECE77 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8862C4616CA6A35006EB467 /* Foundation.framework */; };
+		AFEDFE6B182A0258004ECE77 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8862C4416CA6A35006EB467 /* UIKit.framework */; };
+		AFEDFE71182A0258004ECE77 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = AFEDFE6F182A0258004ECE77 /* InfoPlist.strings */; };
+		AFEDFE7B182A0295004ECE77 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AFEDFE7A182A0295004ECE77 /* XCTest.framework */; };
+		AFEDFE7D182A20FB004ECE77 /* GCoreTests.m in Sources */ = {isa = PBXBuildFile; fileRef = AFEDFE7C182A20FB004ECE77 /* GCoreTests.m */; };
 		F80B212E173AD1AC00DDA0D6 /* AudioViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F80B212D173AD1AC00DDA0D6 /* AudioViewController.m */; };
 		F80B4740172831AF00F4FBEB /* GMoveSnapshot+GCalendar.m in Sources */ = {isa = PBXBuildFile; fileRef = F80B473F172831AF00F4FBEB /* GMoveSnapshot+GCalendar.m */; };
 		F82369BD1727B53C00868E8B /* GPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = FD07BDD41727605100D8E26A /* GPoint.m */; };
@@ -30,21 +36,13 @@
 		F86D68581737CE03003EFE6C /* GScrollSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = F86D68571737CE03003EFE6C /* GScrollSlider.m */; };
 		F87191C9174B5DF600E5BEF9 /* UIImage+GKit.m in Sources */ = {isa = PBXBuildFile; fileRef = F87191C8174B5DF600E5BEF9 /* UIImage+GKit.m */; };
 		F885B54F174B569F0059E609 /* GSegmentedControl.m in Sources */ = {isa = PBXBuildFile; fileRef = F885B54E174B569F0059E609 /* GSegmentedControl.m */; };
-		F885B550174B569F0059E609 /* GSegmentedControl.m in Sources */ = {isa = PBXBuildFile; fileRef = F885B54E174B569F0059E609 /* GSegmentedControl.m */; };
 		F885B553174B594A0059E609 /* GMusicPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = F885B552174B594A0059E609 /* GMusicPlayer.m */; };
-		F885B554174B594A0059E609 /* GMusicPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = F885B552174B594A0059E609 /* GMusicPlayer.m */; };
-		F885B556174B599C0059E609 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F885B555174B599C0059E609 /* MediaPlayer.framework */; };
 		F885B560174B5AB30059E609 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F885B55F174B5AB30059E609 /* MessageUI.framework */; };
 		F885B56A174B5CA20059E609 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F885B569174B5CA20059E609 /* StoreKit.framework */; };
 		F8862C4516CA6A35006EB467 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8862C4416CA6A35006EB467 /* UIKit.framework */; };
 		F8862C4716CA6A35006EB467 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8862C4616CA6A35006EB467 /* Foundation.framework */; };
 		F8862C4F16CA6A35006EB467 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = F8862C4D16CA6A35006EB467 /* InfoPlist.strings */; };
 		F8862C5116CA6A35006EB467 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F8862C5016CA6A35006EB467 /* main.m */; };
-		F8862C6316CA6A36006EB467 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8862C6216CA6A36006EB467 /* SenTestingKit.framework */; };
-		F8862C6416CA6A36006EB467 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8862C4416CA6A35006EB467 /* UIKit.framework */; };
-		F8862C6516CA6A36006EB467 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8862C4616CA6A35006EB467 /* Foundation.framework */; };
-		F8862C6D16CA6A36006EB467 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = F8862C6B16CA6A36006EB467 /* InfoPlist.strings */; };
-		F8862C7016CA6A36006EB467 /* GKitDemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F8862C6F16CA6A36006EB467 /* GKitDemoTests.m */; };
 		F8862CBD16CA74AF006EB467 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8862CBC16CA74AF006EB467 /* CoreData.framework */; };
 		F888D8D5174763EC0026C1A4 /* TableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F888D8D4174763EC0026C1A4 /* TableViewController.m */; };
 		F888D8D8174771850026C1A4 /* GTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = F888D8D7174771850026C1A4 /* GTextView.m */; };
@@ -109,8 +107,6 @@
 		F8B6C07E1726C5E300214182 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8B6C07D1726C5E300214182 /* QuartzCore.framework */; };
 		F8B6C0801726C7F000214182 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8B6C07F1726C7ED00214182 /* CoreGraphics.framework */; };
 		F8D1495E1742263B00F86E7C /* CameraViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F8D1495D1742263B00F86E7C /* CameraViewController.m */; };
-		FD07BDD51727605100D8E26A /* GPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = FD07BDD41727605100D8E26A /* GPoint.m */; };
-		FD07BDD8172761DF00D8E26A /* GSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = FD07BDD7172761DF00D8E26A /* GSlider.m */; };
 		FD08F6DD174B2A2200BCA12D /* UITableViewCell+GKit.m in Sources */ = {isa = PBXBuildFile; fileRef = FD08F6DC174B2A2200BCA12D /* UITableViewCell+GKit.m */; };
 		FD0BC5DB17043C61000CC973 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD0BC5DA17043C60000CC973 /* AssetsLibrary.framework */; };
 		FD0BC5E517044A54000CC973 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD0BC5E417044A54000CC973 /* CoreLocation.framework */; };
@@ -128,7 +124,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		F8862C6616CA6A36006EB467 /* PBXContainerItemProxy */ = {
+		AFEDFE75182A0258004ECE77 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = F8862C3916CA6A35006EB467 /* Project object */;
 			proxyType = 1;
@@ -154,10 +150,17 @@
 		AF8E0B0C175EF113006153E0 /* switch_knob@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "switch_knob@2x.png"; sourceTree = "<group>"; };
 		AF98EB741758320D0004FBF4 /* GPicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GPicker.h; sourceTree = "<group>"; };
 		AF98EB751758320D0004FBF4 /* GPicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GPicker.m; sourceTree = "<group>"; };
+		AFADC60C1829FB72002464FF /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 		AFBB5F581799071F00AC38B0 /* GDatePicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GDatePicker.h; sourceTree = "<group>"; };
 		AFBB5F591799071F00AC38B0 /* GDatePicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GDatePicker.m; sourceTree = "<group>"; };
 		AFBB5F5A1799071F00AC38B0 /* GWeightPicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GWeightPicker.h; sourceTree = "<group>"; };
 		AFBB5F5B1799071F00AC38B0 /* GWeightPicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GWeightPicker.m; sourceTree = "<group>"; };
+		AFEDFE67182A0258004ECE77 /* GKitDemo Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "GKitDemo Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		AFEDFE6E182A0258004ECE77 /* GKitDemo Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GKitDemo Tests-Info.plist"; sourceTree = "<group>"; };
+		AFEDFE70182A0258004ECE77 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		AFEDFE74182A0258004ECE77 /* GKitDemo Tests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "GKitDemo Tests-Prefix.pch"; sourceTree = "<group>"; };
+		AFEDFE7A182A0295004ECE77 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		AFEDFE7C182A20FB004ECE77 /* GCoreTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCoreTests.m; sourceTree = "<group>"; };
 		F80B212C173AD1AC00DDA0D6 /* AudioViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioViewController.h; sourceTree = "<group>"; };
 		F80B212D173AD1AC00DDA0D6 /* AudioViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioViewController.m; sourceTree = "<group>"; };
 		F80B473E172831AE00F4FBEB /* GMoveSnapshot+GCalendar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GMoveSnapshot+GCalendar.h"; sourceTree = "<group>"; };
@@ -176,7 +179,6 @@
 		F885B54E174B569F0059E609 /* GSegmentedControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GSegmentedControl.m; sourceTree = "<group>"; };
 		F885B551174B594A0059E609 /* GMusicPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GMusicPlayer.h; sourceTree = "<group>"; };
 		F885B552174B594A0059E609 /* GMusicPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GMusicPlayer.m; sourceTree = "<group>"; };
-		F885B555174B599C0059E609 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 		F885B55F174B5AB30059E609 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		F885B569174B5CA20059E609 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		F8862C4116CA6A35006EB467 /* GKitDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GKitDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -186,12 +188,6 @@
 		F8862C4E16CA6A35006EB467 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		F8862C5016CA6A35006EB467 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		F8862C5216CA6A35006EB467 /* GKitDemo-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "GKitDemo-Prefix.pch"; sourceTree = "<group>"; };
-		F8862C6116CA6A36006EB467 /* GKitDemoTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GKitDemoTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
-		F8862C6216CA6A36006EB467 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
-		F8862C6A16CA6A36006EB467 /* GKitDemoTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GKitDemoTests-Info.plist"; sourceTree = "<group>"; };
-		F8862C6C16CA6A36006EB467 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		F8862C6E16CA6A36006EB467 /* GKitDemoTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GKitDemoTests.h; sourceTree = "<group>"; };
-		F8862C6F16CA6A36006EB467 /* GKitDemoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GKitDemoTests.m; sourceTree = "<group>"; };
 		F8862CBC16CA74AF006EB467 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		F888D8D3174763EC0026C1A4 /* TableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableViewController.h; sourceTree = "<group>"; };
 		F888D8D4174763EC0026C1A4 /* TableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableViewController.m; sourceTree = "<group>"; };
@@ -340,13 +336,23 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		AFEDFE64182A0258004ECE77 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AFEDFE7B182A0295004ECE77 /* XCTest.framework in Frameworks */,
+				AFEDFE6B182A0258004ECE77 /* UIKit.framework in Frameworks */,
+				AFEDFE6A182A0258004ECE77 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		F8862C3E16CA6A35006EB467 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AFEDFE3E1829FC7C004ECE77 /* MediaPlayer.framework in Frameworks */,
 				F885B56A174B5CA20059E609 /* StoreKit.framework in Frameworks */,
 				F885B560174B5AB30059E609 /* MessageUI.framework in Frameworks */,
-				F885B556174B599C0059E609 /* MediaPlayer.framework in Frameworks */,
 				F8B6C0801726C7F000214182 /* CoreGraphics.framework in Frameworks */,
 				F8B6C07E1726C5E300214182 /* QuartzCore.framework in Frameworks */,
 				FD0BC5E517044A54000CC973 /* CoreLocation.framework in Frameworks */,
@@ -356,16 +362,6 @@
 				F8862CBD16CA74AF006EB467 /* CoreData.framework in Frameworks */,
 				F8862C4516CA6A35006EB467 /* UIKit.framework in Frameworks */,
 				F8862C4716CA6A35006EB467 /* Foundation.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		F8862C5D16CA6A36006EB467 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				F8862C6316CA6A36006EB467 /* SenTestingKit.framework in Frameworks */,
-				F8862C6416CA6A36006EB467 /* UIKit.framework in Frameworks */,
-				F8862C6516CA6A36006EB467 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -458,6 +454,25 @@
 			name = Switch;
 			sourceTree = "<group>";
 		};
+		AFEDFE6C182A0258004ECE77 /* GKitDemo Tests */ = {
+			isa = PBXGroup;
+			children = (
+				AFEDFE7C182A20FB004ECE77 /* GCoreTests.m */,
+				AFEDFE6D182A0258004ECE77 /* Supporting Files */,
+			);
+			path = "GKitDemo Tests";
+			sourceTree = "<group>";
+		};
+		AFEDFE6D182A0258004ECE77 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				AFEDFE6E182A0258004ECE77 /* GKitDemo Tests-Info.plist */,
+				AFEDFE6F182A0258004ECE77 /* InfoPlist.strings */,
+				AFEDFE74182A0258004ECE77 /* GKitDemo Tests-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
 		F80B212B173AD19500DDA0D6 /* Audio */ = {
 			isa = PBXGroup;
 			children = (
@@ -493,7 +508,7 @@
 				F88F7A69171803F1003F9238 /* README.md */,
 				F8B6BFEC1726C53F00214182 /* GKit */,
 				F8862C4A16CA6A35006EB467 /* GKitDemo */,
-				F8862C6816CA6A36006EB467 /* GKitDemoTests */,
+				AFEDFE6C182A0258004ECE77 /* GKitDemo Tests */,
 				F8862C4316CA6A35006EB467 /* Frameworks */,
 				F8862C4216CA6A35006EB467 /* Products */,
 			);
@@ -503,7 +518,7 @@
 			isa = PBXGroup;
 			children = (
 				F8862C4116CA6A35006EB467 /* GKitDemo.app */,
-				F8862C6116CA6A36006EB467 /* GKitDemoTests.octest */,
+				AFEDFE67182A0258004ECE77 /* GKitDemo Tests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -511,9 +526,9 @@
 		F8862C4316CA6A35006EB467 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				AFEDFE7A182A0295004ECE77 /* XCTest.framework */,
 				F8862C4416CA6A35006EB467 /* UIKit.framework */,
 				F8862C4616CA6A35006EB467 /* Foundation.framework */,
-				F8862C6216CA6A36006EB467 /* SenTestingKit.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -537,25 +552,6 @@
 				F8862C5016CA6A35006EB467 /* main.m */,
 				F8862C5216CA6A35006EB467 /* GKitDemo-Prefix.pch */,
 				FD47A80916F83D4200CEA15A /* Localizable.strings */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		F8862C6816CA6A36006EB467 /* GKitDemoTests */ = {
-			isa = PBXGroup;
-			children = (
-				F8862C6E16CA6A36006EB467 /* GKitDemoTests.h */,
-				F8862C6F16CA6A36006EB467 /* GKitDemoTests.m */,
-				F8862C6916CA6A36006EB467 /* Supporting Files */,
-			);
-			path = GKitDemoTests;
-			sourceTree = "<group>";
-		};
-		F8862C6916CA6A36006EB467 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				F8862C6A16CA6A36006EB467 /* GKitDemoTests-Info.plist */,
-				F8862C6B16CA6A36006EB467 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -639,7 +635,7 @@
 		F8B6BFED1726C54000214182 /* Audio */ = {
 			isa = PBXGroup;
 			children = (
-				F885B555174B599C0059E609 /* MediaPlayer.framework */,
+				AFADC60C1829FB72002464FF /* MediaPlayer.framework */,
 				FDF1EF7D16F1BD6900FCDC64 /* AudioToolbox.framework */,
 				FDF1EF7B16F1BD6400FCDC64 /* AVFoundation.framework */,
 				F8B6BFEE1726C54000214182 /* GAudio.h */,
@@ -821,6 +817,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		AFEDFE66182A0258004ECE77 /* GKitDemo Tests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = AFEDFE77182A0258004ECE77 /* Build configuration list for PBXNativeTarget "GKitDemo Tests" */;
+			buildPhases = (
+				AFEDFE63182A0258004ECE77 /* Sources */,
+				AFEDFE64182A0258004ECE77 /* Frameworks */,
+				AFEDFE65182A0258004ECE77 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				AFEDFE76182A0258004ECE77 /* PBXTargetDependency */,
+			);
+			name = "GKitDemo Tests";
+			productName = "GKitDemo Tests";
+			productReference = AFEDFE67182A0258004ECE77 /* GKitDemo Tests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		F8862C4016CA6A35006EB467 /* GKitDemo */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = F8862C7316CA6A36006EB467 /* Build configuration list for PBXNativeTarget "GKitDemo" */;
@@ -838,25 +852,6 @@
 			productReference = F8862C4116CA6A35006EB467 /* GKitDemo.app */;
 			productType = "com.apple.product-type.application";
 		};
-		F8862C6016CA6A36006EB467 /* GKitDemoTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = F8862C7616CA6A36006EB467 /* Build configuration list for PBXNativeTarget "GKitDemoTests" */;
-			buildPhases = (
-				F8862C5C16CA6A36006EB467 /* Sources */,
-				F8862C5D16CA6A36006EB467 /* Frameworks */,
-				F8862C5E16CA6A36006EB467 /* Resources */,
-				F8862C5F16CA6A36006EB467 /* ShellScript */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				F8862C6716CA6A36006EB467 /* PBXTargetDependency */,
-			);
-			name = GKitDemoTests;
-			productName = GKitDemoTests;
-			productReference = F8862C6116CA6A36006EB467 /* GKitDemoTests.octest */;
-			productType = "com.apple.product-type.bundle";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -865,6 +860,11 @@
 			attributes = {
 				LastUpgradeCheck = 0460;
 				ORGANIZATIONNAME = Hoewo;
+				TargetAttributes = {
+					AFEDFE66182A0258004ECE77 = {
+						TestTargetID = F8862C4016CA6A35006EB467;
+					};
+				};
 			};
 			buildConfigurationList = F8862C3C16CA6A35006EB467 /* Build configuration list for PBXProject "GKitDemo" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -879,12 +879,20 @@
 			projectRoot = "";
 			targets = (
 				F8862C4016CA6A35006EB467 /* GKitDemo */,
-				F8862C6016CA6A36006EB467 /* GKitDemoTests */,
+				AFEDFE66182A0258004ECE77 /* GKitDemo Tests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		AFEDFE65182A0258004ECE77 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AFEDFE71182A0258004ECE77 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		F8862C3F16CA6A35006EB467 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -914,33 +922,17 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		F8862C5E16CA6A36006EB467 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				F8862C6D16CA6A36006EB467 /* InfoPlist.strings in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXResourcesBuildPhase section */
 
-/* Begin PBXShellScriptBuildPhase section */
-		F8862C5F16CA6A36006EB467 /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
+/* Begin PBXSourcesBuildPhase section */
+		AFEDFE63182A0258004ECE77 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-			);
-			inputPaths = (
-			);
-			outputPaths = (
+				AFEDFE7D182A20FB004ECE77 /* GCoreTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
 		};
-/* End PBXShellScriptBuildPhase section */
-
-/* Begin PBXSourcesBuildPhase section */
 		F8862C3D16CA6A35006EB467 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1023,29 +1015,25 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		F8862C5C16CA6A36006EB467 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				F8862C7016CA6A36006EB467 /* GKitDemoTests.m in Sources */,
-				FD07BDD51727605100D8E26A /* GPoint.m in Sources */,
-				FD07BDD8172761DF00D8E26A /* GSlider.m in Sources */,
-				F885B550174B569F0059E609 /* GSegmentedControl.m in Sources */,
-				F885B554174B594A0059E609 /* GMusicPlayer.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		F8862C6716CA6A36006EB467 /* PBXTargetDependency */ = {
+		AFEDFE76182A0258004ECE77 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = F8862C4016CA6A35006EB467 /* GKitDemo */;
-			targetProxy = F8862C6616CA6A36006EB467 /* PBXContainerItemProxy */;
+			targetProxy = AFEDFE75182A0258004ECE77 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		AFEDFE6F182A0258004ECE77 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				AFEDFE70182A0258004ECE77 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
 		F8862C4D16CA6A35006EB467 /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -1054,17 +1042,70 @@
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
-		F8862C6B16CA6A36006EB467 /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				F8862C6C16CA6A36006EB467 /* en */,
-			);
-			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		AFEDFE78182A0258004ECE77 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/GKitDemo.app/GKitDemo";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "GKitDemo Tests/GKitDemo Tests-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				INFOPLIST_FILE = "GKitDemo Tests/GKitDemo Tests-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Debug;
+		};
+		AFEDFE79182A0258004ECE77 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/GKitDemo.app/GKitDemo";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				ENABLE_NS_ASSERTIONS = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "GKitDemo Tests/GKitDemo Tests-Prefix.pch";
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				INFOPLIST_FILE = "GKitDemo Tests/GKitDemo Tests-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Release;
+		};
 		F8862C7116CA6A36006EB467 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1126,6 +1167,10 @@
 		F8862C7416CA6A36006EB467 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "GKitDemo/GKitDemo-Prefix.pch";
 				GCC_VERSION = "";
@@ -1139,6 +1184,10 @@
 		F8862C7516CA6A36006EB467 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "GKitDemo/GKitDemo-Prefix.pch";
 				GCC_VERSION = "";
@@ -1149,43 +1198,17 @@
 			};
 			name = Release;
 		};
-		F8862C7716CA6A36006EB467 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/GKitDemo.app/GKitDemo";
-				FRAMEWORK_SEARCH_PATHS = (
-					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
-					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
-				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "GKitDemo/GKitDemo-Prefix.pch";
-				INFOPLIST_FILE = "GKitDemoTests/GKitDemoTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = octest;
-			};
-			name = Debug;
-		};
-		F8862C7816CA6A36006EB467 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/GKitDemo.app/GKitDemo";
-				FRAMEWORK_SEARCH_PATHS = (
-					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
-					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
-				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "GKitDemo/GKitDemo-Prefix.pch";
-				INFOPLIST_FILE = "GKitDemoTests/GKitDemoTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = octest;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		AFEDFE77182A0258004ECE77 /* Build configuration list for PBXNativeTarget "GKitDemo Tests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AFEDFE78182A0258004ECE77 /* Debug */,
+				AFEDFE79182A0258004ECE77 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
 		F8862C3C16CA6A35006EB467 /* Build configuration list for PBXProject "GKitDemo" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -1200,15 +1223,6 @@
 			buildConfigurations = (
 				F8862C7416CA6A36006EB467 /* Debug */,
 				F8862C7516CA6A36006EB467 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		F8862C7616CA6A36006EB467 /* Build configuration list for PBXNativeTarget "GKitDemoTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				F8862C7716CA6A36006EB467 /* Debug */,
-				F8862C7816CA6A36006EB467 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
