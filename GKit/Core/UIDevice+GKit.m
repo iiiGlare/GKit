@@ -18,6 +18,22 @@
 #import "UIDevice+GKit.h"
 #import "NSString+GKit.h"
 
+NSString * const G_OS_2_0 = @"2.0";
+NSString * const G_OS_2_1 = @"2.1";
+NSString * const G_OS_2_2 = @"2.2";
+NSString * const G_OS_3_0 = @"3.0";
+NSString * const G_OS_3_1 = @"3.1";
+NSString * const G_OS_3_2 = @"3.2";
+NSString * const G_OS_4_0 = @"4.0";
+NSString * const G_OS_4_1 = @"4.1";
+NSString * const G_OS_4_2 = @"4.2";
+NSString * const G_OS_4_3 = @"4.3";
+NSString * const G_OS_5_0 = @"5.0";
+NSString * const G_OS_5_1 = @"5.1";
+NSString * const G_OS_6_0 = @"6.0";
+NSString * const G_OS_6_1 = @"6.1";
+NSString * const G_OS_7_0 = @"7.0";
+
 @implementation UIDevice (GKit)
 
 //////////////////////////////////////////////////////////////////////////////////
@@ -40,6 +56,12 @@
 }
 
 //////////////////////////////////////////////////////////////////////////////////
++ (BOOL) isOSVersionHigherThan:(NSString *)minVersion {
+    return [UIDevice isOSVersionHigherThanVersion:minVersion includeEqual:NO];
+}
++ (BOOL) isOSVersionHigherThanOrEqualTo:(NSString *)minVersion {
+    return [UIDevice isOSVersionHigherThanVersion:minVersion includeEqual:YES];
+}
 + (BOOL) isOSVersionHigherThanVersion:(NSString *)minVersion includeEqual:(BOOL)isInclude
 {
 	NSString *sysVersion = [[UIDevice currentDevice] systemVersion];
@@ -52,6 +74,12 @@
 }
 
 //////////////////////////////////////////////////////////////////////////////////
++ (BOOL) isOSVersionLowerThan:(NSString *)maxVersion {
+    return [UIDevice isOSVersionLowerThanVersion:maxVersion includeEqual:NO];
+}
++ (BOOL) isOSVersionLowerThanOrEqualTo:(NSString *)maxVersion {
+    return [UIDevice isOSVersionLowerThanVersion:maxVersion includeEqual:YES];
+}
 + (BOOL) isOSVersionLowerThanVersion:(NSString *)maxVersion includeEqual:(BOOL)isInclude
 {
 	NSString *sysVersion = [[UIDevice currentDevice] systemVersion];

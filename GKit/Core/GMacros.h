@@ -95,16 +95,27 @@ do { \
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - SDK Availability
 /**
- *     #if __IPHONE_OS_VERSION_MAX_ALLOWED >= G_iOS_5_0
+ *     #if __IPHONE_OS_VERSION_MAX_ALLOWED >= G_IPHONE_5_0
  *       // This code will only compile on versions >= iOS 5.0
  *     #endif
  */
 
-#define G_iOS_5_0     50000
-#define G_iOS_5_1     50100
-#define G_iOS_6_0     60000
-#define G_iOS_6_1     60100
-#define G_iOS_7_0     70000
+#define G_IPHONE_2_0     20000
+#define G_IPHONE_2_1     20100
+#define G_IPHONE_2_2     20200
+#define G_IPHONE_3_0     30000
+#define G_IPHONE_3_1     30100
+#define G_IPHONE_3_2     30200
+#define G_IPHONE_4_0     40000
+#define G_IPHONE_4_1     40100
+#define G_IPHONE_4_2     40200
+#define G_IPHONE_4_3     40300
+#define G_IPHONE_5_0     50000
+#define G_IPHONE_5_1     50100
+#define G_IPHONE_6_0     60000
+#define G_IPHONE_6_1     60100
+#define G_IPHONE_7_0     70000
+#define G_IPHONE_NA      99999  /* not available */
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 #ifndef G_INSTANCETYPE

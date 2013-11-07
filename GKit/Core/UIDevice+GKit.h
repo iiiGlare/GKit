@@ -17,6 +17,22 @@
 
 #import <UIKit/UIKit.h>
 
+extern NSString * const G_OS_2_0;
+extern NSString * const G_OS_2_1;
+extern NSString * const G_OS_2_2;
+extern NSString * const G_OS_3_0;
+extern NSString * const G_OS_3_1;
+extern NSString * const G_OS_3_2;
+extern NSString * const G_OS_4_0;
+extern NSString * const G_OS_4_1;
+extern NSString * const G_OS_4_2;
+extern NSString * const G_OS_4_3;
+extern NSString * const G_OS_5_0;
+extern NSString * const G_OS_5_1;
+extern NSString * const G_OS_6_0;
+extern NSString * const G_OS_6_1;
+extern NSString * const G_OS_7_0;
+
 @interface UIDevice (GKit)
 
 /**
@@ -34,12 +50,14 @@
 /**
  * Check if the iOS version higher than a given version
  */
-+ (BOOL) isOSVersionHigherThanVersion:(NSString *)minVersion includeEqual:(BOOL)isInclude;
++ (BOOL) isOSVersionHigherThan:(NSString *)minVersion;
++ (BOOL) isOSVersionHigherThanOrEqualTo:(NSString *)minVersion;
 
 /**
  * Check if the iOS version lower than a given version
  */
-+ (BOOL) isOSVersionLowerThanVersion:(NSString *)maxVersion includeEqual:(BOOL)isInclude;
++ (BOOL) isOSVersionLowerThan:(NSString *)maxVersion;
++ (BOOL) isOSVersionLowerThanOrEqualTo:(NSString *)maxVersion;
 
 @end
 
