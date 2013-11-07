@@ -35,7 +35,7 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     _listInfo = [NSMutableDictionary dictionary];
-    [_listInfo setValue:GNumberWithInteger(6) forKey:kNumberOfSections];
+    [_listInfo setValue:GNumberWithInteger(8) forKey:kNumberOfSections];
     
     [_listInfo setValue:@[@"Audio"] forKey:@"0"];
     [_listInfo setValue:@[@"Camera"] forKey:@"1"];
@@ -45,6 +45,7 @@
     [_listInfo setValue:@[@"自动定位到“50”"] forKey:@"4-desc"];
     [_listInfo setValue:@[@"CustomUI"] forKey:@"5"];
     [_listInfo setValue:@[@"Present"] forKey:@"6"];
+    [_listInfo setValue:@[@"ButtonImage"] forKey:@"7"];
 }
 
 - (void)viewDidAppear:(BOOL)animated

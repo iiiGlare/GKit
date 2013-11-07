@@ -18,6 +18,7 @@
 		AF8E0B0E175EF113006153E0 /* switch_on_background@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AF8E0B0B175EF113006153E0 /* switch_on_background@2x.png */; };
 		AF8E0B0F175EF113006153E0 /* switch_knob@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AF8E0B0C175EF113006153E0 /* switch_knob@2x.png */; };
 		AF98EB761758320D0004FBF4 /* GPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = AF98EB751758320D0004FBF4 /* GPicker.m */; };
+		AF9C0C78182B5EDA00BF5B93 /* ButtonImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AF9C0C77182B5EDA00BF5B93 /* ButtonImageViewController.m */; };
 		AFBB5F5C1799071F00AC38B0 /* GDatePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = AFBB5F591799071F00AC38B0 /* GDatePicker.m */; };
 		AFBB5F5D1799071F00AC38B0 /* GWeightPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = AFBB5F5B1799071F00AC38B0 /* GWeightPicker.m */; };
 		AFEDFE3E1829FC7C004ECE77 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AFADC60C1829FB72002464FF /* MediaPlayer.framework */; };
@@ -150,6 +151,8 @@
 		AF8E0B0C175EF113006153E0 /* switch_knob@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "switch_knob@2x.png"; sourceTree = "<group>"; };
 		AF98EB741758320D0004FBF4 /* GPicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GPicker.h; sourceTree = "<group>"; };
 		AF98EB751758320D0004FBF4 /* GPicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GPicker.m; sourceTree = "<group>"; };
+		AF9C0C76182B5EDA00BF5B93 /* ButtonImageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ButtonImageViewController.h; sourceTree = "<group>"; };
+		AF9C0C77182B5EDA00BF5B93 /* ButtonImageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ButtonImageViewController.m; sourceTree = "<group>"; };
 		AFADC60C1829FB72002464FF /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 		AFBB5F581799071F00AC38B0 /* GDatePicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GDatePicker.h; sourceTree = "<group>"; };
 		AFBB5F591799071F00AC38B0 /* GDatePicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GDatePicker.m; sourceTree = "<group>"; };
@@ -454,6 +457,15 @@
 			name = Switch;
 			sourceTree = "<group>";
 		};
+		AF9C0C75182B5E9500BF5B93 /* ButtonImage */ = {
+			isa = PBXGroup;
+			children = (
+				AF9C0C76182B5EDA00BF5B93 /* ButtonImageViewController.h */,
+				AF9C0C77182B5EDA00BF5B93 /* ButtonImageViewController.m */,
+			);
+			name = ButtonImage;
+			sourceTree = "<group>";
+		};
 		AFEDFE6C182A0258004ECE77 /* GKitDemo Tests */ = {
 			isa = PBXGroup;
 			children = (
@@ -595,6 +607,7 @@
 				F8263B22172A9D2900075959 /* Present */,
 				F82369BF1727D41400868E8B /* Calendar */,
 				F8B6BFE5172671EF00214182 /* CustomUI */,
+				AF9C0C75182B5E9500BF5B93 /* ButtonImage */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -989,6 +1002,7 @@
 				F8263B25172A9D3900075959 /* PresentViewController.m in Sources */,
 				F86D68551737C1DF003EFE6C /* GTextField.m in Sources */,
 				F86D68581737CE03003EFE6C /* GScrollSlider.m in Sources */,
+				AF9C0C78182B5EDA00BF5B93 /* ButtonImageViewController.m in Sources */,
 				F80B212E173AD1AC00DDA0D6 /* AudioViewController.m in Sources */,
 				F8D1495E1742263B00F86E7C /* CameraViewController.m in Sources */,
 				F888D8D5174763EC0026C1A4 /* TableViewController.m in Sources */,
@@ -1208,6 +1222,7 @@
 				AFEDFE79182A0258004ECE77 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		F8862C3C16CA6A35006EB467 /* Build configuration list for PBXProject "GKitDemo" */ = {
 			isa = XCConfigurationList;

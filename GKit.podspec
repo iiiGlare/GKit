@@ -37,7 +37,7 @@ Pod::Spec.new do |s|
 
   s.subspec 'Core' do |core|
     core.source_files = 'GKit/Core/**/*.{h,m}'
-    core.frameworks = 'QuartzCore'
+    core.frameworks = 'QuartzCore', 'CoreGraphics'
   end
 
   s.subspec 'CoreData' do |coredata|
