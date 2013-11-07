@@ -17,21 +17,21 @@
 
 #import <UIKit/UIKit.h>
 
-extern NSString * const G_OS_2_0;
-extern NSString * const G_OS_2_1;
-extern NSString * const G_OS_2_2;
-extern NSString * const G_OS_3_0;
-extern NSString * const G_OS_3_1;
-extern NSString * const G_OS_3_2;
-extern NSString * const G_OS_4_0;
-extern NSString * const G_OS_4_1;
-extern NSString * const G_OS_4_2;
-extern NSString * const G_OS_4_3;
-extern NSString * const G_OS_5_0;
-extern NSString * const G_OS_5_1;
-extern NSString * const G_OS_6_0;
-extern NSString * const G_OS_6_1;
-extern NSString * const G_OS_7_0;
+extern NSString * const GOSVersion_2_0;
+extern NSString * const GOSVersion_2_1;
+extern NSString * const GOSVersion_2_2;
+extern NSString * const GOSVersion_3_0;
+extern NSString * const GOSVersion_3_1;
+extern NSString * const GOSVersion_3_2;
+extern NSString * const GOSVersion_4_0;
+extern NSString * const GOSVersion_4_1;
+extern NSString * const GOSVersion_4_2;
+extern NSString * const GOSVersion_4_3;
+extern NSString * const GOSVersion_5_0;
+extern NSString * const GOSVersion_5_1;
+extern NSString * const GOSVersion_6_0;
+extern NSString * const GOSVersion_6_1;
+extern NSString * const GOSVersion_7_0;
 
 @interface UIDevice (GKit)
 

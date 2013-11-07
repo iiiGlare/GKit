@@ -18,21 +18,21 @@
 #import "UIDevice+GKit.h"
 #import "NSString+GKit.h"
 
-NSString * const G_OS_2_0 = @"2.0";
-NSString * const G_OS_2_1 = @"2.1";
-NSString * const G_OS_2_2 = @"2.2";
-NSString * const G_OS_3_0 = @"3.0";
-NSString * const G_OS_3_1 = @"3.1";
-NSString * const G_OS_3_2 = @"3.2";
-NSString * const G_OS_4_0 = @"4.0";
-NSString * const G_OS_4_1 = @"4.1";
-NSString * const G_OS_4_2 = @"4.2";
-NSString * const G_OS_4_3 = @"4.3";
-NSString * const G_OS_5_0 = @"5.0";
-NSString * const G_OS_5_1 = @"5.1";
-NSString * const G_OS_6_0 = @"6.0";
-NSString * const G_OS_6_1 = @"6.1";
-NSString * const G_OS_7_0 = @"7.0";
+NSString * const GOSVersion_2_0 = @"2.0";
+NSString * const GOSVersion_2_1 = @"2.1";
+NSString * const GOSVersion_2_2 = @"2.2";
+NSString * const GOSVersion_3_0 = @"3.0";
+NSString * const GOSVersion_3_1 = @"3.1";
+NSString * const GOSVersion_3_2 = @"3.2";
+NSString * const GOSVersion_4_0 = @"4.0";
+NSString * const GOSVersion_4_1 = @"4.1";
+NSString * const GOSVersion_4_2 = @"4.2";
+NSString * const GOSVersion_4_3 = @"4.3";
+NSString * const GOSVersion_5_0 = @"5.0";
+NSString * const GOSVersion_5_1 = @"5.1";
+NSString * const GOSVersion_6_0 = @"6.0";
+NSString * const GOSVersion_6_1 = @"6.1";
+NSString * const GOSVersion_7_0 = @"7.0";
 
 @implementation UIDevice (GKit)
 

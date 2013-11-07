@@ -30,7 +30,7 @@
 }
 
 - (void)setTextAlignmentG:(GTextAlignment)textAlignment {
-    if ([UIDevice isOSVersionHigherThanOrEqualTo:G_OS_6_0]) {
+    if ([UIDevice isOSVersionHigherThanOrEqualTo:GOSVersion_6_0]) {
         [self setTextAlignment:(NSInteger)textAlignment];
     }
     else {
@@ -46,7 +46,7 @@
 }
 
 - (void)setLineBreakModeG:(GLineBreakMode)lineBreakModeG {
-    if ([UIDevice isOSVersionHigherThanOrEqualTo:G_OS_6_0]) {
+    if ([UIDevice isOSVersionHigherThanOrEqualTo:GOSVersion_6_0]) {
         [self setLineBreakMode:(NSInteger)lineBreakModeG];
     }
     else {

@@ -79,7 +79,7 @@
 + (void)setSessionProperty:(GAudioSessionCategory)category {
 	NSString *theCategory = nil;
 	//3.0 and later
-	if ([UIDevice isOSVersionHigherThanOrEqualTo:G_OS_3_0]) {
+	if ([UIDevice isOSVersionHigherThanOrEqualTo:GOSVersion_3_0]) {
 		switch (category) {
 			case GAudioSessionCategoryAmbient:
 				theCategory = AVAudioSessionCategoryAmbient;
@@ -100,13 +100,13 @@
 				break;
 		}
 		//3.1 and later
-		if ([UIDevice isOSVersionHigherThanOrEqualTo:G_OS_3_1]) {
+		if ([UIDevice isOSVersionHigherThanOrEqualTo:GOSVersion_3_1]) {
 			if (category == GAudioSessionCategoryAudioProcessing) {
 				theCategory = AVAudioSessionCategoryAudioProcessing;
 				goto next;
 			}
 			//6.0 and later
-			if ([UIDevice isOSVersionHigherThanOrEqualTo:G_OS_6_0]) {
+			if ([UIDevice isOSVersionHigherThanOrEqualTo:GOSVersion_6_0]) {
 				if (category == GAudioSessionCategoryMultiRoute) {
 					theCategory = AVAudioSessionCategoryMultiRoute;
 					goto next;
@@ -432,7 +432,7 @@ NSURL * GAudioRecordingFileURL(void) {
         
         BOOL inputAvailable;
         GSuppressDeprecatedDeclarationWarning (
-         if ([UIDevice isOSVersionHigherThanOrEqualTo:G_OS_6_0]) {
+         if ([UIDevice isOSVersionHigherThanOrEqualTo:GOSVersion_6_0]) {
              inputAvailable = self.audioSession.inputAvailable;
          }
          else {

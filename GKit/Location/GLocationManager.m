@@ -66,7 +66,7 @@
 - (void)setActivityType:(GActivityType)activityType
 {
 	_activityType = activityType;
-	if ([UIDevice isOSVersionHigherThanOrEqualTo:G_OS_6_0])
+	if ([UIDevice isOSVersionHigherThanOrEqualTo:GOSVersion_6_0])
 	{
 		self.locationManager.activityType = (CLActivityType)_activityType;
 	}
