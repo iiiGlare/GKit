@@ -77,20 +77,17 @@
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - Suppress Warnings
 #define GSuppressPerformSelectorLeakWarning(Stuff) \
-do { \
     _Pragma("clang diagnostic push") \
     _Pragma("clang diagnostic ignored \"-Warc-performSelector-leaks\"") \
-    Stuff; \
+    Stuff \
     _Pragma("clang diagnostic pop") \
-} while (0)
 
 #define GSuppressDeprecatedDeclarationWarning(Stuff) \
-do { \
     _Pragma("clang diagnostic push") \
     _Pragma("clang diagnostic ignored \"-Wdeprecated-declarations\"") \
-    Stuff; \
+    Stuff \
     _Pragma("clang diagnostic pop") \
-} while (0)
+
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - SDK Availability

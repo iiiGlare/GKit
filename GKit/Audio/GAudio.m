@@ -431,14 +431,15 @@ NSURL * GAudioRecordingFileURL(void) {
         //创建录音成功
         
         BOOL inputAvailable;
-        GSuppressDeprecatedDeclarationWarning (
-         if ([UIDevice isOSVersionHigherThanOrEqualTo:GOSVersion_6_0]) {
-             inputAvailable = self.audioSession.inputAvailable;
-         }
-         else {
-             inputAvailable = self.audioSession.inputIsAvailable;
-         }
-        );
+        GSuppressDeprecatedDeclarationWarning(
+        if ([UIDevice isOSVersionHigherThanOrEqualTo:GOSVersion_6_0]) {
+            inputAvailable = self.audioSession.inputAvailable;
+        }
+        else {
+            inputAvailable = self.audioSession.inputIsAvailable;
+        }
+                                             )
+
         
         if (!inputAvailable) {
             
