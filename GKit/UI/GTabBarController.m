@@ -28,9 +28,19 @@
 
 @implementation GTabBarController
 
-+ (G_INSTANCETYPE)newWithViewControllers:(NSArray *)viewControllers {
++ (G_INSTANCETYPE)newWithViewControllers:(NSArray *)viewControllers
+                          needNavigation:(BOOL)needNavigation {
     GTabBarController * tabBarController = [GTabBarController new];
-    [tabBarController setViewControllers:viewControllers animated:NO];
+    if (needNavigation) {
+        NSMutableArray * navControllers = [[NSMutableArray alloc] initWithCapacity:[viewControllers count]];
+        for (UIViewController * viewController in viewControllers) {
+            [navControllers addObject:[GNavigationController newWithRootViewController:viewController]];
+        }
+        [tabBarController setViewControllers:navControllers animated:NO];
+    }
+    else {
+        [tabBarController setViewControllers:viewControllers animated:NO];
+    }
     return tabBarController;
 }
 
@@ -64,15 +74,11 @@
         }
         
         //
-        if (needNavigation) {
-            [controllers addObject:[GNavigationController newWithRootViewController:viewController]];
-        }
-        else {
-            [controllers addObject:viewController];
-        }
+        [controllers addObject:viewController];
+        
 	}
-    
-    return [GTabBarController newWithViewControllers:controllers];
+
+    return [GTabBarController newWithViewControllers:controllers needNavigation:needNavigation];
 }
 
 - (void)viewDidLoad {

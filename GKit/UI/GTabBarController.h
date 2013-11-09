@@ -20,7 +20,8 @@
 
 @interface GTabBarController : UITabBarController
 
-+ (G_INSTANCETYPE)newWithViewControllers:(NSArray *)viewControllers;
++ (G_INSTANCETYPE)newWithViewControllers:(NSArray *)viewControllers
+                          needNavigation:(BOOL)needNavigation;
 
 + (G_INSTANCETYPE)newWithViewControllerNames:(NSArray *)viewControllerNames
                                       titles:(NSArray *)titles
