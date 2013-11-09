@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "GMacros.h"
 #import "GConfigurator.h"
 
 enum {
@@ -21,6 +22,8 @@ GConfigurator >
 
 @property (nonatomic) BOOL canDragBack;  G_CONFIGURATOR_SELECTOR //default NO
 @property (nonatomic) GNavigationAnimationType navigationAnimationType; G_CONFIGURATOR_SELECTOR //default GNavigationAnimationTypeNormal
+
++ (G_INSTANCETYPE)newWithRootViewController:(UIViewController *)rootViewController;
 
 - (void) setBackItemWithImage: (UIImage *)image
             hightlightedImage: (UIImage *)hightlightedImage

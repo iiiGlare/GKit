@@ -121,6 +121,10 @@
 }
 
 #pragma mark - Init
++ (G_INSTANCETYPE)newWithRootViewController:(UIViewController *)rootViewController {
+    return [[GNavigationController alloc] initWithRootViewController:rootViewController];
+}
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];

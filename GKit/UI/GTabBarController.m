@@ -19,65 +19,105 @@
 #import "GCore.h"
 #import "GNavigationController.h"
 
+@interface GTabBarController ()
+
+@property (nonatomic, strong) UIButton * actionButton;
+@property (nonatomic, copy) void (^actionButtonEventHandler)(id sender);
+
+@end
+
 @implementation GTabBarController
 
-+ (G_INSTANCETYPE)newWithControllerNames:(NSArray *)names
-{
-	if ([names count]==0) {
-		return nil;
-	}
-	NSMutableArray *controllers = [[NSMutableArray alloc] initWithCapacity:[names count]];
-	for (NSInteger i=0; i<[names count]; i++) {
++ (G_INSTANCETYPE)newWithViewControllers:(NSArray *)viewControllers {
+    GTabBarController * tabBarController = [GTabBarController new];
+    [tabBarController setViewControllers:viewControllers animated:NO];
+    return tabBarController;
+}
 
-		NSString *name = [names objectAtIndex:i];
-		GASSERT([name length]>0);
-		
-        NSString *ClassString = [NSString stringWithFormat:@"%@ViewController",name];
-		Class ViewController = NSClassFromString(ClassString);
-		GASSERT(ViewController!=NULL);
-		UIViewController *viewController = [[ViewController alloc] initWithNibName:nil bundle:nil];
-		
-		NSString *title = [NSString stringWithFormat:@"%@Title",name];
-		NSString *image = [NSString stringWithFormat:@"%@Image.png",name];
-		
-		[viewController setTitle:NSLocalizedString(title,@"")];
-		[viewController.tabBarItem setImage:[UIImage imageNamed:image]];
-
-		[controllers addObject:[[GNavigationController alloc] initWithRootViewController:viewController]];
++ (G_INSTANCETYPE)newWithViewControllerNames:(NSArray *)viewControllerNames
+                                      titles:(NSArray *)titles
+                                      images:(NSArray *)images
+                              needNavigation:(BOOL)needNavigation {
+    NSMutableArray * controllers = [[NSMutableArray alloc] initWithCapacity:[viewControllerNames count]];
+	for (NSInteger i=0; i<[viewControllerNames count]; i++) {
+        //
+		NSString * className = [viewControllerNames objectAtPosition:i];
+		UIViewController * viewController = [[NSClassFromString(className) alloc] initWithNibName:nil bundle:nil];
+		//
+        NSString * title = [titles objectAtPosition:i];
+        if ([title isKindOfClass:[NSString class]]) {
+            [viewController setTitle:GLocalizedString(title)];
+        }
+        else {
+            [viewController setTitle:nil];
+        }
+		//
+        id image = [images objectAtPosition:i];
+        if ([image isKindOfClass:[NSString class]]) {
+            [viewController.tabBarItem setImage:GImageNamed(image)];
+        }
+        else if ([image isKindOfClass:[UIImage class]]) {
+            [viewController.tabBarItem setImage:image];
+        }
+        else {
+            [viewController.tabBarItem setImage:nil];
+        }
+        
+        //
+        if (needNavigation) {
+            [controllers addObject:[GNavigationController newWithRootViewController:viewController]];
+        }
+        else {
+            [controllers addObject:viewController];
+        }
 	}
-	
-	GTabBarController *tabBarController = [[GTabBarController alloc] init];
-	[tabBarController setViewControllers:controllers animated:NO];
-	return tabBarController;
+    
+    return [GTabBarController newWithViewControllers:controllers];
+}
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    
+    //
+    if (_actionButton) {
+        [self.view addSubview:_actionButton];
+        [self _layoutActionButton];
+    }
 }
 
 // Create a custom UIButton and add it to the center of our tab bar
-- (void) addActionButtonWithTarget: (id)target
-                            action: (SEL)action
-{
+- (UIButton *)addActionButtonWithSize:(CGSize)size
+                         eventHandler:(void (^)(id sender))eventHandler
+                     forControlEvents:(UIControlEvents)controlEvents {
     //
-    NSMutableArray *viewControllers = [NSMutableArray arrayWithArray:self.viewControllers];
-    [viewControllers insertObjectAtCenter:[[UIViewController alloc] init]];
+    NSMutableArray * viewControllers = [NSMutableArray arrayWithArray:self.viewControllers];
+    [viewControllers insertObjectAtCenter:[UIViewController new]];
     [self setViewControllers:viewControllers animated:NO];
     
     //
-    UIButton* button = [UIButton buttonWithType:UIButtonTypeCustom];
-    [button setAutoresizingMask:GViewAutoresizingFlexibleMargins];
-    UIImage *buttonImage = [UIImage imageNamed:@"CenterTabBarItemImage.png"];
-    UIImage *highlightImage = [UIImage imageNamed:@"CenterTabBarItemImage-Highlight.png"];
-    [button setFrame:CGRectMake(0.0, 0.0, buttonImage.size.width, buttonImage.size.height)];
-    [button setBackgroundImage:buttonImage forState:UIControlStateNormal];
-    [button setBackgroundImage:highlightImage forState:UIControlStateHighlighted];
-    [button addTarget:target action:action forControlEvents:UIControlEventTouchUpInside];
+    self.actionButtonEventHandler = eventHandler;
+    UIButton * button = [UIButton buttonWithType:UIButtonTypeCustom];
+    button.size = size;
+    button.autoresizingMask = GViewAutoresizingFlexibleMargins;
+    [button addTarget:self action:@selector(_handleActionButtonEvents) forControlEvents:controlEvents];
+    
     [self.view addSubview:button];
-    _actionButton = button;
-
+    self.actionButton = button;
     [self _layoutActionButton];
     
+    //
     [self addObserver:self
            forKeyPath:@"tabBar.frame"
               options:NSKeyValueObservingOptionNew
               context:NULL];
+    
+    return _actionButton;
+}
+
+- (void)_handleActionButtonEvents {
+    if (_actionButtonEventHandler) {
+        _actionButtonEventHandler(_actionButton);
+    }
 }
 
 - (void)_layoutActionButton

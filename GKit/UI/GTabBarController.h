@@ -20,26 +20,17 @@
 
 @interface GTabBarController : UITabBarController
 
-/**
- * names 为视图控制器的名字
- * title、image 根据 name, 自动得出
- * 例如：TabBarController容器内的ViewController为：CustomViewController MyViewController
- * 则：
- *		names = @[@"Custom", @"My"];
- * 对应的title为：CustomTitle MyTitle，需要在本地化文件中做对应的翻译
- * 对应的image为：CustomImage.png MyImage.png
- */
-+ (G_INSTANCETYPE) newWithControllerNames:(NSArray *)names;
++ (G_INSTANCETYPE)newWithViewControllers:(NSArray *)viewControllers;
 
-/**
++ (G_INSTANCETYPE)newWithViewControllerNames:(NSArray *)viewControllerNames
+                                      titles:(NSArray *)titles
+                                      images:(NSArray *)images
+                              needNavigation:(BOOL)needNavigation;
+/*
  * Create a custom UIButton and add it to the center of our tab bar
- *
- * Item image :             CenterTabBarItemImage.png
- * Item highlight image :   CenterTabBarItemImage-Highlight.png
  */
-
-@property (nonatomic, strong, readonly) UIButton * actionButton;
-- (void) addActionButtonWithTarget: (id)target
-                            action: (SEL)action;
+- (UIButton *)addActionButtonWithSize:(CGSize)size
+                         eventHandler:(void (^)(id sender))eventHandler
+                     forControlEvents:(UIControlEvents)controlEvents;
 
 @end
