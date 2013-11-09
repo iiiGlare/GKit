@@ -43,7 +43,7 @@ NSURL * GApplicationSupportDirectoryURL(void);
 /**
  *
  */
-UIWindow * GApplicationMainWindow(void);
+UIWindow * GApplicationWindow(void);
 
 /**
  */

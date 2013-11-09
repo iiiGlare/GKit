@@ -51,13 +51,13 @@ NSURL* GApplicationSupportDirectoryURL(void)
 //////////////////////////////////////////////////////////////////////////////////
 UIViewController * GApplicationRootViewController(void)
 {
-    return [GApplicationMainWindow() rootViewController];
+    return [GApplicationWindow() rootViewController];
 }
 
 //////////////////////////////////////////////////////////////////////////////////
-UIWindow * GApplicationMainWindow(void) {
+UIWindow * GApplicationWindow(void) {
 	
-	return [[[UIApplication sharedApplication] windows] firstObject];
+	return [[[UIApplication sharedApplication] delegate] window];
 }
 
 

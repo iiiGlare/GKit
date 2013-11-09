@@ -163,8 +163,8 @@
     NSDictionary* info = [aNotification userInfo];
     CGSize kbSize = [[info objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue].size;
 	CGFloat kbHeight = kbSize.height;
-	CGRect tableViewRect = [GApplicationMainWindow() convertRect:self.tableView.frame fromView:self.tableView.superview];
-	CGFloat bottomEdgeInset = kbHeight - (GApplicationMainWindow().height - CGRectGetMaxY(tableViewRect));
+	CGRect tableViewRect = [GApplicationWindow() convertRect:self.tableView.frame fromView:self.tableView.superview];
+	CGFloat bottomEdgeInset = kbHeight - (GApplicationWindow().height - CGRectGetMaxY(tableViewRect));
 	
 	self.tableView.contentInset = UIEdgeInsetsMake(0, 0, bottomEdgeInset, 0);
 	self.tableView.scrollIndicatorInsets = UIEdgeInsetsMake(0, 0, bottomEdgeInset, 0);
