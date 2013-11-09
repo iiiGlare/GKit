@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>6EE30886-D6AE-4C69-BED4-A95176AD60E4</string>
+	<key>IDESourceControlProjectName</key>
+	<string>GKitDemo</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>BA1CBCE4-752E-40C1-90D3-CE2AC7BDC307</key>
+		<string>https://github.com/GlareCH/GKit.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>GKitDemo.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>BA1CBCE4-752E-40C1-90D3-CE2AC7BDC307</key>
+		<string>..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/GlareCH/GKit.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>BA1CBCE4-752E-40C1-90D3-CE2AC7BDC307</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>BA1CBCE4-752E-40C1-90D3-CE2AC7BDC307</string>
+			<key>IDESourceControlWCCName</key>
+			<string>GKit</string>
+		</dict>
+	</array>
+</dict>
+</plist>

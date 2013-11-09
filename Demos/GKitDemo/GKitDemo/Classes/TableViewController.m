@@ -30,11 +30,6 @@
 	[super viewDidLoad];
 }
 
-- (void)viewWillDisappear:(BOOL)animated
-{	
-	[super viewDidDisappear:animated];
-}
-
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     return 4;

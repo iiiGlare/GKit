@@ -88,7 +88,8 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (_blockDidSelect) {
-        _blockDidSelect([self.itemsForSelection objectAtIndex:indexPath.row]);
+        id obj = [self.itemsForSelection objectAtIndex:indexPath.row];
+        _blockDidSelect(obj);
     }
 }
 

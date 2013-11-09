@@ -28,9 +28,9 @@
 	// Do any additional setup after loading the view.
     
     _catsViewController = [CatsViewController new];
-    _catsViewController.view.backgroundColor = [UIColor randomColor];
+    _catsViewController.view.backgroundColor = GRandomColor();
     _dogsViewController = [DogsViewController new];
-    _dogsViewController.view.backgroundColor = [UIColor randomColor];
+    _dogsViewController.view.backgroundColor = GRandomColor();
     
     [self setTopViewHeight:100];
     [self setBottomViewHeight:100];

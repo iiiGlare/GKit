@@ -56,14 +56,13 @@
     // Override point for customization after application launch.
     self.window.backgroundColor = [UIColor whiteColor];
 
-	self.window.rootViewController = [GTabBarController newWithControllerNames:@[@"Demos",@"Demos"]];
+    self.window.rootViewController
+    = [GTabBarController newWithViewControllerNames:@[@"DemosViewController",@"DemosViewController"]
+                                             titles:@[@"Demo",@"Demo"]
+                                             images:nil
+                                     needNavigation:YES];
     [self.window makeKeyAndVisible];
     return YES;
-}
-
-- (void)centerTabBarItemSelected
-{
-    GPRINT(@"CenterTabBarItemSelected");
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application

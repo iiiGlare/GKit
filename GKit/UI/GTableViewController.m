@@ -28,6 +28,11 @@
 
 #pragma mark - Init & Memory Management
 
+- (void)dealloc {
+    _tableView.dataSource = nil;
+    _tableView.delegate = nil;
+}
+
 - (id)initWithStyle:(UITableViewStyle)style
 {
 	self = [super initWithNibName:nil bundle:nil];
@@ -45,8 +50,8 @@
 	// Do any additional setup after loading the view.
     if (self.tableView==nil)
     {
-        _tableView = [[UITableView alloc] initWithFrame: self.contentView.bounds
-                                                  style: _tableViewStyle];
+        self.tableView = [[UITableView alloc] initWithFrame: self.contentView.bounds
+                                                      style: _tableViewStyle];
         _tableView.autoresizingMask = GViewAutoresizingFlexibleSize;
         _tableView.dataSource = self;
         _tableView.delegate = self;
@@ -63,7 +68,6 @@
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
-
     [self unregisterForKeyboardNotifications];
 }
 
