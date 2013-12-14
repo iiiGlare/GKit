@@ -11,6 +11,10 @@
 
 @implementation GTextFieldCell
 
+- (void)dealloc {
+    _textField.delegate = nil;
+}
+
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];

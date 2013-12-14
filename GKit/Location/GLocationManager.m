@@ -43,6 +43,10 @@
 	return self;
 }
 
+- (void)dealloc {
+    _locationManager.delegate = nil;
+}
+
 #pragma mark - Setter / Getter
 //desiredAccuracy
 - (void)setDesiredAccuracy:(CLLocationAccuracy)desiredAccuracy

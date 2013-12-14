@@ -16,6 +16,10 @@
 
 @implementation GGestureCell
 
+- (void)dealloc {
+    _panGestureRecognizer.delegate = nil;
+}
+
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
