@@ -117,6 +117,10 @@
 
 #pragma mark -
 - (void)dealloc {
+    for (UITableView * tableView in _componentTableViews) {
+        tableView.delegate = nil;
+        tableView.dataSource = nil;
+    }
     [NSObject cancelPreviousPerformRequestsWithTarget:self];
 }
 

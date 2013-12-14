@@ -117,6 +117,10 @@
 }
 
 #pragma mark - Initialization
+- (void)dealloc {
+    contentView.delegate = nil;
+}
+
 - (id)initWithCoder:(NSCoder *)aDecoder
 {
 	self = [super initWithCoder:aDecoder];

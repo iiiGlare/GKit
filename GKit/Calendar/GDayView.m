@@ -152,6 +152,10 @@
 @implementation GDayView
 
 #pragma mark Init & Memeory Management
+- (void)dealloc {
+    _scrollView.delegate = nil;
+}
+
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
