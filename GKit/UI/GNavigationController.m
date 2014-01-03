@@ -269,40 +269,48 @@
 }
 - (UIViewController *)popViewControllerAnimated:(BOOL)animated
 {
-	// notify poped view controller
-	if ([[self.viewControllers lastObject] respondsToSelector:@selector(willPop)]) {
-		[[self.viewControllers lastObject] performSelector:@selector(willPop)];
-	}
-	
-    if ([self.viewControllers count]>1 &&
-        _navigationAnimationType == GNavigationAnimationTypeHide) {
-        UIViewController *preViewController = [self.viewControllers objectAtPosition:-2];
-        [self hideTopViewController];
-        return preViewController;
-    }else {
-        _shouldPopItem = YES;
-        [_snapshots removeLastObject];
-        return [super popViewControllerAnimated:animated];
+    if ([self.viewControllers count] > 1) {
+        // notify poped view controller
+        if ([[self.viewControllers lastObject] respondsToSelector:@selector(willPop)]) {
+            [[self.viewControllers lastObject] performSelector:@selector(willPop)];
+        }
+        
+        if (_navigationAnimationType == GNavigationAnimationTypeHide) {
+            UIViewController *preViewController = [self.viewControllers objectAtPosition:-2];
+            [self hideTopViewController];
+            return preViewController;
+        }
+        else {
+            _shouldPopItem = YES;
+            [_snapshots removeLastObject];
+            return [super popViewControllerAnimated:animated];
+        }
     }
+    
+    return nil;
 }
 - (NSArray *)popToRootViewControllerAnimated:(BOOL)animated
 {
-	// notify poped view controller
-	if ([[self.viewControllers lastObject] respondsToSelector:@selector(willPop)]) {
-		[[self.viewControllers lastObject] performSelector:@selector(willPop)];
-	}
-	
-    if ([self.viewControllers count]>1 &&
-        _navigationAnimationType == GNavigationAnimationTypeHide) {
-        [_snapshots removeObjectsInRange:NSMakeRange(1, [self.viewControllers count]-1)];
-        UIViewController *preViewController = [self.viewControllers objectAtPosition:0];
-        [self hideTopViewController];
-        return @[preViewController];
-    }else {
-        _shouldPopItem = YES;
-        [_snapshots removeAllObjects];
-        return [super popToRootViewControllerAnimated:animated];
+    if ([self.viewControllers count] > 1) {
+        // notify poped view controller
+        if ([[self.viewControllers lastObject] respondsToSelector:@selector(willPop)]) {
+            [[self.viewControllers lastObject] performSelector:@selector(willPop)];
+        }
+        
+        if (_navigationAnimationType == GNavigationAnimationTypeHide) {
+            [_snapshots removeObjectsInRange:NSMakeRange(1, [self.viewControllers count]-1)];
+            UIViewController *preViewController = [self.viewControllers objectAtPosition:0];
+            [self hideTopViewController];
+            return @[preViewController];
+        }
+        else {
+            _shouldPopItem = YES;
+            [_snapshots removeAllObjects];
+            return [super popToRootViewControllerAnimated:animated];
+        }
     }
+    
+    return nil;
 }
 
 #pragma mark - Custom Push/Pop Methods
