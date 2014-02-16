@@ -109,6 +109,9 @@
 		F8B6C0801726C7F000214182 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8B6C07F1726C7ED00214182 /* CoreGraphics.framework */; };
 		F8D1495E1742263B00F86E7C /* CameraViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F8D1495D1742263B00F86E7C /* CameraViewController.m */; };
 		FD08F6DD174B2A2200BCA12D /* UITableViewCell+GKit.m in Sources */ = {isa = PBXBuildFile; fileRef = FD08F6DC174B2A2200BCA12D /* UITableViewCell+GKit.m */; };
+		FD0A0EF018B124C90013F823 /* GUIActionEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = FD0A0EEF18B124C90013F823 /* GUIActionEvent.m */; };
+		FD0A0EF318B126250013F823 /* UIResponder+GUIActionEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = FD0A0EF218B126250013F823 /* UIResponder+GUIActionEvent.m */; };
+		FD0A0EF618B1264F0013F823 /* GUIActionEventHandleResult.m in Sources */ = {isa = PBXBuildFile; fileRef = FD0A0EF518B1264F0013F823 /* GUIActionEventHandleResult.m */; };
 		FD0BC5DB17043C61000CC973 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD0BC5DA17043C60000CC973 /* AssetsLibrary.framework */; };
 		FD0BC5E517044A54000CC973 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD0BC5E417044A54000CC973 /* CoreLocation.framework */; };
 		FD47A80A16F83D4200CEA15A /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = FD47A80916F83D4200CEA15A /* Localizable.strings */; };
@@ -318,6 +321,13 @@
 		FD07BDD7172761DF00D8E26A /* GSlider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GSlider.m; sourceTree = "<group>"; };
 		FD08F6DB174B2A2200BCA12D /* UITableViewCell+GKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableViewCell+GKit.h"; sourceTree = "<group>"; };
 		FD08F6DC174B2A2200BCA12D /* UITableViewCell+GKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableViewCell+GKit.m"; sourceTree = "<group>"; };
+		FD0A0EED18B124560013F823 /* GUIActionEventCore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GUIActionEventCore.h; sourceTree = "<group>"; };
+		FD0A0EEE18B124C90013F823 /* GUIActionEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GUIActionEvent.h; sourceTree = "<group>"; };
+		FD0A0EEF18B124C90013F823 /* GUIActionEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GUIActionEvent.m; sourceTree = "<group>"; };
+		FD0A0EF118B126250013F823 /* UIResponder+GUIActionEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIResponder+GUIActionEvent.h"; sourceTree = "<group>"; };
+		FD0A0EF218B126250013F823 /* UIResponder+GUIActionEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIResponder+GUIActionEvent.m"; sourceTree = "<group>"; };
+		FD0A0EF418B1264F0013F823 /* GUIActionEventHandleResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GUIActionEventHandleResult.h; sourceTree = "<group>"; };
+		FD0A0EF518B1264F0013F823 /* GUIActionEventHandleResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GUIActionEventHandleResult.m; sourceTree = "<group>"; };
 		FD0BC5DA17043C60000CC973 /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
 		FD0BC5E417044A54000CC973 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		FD47A80916F83D4200CEA15A /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
@@ -789,6 +799,7 @@
 				F8B6C0501726C54000214182 /* GViewController.h */,
 				F8B6C0511726C54000214182 /* GViewController.m */,
 				FDE404571796E75D00FD4970 /* GConfigurator.h */,
+				FD0A0EEC18B11A2A0013F823 /* GUIActionEvent */,
 				AF6FB477175DEBCD0098225C /* Other */,
 				AF6FB476175DEBB40098225C /* Tab */,
 				AF6FB475175DEBA80098225C /* Navigation */,
@@ -804,6 +815,20 @@
 				F8D1495D1742263B00F86E7C /* CameraViewController.m */,
 			);
 			name = Camera;
+			sourceTree = "<group>";
+		};
+		FD0A0EEC18B11A2A0013F823 /* GUIActionEvent */ = {
+			isa = PBXGroup;
+			children = (
+				FD0A0EED18B124560013F823 /* GUIActionEventCore.h */,
+				FD0A0EEE18B124C90013F823 /* GUIActionEvent.h */,
+				FD0A0EEF18B124C90013F823 /* GUIActionEvent.m */,
+				FD0A0EF418B1264F0013F823 /* GUIActionEventHandleResult.h */,
+				FD0A0EF518B1264F0013F823 /* GUIActionEventHandleResult.m */,
+				FD0A0EF118B126250013F823 /* UIResponder+GUIActionEvent.h */,
+				FD0A0EF218B126250013F823 /* UIResponder+GUIActionEvent.m */,
+			);
+			name = GUIActionEvent;
 			sourceTree = "<group>";
 		};
 		FD4BF0551751277E00400F47 /* DataManager */ = {
@@ -965,10 +990,12 @@
 				F8B6C0581726C54000214182 /* GCamera.m in Sources */,
 				F8B6C0591726C54000214182 /* GMath.m in Sources */,
 				F8B6C05A1726C54000214182 /* NSArray+GKit.m in Sources */,
+				FD0A0EF018B124C90013F823 /* GUIActionEvent.m in Sources */,
 				F8B6C05B1726C54000214182 /* NSData+GKit.m in Sources */,
 				F8B6C05C1726C54000214182 /* NSDate+GKit.m in Sources */,
 				F8B6C05D1726C54000214182 /* NSFileManager+GKit.m in Sources */,
 				F8B6C05E1726C54000214182 /* NSMutableArray+GKit.m in Sources */,
+				FD0A0EF618B1264F0013F823 /* GUIActionEventHandleResult.m in Sources */,
 				F8B6C05F1726C54000214182 /* NSNumber+GKit.m in Sources */,
 				F8B6C0601726C54000214182 /* NSObject+GKit.m in Sources */,
 				F8B6C0611726C54000214182 /* NSString+GKit.m in Sources */,
@@ -1014,6 +1041,7 @@
 				FD08F6DD174B2A2200BCA12D /* UITableViewCell+GKit.m in Sources */,
 				F885B54F174B569F0059E609 /* GSegmentedControl.m in Sources */,
 				F885B553174B594A0059E609 /* GMusicPlayer.m in Sources */,
+				FD0A0EF318B126250013F823 /* UIResponder+GUIActionEvent.m in Sources */,
 				F87191C9174B5DF600E5BEF9 /* UIImage+GKit.m in Sources */,
 				FD4BF0581751277E00400F47 /* GImageManager.m in Sources */,
 				FD4BF05E1751282500400F47 /* GApp.m in Sources */,
