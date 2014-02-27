@@ -8,6 +8,7 @@
 
 #import "UIResponder+GUIActionEvent.h"
 #import <objc/message.h>
+#import "GCore.h"
 
 @implementation UIResponder (GUIActionEvent)
 
@@ -27,8 +28,14 @@
     }
     
     UIResponder * next = [self nextResponder];
+    if (next == nil && [self isKindOfClass:[UIViewController class]]) {
+        next = [(UIViewController *)self parentViewController];
+    }
     if (next) {
         [next dispatchGUIActionEvent:actionEvent];
+    }
+    else {
+        GPRINT(@"分发 BDUIActionEvent 事件失败， 没有找到实现 %@ 的对象", actionSelectorName);
     }
 }
 

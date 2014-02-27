@@ -22,7 +22,9 @@
  * Only writes to the log when DEBUG is defined.
  */
 #ifdef DEBUG
-#define GPRINT(xx, ...) NSLog(@"***%s(%d)*** " xx, __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__)
+#define GPRINT(xx, ...) \
+    NSLog(@"\n\n################################################################################\n%s(%d)\n**********\n" xx, __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__); \
+    NSLog(@"\n####################\n\n")
 #else
 #define GPRINT(xx, ...) ((void)0)
 #endif // #ifdef DEBUG
@@ -32,8 +34,7 @@
  */
 #ifdef DEBUG
 #define GPRINTSeparator(name) \
-    NSLog(@"\n==================================================(%s(%d) %@)==================================================", \
-        __PRETTY_FUNCTION__, __LINE__, name)
+    NSLog(@"\n\n========================================%@========================================\n\n", name?:@"")
 #else
 #define GPRINTSeparator(name) ((void)0)
 #endif // #ifdef DEBUG

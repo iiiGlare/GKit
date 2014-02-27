@@ -64,5 +64,8 @@ Pod::Spec.new do |s|
     ui.frameworks = 'CoreGraphics'
   end
 
+  s.subspec 'Event' do |event|
+    ui.source_files = 'GKit/Event/**/*.{h,m}'
+  end
 
 end
