@@ -65,7 +65,7 @@ Pod::Spec.new do |s|
   end
 
   s.subspec 'Event' do |event|
-    ui.source_files = 'GKit/Event/**/*.{h,m}'
+    event.source_files = 'GKit/Event/**/*.{h,m}'
   end
 
 end
